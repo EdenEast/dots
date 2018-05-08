@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+usage()
+{
+    cat <<'EOF'
+Usage: pdiff [options] file[#rev]
+Diff the previous version of a file in p4
+Options:
+  -h, --help, --usage,   This help screen
+  -w                     Do not show whitespace changes
+Examples:
+  p4 pdiff program.py       # output the diff of the head and the prev head
+  p4 pdiff program.py#33    # outputs the diff between rev 32 and 33 of of the file
+  p4 pdiff -w program.py#2  # outputs the diff between 2 and 3 with no whitespace changes
+EOF
+}
+
+# Handle usage arguments faster to check for this first
+for arg in "$@"; do
+    case "$arg" in
+        "-h"|"--help"|"--usage")
+            usage
+            exit 0
+            ;;
+    esac
+done
+
+# check for arguments
+while [ $# -gt 0 ]; do
+    case "$1" in
+        "-w")
+            shift
+            ignore_whitespace="-dw"
+            ;;
+        -*)
+            echo "bad option '$1', see --help for usage" >&2
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# Checking what pager do we have
+if [[ -z $(hash vimpager &>/dev/null) ]]; then
+    pager=vimpager
+else
+    pager=less
+fi
+
+# Handle all the files
+for file in "$@"; do
+    # check if there is a revision number given
+    if [[ $file =~ .*\#[0-9]*$ ]]; then
+        arr=(${file//\#/ })
+        command p4 diff2 -du $ignore_whitespace ${arr[0]}\#$((${arr[1]}-1)) $file | $pager
+    else
+        rev=$(p4 fstat $file | grep headRev | sed 's#.*headRev \(.*\)#\1#')
+        command p4 diff2 -du $ignore_whitespace $file\#$(($rev - 1)) $file\#$rev | $pager
+    fi
+done

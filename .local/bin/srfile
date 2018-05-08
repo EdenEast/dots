@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+set -f
+exit_script() { set +f ; exit $1 ; }
+
+usage()
+{
+    cat <<'EOF'
+Usage: srfile path [options] pattern
+Search and replace though files in a path to find a pattern
+Options:
+  -h, --help, --usage,       This help screen
+  -v, --verbose              Show verbose output of commands
+  -z, --dryrun               Show the underlying command but do not run it. Make sure that you add the
+                             sufix 'p' at the end of the pattern to have output
+  -x, --ext                  Filter files by the extention. This can be called more then once in a command
+  -i, --inplace              Make substitution in place
+EOF
+}
+
+# If no arguments are passed then print usage and exit
+[[ $# -eq 0 ]] && usage && exit_script 0
+
+# Handle usage arguments faster to check for this first
+for arg in "$@"; do
+    case "$arg" in
+        "-h"|"--help"|"--usage")
+            usage
+            exit_script 0
+            ;;
+    esac
+done
+
+# setting the search path
+search_path=$1
+shift
+
+# check for arguments
+find_arguments=()
+name_arguments=()
+sed_arguments=()
+while [ $# -gt 0 ]; do
+    case "$1" in
+        "-v"|"--verbose")
+            shift
+            verbose_output=1
+            ;;
+        "-z"|"--dryrun")
+            shift
+            verbose_output=1
+            do_dryrun=1
+            sed_arguments+=('--quiet')
+            ;;
+        "-x"|"--ext")
+            shift
+            [[ -z $has_processed_name_before ]] && {
+                name_arguments+=('(' '-name' "*.$1")
+                has_processed_name_before=1
+            } || {
+                name_arguments+=('-o' '-name' "*.$1")
+            }
+            shift
+            ;;
+        "-i"|"--inplace")
+            shift
+            sed_arguments+=('-i')
+            ;;
+        -*|--*)
+            echo "bad option '$1', see --help for usage" >&2
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# if there are name arguments then close the ()
+[[ -n $has_processed_name_before ]] && name_arguments+=(')')
+
+# if no pattern would then exit
+[[ $# -eq 0 ]] && echo "Pattern not found!" && exit_script 1
+replacement_pattern="$1"
+
+[[ -n $do_dryrun ]] && pattern_suffix="p"
+
+cmd=$(echo find $search_path -type f ${name_arguments[@]} ${find_arguments[@]} -exec sed ${sed_arguments[@]} -e $replacement_pattern$pattern_suffix -- {} +)
+[[ -n $verbose_output ]] && echo $cmd
+$cmd
+
+exit_script 0

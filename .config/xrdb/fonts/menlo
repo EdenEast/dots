@@ -1,0 +1,7 @@
+! vim: ft=xdefaults
+
+URxvt.font:xft:Menlo:style=Regular:pixelsize=14
+URxvt.boldFont:xft:Menlo:style=Regular:pixelsize=14
+URxvt.italicFont:xft:Menlo:style=Regular:pixelsize=14
+URxvt.boldItalicFont:xft:Menlo:style=Regular:pixelsize=14
+

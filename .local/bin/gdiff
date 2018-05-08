@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+usage()
+{
+    cat <<'EOF'
+Usage: gdiff [options] base_file changed_file
+Use git diff tool to find the difference between two files
+Options:
+  -h, --help, --usage,       This help screen
+  -d, --word                 Diff using word diff and color
+  -w, --ignore-whitespace    Ignore whitespace when comparing lines. This ignores differences even if one line has whitespace where the other line has none
+  -l, --ignore-blank-lines   Ignore changes whose lines are all blank
+  -b, --ignore-space-change  Ignore changes in amount of whitespace. This ignores whitespace at line end, and considers all other sequences of one or more whitespace characters to be equivalen
+EOF
+}
+
+# If no arguments are passed then print usage and exit
+[[ $# -eq 0 ]] && usage && exit 0
+
+# Handle usage arguments faster to check for this first
+for arg in "$@"; do
+    case "$arg" in
+        "-h"|"--help"|"--usage")
+            usage
+            exit 0
+            ;;
+    esac
+done
+
+# check for arguments
+arguments=()
+while [ $# -gt 0 ]; do
+    case "$1" in
+        "-w"|"--ignore-whitespace")
+            shift
+            arguments+=('-w')
+            ;;
+        "-d"|"--word")
+            shift
+            arguments+=('--color-words')
+            ;;
+        "-l"|"--ignore-blank-lines")
+            shift
+            arguments+=('--ignore-blank-lines')
+            ;;
+        "-b"|"--ignore-space-change")
+            shift
+            arguments+=('-b')
+            ;;
+        -*|--*)
+            echo "bad option '$1', see --help for usage" >&2
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+# Check to see if we have to files
+[[ $# -ne 2 ]] && {
+    echo "Two files were not specified!"
+    usage
+    exit 1
+}
+
+git diff --no-index ${arguments[@]} -- "$1" "$2"
+exit $?

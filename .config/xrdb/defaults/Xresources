@@ -1,0 +1,32 @@
+! --- Urxvt defaults
+URxvt.termName: rxvt-256color
+URxvt*borderLess: false
+URxvt*cursorBlink: false
+URxvt*cursorUnderline: false
+URxvt*depth: 32
+URxvt*geometry: 80X40
+URxvt*internalBoarder: 0
+URxvt*intensityStyles: false
+URxvt*letterSpace: 0
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+URxvt*urgentOnBell: false
+URxvt.buffered: true
+URxvt.transparent: 0
+
+! --- Extentions
+URxvt.perl-ext-common: default, url-select,matcher
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.laucher: firefox
+Urxvt.underlineURLs: true
+Urxvt.matcher.button: 1
+Urxvt.matcher.rend.0: fg33 bg1
+
+! --- Font settings
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+

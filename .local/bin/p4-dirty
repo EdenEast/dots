@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# This script will check to see if you have a changelist called '<<dirty>>'.
+# If one does not exist then it will make one and then reconcile all changes
+# and add them to the dirty changelist.
+#
+# This is useful when you open something like unity and it changes a bunch of
+# assets that you dont care about. If you dont have any changes and you want to
+# move all the unity modified changes to the dirty branch then this command will
+# do that for you.
+
+current_client=$(p4 info | grep 'Client name' | awk '{ print $3 }')
+
+# Check to see if there is a pending change list called [dirty]
+dirty_changelist=$(p4 changes -c $current_client -s pending | grep '<<dirty>>' | awk '{ print $2 }')
+
+# create a new changelist called [testing] if one does not exist
+if [ -z $dirty_changelist ]; then
+    echo "creating dirty changelist"
+    p4 --field "Description=<<dirty>>" --field "Files=" change -o | p4 change -i
+    dirty_changelist=$(p4 changes -c $current_client -s pending | grep '<<dirty>>' | awk '{ print $2 }')
+fi
+
+echo "Reconcile offline work at $(pwd)..."
+p4 reconcile -faed -c $dirty_changelist

@@ -1,0 +1,12 @@
+# ignore everything
+/*
+!.gitignore
+
+# only include the configuration that needs to be versioned
+!alacritty/
+!i3/
+!nvim/
+!ranger/
+!shell/
+!xrdb/
+!zsh/

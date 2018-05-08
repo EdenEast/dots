@@ -1,0 +1,196 @@
+#!/usr/bin/env bash
+# https://gist.github.com/swarminglogic/8963507
+
+version=1.0.1
+version_date="2018-04-17"
+
+function usage()
+{
+    echo "watchdog - monitor file(s) and perform commands/actions when changed
+Possible usages:
+------------------------------------------------------------------------
+Monitor FILE, when modified execute FILE
+\$ watchfile [options] FILE
+Monitor FILE, when modified execute CMD [param_1 ..param_n]
+\$ watchfile [options] FILE CMD [param_1 .. param_n]
+Monitor FILE_1 .. FILE_N, when modified execute CMD [param_1 ..param_n]
+\$ watchfile [options] -i FILE_1 .. FILE_N -e CMD [param_1 .. param_n]
+Monitor output of CMD1, when modified execute CMD2 [param_1 .. param_n]
+\$ watchfile [options] -s \"CMD1\" -e CMD [param_1 .. param_n]
+options:
+  -h, --help           Show Help
+  -v, --version        Show version information
+  -d, --delay          The delay between each monitor update. Default 1
+  -c, --check-content  Check the file content instead of just the timestamp
+  -n, --no-clear       Do not clear console before executing command
+flags:
+  -s,   Next argument specifies monitor command. Requires -e flag
+  -i,   Start listing files to monitor. Requires -e flag.
+  -e,   Start listing command to execute. Requires -s or -i or flag.
+        Must be the last flag used (CMD can thus use flags as parameters)
+------------------------------------------------------------------------
+Note: If CMD is not found but ./CMD is it will use this command
+Note: If the command uses ampersands (& &&) make sure that they are escaped (\& \&\&)
+------------------------------------------------------------------------
+Examples:
+onitor executable foo.sh, and execute on change
+$ watchfile foo.sh
+Monitor python file foo.py, and execute it on change
+$ watchfile foo.py python foo.py
+As above, but monitor content (not just timestamp):
+$ watchfile --check-content foo.py python foo.py
+Compiling main.cpp file on change:
+$ watchfile main.cpp g++ -Wall main.cpp -o main
+Compiling main.cpp file on change, running when compilation succeedes:
+$ watchfile main.cpp g++ -Wall main.cpp -o main \&\& ./main
+Compiling project whenever source files changes, and running if it succeedes:
+$ watchfile -s \"find . -name '*.cpp' -or -name '*.h' | xargs cat\" \\
+            -e make \&\& ./main
+------------------------------------------------------------------------
+Version: $version ($version_date)
+"
+    exit $1
+}
+
+function handle_arguments()
+{
+    tmp=$@
+    leftovers=""
+    while test $# -gt 0; do
+        case "$1" in
+
+            # options
+            -h|--help)
+                usage 0
+                ;;
+            -v|--version)
+                echo "watchdog $version"
+                exit 0
+                ;;
+            --verbose)
+                shift
+                verbose_output=true
+                ;;
+            -d|--delay)
+                shift
+                flag_delay=$1
+                shift
+                ;;
+            -c|--check-content)
+                shift
+                flag_check_content=true
+                ;;
+            -n|--no-clear)
+                shift
+                flag_clear=true
+                ;;
+
+            # flags
+            -s)
+                shift
+                flag_s=true
+                watch_cmd=$1
+                shift
+                ;;
+            -i)
+                shift
+                flag_i=true
+                n_i=0
+                for i in `seq 1 $#` ; do
+                    [[ ${!i} == -* ]] && break || ((++n_i))
+                done
+                watch_files=${@:1:$n_i}
+                shift $n_i
+                ;;
+            -e)
+                shift
+                flag_e=true
+                exec_command=${@:1}
+                break
+                ;;
+            -*)
+                leftovers="$leftovers "$1
+                shift
+                ;;
+            *)
+                leftovers="$leftovers "$1
+                shift
+                ;;
+        esac
+    done
+
+    [[ $flag_e && (! $flag_s) && (! $flag_i) ]] && {
+        echo "Error: If -e flag is set, -s or -i flags are required."
+        exit 1
+    }
+
+    [[ ($flag_s || $flag_i) && ! $flag_e ]] && {
+        echo "Error: If -s or -i flags are set, the -e flags is required."
+        exit 1
+    }
+
+    [[ $flag_s && $flag_i ]] && {
+        echo "Error: Both -s and -i flags cannot be used simultaneously."
+        exit 1
+    }
+
+    [[ (! $flag_e) && (! $flag_s) && (! $flag_i) ]] && {
+        set -- $leftovers
+        watch_files=$1
+        [[ $# -gt 1 ]] && exec_command=${@:2} || exec_command=$watch_files
+    }
+}
+
+[[ ! $@ ]] && usage 1
+
+flag_delay=1
+
+handle_arguments "$@"
+
+set -- "$exec_command"
+if [[ ! `which $1 2>/dev/null` ]] && [[ -x ./$1 ]] ; then
+    exec_command=./$exec_command
+elif [[ ! `which $1 2>/dev/null` ]] && [[ ! -x ./$1 ]] ; then
+    echo "Error: No executable $1 or ./$1 found"
+    exit 1
+fi
+
+# main monitoring loop
+if [[ -z $watch_cmd ]] ; then
+    if [[ ! $flag_check_content ]] ; then
+        watch_cmd="stat -c %Y $watch_files | md5sum"
+    else
+        watch_cmd="cat $watch_files | md5sum"
+    fi
+else
+    watch_cmd="$watch_cmd | md5sum"
+fi
+
+[[ -n $verbose_output ]] && {
+    echo "exec_command: $exec_command"
+    echo "watch_cmd   : $watch_cmd"
+    echo "watch_files : $watch_files"
+    echo "leftovers   : $leftovers"
+    echo "flag_delay  : $flag_delay"
+}
+
+md5_sum=`eval $watch_cmd`
+md5_sum_now=$md5_sum
+while [[ true ]]
+do
+    # Loop until some files have changed
+    while [[ "$md5_sum_now" = "$md5_sum" ]]
+    do
+        sleep $flag_delay
+        md5_sum_now=`eval $watch_cmd`
+    done
+
+    # Execute the file, as it has changed.
+    if [[ ! $flag_clear ]] ; then
+        clear
+    fi
+    eval $exec_command
+
+    md5_sum=$md5_sum_now
+done
+

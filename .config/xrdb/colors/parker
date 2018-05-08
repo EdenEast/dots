@@ -1,0 +1,39 @@
+! vim: ft=xdefaults
+! parker
+
+! special
+*.foreground:   #ffffff
+*.background:   #131313
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #322a2c
+*.color8:       #46423b
+
+! red
+*.color1:       #79220e
+*.color9:       #aa261f
+
+! green
+*.color2:       #344b1b
+*.color10:      #76550f
+
+! yellow
+*.color3:       #b45b00
+*.color11:      #b57f02
+
+! blue
+*.color4:       #434045
+*.color12:      #908862
+
+! magenta
+*.color5:       #5c1e25
+*.color13:      #624a35
+
+! cyan
+*.color6:       #394745
+*.color14:      #393e38
+
+! white
+*.color7:       #ae8842
+*.color15:      #a59058

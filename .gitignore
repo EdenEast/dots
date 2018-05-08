@@ -1,0 +1,23 @@
+# ignore everything
+/*
+
+# include only these folders
+!.config/
+!.local/
+!.vim/
+
+# include only these files
+!.bash_logout
+!.bash_profile
+!.bashrc
+!.gitconfig
+!.gitignore
+!.inputrc
+!.profile
+!.tmux.conf
+!.xinitrc
+!.Xdefaults
+!.Xresources
+!.zshenv
+
+!readme.md
