@@ -10,11 +10,16 @@ PROMPT_INFO_COLOR=${PROMPT_INFO_COLOR:-$COL_BLACK}
 PROMPT_USER_CHAR="${PROMPT_USER_CHAR:-λ}"
 PROMPT_INPUT_CHAR="${PROMPT_INPUT_CHAR:-›}"
 PROMPT_CWD_SEGMENT_COUNT=${PROMPT_CWD_SEGMENT_COUNT:-2}
-PROMPT_TRAILING_SPACE=true
+PROMPT_TRAILING_SPACE=${PROMPT_TRAILING_SPACE:-true}
 
-PROMPT_COMPONENTS=(pmt_status pmt_user pmt_input)
-RPROMPT_COMPONENTS=(pmt_cwd)
-PROMPT_INFOLINE_COMPONENTS=(pmt_uhp pmt_pwd pmt_files)
+PROMPT_GIT_SHOW_DIRTY_STATE=${PROMPT_GIT_SHOW_DIRTY_STATE:-false}
+PROMPT_GIT_BRANCH_COLOR=${PROMPT_GIT_BRANCH_COLOR:-$COL_YELLOW}
+PROMPT_GIT_REBASE_COLOR=${PROMPT_GIT_REBASE_COLOR:-$COL_CYAN}
+PROMPT_GIT_REBASE_COUNT_COLOR=${PROMPT_GIT_REBASE_COUNT_COLOR:-$COL_BLUE}
+
+PROMPT_COMPONENTS=${PROMPT_COMPONENTS:-(pmt_status pmt_user pmt_input)}
+RPROMPT_COMPONENTS=${RPROMPT_COMPONENTS:-(pmt_cwd pmt_git)}
+PROMPT_INFOLINE_COMPONENTS=${PROMPT_INFOLINE_COMPONENTS:-(pmt_uhp pmt_pwd pmt_files)}
 
 #
 # Components
@@ -131,6 +136,132 @@ function pmt_jobs()
     [[ $count -gt 0 ]] && echo "$count&"
 }
 
+function __git_eread()
+{
+    local f="$1"
+    shift
+    test -r "$f" && read "$@" <"$f"
+}
+
+function pmt_git()
+{
+    # setting the local colors
+    local crs=$COL_RESET
+    local cbr=$PROMPT_GIT_BRANCH_COLOR
+    local crb=$PROMPT_GIT_REBASE_COLOR
+    local ccrb=$PROMPT_GIT_REBASE_COUNT_COLOR
+
+    local repo_info rev_parse_exit_code
+    repo_info="$(git rev-parse --git-dir --is-inside-git-dir \
+        --is-bare-repository --is-inside-work-tree \
+        --short HEAD 2>/dev/null)"
+    rev_parse_exit_code="$?"
+
+    [[ -z "$repo_info" ]] && return $exit;
+
+    local short_sha=""
+    [[ "$rev_parse_exit_code" = "0" ]] && {
+        short_sha="${repo_info##*$'\n'}"
+        repo_info="${repo_info%$'\n'*}"
+    }
+
+    local inside_worktree="${repo_info##*$'\n'}"
+    repo_info="${repo_info%$'\n'*}"
+
+    local bare_repo="${repo_info##*$'\n'}"
+    repo_info="${repo_info%$'\n'*}"
+
+    local inside_gitdir="${repo_info##*$'\n'}" # are we inside of the .git folder
+    local g="${repo_info%$'\n'*}" # .git directory
+
+    [ "true" = "$inside_worktree" ] &&
+        [ "$(git config --bool bash.hideIfPwdIgnored)" != "false" ] &&
+        git check-ignore -q . &&
+        return $exit
+
+    local r=""    # rebase info
+    local b=""    # branch info
+    local step=""
+    local total=""
+    if [ -d "$g/rebase-merge" ]; then
+        __git_eread "$g/rebase-merge/head-name" b
+        __git_eread "$g/rebase-merge/msgnum" step
+        __git_eread "$g/rebase-merge/end" total
+        if [ -f "$g/rebase-merge/interactive" ]; then
+            r="$crs|${crb}REBASE-i"
+        else
+            r="$crs|${crb}REBASE-m"
+        fi
+    else
+        if [ -d "$g/rebase-apply" ]; then
+            __git_eread "$g/rebase-apply/next" step
+            __git_eread "$g/rebase-apply/last" total
+            if [ -f "$g/rebase-apply/rebasing" ]; then
+                __git_eread "$g/rebase-apply/head-name" b
+                r="$crs|${crb}REBASE"
+            elif [ -f "$g/rebase-apply/applying" ]; then
+                r="$crs|${crb}AM"
+            else
+                r="$crs|${crb}AM$crs/${crb}REBASE"
+            fi
+        elif [ -f "$g/MERGE_HEAD" ]; then
+            r="$crs|${crb}MERGING"
+        elif [ -f "$g/CHERRY_PICK_HEAD" ]; then
+            r="$crs|${crb}CHERRY-PICKING"
+        elif [ -f "$g/REVERT_HEAD" ]; then
+            r="$crs|${crb}REVERTING"
+        elif [ -f "$g/BISECT_LOG" ]; then
+            r="$crs|${crb}BISECTING"
+        fi
+
+        if [ -n "$b" ]; then
+            :
+        elif [ -h "$g/HEAD" ]; then
+            # symlink symbolic ref
+            b="$(git symbolic-ref HEAD 2>/dev/null)"
+        else
+            local head=""
+            if ! __git_eread "$g/HEAD" head; then
+                return $exit
+            fi
+            # is it a symbolic ref?
+            b="${head#ref: }"
+            if [ "$head" = "$b" ]; then
+                detached=yes
+                b="$(
+                case "${GIT_PS1_DESCRIBE_STYLE-}" in
+                (contains)
+                    git describe --contains HEAD ;;
+                (branch)
+                    git describe --contains --all HEAD ;;
+                (tag)
+                    git describe --tags HEAD ;;
+                (describe)
+                    git describe HEAD ;;
+                (* | default)
+                    git describe --tags --exact-match HEAD ;;
+                esac 2>/dev/null)" ||
+
+                b="$short_sha..."
+                b="($b)"
+            fi
+        fi
+    fi
+
+    if [ -n "$step" ] && [ -n "$total" ]; then
+        r="$r $ccrb$step$crs/$ccrb$total"
+    fi
+
+    [ $"inside_gitdir" = "true" ] && {
+        [ "$bare_repo" = "true" ] && c="BARE" || c=".GITDIR"
+    }
+
+    b=$cbr${b##refs/heads/}
+
+    local gitstring="$b$r$crs"
+    echo $gitstring
+}
+
 #
 # Magic enter components
 #
@@ -177,13 +308,15 @@ function _build_info_line()
 function _build_prompt()
 {
     _check_blank_line
-    # echo $_CHECK_BLANK_RESULT
     [[ $_CHECK_BLANK_RESULT = "true" ]] && _build_info_line
+
     local left_prompt=$(_pmt_wrap ${PROMPT_COMPONENTS[@]})
     local right_prompt=$(_pmt_wrap ${RPROMPT_COMPONENTS[@]})
 
     # strip out the escape color sequences to get an accuate count of the right prompt chars
     local right_stripped=$(sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" <<<"$right_prompt")
+    # local count=$(echo $right_stripped | sed -n '$=')
+    # echo  "$right_stripped ${#right_stripped} "
 
     local save_cursor='\e[s' # Save cursor position
     local reset_cursor='\e[u' # Restore cursor position to save point
