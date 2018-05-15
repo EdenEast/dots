@@ -8,8 +8,8 @@
 #
 # History config
 #
-# Do not duplicate lines or lines starting with space in history file
-HISTCONTROL=ignoreboth
+# We need HISTCONTROL to save all commands and also duplicate spaces for prompt
+HISTCONTROL=
 HISTSIZE=10000
 HISTFILESIZE=15000
 
