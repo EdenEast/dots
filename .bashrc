@@ -17,6 +17,13 @@ HISTFILESIZE=15000
 shopt -s histappend
 
 #
+# Prompt config
+#
+PROMPT_MODE=left
+PROMPT_DIR_COLOR=$COL_BLUE
+
+
+#
 # Bash config options
 #
 # Check window size after every command and update LINES and COLUMNS
@@ -24,6 +31,7 @@ shopt -s checkwinsize
 
 source $HOME/.config/shell/aliases
 source $HOME/.config/shell/functions
+
 
 for rc in $HOME/.local/etc/bash/bashrc.d/* ; do
     source $rc

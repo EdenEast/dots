@@ -1,4 +1,9 @@
 
+# choose what mode the prompt is output as.
+# `left` is just the left prompt with no right prompt. Uses PROMPT_COMPONENTS
+# `split` is the left and right prompt outputs. Uses PROMPT_LCOMPONENTS and PROMPT_RCOMPONENTS
+# options are left or split
+PROMPT_MODE=${PROMPT_MODE:-split}
 PROMPT_OK_COLOR=${PROMPT_OK_COLOR:-$COL_GREEN}
 PROMPT_ERR_COLOR=${PROMPT_ERR_COLOR:-$COL_RED}
 
@@ -17,9 +22,20 @@ PROMPT_GIT_BRANCH_COLOR=${PROMPT_GIT_BRANCH_COLOR:-$COL_YELLOW}
 PROMPT_GIT_REBASE_COLOR=${PROMPT_GIT_REBASE_COLOR:-$COL_CYAN}
 PROMPT_GIT_REBASE_COUNT_COLOR=${PROMPT_GIT_REBASE_COUNT_COLOR:-$COL_BLUE}
 
-PROMPT_COMPONENTS=${PROMPT_COMPONENTS:-(pmt_status pmt_user pmt_input)}
-RPROMPT_COMPONENTS=${RPROMPT_COMPONENTS:-(pmt_cwd pmt_git)}
-PROMPT_INFOLINE_COMPONENTS=${PROMPT_INFOLINE_COMPONENTS:-(pmt_uhp pmt_pwd pmt_files)}
+pmt_component_default=(pmt_status pmt_cwd pmt_git pmt_input)
+pmt_lcomponent_default=(pmt_status pmt_user pmt_input)
+pmt_rcomponent_default=(pmt_cwd pmt_git)
+pmt_infoline_component_default=(pmt_uhp pmt_pwd pmt_files)
+
+PROMPT_COMPONENTS=${PROMPT_LCOMPONENTS:-${pmt_component_default[@]}}
+PROMPT_LCOMPONENTS=${PROMPT_LCOMPONENTS:-${pmt_lcomponent_default[@]}}
+PROMPT_RCOMPONENTS=${PROMPT_RCOMPONENTS:-${pmt_rcomponent_default[@]}}
+PROMPT_INFOLINE_COMPONENTS=${PROMPT_INFOLINE_COMPONENTS:-${pmt_infoline_component_default[@]}}
+
+unset pmt_component_default
+unset pmt_lcomponent_default
+unset pmt_rcomponent_default
+unset pmt_infoline_component_default
 
 #
 # Components
@@ -47,7 +63,7 @@ function pmt_user()
 
 function pmt_input()
 {
-    echo "${PROMPT_INPUT_CHAR}"
+    echo "${COL_RESET}${PROMPT_INPUT_CHAR}"
 }
 
 function pmt_name()
@@ -86,18 +102,25 @@ function pmt_uhp
 
 function pmt_files()
 {
-    local a="$(ls -1A | sed -n '$=')"  # all files
-    local v="$(ls -1 | sed -n '$=')"   # visable files
-    a=${a:-0}
-    v=${v:-0}
-    local h="$(($a - $v))" # hidden files
+    local dh=$(find $PWD -maxdepth 1 -type d -name ".*" -print | sed -n '$=')
+    local dv=$(find $PWD -maxdepth 1 -type d -not -name ".*" -print | sed -n '$=')
+    local fh=$(find $PWD -maxdepth 1 -type f -name ".*" -print | sed -n '$=')
+    local fv=$(find $PWD -maxdepth 1 -type f -not -name ".*" -print | sed -n '$=')
+
+    dh=${dh:-0}
+    dv=${dv:-0}
+    fh=${fh:-0}
+    fv=${fv:-0}
 
     local c=$PROMPT_INFO_COLOR
     local r=$COL_RESET
 
-    local output="$r[$c${v:-0}"
-    [[ ${h:-0} -gt 0 ]] && output="$output $r($c$h$r)"
-    output="$output$r]"
+    local output="$r["
+    [ -n $dv ] && output="$output ${c}dv$r(${c}$dv$r)"
+    [ -n $dh ] && output="$output ${c}dh$r(${c}$dh$r)"
+    [ -n $dv ] && output="$output ${c}fv$r(${c}$fv$r)"
+    [ -n $dh ] && output="$output ${c}fh$r(${c}$fh$r)"
+    output="$output $r]"
     echo $output
 }
 
@@ -310,19 +333,25 @@ function _build_prompt()
     _check_blank_line
     [[ $_CHECK_BLANK_RESULT = "true" ]] && _build_info_line
 
-    local left_prompt=$(_pmt_wrap ${PROMPT_COMPONENTS[@]})
-    local right_prompt=$(_pmt_wrap ${RPROMPT_COMPONENTS[@]})
+    if [ $PROMPT_MODE = 'split' ]; then
+        local left_prompt=$(_pmt_wrap ${PROMPT_LCOMPONENTS[@]})
+        local right_prompt=$(_pmt_wrap ${PROMPT_RCOMPONENTS[@]})
 
-    # strip out the escape color sequences to get an accuate count of the right prompt chars
-    local right_stripped=$(sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" <<<"$right_prompt")
-    # local count=$(echo $right_stripped | sed -n '$=')
-    # echo  "$right_stripped ${#right_stripped} "
+        # strip out the escape color sequences to get an accuate count of the right prompt chars
+        local right_stripped=$(sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" <<<"$right_prompt")
 
-    local save_cursor='\e[s' # Save cursor position
-    local reset_cursor='\e[u' # Restore cursor position to save point
+        local save_cursor='\e[s' # Save cursor position
+        local reset_cursor='\e[u' # Restore cursor position to save point
 
-    [[ $PROMPT_TRAILING_SPACE ]] && trailing_space=" "
-    PS1="\[${save_cursor}\e[${COLUMNS}C\e[${#right_stripped}D${right_prompt}${reset_cursor}\]${left_prompt}$trailing_space"
+        [[ $PROMPT_TRAILING_SPACE ]] && trailing_space=" "
+        PS1="\[${save_cursor}\e[${COLUMNS}C\e[${#right_stripped}D${right_prompt}${reset_cursor}\]${left_prompt}$trailing_space"
+    elif [ $PROMPT_MODE = 'left' ]; then
+        [[ $PROMPT_TRAILING_SPACE ]] && trailing_space=" "
+        local prompt_output=$(_pmt_wrap ${PROMPT_COMPONENTS})
+        PS1="${prompt_output}${trailing_space}"
+    else
+        echo 'Unrecognised $PROMPT_MODE! Options: `left` `split`'
+    fi
 }
 
 PROMPT_COMMAND=_build_prompt
