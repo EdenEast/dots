@@ -1,0 +1,90 @@
+#!/bin/bash
+
+function die()
+{
+    exit $1
+}
+
+function usage()
+{
+    echo "install script for dot file
+options:
+  -p, --proxy    Proxy to use
+
+  -h, --help     Print this usage
+  -v, --verbose  Set verbose mode
+"
+    die $1
+}
+
+function parse_arguments()
+{
+    while test $# != 0; do
+        case "$1" in
+            -h|--help)
+                shift ; usage 0 ;;
+            -v|--verbose)
+                shift ; inst_verbose=true ;;
+            -p|--proxy)
+                shift ; inst_proxy=$1 ; shift ;;
+            *)
+                echo "unknown input $1" ; usage 1 ;;
+        esac
+    done
+}
+
+# copy file $1 to the destiniation of $2 at the root dir $3
+function copy_file()
+{
+    local rel_name=$(realpath  --relative-to="$3" "$1")
+    local dir_name=$2/$rel_name
+
+    [[ "$inst_verbose" = "true" ]] && local verbose_mode="-v"
+    [[ ! -d $dir_name ]] && mkdir -p $verbose_mode $dir_name
+    cp $verbose_mode $1 $2/$rel_name
+}
+
+function set_git_proxy()
+{
+    [[ -n $inst_proxy ]] && {
+        git config $1 http.proxy $inst_proxy
+        git config $1 http.sslVerify true
+        git config $1 https.proxy $inst_proxy
+    }
+}
+
+function main()
+{
+    parse_arguments "$@"
+
+    local work_dir="$HOME"
+    local dots_dir="$HOME/.dots"
+    local temp_dir="$HOME/tmp/dots"
+    local url_link="https://github.com/CruizeMissile/dots"
+    local dots_cmd="git --git-dir=$dots_dir --work-tree=$work_dir"
+
+    [[ -d $dots_dir ]] && rm -rf $dots_dir
+    set_git_proxy --global
+
+    # clone the bare repo into $dots_dir
+    $dots_cmd clone --bare $url_link $dots_dir
+    set_git_proxy
+
+    # create a backup dir and move all conflicting files there
+    local backup_dir=$HOME/.dots-backup
+    mkdir -p $backup_dir
+    $dots_cmd checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $backup_dir/{}
+
+    # check to see if the backup folder has files in it
+    test "$(ls -A $backup_dir 2>/dev/null)" && {
+        $dots_cmd checkout # rerun checkout if there was backed up files
+    } || {
+        rm -r $backup_dir # remove the backup_dir if there is nothing there
+    }
+
+    $dots_cmd submodule update --init --recursive $work_dir
+
+    die 0
+}
+
+main "$@"
