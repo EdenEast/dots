@@ -325,6 +325,8 @@ function _check_blank_line()
 function _build_info_line()
 {
     local line_output=$(_pmt_wrap ${PROMPT_INFOLINE_COMPONENTS[@]})
+    line_output=${line_output//\\\[/}
+    line_output=${line_output//\\\]/}
     [[ -n $line_output ]] && echo $line_output
 }
 

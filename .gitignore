@@ -4,6 +4,7 @@
 # include only these folders
 !.config/
 !.local/
+!.scripts/
 !.vim/
 
 # include only these files
