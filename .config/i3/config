@@ -75,7 +75,7 @@ bindsym $mod+Shift+space        floating toggle
 # bindsym $mod+Shift+space        floating toggle # toggle tiling / floating
 
 bindsym $mod+Escape             workspace prev
-bindsym $mod+Shift+Escape       exec i3-msg exit
+bindsym $mod+Shift+Escape       exec $HOME/.scripts/prompt "Are you sure you want to exit i3?" "i3-msg exit"
 
 # bindsym $mod+Backspace
 # bindsym $mod+Shift+Backspace    exec $reboot
