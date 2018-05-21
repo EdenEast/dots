@@ -59,7 +59,7 @@ exec --no-startup-id sudo mount -a
 exec --no-startup-id compton --xrender-sync-fence
 
 # Add wallpaper
-exec_always --no-startup-id feh --bg-fill ~/.config/wall.jpg
+exec_always --no-startup-id feh --bg-fill ~/.local/etc/wall.*
 
 # Networkmanager applet
 exec --no-startup-id nm-applet
