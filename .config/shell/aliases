@@ -47,3 +47,22 @@ unset ls_color
 # sudo commands
 alias pacman="sudo pacman"
 
+# shortcut edit files
+alias edals="$EDITOR ~/.config/shell/aliases"
+alias edbpr="$EDITOR ~/.bash_profile"
+alias edbrc="$EDITOR ~/.bashrc"
+alias edfun="$EDITOR ~/.config/shell/functions"
+alias edg="$EDITOR ~/.gitconfig"
+alias edi="$EDITOR ~/.config/i3/config"
+alias edlbin="$EDITOR ~/.local/bin"
+alias edlbsh="$EDITOR ~/.local/etc/bash"
+alias edlzsh="$EDITOR ~/.local/etc/zsh"
+alias ednv="$EDITOR ~/.config/nvim/init.vim"
+alias edpr="$EDITOR ~/.profile"
+alias edrrc="$EDITOR ~/.config/ranger/rc.conf"
+alias edrrf="$EDITOR ~/.config/ranger/rifle.conf"
+alias edrsp="$EDITOR ~/.config/ranger/scope.sh"
+alias edsc="$EDITOR ~/.scripts"
+alias edv="$EDITOR ~/.vim/vimrc"
+alias edzpr="$EDITOR ~/.config/zsh/.zprofile"
+alias edzrc="$EDITOR ~/.config/zsh/.zshrc"
