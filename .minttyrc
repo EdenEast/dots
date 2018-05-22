@@ -1,0 +1,42 @@
+# themes https://github.com/goreliu/wsl-terminal/tree/master/src/etc/themes
+# twilight
+ForegroundColour=167,167,167
+BackgroundColour=30,30,30
+CursorColour=167,167,167
+Black=30,30,30
+BoldBlack=95,90,96
+Red=207,106,76
+BoldRed=205,168,105
+Green=143,157,106
+BoldGreen=50,53,55
+Yellow=249,238,152
+BoldYellow=70,75,80
+Blue=117,135,166
+BoldBlue=131,129,132
+Magenta=155,133,157
+BoldMagenta=195,195,195
+Cyan=175,196,219
+BoldCyan=155,112,63
+White=167,167,167
+BoldWhite=255,255,255
+
+# base 16
+# ForegroundColour=208,208,208
+# BackgroundColour=21,21,21
+# CursorColour=253,157,79
+# Black=21,21,21
+# BoldBlack=80,80,80
+# Red=172,65,66
+# BoldRed=194,94,94
+# Green=144,169,89
+# BoldGreen=166,187,123
+# Yellow=244,191,117
+# BoldYellow=248,213,165
+# Blue=106,159,181
+# BoldBlue=140,181,198
+# Magenta=170,117,159
+# BoldMagenta=190,149,181
+# Cyan=117,181,170
+# BoldCyan=151,199,190
+# White=208,208,208
+# BoldWhite=245,245,245

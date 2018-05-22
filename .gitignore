@@ -8,17 +8,18 @@
 !.vim/
 
 # include only these files
+!.Xdefaults
+!.Xresources
 !.bash_logout
 !.bash_profile
 !.bashrc
 !.gitconfig
 !.gitignore
 !.inputrc
+!.minttyrc
 !.profile
 !.tmux.conf
 !.xinitrc
-!.Xdefaults
-!.Xresources
 !.zshenv
 
 !readme.md
