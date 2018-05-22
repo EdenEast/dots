@@ -33,58 +33,44 @@ function parse_arguments()
     done
 }
 
-# copy file $1 to the destiniation of $2 at the root dir $3
-function copy_file()
-{
-    local rel_name=$(realpath  --relative-to="$3" "$1")
-    local dir_name=$2/$rel_name
+parse_arguments "$@"
 
-    [[ "$inst_verbose" = "true" ]] && local verbose_mode="-v"
-    [[ ! -d $dir_name ]] && mkdir -p $verbose_mode $dir_name
-    cp $verbose_mode $1 $2/$rel_name
+work_dir="$HOME"
+dots_dir="$HOME/.dots"
+temp_dir="$HOME/tmp/dots"
+url_link="https://github.com/CruizeMissile/dots"
+dots_cmd="git --git-dir=$dots_dir --work-tree=$work_dir"
+
+# If there is a .dots file already then delete it
+[[ -d $dots_dir ]] && rm -rf $dots_dir
+
+# If there is a proxy then configure the clone to use the proxy
+[[ -n $inst_proxy ]] && inst_proxy_cmd="--config http.proxy=$inst_proxy --config https.proxy=$inst_proxy"
+
+# Clone the dots repo
+$dots_cmd clone $inst_proxy_cmd --bare $url_link $dots_dir
+
+$dots_cmd checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $backup_dir/{}
+
+# Check to see if the backup folder has files in it
+test "$(ls -A $backup_dir 2>/dev/null)" && {
+    $dots_cmd checkout # rerun checkout if there was backed up files
+} || {
+    rm -r $backup_dir # remove the backup_dir if there is nothing there
 }
 
-function set_git_proxy()
-{
-    [[ -n $inst_proxy ]] && {
-        git config $1 http.proxy $inst_proxy
-        git config $1 http.sslVerify true
-        git config $1 https.proxy $inst_proxy
-    }
+# Update submodules
+[[ -n $inst_proxy ]] && {
+    git config --global http.proxy $inst_proxy
+    git config --global https.proxy $inst_proxy
 }
 
-function main()
-{
-    parse_arguments "$@"
+$dots_cmd submodule update --init --recursive $work_dir
 
-    local work_dir="$HOME"
-    local dots_dir="$HOME/.dots"
-    local temp_dir="$HOME/tmp/dots"
-    local url_link="https://github.com/CruizeMissile/dots"
-    local dots_cmd="git --git-dir=$dots_dir --work-tree=$work_dir"
-
-    [[ -d $dots_dir ]] && rm -rf $dots_dir
-    set_git_proxy --global
-
-    # clone the bare repo into $dots_dir
-    $dots_cmd clone --bare $url_link $dots_dir
-    set_git_proxy
-
-    # create a backup dir and move all conflicting files there
-    local backup_dir=$HOME/.dots-backup
-    mkdir -p $backup_dir
-    $dots_cmd checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $backup_dir/{}
-
-    # check to see if the backup folder has files in it
-    test "$(ls -A $backup_dir 2>/dev/null)" && {
-        $dots_cmd checkout # rerun checkout if there was backed up files
-    } || {
-        rm -r $backup_dir # remove the backup_dir if there is nothing there
-    }
-
-    $dots_cmd submodule update --init --recursive $work_dir
-
-    die 0
+[[ -n $inst_proxy ]] && {
+    $dots_cmd submodule foreach --recursive "git config http.proxy $inst_proxy && git config https.proxy $inst_proxy" | awk '{print $2}' | xargs -I{} echo "Setting proxy $inst_proxy for {}"
+    $dots_cmd checkout $HOME/.gitconfig
 }
 
-main "$@"
+# bye bye
+die 0
