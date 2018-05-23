@@ -20,7 +20,7 @@ shopt -s histappend
 # Prompt config
 #
 PROMPT_MODE=left
-PROMPT_DIR_COLOR=$COL_BLUE
+# PROMPT_DIR_COLOR=$COL_BLUE
 
 
 #
@@ -29,25 +29,22 @@ PROMPT_DIR_COLOR=$COL_BLUE
 # Check window size after every command and update LINES and COLUMNS
 shopt -s checkwinsize
 
+# source shell config files
 source $HOME/.config/shell/aliases
 source $HOME/.config/shell/functions
 
-
-for rc in $HOME/.local/etc/bash/bashrc.d/* ; do
+# include all files in the before.d folder as they are needed before the bashrc.d folder
+for rc in $HOME/.local/etc/bash/before.d/*.sh ; do
     source $rc
 done
 
-# function prompt_right() {
-#   echo -e "\033[0;36m\\\t\033[0m"
-# }
+# include all files in the bashrc.d folder
+for rc in $HOME/.local/etc/bash/bashrc.d/*.sh ; do
+    source $rc
+done
 
-# function prompt_left() {
-#   echo -e "\033[0;35m\w\033[0m"
-# }
+# include all files after the before.d and bashrc.d folder
+for rm in $HOME/.local/etc/bash/after.d/*.sh ; do
+    source $rc
+done
 
-# function prompt() {
-#     compensate=5
-#     PS1=$(printf "%*s\r%s\n\$ " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
-# }
-# PROMPT_COMMAND=prompt
-# # PS1='[\u@\h \W]\$ '

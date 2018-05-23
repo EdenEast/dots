@@ -4,13 +4,14 @@
 # `split` is the left and right prompt outputs. Uses PROMPT_LCOMPONENTS and PROMPT_RCOMPONENTS
 # options are left or split
 PROMPT_MODE=${PROMPT_MODE:-split}
-PROMPT_OK_COLOR=${PROMPT_OK_COLOR:-$COL_GREEN}
-PROMPT_ERR_COLOR=${PROMPT_ERR_COLOR:-$COL_RED}
+PROMPT_OK_COLOR=${PROMPT_OK_COLOR:-$CL_GREEN}
+PROMPT_ERR_COLOR=${PROMPT_ERR_COLOR:-$CL_RED}
 
-PROMPT_DIR_COLOR=${PROMPT_DIR_COLOR:-$COL_BLACK}
-PROMPT_PATH_SEP_COLOR=${PROMPT_PATH_SEP_COLOR:-$COL_WHITE}
+PROMPT_DIR_COLOR=${PROMPT_DIR_COLOR:-$CL_BLACK}
+PROMPT_PATH_SEP_COLOR=${PROMPT_PATH_SEP_COLOR:-$CL_RESET}
 
-PROMPT_INFO_COLOR=${PROMPT_INFO_COLOR:-$COL_BLACK}
+PROMPT_INFO_COLOR=${PROMPT_INFO_COLOR:-$CL_BLACK}
+PROMPT_USER_COLOR=${PROMPT_USER_COLOR:-$CL_BLUE}
 
 PROMPT_USER_CHAR="${PROMPT_USER_CHAR:-λ}"
 PROMPT_INPUT_CHAR="${PROMPT_INPUT_CHAR:-›}"
@@ -18,16 +19,16 @@ PROMPT_CWD_SEGMENT_COUNT=${PROMPT_CWD_SEGMENT_COUNT:-2}
 PROMPT_TRAILING_SPACE=${PROMPT_TRAILING_SPACE:-true}
 
 PROMPT_GIT_SHOW_DIRTY_STATE=${PROMPT_GIT_SHOW_DIRTY_STATE:-false}
-PROMPT_GIT_BRANCH_COLOR=${PROMPT_GIT_BRANCH_COLOR:-$COL_YELLOW}
-PROMPT_GIT_REBASE_COLOR=${PROMPT_GIT_REBASE_COLOR:-$COL_CYAN}
-PROMPT_GIT_REBASE_COUNT_COLOR=${PROMPT_GIT_REBASE_COUNT_COLOR:-$COL_BLUE}
+PROMPT_GIT_BRANCH_COLOR=${PROMPT_GIT_BRANCH_COLOR:-$CL_YELLOW}
+PROMPT_GIT_REBASE_COLOR=${PROMPT_GIT_REBASE_COLOR:-$CL_CYAN}
+PROMPT_GIT_REBASE_COUNT_COLOR=${PROMPT_GIT_REBASE_COUNT_COLOR:-$CL_BLUE}
 
 pmt_component_default=(pmt_status pmt_cwd pmt_git pmt_input)
 pmt_lcomponent_default=(pmt_status pmt_user pmt_input)
 pmt_rcomponent_default=(pmt_cwd pmt_git)
 pmt_infoline_component_default=(pmt_uhp pmt_pwd pmt_files)
 
-PROMPT_COMPONENTS=${PROMPT_LCOMPONENTS:-${pmt_component_default[@]}}
+PROMPT_COMPONENTS=${PROMPT_COMPONENTS:-${pmt_component_default[@]}}
 PROMPT_LCOMPONENTS=${PROMPT_LCOMPONENTS:-${pmt_lcomponent_default[@]}}
 PROMPT_RCOMPONENTS=${PROMPT_RCOMPONENTS:-${pmt_rcomponent_default[@]}}
 PROMPT_INFOLINE_COMPONENTS=${PROMPT_INFOLINE_COMPONENTS:-${pmt_infoline_component_default[@]}}
@@ -44,37 +45,45 @@ unset pmt_infoline_component_default
 function pmt_status()
 {
     local uchar="$PROMPT_USER_CHAR"
-    local ucolor="$PROMPT_OK_COLOR"
-    [[ "$PROMPT_LAST_ERROR" -ne 0 ]] && ucolor="$PROMPT_ERR_COLOR"
+    local c="$(esc_color $PROMPT_OK_COLOR)"
+    local r="$(esc_color $CL_RESET)"
+    [[ "$PROMPT_LAST_ERROR" -ne 0 ]] && c="$(esc_color $PROMPT_ERR_COLOR)"
 
-    echo "$ucolor$uchar$COL_RESET"
+    echo "$c$uchar$r"
 }
 
 function pmt_user()
 {
+    local c=$(esc_color $PROMPT_USER_COLOR)
+    local r=$(esc_color $CL_RESET)
+
     if [[ -n $SSH_CONNECTION ]]; then
         me="\u@\h"
     elif [[ $LOGNAME != $USER ]]; then
         me='\u'
     fi
 
-    [[ -n $me ]] && echo "${COL_BLUE}$me${COL_RESET}:"
+    [[ -n $me ]] && echo "$c$me$r:"
 }
 
 function pmt_input()
 {
-    echo "${COL_RESET}${PROMPT_INPUT_CHAR}"
+    # local c="$(esc_color $PROMPT_INPUT_CHAR)"
+    local r="$(esc_color $CL_RESET)"
+    echo "$r$PROMPT_INPUT_CHAR"
 }
 
 function pmt_name()
 {
-    echo $(whoami)
+    local c=$(esc_color $PROMPT_USER_COLOR)
+    local r=$(esc_color $CL_RESET)
+    echo "$c$(whoami)$r"
 }
 
 function pmt_pwd()
 {
-    local c=${PROMPT_INFO_COLOR}
-    local r=${COL_RESET}
+    local c=$(esc_color $PROMPT_INFO_COLOR)
+    local r=$(esc_color $CL_RESET)
     local cwd=${PWD/$HOME/\~}
     OLD_IFS=$IFS
     IFS='/' cwd=($cwd)
@@ -94,10 +103,10 @@ function pmt_uhp
 {
     local user_name=$(whoami)
     local host_name=$(hostname -s)
-    local col=$PROMPT_INFO_COLOR
-    local rst=$COL_RESET
+    local c=$(esc_color $PROMPT_INFO_COLOR)
+    local r=$(esc_color $CL_RESET)
 
-    echo "$col$user_name$rst@$col$host_name$rst"
+    echo "$c$user_name$r@$c$host_name$r"
 }
 
 function pmt_files()
@@ -112,8 +121,8 @@ function pmt_files()
     fh=${fh:-0}
     fv=${fv:-0}
 
-    local c=$PROMPT_INFO_COLOR
-    local r=$COL_RESET
+    local c=$(esc_color $PROMPT_INFO_COLOR)
+    local r=$(esc_color $CL_RESET)
 
     local output="$r["
     [ -n $dv ] && output="$output ${c}dv$r(${c}$dv$r)"
@@ -126,8 +135,9 @@ function pmt_files()
 
 function pmt_cwd()
 {
-    local dir_col=$PROMPT_DIR_COLOR
-    local sep_col=$PROMPT_PATH_SEP_COLOR
+    local dir_col=$(esc_color $PROMPT_DIR_COLOR)
+    local sep_col=$(esc_color $PROMPT_PATH_SEP_COLOR)
+    local r=$(esc_color $CL_RESET)
 
     local segments=${PROMPT_CWD_SEGMENT_COUNT}
     [[ "$segments" -le 0 ]] && segments=1
@@ -150,7 +160,7 @@ function pmt_cwd()
     } || {
         result=$dir_col$cwd
     }
-    echo $result$COL_RESET
+    echo $result$r
 }
 
 function pmt_jobs()
@@ -169,10 +179,10 @@ function __git_eread()
 function pmt_git()
 {
     # setting the local colors
-    local crs=$COL_RESET
-    local cbr=$PROMPT_GIT_BRANCH_COLOR
-    local crb=$PROMPT_GIT_REBASE_COLOR
-    local ccrb=$PROMPT_GIT_REBASE_COUNT_COLOR
+    local crs=$(esc_color $CL_RESET)
+    local cbr=$(esc_color $PROMPT_GIT_BRANCH_COLOR)
+    local crb=$(esc_color $PROMPT_GIT_REBASE_COLOR)
+    local ccrb=$(esc_color $PROMPT_GIT_REBASE_COUNT_COLOR)
 
     local repo_info rev_parse_exit_code
     repo_info="$(git rev-parse --git-dir --is-inside-git-dir \
