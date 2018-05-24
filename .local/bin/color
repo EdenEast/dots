@@ -1,0 +1,82 @@
+#!/bin/bash
+
+function usage()
+{
+    echo " Test output color codes for your terminal.
+Usage: color [OPTIONS]
+Options:
+  -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
+  -f, --forground      Only output forground colors
+  -b, --background     Only output background colors
+"
+exit $1
+}
+
+function parse_args()
+{
+    forground_only=0
+    background_only=0
+
+    while test $# -gt 0 ; do
+        case $1 in
+            -c|--colors)
+                shift
+                local accepted_values=(8, 16, 256)
+                [[ ! "${accepted_values[@]}" =~ "$1" ]] && echo "unknown value $1" && exit 1
+                force_color_mode=$1
+                shift
+                ;;
+            -f|--forground)
+                shift
+                forground_only=1
+                ;;
+            -b|--background)
+                shift
+                background_only=1
+                ;;
+            -*|--*)
+                echo "unknown option $1" && usage 1 ;;
+            *)
+                echo "unknown string $1" && usage 1 ;;
+        esac
+    done
+}
+
+function output_colors()
+{
+    local fgbg_values=()
+
+    if [ "$forground_only" -eq 1 ]; then
+        fgbg_values+=(38)
+    elif [ "$background_only" -eq 1 ]; then
+        fgbg_values+=(48)
+    else
+        fgbg_values+=(38 48)
+    fi
+
+    [ -z $force_color_mode ] && {
+        force_color_mode=$(tput colors)
+    }
+
+    for fgbg in ${fgbg_values[@]} ; do # Forground / Background
+        # for color in {0..$force_color_mode} ; do
+        for ((color=0;color<$force_color_mode;color++)) ; do
+            # Display the color
+            printf "\e[${fgbg};5;%sm  %3s  \e[0m" $color $color
+
+            # Display 6 color per line
+            [[ $((($color + 1) % 6)) == 4 ]] && echo # New line
+        done
+        echo # New line
+    done
+}
+
+function main()
+{
+    parse_args "$@"
+    output_colors
+}
+
+main "$@"
+
+# Format and error code information https://misc.flogisoft.com/bash/tip_colors_and_formatting
