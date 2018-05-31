@@ -20,7 +20,7 @@
     dw = diff --color-words
     fp = push --force-with-lease
     ft = fetch
-    pl = pull
+    pl = pull --rebase
     ph = push
     rb = rebase
     qq = reset --hard
@@ -212,25 +212,25 @@
 #
 # colors
 #
-[color]
-    ui = true
-    status = always
-
-[color "branch"]
-    current = yellow
-    local = green
-    remote = red
-
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-
-[color "status"]
-    added = green
-    changed = yellow
-    untracked = red
+#[color]
+#    ui = true
+#    status = always
+#
+#[color "branch"]
+#    current = yellow
+#    local = green
+#    remote = red
+#
+#[color "diff"]
+#    meta = yellow bold
+#    frag = magenta bold
+#    old = red bold
+#    new = green bold
+#
+#[color "status"]
+#    added = green
+#    changed = yellow
+#    untracked = red
 
 #
 #includes
