@@ -45,7 +45,9 @@ alias l="ls -la $ls_color"
 unset ls_color
 
 # sudo commands
-alias pacman="sudo pacman"
+[[ -n $(which sudo &>/dev/null) ]] && {
+    alias pacman="sudo pacman"
+}
 
 # shortcut edit files
 alias edals="$EDITOR ~/.config/shell/aliases"
