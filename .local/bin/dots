@@ -2,8 +2,6 @@
 
 function main()
 {
-    # [[ $# -eq 0 ]] && git --git-dir=$HOME/.dots --work-tree=$HOME status -s && return $?
-
     [[ $# -eq 0 ]] && set -- status -s .
 
     # command_list=($(git help -a | grep "^  [a-z]" | tr ' ' '\n' | grep -v "^$"))
@@ -13,7 +11,7 @@ function main()
     #     echo $i
     # done
 
-    git --git-dir=$HOME/.dots --work-tree=$HOME $@
+    git --git-dir=$HOME/.dots --work-tree=$HOME "$@"
 }
 
 main "$@"

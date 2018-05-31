@@ -1,44 +1,53 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function usage()
 {
-    echo " Test output color codes for your terminal.
+    local string "\
+Test output color codes for your terminal.
 Usage: color [OPTIONS]
 Options:
   -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
   -f, --forground      Only output forground colors
   -b, --background     Only output background colors
 "
-exit $1
+    echo $string ; exit $1
 }
-
-function parse_args()
+function parse_arguments()
 {
     forground_only=0
     background_only=0
-
-    while test $# -gt 0 ; do
-        case $1 in
-            -c|--colors)
-                shift
-                local accepted_values=(8, 16, 256)
-                [[ ! "${accepted_values[@]}" =~ "$1" ]] && echo "unknown value $1" && exit 1
-                force_color_mode=$1
-                shift
-                ;;
-            -f|--forground)
-                shift
-                forground_only=1
-                ;;
-            -b|--background)
-                shift
-                background_only=1
-                ;;
-            -*|--*)
-                echo "unknown option $1" && usage 1 ;;
-            *)
-                echo "unknown string $1" && usage 1 ;;
-        esac
+    local accepted_values=(8, 16, 256)
+    parse_args=()
+    local optspec=":c:fb-"
+    while [ $# -gt 0 ] ; do
+        unset OPTIND ; unset OPTARG
+        while getopts $optspec OPTION ; do
+            case "$OPTION" in
+                h) usage 0 ;;
+                f) forground_only=1 ;;
+                b) background_only=1 ;;
+                c) 
+                    [[ ! "${accepted_values[@]}" =~ "$OPTARG" ]] && echo "unknown value $OPTARG" && exit 1
+                    force_color_mode="$OPTARG" ;;
+                -)
+                    [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
+                    eval OPTION="\$$optind"
+                    OPTARG=$(echo $OPTION | cut -d'=' -f2)
+                    OPTION=$(echo $OPTION | cut -d'=' -f1)
+                    case $OPTION in
+                        --help|--usage) usage 0 ;;
+                        --forground) forground_only=1 ;;
+                        --background) background_only=1 ;;
+                        --colors)
+                            [[ ! "${accepted_values[@]}" =~ "$OPTARG" ]] && echo "unknown value $OPTARG" && exit 1
+                            force_color_mode="$OPTARG" ;;
+                        *) echo "Invalid option: $OPTION $OPTARG" ;;
+                    esac
+                    OPTIND=1 ; shift ;;
+                \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
+            esac
+        done
+        shift $((OPTIND-1)) ; parse_args+=($1) ; shift
     done
 }
 
@@ -73,7 +82,7 @@ function output_colors()
 
 function main()
 {
-    parse_args "$@"
+    parse_arguments "$@"
     output_colors
 }
 

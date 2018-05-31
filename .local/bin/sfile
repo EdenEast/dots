@@ -1,100 +1,127 @@
 #!/usr/bin/env bash
 
 set -f
-exit_script() { set +f ; exit $1 ; }
+die() { set +f ; exit $1 ; }
 
 usage()
 {
-    cat <<'EOF'
-Usage: sfile path [options] pattern
+    echo "Usage: sfile [options] path pattern
 Search though files in a path to find a pattern
 Options:
-  -h, --help, --usage,       This help screen
-  -v, --verbose              Show verbose output of commands
   -z, --dryrun               Show the underlying command but do not run it
   -x, --ext                  Filter files by the extention. This can be called more then once in a command
   -n, --hide-linenumber      Hide line numbers from output results
   -i, --ignore-case          Search for pattern ignoring the case
   -r, --regex                Use extended regex
-EOF
+
+  -h, --help, --usage,       This help screen
+  -v, --verbose              Show verbose output of commands
+"
+    die $1
 }
 
-# If no arguments are passed then print usage and exit
-[[ $# -eq 0 ]] && usage && exit_script 0
+function parse_arguments()
+{
+    parse_args=()
+    local optspec=":hvzx:nir-"
+    while [ $# -gt 0 ] ; do
+        unset OPTIND && unset OPTARG
+        while getopts $optspec OPTION ; do
+            case "$OPTION" in
+                h) usage 0                        ;;
+                v) verbose_output=1               ;;
+                z) do_dryrun=1 ; verbose_output=1 ;;
+                x) process_name_arg $OPTARG       ;;
+                n) hide_linenumber=1              ;;
+                i) grep_arguments+=('-i')         ;;
+                r) grep_arguments+=('-E')         ;;
+                -)
+                    [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
+                    eval OPTION="\$$optind"
+                    OPTARG=$(echo $OPTION | cut -d'=' -f2)
+                    OPTION=$(echo $OPTION | cut -d'=' -f1)
+                    case $OPTION in
+                        --help|--usage   ) usage 0                                          ;;
+                        --verbose        ) verbose_output=1                                 ;;
+                        --dryrun         ) do_dryrun=1                                      ;;
+                        --ext            ) process_name_arg $1                              ;;
+                        --hide-linenumber) hide_linenumber=1                                ;;
+                        --ignore-case    ) grep_arguments+=('-i')                           ;;
+                        --regex          ) grep_arguments+=('-E')                           ;;
+                        *                ) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
+                    esac
+                    OPTIND=1 ; shift ;;
+                \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
+            esac
+        done
+        shift $((OPTIND-1)) ; parse_args+=($1) ; shift
+    done
+}
 
-# Handle usage arguments faster to check for this first
-for arg in "$@"; do
-    case "$arg" in
-        "-h"|"--help"|"--usage")
-            usage
-            exit_script 0
-            ;;
-    esac
-done
+# function takes in the argument that was passed by the command line and processes
+# it. names are saved to array 'name_arguments'
+function process_name_arg()
+{
+    [[ -z $has_processed_name_before ]] && {
+        name_arguments+=('(' '-name' "*.$1")
+        has_processed_name_before=1
+    } || {
+        name_arguments+=('-o' '-name' "*.$1")
+    }
+}
 
-# setting the search path
-search_path=$1
-shift
+function main()
+{
+    # If no arguments are passed then print usage and exit
+    [[ $# -eq 0 ]] && usage && die 0
 
-# check for arguments
-find_arguments=()
-name_arguments=()
-grep_arguments=()
-while [ $# -gt 0 ]; do
-    case "$1" in
-        "-v"|"--verbose")
-            shift
-            verbose_output=1
-            ;;
-        "-z"|"--dryrun")
-            shift
-            verbose_output=1
-            do_dryrun=1
-            ;;
-        "-x"|"--ext")
-            shift
-            [[ -z $has_processed_name_before ]] && {
-                name_arguments+=('(' '-name' "*.$1")
-                has_processed_name_before=1
-            } || {
-                name_arguments+=('-o' '-name' "*.$1")
-            }
-            shift
-            ;;
-        "-n"|"--hide-linenumber")
-            shift
-            hide_linenumber=1
-            ;;
-        "-i"|"--ignore-case")
-            shift
-            grep_arguments+=('-i')
-            ;;
-        "-r"|"--regex")
-            shift
-            grep_arguments+=('-E')
-            ;;
-        -*|--*)
-            echo "bad option '$1', see --help for usage" >&2
-            exit 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
+    parse_arguments "$@"
 
-# if not hiding line number add the option
-[[ -z $hide_linenumber ]] && grep_arguments+=('-n')
+    # if not hiding line number add the option
+    [[ -z $hide_linenumber ]] && grep_arguments+=('-n')
 
-# if there are name arguments then close the ()
-[[ -n $has_processed_name_before ]] && name_arguments+=(')')
+    # if there are name arguments then close the ()
+    [[ -n $has_processed_name_before ]] && name_arguments+=(')')
 
-# if no pattern would then exit
-[[ $# -eq 0 ]] && echo "Pattern not found!" && exit_script 1
-pattern="$1"
+    # if no path or pattern then exit
+    [[ ${#parse_args[@]} -eq 0 ]] && echo "Error: no search path passed!" && die 1
+    [[ ${#parse_args[@]} -eq 1 ]] && echo "Error: no pattern was passed!" && die 1
+    search_path="${parse_args[0]}"
+    pattern="${parse_args[1]}"
 
-cmd=$(echo find $search_path -type f ${name_arguments[@]} ${find_arguments[@]} -exec grep --color=always -I ${grep_arguments[@]} $pattern {} +)
-[[ -n $verbose_output ]] && echo $cmd
-[[ -n $dryrun ]] || $cmd
+    cmd=$(echo find $search_path -type f ${name_arguments[@]} ${find_arguments[@]} -exec grep --color=always -I ${grep_arguments[@]} $pattern {} +)
+    [[ -n $verbose_output ]] && echo $cmd
+    [[ -n $dryrun ]] || $cmd
+    die 0
+}
 
-exit_script 0
+main "$@"
+
+
+# parse arguments snippet 
+
+# function parse_arguments()
+# {
+#     parse_args=()
+#     local optspec=""
+#     while [ $# -gt 0 ] ; do
+#         unset OPTIND ; unset OPTARG
+#         while getopts $optspec OPTION ; do
+#             case "$OPTION" in
+#                 h) usage 0 ;;
+#                 -)
+#                     [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
+#                     eval OPTION="\$$optind"
+#                     OPTARG=$(echo $OPTION | cut -d'=' -f2)
+#                     OPTION=$(echo $OPTION | cut -d'=' -f1)
+#                     case $OPTION in
+#                         --help|--usage) usage 0 ;;
+#                         *) echo "Invalid option: $OPTION $OPTARG" ;;
+#                     esac
+#                     OPTIND=1 ; shift ;;
+#                 \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
+#             esac
+#         done
+#         shift $((OPTIND-1)) ; parse_args+=($1) ; shift
+#     done
+# }
