@@ -4,6 +4,7 @@
 # `split` is the left and right prompt outputs. Uses PROMPT_LCOMPONENTS and PROMPT_RCOMPONENTS
 # options are left or split
 PROMPT_MODE=${PROMPT_MODE:-split}
+PROMPT_NO_INFO_LINE=${PROMPT_NO_INFO_LINE:-false}
 PROMPT_OK_COLOR=${PROMPT_OK_COLOR:-$CL_GREEN}
 PROMPT_ERR_COLOR=${PROMPT_ERR_COLOR:-$CL_RED}
 
@@ -102,7 +103,8 @@ function pmt_pwd()
 function pmt_uhp
 {
     local user_name=$(whoami)
-    local host_name=$(hostname -s)
+    # local host_name=$(hostname -s) # some reason -s is not suppored on all hostname
+    local host_name=$(hostname)
     local c=$(esc_color $PROMPT_INFO_COLOR)
     local r=$(esc_color $CL_RESET)
 
@@ -342,8 +344,10 @@ function _build_info_line()
 
 function _build_prompt()
 {
-    _check_blank_line
-    [[ $_CHECK_BLANK_RESULT = "true" ]] && _build_info_line
+    [ $PROMPT_NO_INFO_LINE = "false" ] && {
+        _check_blank_line
+        [[ $_CHECK_BLANK_RESULT = "true" ]]  && _build_info_line
+    }
 
     if [ $PROMPT_MODE = 'split' ]; then
         local left_prompt=$(_pmt_wrap ${PROMPT_LCOMPONENTS[@]})

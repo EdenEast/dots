@@ -1,1 +1,3 @@
 .gitconfig
+bash/after.d/99-bashrc
+bash/before.d/99-bashrc
