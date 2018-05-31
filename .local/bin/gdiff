@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-usage()
+function usage()
 {
     cat <<'EOF'
 Usage: gdiff [options] base_file changed_file
@@ -14,55 +14,58 @@ Options:
 EOF
 }
 
-# If no arguments are passed then print usage and exit
-[[ $# -eq 0 ]] && usage && exit 0
-
-# Handle usage arguments faster to check for this first
-for arg in "$@"; do
-    case "$arg" in
-        "-h"|"--help"|"--usage")
-            usage
-            exit 0
-            ;;
-    esac
-done
-
-# check for arguments
-arguments=()
-while [ $# -gt 0 ]; do
-    case "$1" in
-        "-w"|"--ignore-whitespace")
-            shift
-            arguments+=('-w')
-            ;;
-        "-d"|"--word")
-            shift
-            arguments+=('--color-words')
-            ;;
-        "-l"|"--ignore-blank-lines")
-            shift
-            arguments+=('--ignore-blank-lines')
-            ;;
-        "-b"|"--ignore-space-change")
-            shift
-            arguments+=('-b')
-            ;;
-        -*|--*)
-            echo "bad option '$1', see --help for usage" >&2
-            exit 1
-            ;;
-        *)
-            break
-            ;;
-    esac
-done
-
-# Check to see if we have to files
-[[ $# -ne 2 ]] && {
-    echo "Two files were not specified!"
-    usage
-    exit 1
+function parse_args()
+{
+    # This is a way to parse opts and args: https://stackoverflow.com/a/40190976
+    # This is how to parse long options with getopts: https://stackoverflow.com/a/12523979
+    local optspec=":hdwlb-"
+    while [ $# -gt 0 ] ; do
+        unset OPTIND
+        unset OPTIND
+        while getopts $optspec OPTION ; do
+            case "$OPTION" in 
+                h) usage && exit 0                          ;;
+                d) git_arguments+=('--color-words')         ;;
+                w) git_arguments+=('-w')                    ;;
+                l) git_arguments+=('--ignore-blank-lines')  ;;
+                b) git_arguments+=('--ignore-space-change') ;;
+                -)
+                    [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
+                    eval OPTION="\$$optind"
+                    OPTARG=$(echo $OPTION | cut -d'=' -f2)
+                    OPTION=$(echo $OPTION | cut -d'=' -f1)
+                    case $OPTION in
+                        --help) usage && exit 0                                     ;;
+                        --usage) usage && exit 0                                    ;;
+                        --word) git_arguments+=('--color-words')                        ;;
+                        --ignore-whitespace) git_arguments+=('-w')                      ;;
+                        --ignore-blank-lines) git_arguments+=('--ignore-blank-lines')   ;;
+                        --ignore-space-change) git_arguments+=('--ignore-space-change') ;;
+                        *) echo "Invalid option $OPTION $OPTARG" && usage && exit 1 ;;
+                    esac
+                    OPTIND=1
+                    shift
+                    ;;
+                ?) echo "Invalid option $OPTION $OPTARG" && usage && exit 1
+            esac
+        done
+        shift $((OPTIND-1))
+        passed_args+=($1)
+        shift
+    done
 }
 
-git diff --no-index ${arguments[@]} -- "$1" "$2"
-exit $?
+function main()
+{
+    # If no arguments are passed then print usage and exit
+    [[ $# -eq 0 ]] && usage && exit 0
+
+    parse_args "$@"
+
+    [ ${#passed_args[@]} -ne 2 ] && echo "Two files must be specified!" && usage && exit 1
+
+    git diff --no-index ${git_arguments[@]} -- "${passed_args[@]}"
+    exit $?
+}
+
+main "$@"
