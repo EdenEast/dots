@@ -44,7 +44,7 @@ function parse_arguments()
                         --help|--usage   ) usage 0                                          ;;
                         --verbose        ) verbose_output=1                                 ;;
                         --dryrun         ) do_dryrun=1                                      ;;
-                        --ext            ) process_name_arg $1                              ;;
+                        --ext            ) process_name_arg $OPTARG                         ;;
                         --hide-linenumber) hide_linenumber=1                                ;;
                         --ignore-case    ) grep_arguments+=('-i')                           ;;
                         --regex          ) grep_arguments+=('-E')                           ;;
