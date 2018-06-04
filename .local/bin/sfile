@@ -5,7 +5,8 @@ die() { set +f ; exit $1 ; }
 
 usage()
 {
-    echo "Usage: sfile [options] path pattern
+    cat << 'EOF'
+Usage: sfile [options] path pattern
 Search though files in a path to find a pattern
 Options:
   -z, --dryrun               Show the underlying command but do not run it
@@ -16,7 +17,7 @@ Options:
 
   -h, --help, --usage,       This help screen
   -v, --verbose              Show verbose output of commands
-"
+EOF
     die $1
 }
 

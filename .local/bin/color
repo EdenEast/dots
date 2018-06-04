@@ -2,15 +2,15 @@
 
 function usage()
 {
-    local string "\
+    cat << 'EOF'
 Test output color codes for your terminal.
 Usage: color [OPTIONS]
 Options:
   -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
   -f, --forground      Only output forground colors
   -b, --background     Only output background colors
-"
-    echo $string ; exit $1
+EOF
+    exit $1
 }
 function parse_arguments()
 {
@@ -26,7 +26,7 @@ function parse_arguments()
                 h) usage 0 ;;
                 f) forground_only=1 ;;
                 b) background_only=1 ;;
-                c) 
+                c)
                     [[ ! "${accepted_values[@]}" =~ "$OPTARG" ]] && echo "unknown value $OPTARG" && exit 1
                     force_color_mode="$OPTARG" ;;
                 -)

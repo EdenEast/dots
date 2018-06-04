@@ -5,7 +5,8 @@ die() { set +f ; exit $1 ; }
 
 usage()
 {
-    echo "Usage: srfile [options] path pattern
+    cat << 'EOF'
+Usage: srfile [options] path pattern
 Search and replace though files in a path to find a pattern
 Options:
   -h, --help, --usage,       This help screen
@@ -14,7 +15,7 @@ Options:
                              sufix 'p' at the end of the pattern to have output
   -x, --ext                  Filter files by the extention. This can be called more then once in a command
   -i, --inplace              Make substitution in place
-"
+EOF
     die 0
 }
 
