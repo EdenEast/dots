@@ -9,7 +9,9 @@
 
 [alias]
 # Basic shortcuts ----------------------------------------------------------------------------------
-    br = branch
+    aa = add -A
+    au = add -u
+    br = branch -av
     ci = commit
     cl = clean -fd
     cm = commit
@@ -17,6 +19,7 @@
     co = checkout
     cp = cherry-pick
     dc = diff --cached
+    ds = diff --stat
     dw = diff --color-words
     fp = push --force-with-lease
     ft = fetch
@@ -87,6 +90,7 @@
     sl = log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
     lb = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(bold yellow)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    lf = log --format=format:'%C(bold cyan)%ar %C(reset) %C(green)%f' --name-status
     last = "!f() { git log -${1:-1} --stat ; } ; f"
 
 # Branch checkout status --------------------------------------------------------------------------
@@ -97,7 +101,7 @@
     unpublish = "!git push origin :$(git branch-name)"
 
 # Unstage all stages changes
-    unstage = "!f() { git reset $((($#>=1))&&echo --) ${@:-HEAD --} ; } ; f"
+    unstage = "!f() { git reset --soft $((($#>=1))&&echo --) ${@:-HEAD --} ; } ; f"
 
 # Diff your local branch compated to its origin
     diff-remote = "!git diff origin/$(git branch-name)...$(git branch-name)"
