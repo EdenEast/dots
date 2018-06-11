@@ -165,6 +165,8 @@
     whoami = "!git config user.name ; git config user.email ; git config user.signingkey"
     author-count = shortlog -sen
 
+    remote-url = ls-remote --get-url origin
+
     # BRanch LiSt Remote
     brlsr = "!git ls-remote --heads origin | awk '{ print $2 }' | sed -s 's#refs/heads/##'"
 
