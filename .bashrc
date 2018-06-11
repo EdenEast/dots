@@ -20,8 +20,7 @@ shopt -s histappend
 # Prompt config
 #
 PROMPT_MODE=left
-# PROMPT_DIR_COLOR=$COL_BLUE
-
+PROMPT_NO_INFO_LINE=true
 
 #
 # Bash config options
