@@ -87,10 +87,15 @@ function main()
     # if no path or pattern then exit
     [[ ${#parse_args[@]} -eq 0 ]] && echo "Error: no search path passed!" && die 1
     [[ ${#parse_args[@]} -eq 1 ]] && echo "Error: no pattern was passed!" && die 1
-    search_path="${parse_args[0]}"
-    pattern="${parse_args[1]}"
 
-    cmd=$(echo find $search_path -type f ${name_arguments[@]} ${find_arguments[@]} -exec grep --color=always -I ${grep_arguments[@]} $pattern {} +)
+    # setting the search paths to everything but the last argument. The last argument in the array
+    # is the search pattern to use. Settings search path to be the parse_args array and the popping
+    # off the last argument in the array. The pattern is the last argument of the parse_args array
+    search_path=("${parse_args[@]}")
+    unset 'search_path[${#search_path[@]}-1]'
+    pattern="${parse_args[-1]}"
+
+    cmd=$(echo find ${search_path[@]} -type f ${name_arguments[@]} ${find_arguments[@]} -exec grep --color=always -I ${grep_arguments[@]} $pattern {} +)
     [[ -n $verbose_output ]] && echo $cmd
     [[ -n $dryrun ]] || $cmd
     die 0
