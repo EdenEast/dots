@@ -1,3 +1,4 @@
 .gitconfig
-bash/after.d/99-bashrc
-bash/before.d/99-bashrc
+bash/after.d/*-local.sh
+bash/bashrc.d/*-local.sh
+bash/before.d/*-local.sh
