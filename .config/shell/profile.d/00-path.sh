@@ -12,7 +12,6 @@ function main()
 
     function append_path()
     {
-        echo "working $1"
         case ":PATH:" in
             *":$1:") return ;; # already in path
             *) [[ -z $PATH ]] && PATH="$1" || PATH="$PATH:$1" ;;
