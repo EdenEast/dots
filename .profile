@@ -62,32 +62,6 @@ for rc in $HOME/.config/shell/profile.d/*.sh ; do
     source $rc
 done
 
-# # update PATH
-# path_prepend()
-# {
-#     case ":PATH:" in
-#         *":$1:"*) return ;; # already added
-#         *) PATH="$1:$PATH" ;;
-#     esac
-# }
-
-# # adding local lib folders
-# [[ -d "$LOCAL_LIB" ]] && {
-#     for dir in $LOCAL_LIB/* $LOCAL_LIB ; do
-#         [ -d $dir ] && path_prepend $dir
-#         [ -d $dir/contrib ] && path_prepend $dir/contrib
-#     done
-# }
-
-# # adding local bin folder
-# [[ -d "$LOCAL_BIN" ]] && {
-#     for dir in $LOCAL_BIN/* $LOCAL_BIN ; do
-#         [ -d $dir ] && path_prepend $dir
-#     done
-# }
-
-# unset path_prepend
-
 # lauch x server when logging in to tty1
 [[ "$(tty)" = "/dev/tty1" ]] && ( pgrep i3 &>/dev/null && echo "Note: X Server is already running." || xinit )
 
