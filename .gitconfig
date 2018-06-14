@@ -164,7 +164,6 @@
     delete-all-history = "!git checkout --orphan latest_branch ; git add -A ; git commit -am \"inital commit\" ; git branch -D master ; git branch -m master ; git push -f origin master"
     whoami = "!git config user.name ; git config user.email ; git config user.signingkey"
     author-count = shortlog -sen
-
     remote-url = ls-remote --get-url origin
 
     # BRanch LiSt Remote
@@ -180,6 +179,10 @@
     trim = !git reflog expire --expire=now --all && git gc --prune=now
 
     check = diff --check HEAD^
+    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort
+    
+    # Detect moevd or copied lines and ignore whitespace
+    blame = blame -w -M -C
 
 [fetch]
     prune = true
