@@ -1,6 +1,6 @@
 # Dots
 
-> the dotfiles for my personal windows and arch linux setup
+> The dotfiles for my personal windows and arch linux setup
 
 My dot files only requires git to be installed. The files will be kept at their
 intended locations, without making symlinks or copies.
@@ -26,18 +26,26 @@ $ curl https://raw.githubusercontent.com/cruizemissile/dots/master/.scripts/inst
 
 #### Manual Installation
 ```bash
-alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-dots clone --bare https://github.com/cruizemissile/dots $HOME/.dots
-# There might be an error if you have changes then you cant check them out
+# alias git to set the git-dir and work-tree
+alias dots="git --git-dir$HOME/.dots --work-tree=$HOME"
+
+# clone a bare repo into the .dots directory
+dots clone --bare https://github.com/CruizeMissile/dots $HOME/.dots
+
+# trying to checkout the repo. if there are no errors then you can update submodules. if not then backup
 dots checkout
 
-# If you have an error then you can back them up
+# if there are errors then you can back them up
 mkdir $HOME/.dots-backup
-dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $HOME/.dots-backup/{}
+dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I mv {} $HOME/.dots-backup/{}
 
-# then re-run checkout
+# rerun checkout
 dots checkout
 
 # update submodules
 dots submodule update --init --recursive $HOME
 ```
+
+#### Issues
+If you have upstream problems with origin/master like `fatal: ambiguous argument 'origin/master'`,
+the problem could be the upstream setup. I found a solution to this problem [here](https://stackoverflow.com/a/26047558).
