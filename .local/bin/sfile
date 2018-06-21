@@ -9,14 +9,12 @@ usage()
 Usage: sfile [options] path pattern
 Search though files in a path to find a pattern
 Options:
-  -z, --dryrun               Show the underlying command but do not run it
   -x, --ext                  Filter files by the extention. This can be called more then once in a command
   -n, --hide-linenumber      Hide line numbers from output results
   -i, --ignore-case          Search for pattern ignoring the case
   -r, --regex                Use extended regex
 
   -h, --help, --usage,       This help screen
-  -v, --verbose              Show verbose output of commands
 EOF
     die $1
 }
@@ -29,13 +27,11 @@ function parse_arguments()
         unset OPTIND && unset OPTARG
         while getopts $optspec OPTION ; do
             case "$OPTION" in
-                h) usage 0                        ;;
-                v) verbose_output=1               ;;
-                z) do_dryrun=1 ; verbose_output=1 ;;
-                x) process_name_arg $OPTARG       ;;
-                n) hide_linenumber=1              ;;
-                i) grep_arguments+=('-i')         ;;
-                r) grep_arguments+=('-E')         ;;
+                h) usage 0                   ;;
+                x) process_name_arg $OPTARG  ;;
+                n) hide_linenumber=1         ;;
+                i) grep_arguments+=('-i')    ;;
+                r) grep_arguments+=('-E')    ;;
                 -)
                     [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
                     eval OPTION="\$$optind"
@@ -43,8 +39,6 @@ function parse_arguments()
                     OPTION=$(echo $OPTION | cut -d'=' -f1)
                     case $OPTION in
                         --help|--usage   ) usage 0                                          ;;
-                        --verbose        ) verbose_output=1                                 ;;
-                        --dryrun         ) do_dryrun=1                                      ;;
                         --ext            ) process_name_arg $OPTARG                         ;;
                         --hide-linenumber) hide_linenumber=1                                ;;
                         --ignore-case    ) grep_arguments+=('-i')                           ;;
@@ -55,7 +49,7 @@ function parse_arguments()
                 \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
             esac
         done
-        shift $((OPTIND-1)) ; parse_args+=($1) ; shift
+        shift $((OPTIND-1)) ; parse_args+=("$1") ; shift
     done
 }
 
@@ -95,9 +89,7 @@ function main()
     unset 'search_path[${#search_path[@]}-1]'
     pattern="${parse_args[-1]}"
 
-    cmd=$(echo find ${search_path[@]} -type f ${name_arguments[@]} ${find_arguments[@]} -exec grep --color=always -I ${grep_arguments[@]} $pattern {} +)
-    [[ -n $verbose_output ]] && echo $cmd
-    [[ -n $dryrun ]] || $cmd
+    find "${search_path[@]}" -type f "${name_arguments[@]}" "${find_arguments[@]}" -exec grep --color=always -I "${grep_arguments[@]}" "$pattern" {} +
     die 0
 }
 
