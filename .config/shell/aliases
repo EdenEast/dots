@@ -29,10 +29,6 @@ alias v=vim
 alias vp='vim -c CtrlP'
 
 # default command flags
-alias mv='mv -v'
-alias ln='ln -v'
-alias cp='cp -v'
-alias rm='rm -v'
 alias pgrep='pgrep -l'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
