@@ -2,7 +2,7 @@ $include /etc/inputrc
 
 # vim bindings
 set editing-mode vi
-set keymap vi 
+set keymap vi
 
 set bell-style none
 set expand-tilde off
@@ -17,8 +17,8 @@ set match-hidden-files off
 
 # completion settings
 set page-completions off
+set completion-ignore-case on
 set completion-query-items 2000
-set completion-ignore-case off
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set completion-prefix-display-length 10
@@ -44,7 +44,7 @@ C-p: history-search-backward
 # $if mode=vi
 #     set keymap vi-command
 #     Control-l: clear-screen
-# 
+#
 #     set keymap vi-insert
 #     Control-l: clear-screen
 # $endif
