@@ -40,6 +40,7 @@ function main()
     append_path /usr/local/bin
     append_path /usr/local/sbin
     append_path /usr/local/opt/srm/bin
+    append_path /usr/bin
 
     # Adding system path back in
     local sys_path_array=
