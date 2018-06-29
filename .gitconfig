@@ -51,6 +51,9 @@
 # Create a patch with the branch name
     patch = "!git diff > $(git branch-name).patch"
 
+# Create a list of patches from the origin of this branch
+    fpatch = "!git format-patch origin/$(git branch-name)"
+
 # Discard the local branch and update to the lastest remote and clean
     fu = "!git fetch origin && git reset --hard origin/$(git branch-name)"
 
