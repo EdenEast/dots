@@ -1,0 +1,50 @@
+#!/bin/bash
+
+die() { exit $1 ; }
+
+usage()
+{
+    cat << 'EOF'
+Usage: null-history [options]
+Search though files in a path to find a pattern
+Options:
+  -d, --delete           Delete history files
+  -h, --help, --usage,   This help screen
+EOF
+    die $1
+}
+
+function parse_arguments()
+{
+    parse_args=()
+    local optspec=":d-"
+    while getopts $optspec OPTION ; do
+        case "$OPTION" in
+            h) usage 0 ;;
+            d) this_delete=1 ;;
+            -)
+                case $OPTION in
+                    --help|--usage) usage 0 ;;
+                    --delete) this_delete=1 ;;
+                    *) echo "Invalid option: $OPTION" ;;
+                esac
+                OPTIND=1 ; shift ;;
+            \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
+        esac
+    shift
+        done
+}
+
+function main()
+{
+    parse_arguments "$@"
+
+    local history_files=("$HOME/.bash_history" "$HOME/.sh_history" "$HOME/.zsh_history" "$HOME/.history" "$HOME/.lesshst")
+
+    for i in "${history_files[@]}" ; do
+        [ -e "$i" ] && rm -rf "$i"
+        [ -z $this_delete ] &&  ln -s /dev/null "$i"
+    done
+}
+
+main "$@"
