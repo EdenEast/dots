@@ -33,7 +33,7 @@
     dis = checkout --
     fcl = clean -fdx
     cmm = commit -m
-    cnr = clone --recursive
+    cnr = clone --recurse-submodules -j8
 
 # opening up vim to edit .gitconfig file. VERY USEFUL!
     ec = "!vim ~/.gitconfig"
