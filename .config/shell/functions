@@ -110,16 +110,20 @@ function cmake()
 
     (
         rootdir="$(git rev-parse --show-toplevel 2>/dev/null)" && cd "$rootdir"
+
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
         "$verbose" && echo "env cmake . -Bbuild ${generate_args[@]}"
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
-        # [ ! -d "build" ] && { env cmake . -Bbuild "${generate_args[@]}" || return "$?" ; }
+
         env cmake . -Bbuild "${generate_args[@]}"
+        [ $? -ne 0 ] && return $?
 
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
         "$verbose" && echo "env cmake --build build ${build_args[@]} ${native_args[@]}"
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
+
         env cmake --build build "${build_args[@]}" "${native_args[@]}"
+        return $?
     )
 }
 
