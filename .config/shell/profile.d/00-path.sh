@@ -53,6 +53,10 @@ function main()
     # If these directories exist then append them to the $PATH variable so I can use them
     check_path prepend_path "/c/Program Files/CMake/bin"
     check_path append_path  "/c/Program Files/Microsoft VS Code/bin"
+    check_path append_path  "/c/Program Files (x86)/Yarn/bin"
+    check_path append_path  "/c/Program Files/nodejs"
+    check_path append_path  "/c/Program Files/Perforce"
+    check_path append_path  "/c/Program Files (x86)/MSBuild/14.0/Bin"
 
     export PATH
     unset prepend_path
