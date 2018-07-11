@@ -19,6 +19,7 @@ shopt -s histappend
 #
 # Prompt config
 #
+PROMPT_DIR_COLOR=$CL_CYAN
 PROMPT_MODE=left
 PROMPT_NO_INFO_LINE=true
 
