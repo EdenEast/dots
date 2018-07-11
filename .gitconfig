@@ -37,7 +37,7 @@
 
 # opening up vim to edit .gitconfig file. VERY USEFUL!
     ec = "!vim ~/.gitconfig"
-    ecl = "!vim ~/.dotfiles-local/gitconfig.local"
+    ecl = "!vim ~/.local/etc/git/.gitconfig"
 
 # Clean up all local branches that do not have a remote reference.
     cleanup = "!f() { git fetch -pq && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D ; } ; f"
@@ -183,7 +183,7 @@
 
     check = diff --check HEAD^
     churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort
-    
+
     # Detect moevd or copied lines and ignore whitespace
     blame = blame -w -M -C
 
@@ -249,7 +249,7 @@
 #
 # ignored by git < 1.7.10
 [include]
-    path = ~/.local/etc/.gitconfig
+    path = ~/.local/etc/git/.gitconfig
 
 # some good resources
 # http://durdn.com/blog/2012/11/22/muse-have-git-aliases-advanced-examples/
