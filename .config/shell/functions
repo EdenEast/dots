@@ -98,6 +98,7 @@ function cmake()
                 --target) build_args+=("$1") ; build_args+=("$2") ; shift ;;
                 --config) build_args+=("$1") ; build_args+=("$2") ; shift ;;
                 --clean-first) build_args+=("$1") ;;
+                --nt) generate_args+=("-DNO_TESTS=ON") ;;
                 --) native_args=("$@") ; break ;;
                 *) generate_args+=("$1") ;;
             esac
