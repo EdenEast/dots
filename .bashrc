@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# If for some reason that the .profile has not been loaded then source it
+[ -z $DOT_PROFILE_LOADED ] && source ~/.profile
+
 #
 # History config
 #

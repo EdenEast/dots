@@ -62,6 +62,8 @@ for rc in $HOME/.config/shell/profile.d/*.sh ; do
     source $rc
 done
 
+export DOT_PROFILE_LOADED=true
+
 # lauch x server when logging in to tty1
 [[ "$(tty)" = "/dev/tty1" ]] && ( pgrep i3 &>/dev/null && echo "Note: X Server is already running." || xinit )
 
