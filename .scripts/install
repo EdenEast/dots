@@ -77,10 +77,11 @@ function main()
 
         yadm clone --bootstrap $dotfiles_url
 
-        [ -n $inst_proxy ] && {
-            echo "export http_proxy=$inst_proxy"  >  "$HOME/etc/bash/before.d/proxy-local.sh"
-            echo "export https_proxy=$inst_proxy" >> "$HOME/etc/bash/before.d/proxy-local.sh"
-        }
+        if [[ -n $http_proxy ]] || [[ -n $https_proxy ]] ; then
+            [[ ! -e "$HOME/.local/etc/bash/before.d/proxy-local.sh" ]] && touch "$HOME/.local/etc/bash/before.d/proxy-local.sh"
+            [[ -n $http_proxy ]] && echo "export http_proxy=$inst_proxy"  >>  "$HOME/.local/etc/bash/before.d/proxy-local.sh"
+            [[ -n $http_proxy ]] && echo "export https_proxy=$inst_proxy" >> "$HOME/.local/etc/bash/before.d/proxy-local.sh"
+        fi
     )
 
     # bye bye
