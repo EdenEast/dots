@@ -6,6 +6,7 @@
 !.local/
 !.scripts/
 !.vim/
+!.yadm/
 
 # include only these files
 !.Xdefaults

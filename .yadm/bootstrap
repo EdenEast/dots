@@ -1,0 +1,75 @@
+#!/bin/bash
+
+cd "$HOME"
+
+#
+# ─── INITIALIZE SUBMODULES ──────────────────────────────────────────────────────
+#
+
+echo "Init submodules"
+# yadm submodule update --recursive --init
+
+#
+# ─── CHECKING GIT USER NAME AND EMAIL ───────────────────────────────────────────
+#
+
+if [[ -z "$(git config user.name)" ]] || [[ -z "$(git config user.email)" ]]; then
+  echo "Bootstraping git"
+  read -r -p "Enter git user name: " gitname < /dev/tty
+  read -r -p "Enter git user email: " gitemail < /dev/tty
+  
+  [[ ! -d "$HOME/.local/git/.gitconfig" ]] && mkdir -p "$HOME/.local/etc/git" && touch "$HOME/.local/etc/git/.gitconfig"
+  echo "[user]" >> $HOME/.local/etc/git/.gitconfig
+  echo "    name = $gitname" >> $HOME/.local/etc/git/.gitconfig
+  echo "    email = $gitemail" >> $HOME/.local/etc/git/.gitconfig
+fi
+
+#
+# ─── INSTALLING AND RUNNING VIM PLUG ────────────────────────────────────────────
+#
+
+if command -v vim &>/dev/null ; then
+  read -p "Bootstrap vim? [Y/n]: " -n 1
+  echo ""
+  if [[ ! $REPLY =~ ^[nN]$ ]]; then
+    echo "Bootstraping vim"
+    vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+  fi
+fi
+
+# ────────────────────────────────────────────────────────────────────────────────
+# ─── SYSTEM SPECIFIC SETUP
+# ────────────────────────────────────────────────────────────────────────────────
+
+#
+# ─── WINDOWS ────────────────────────────────────────────────────────────────────
+#
+
+system_type=$(uname -s)
+if [ "*_NT*" = $system_type ] ; then
+  echo "Installing chocolatey"
+fi
+
+#
+# ─── MAC OSX ────────────────────────────────────────────────────────────────────
+#
+
+if [ "$system_type" = "Darwin" ] ; then
+  # install homebrew if it's missing
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing homebrew"
+    # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
+#   if [ -f "$HOME/.Brewfile" ]; then
+#     echo "Updating homebrew bundle"
+#     brew bundle --global
+#   fi
+fi
+
+#
+# ─── SOURCE SHELL CONFIG FILE ───────────────────────────────────────────────────
+#
+    
+[[ $SHELL =~ /bash$ ]] && source $HOME/.bashrc
+[[ $SHELL =~ /zsh$ ]] && source $HOME/.config/zsh/.zshrc

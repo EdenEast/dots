@@ -1,27 +1,27 @@
 #!/bin/bash
 
-function die() 
+function die()  
 {
-     exit $1
+    exit $1
 }
 
 function usage()
 {
-    echo "install script for dot file
-options:
+    cat << 'EOF'
+Install script for .files
+Options:
   -p, --proxy    Proxy to use
-  -f, --force    Force install dots
 
   -h, --help     Print this usage
   -v, --verbose  Set verbose mode
-"
+EOF
     die $1
 }
 
 function parse_arguments()
 {
-    parse_args=()
-    local optspec=":p:hvf-"
+    positional_args=()
+    local optspec=":p:hv-"
     while [ $# -gt 0 ] ; do
         unset OPTIND && unset OPTARG
         while getopts $optspec OPTION ; do
@@ -29,7 +29,6 @@ function parse_arguments()
                 h) usage 0 ;;
                 v) inst_verbose=true ;;
                 p) inst_proxy="$OPTARG" ;;
-                f) inst_force_install=true ;;
                 -)
                     [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
                     eval OPTION="\$$optind"
@@ -39,66 +38,48 @@ function parse_arguments()
                         --help|--usage) usage 0 ;;
                         --verbose) inst_verbose=true ;;
                         --proxy) inst_proxy="$OPTARG" ;;
-                        --force) inst_force_install=true ;;
                         *) echo "Invalid option: $OPTION $OPTARG" ;;
                     esac
                     OPTIND=1 && shift ;;
                 \?) echo "Invalid option: $OPTION $OPTARG" ;;
             esac
         done
-        shift $((OPTIND-1)) && parse_args+=($1) && shift
+        shift $((OPTIND-1)) && positional_args+=($1) && shift
     done
 }
 
+function yadm()
+{
+    if command -v which >/dev/null 2>&1 && which yadm >/dev/null 2>&1; then
+        echo "Found yadm installed locally, removing remote yadm() function"
+        unset -f yadm
+        command yadm "$@"
+    else
+        echo "WARNING: Using yadm remotely. You should install yadm locally."
+        curl -fsSL "https://raw.github.com/TheLocehiliosan/yadm/master/yadm" | bash -s -- "$@"
+    fi
+}
+export -f yadm
+
 function main()
 {
+    dotfiles_url="https://github.com/cruizemissile/dots"
+
     parse_arguments "$@"
 
-    work_dir="$HOME"
-    dots_dir="$HOME/.dots"
-    temp_dir="$HOME/tmp/dots"
-    url_link="https://github.com/CruizeMissile/dots"
-    dots_cmd="git --git-dir=$dots_dir --work-tree=$work_dir"
-    backup_dir="$HOME/.dots-backup"
-
     (
-        cd $work_dir
+        cd $HOME
 
-        [[ -d $dots_dir ]] && {
-            echo ".dots folder already exists!"
-            [ "$inst_force_install" = "true" ] && echo "Force installing dots" && echo rm -rf $dots_dir
-            [ "$inst_force_install" = "true" ] || exit 1
+        [ -n $inst_proxy ] && {
+            export http_proxy=$inst_proxy
+            export https_proxy=$inst_proxy
         }
 
-        # If there is a proxy then configure the clone to use the proxy
-        [[ -n $inst_proxy ]] && inst_proxy_cmd="--config http.proxy=$inst_proxy --config https.proxy=$inst_proxy"
+        yadm clone --bootstrap $dotfiles_url
 
-        # Clone the dots repo
-        $dots_cmd clone $inst_proxy_cmd --bare $url_link $dots_dir
-
-        backup_files=($($dots_cmd checkout 2>&1 | egrep "\s+\." | awk {'print $1'}))
-        [[ ${#backup_files[@]} -gt 0 ]] && {
-            mkdir -p $backup_dir
-            local d=''
-            for f in ${backup_files[@]} ; do
-                d="$backup_dir/$(dirname $f)"
-                mkdir -p $d
-                echo "Backing up: $f to $backup_dir/$f"
-                mv $f $backup_dir/$f
-            done
-        }
-
-        # Update submodules
-        [[ -n $inst_proxy ]] && {
-            git config --global http.proxy $inst_proxy
-            git config --global https.proxy $inst_proxy
-        }
-
-        $dots_cmd submodule update --init --recursive $work_dir
-
-        [[ -n $inst_proxy ]] && {
-            $dots_cmd submodule foreach --recursive "git config http.proxy $inst_proxy && git config https.proxy $inst_proxy" | awk '{print $2}' | xargs -I{} echo "Setting proxy $inst_proxy for {}"
-            $dots_cmd checkout $HOME/.gitconfig
+        [ -n $inst_proxy ] && {
+            echo "export http_proxy=$inst_proxy"  >  "$HOME/etc/bash/before.d/proxy-local.sh"
+            echo "export https_proxy=$inst_proxy" >> "$HOME/etc/bash/before.d/proxy-local.sh"
         }
     )
 
