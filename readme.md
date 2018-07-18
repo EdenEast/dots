@@ -2,50 +2,28 @@
 
 > The dotfiles for my personal windows and arch linux setup
 
-My dot files only requires git to be installed. The files will be kept at their
-intended locations, without making symlinks or copies.
-This is handled by using git --bare repo.
+Dot files uses [yadm] as a manager. Note that iI havent commented / docuemnted most of the config. I will try my best to document when I can.
 
-There is a command called `dots`. This is a way that you can use git with the --bare repo. `dots add $HOME/.config/file` is a command example.
+## Goals
 
-#### Alias
+- Cross platform working on windows, osx and linux.
+- Attempt to adhear to XDG spe
+- Everything is a plugin. Batteries are included but optional use
+- Plugins check for requirements and disable if not met
+
+## Installation
+
+One line installation with curl.
+
 ```bash
-alias dots='git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+curl -fsSL https://raw.github.com/cruizemissile/dots/master/.scripts/install | bash -s --
 ```
 
-#### Setup
+Manual installation with [yadm]
+
 ```bash
-git init --bare $HOME/.dots
-dots remote add origin https://github.com/CruizeMissile/dots.git
+curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
+./yadm clone --bootstrap https://github.com/cruizemissile/dots
 ```
 
-#### Installation
-```bash
-$ curl https://raw.githubusercontent.com/cruizemissile/dots/master/.scripts/install | bash
-```
-
-#### Manual Installation
-```bash
-# alias git to set the git-dir and work-tree
-alias dots="git --git-dir$HOME/.dots --work-tree=$HOME"
-
-# clone a bare repo into the .dots directory
-dots clone --bare https://github.com/CruizeMissile/dots $HOME/.dots
-
-# trying to checkout the repo. if there are no errors then you can update submodules. if not then backup
-dots checkout
-
-# if there are errors then you can back them up
-mkdir $HOME/.dots-backup
-dots checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I mv {} $HOME/.dots-backup/{}
-
-# rerun checkout
-dots checkout
-
-# update submodules
-dots submodule update --init --recursive $HOME
-```
-
-#### Issues
-If you have upstream problems with origin/master like `fatal: ambiguous argument 'origin/master'`,
-the problem could be the upstream setup. I found a solution to this problem [here](https://stackoverflow.com/a/26047558).
+[yadm]: https://thelocehiliosan.github.io/yadm
