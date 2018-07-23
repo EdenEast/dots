@@ -28,14 +28,14 @@ fi
 # ─── INSTALLING AND RUNNING VIM PLUG ────────────────────────────────────────────
 #
 
-if command -v vim &>/dev/null ; then
-  read -p "Bootstrap vim? [Y/n]: " -n 1
-  echo ""
-  if [[ ! $REPLY =~ ^[nN]$ ]]; then
-    echo "Bootstraping vim"
-    vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-  fi
-fi
+# if command -v vim &>/dev/null ; then
+#   read -p "Bootstrap vim? [Y/n]: " -n 1
+#   echo ""
+#   if [[ ! $REPLY =~ ^[nN]$ ]]; then
+#     echo "Bootstraping vim"
+#     vim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+#   fi
+# fi
 
 # ────────────────────────────────────────────────────────────────────────────────
 # ─── SYSTEM SPECIFIC SETUP
