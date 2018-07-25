@@ -95,6 +95,7 @@ function cmake()
             case "$1" in
                 -v) verbose=true ;;
                 -n) generate_args+=("-DNO_TESTS=ON") ;;
+                -t) generate_args+=("-DNO_TESTS=OFF") ;;
                 -g) generate_args+=("-DCMAKE_CXX_COMPILER=g++") ;;
                 -c) generate_args+=("-DCMAKE_CXX_COMPILER=c++") ;;
                 --verbose) verbose=true ;;
