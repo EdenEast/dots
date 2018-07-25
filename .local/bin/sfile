@@ -6,7 +6,7 @@ die() { set +f ; exit $1 ; }
 usage()
 {
     cat << 'EOF'
-Usage: sfile [options] path pattern
+Usage: sfile [options] pattern path...
 Search though files in a path to find a pattern
 Options:
   -x, --ext                  Filter files by the extention. This can be called more then once in a command
@@ -21,7 +21,7 @@ EOF
 
 function parse_arguments()
 {
-    parse_args=()
+    positional_args=()
     local optspec=":hvzx:nir-"
     while [ $# -gt 0 ] ; do
         unset OPTIND && unset OPTARG
@@ -49,7 +49,7 @@ function parse_arguments()
                 \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
             esac
         done
-        shift $((OPTIND-1)) ; parse_args+=("$1") ; shift
+        shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
     done
 }
 
@@ -79,15 +79,13 @@ function main()
     [[ -n $has_processed_name_before ]] && name_arguments+=(')')
 
     # if no path or pattern then exit
-    [[ ${#parse_args[@]} -eq 0 ]] && echo "Error: no search path passed!" && die 1
-    [[ ${#parse_args[@]} -eq 1 ]] && echo "Error: no pattern was passed!" && die 1
+    [[ ${#positional_args[@]} -eq 0 ]] && echo "Error: no pattern passed!" && die 1
+    [[ ${#positional_args[@]} -eq 1 ]] && echo "Error: no path was passed!" && die 1
 
-    # setting the search paths to everything but the last argument. The last argument in the array
-    # is the search pattern to use. Settings search path to be the parse_args array and the popping
-    # off the last argument in the array. The pattern is the last argument of the parse_args array
-    search_path=("${parse_args[@]}")
-    unset 'search_path[${#search_path[@]}-1]'
-    pattern="${parse_args[-1]}"
+    # setting the pattern to the first positional args. The search_path is the rest of the positional args
+    pattern="${positional_args[0]}"
+    search_path=("${positional_args[@]}")
+    unset 'search_path[0]'
 
     find "${search_path[@]}" -type f "${name_arguments[@]}" "${find_arguments[@]}" -exec grep --color=always -I "${grep_arguments[@]}" "$pattern" {} +
     die 0
@@ -100,7 +98,7 @@ main "$@"
 
 # function parse_arguments()
 # {
-#     parse_args=()
+#     positional_args=()
 #     local optspec=""
 #     while [ $# -gt 0 ] ; do
 #         unset OPTIND ; unset OPTARG
@@ -120,6 +118,6 @@ main "$@"
 #                 \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
 #             esac
 #         done
-#         shift $((OPTIND-1)) ; parse_args+=($1) ; shift
+#         shift $((OPTIND-1)) ; positional_args+=($1) ; shift
 #     done
 # }
