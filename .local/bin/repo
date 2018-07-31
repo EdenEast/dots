@@ -109,7 +109,8 @@ function config()
 
 function bootstrap()
 {
-  echo "this is the bootstrap function with args $@"
+  [ ! -f $REPO_BOOTSTRAP ] && echo "Failed to find ${REPO_BOOTSTRAP}" && die 1
+  echo "have to figure out a way to know what category the repo is at"
 }
 
 function foreach()
