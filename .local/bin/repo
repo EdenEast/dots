@@ -1,0 +1,279 @@
+#!/bin/bash
+
+
+VERSION=0.0.1
+
+REPO_DIR=${REPO_DIR:-$HOME/repos}
+REPO_CONFIG=${REPO_CONFIG:-$HOME/.config/repo/config}
+REPO_BOOTSTRAP=${REPO_BOOTSTRAP:-$HOME.config/repo/bootstrap}
+
+GIT_PROGRAM="git"
+
+function main()
+{
+  FULL_COMMAND="$*"
+
+  internal_commands="^(list|config|bootstrap|foreach|enter)"
+  [[ -z "$*" ]] && help
+
+  if [[ "$1" =~ $internal_commands ]]; then
+    REPO_COMMAND="$1"
+    shift
+
+    $REPO_COMMAND "$@"
+  else
+    help 0
+    # travel "$@"
+  fi
+  die 0
+}
+
+function list()
+{
+  # count the list of categories so that an array of categories
+  local category_count=$(find ${REPO_DIR}/* -maxdepth 0 -type d | wc -l)
+  local category_names=()
+  local category_children=()
+
+  local last_category=""
+  local last_counter=-1
+  local repo_list=$(find ${REPO_DIR} -mindepth 2 -maxdepth 2 ! -path . -type d)
+  for full in ${repo_list[@]}; do
+    # cleanup the abs path to just have the category and repo name
+    full=${full/${REPO_DIR}\//}
+    
+    # get the category name
+    local category=${full%\/*}
+    local name=${full#*\/}
+
+    # echo $c
+    if [ $category != "${last_category}" ]; then
+      last_category=$category
+      last_counter=$((last_counter +1))
+      category_names+=("$category")
+    fi
+
+    if [ -z ${category_children[$last_counter]} ]; then
+      category_children[$last_counter]="$name"
+    else
+      category_children[$last_counter]="${category_children[$last_counter]};$name"
+    fi
+  done
+
+  for i in $(seq 0 $last_counter); do
+    local category_name_length=${#category_names[$i]}
+    printf "%${category_name_length}s\n" | tr ' ' '-'
+    echo "${category_names[$i]}"
+    printf "%${category_name_length}s\n" | tr ' ' '-'
+
+    local old_ifs=$IFS
+    IFS=';' names=(${category_children[$i]})
+    IFS=$old_ifs
+
+    for n in ${names[@]}; do
+      echo "  $n"
+    done
+
+    [[ $i -ne $last_counter ]] && echo ""
+  done
+
+  # ────────────────────────────────────────────────────────────────────────────────
+  # # not sure why this method does not work for listing names in categories
+  # local category_list=$(find ${REPO_DIR} -mindepth 1 -maxdepth 1 ! -path . -type d)
+  # for c in ${category_list[@]}; do
+  #   echo "$(basename $c)"
+  #   local repo_list=$(find $c -mindepth 1 -maxdepth 1 ! -path . -type d)
+  #   for r in ${repo_list[@]}; do
+  #     # for some reason this does not work as r is not seperated like c is. instead
+  #     # they are all together and the loop only runs once
+  #     echo "  $(basename $r)"
+  #   done
+  #   echo ""
+  # done
+}
+
+function config()
+{
+  if [ -z "$*" ]; then
+    echo "repo supports the following configuration"
+    echo
+    for supported_config in $(introspect_config); do
+      echo "  ${supported_config}"
+    done
+  else
+    [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
+    # use git as an interface to write to repo config file
+    git config --file="${REPO_CONFIG}" "$@"
+  fi
+}
+
+function bootstrap()
+{
+  echo "this is the bootstrap function with args $@"
+}
+
+function foreach()
+{
+  for d in $(find ${REPO_DIR} -mindepth 2 -maxdepth 2 ! -path . -type d); do
+    pushd $d &> /dev/null
+      local name=$(basename $d)
+      echo "[$name]: $@"
+      "$@"
+    popd &> /dev/null
+  done
+}
+
+function enter() 
+{
+  require_shell
+
+  local repo_name=$(find ${REPO_DIR} -mindepth 2 -maxdepth 2 -type d -name "*$1*" | head -n 1)
+  [[ -z $repo_name ]] && echo "Could not find a result for $1" && die 1
+  cd $repo_name
+
+  repo_name=$(basename $repo_name)
+
+  # shell_opts=""
+  # shell_path=""
+  # if [[ "$SHELL" =~ bash$ ]]; then
+  #   shell_opts="--norc"
+  #   shell_path="\w"
+  # elif [[ "$SHELL" =~ [cz]sh$ ]]; then
+  #   shell_opts="-f"
+  #   shell_path="%~"
+  # fi
+
+  echo "Found repo: $repo_name"
+
+  "$SHELL"
+}
+
+function help()
+{
+    cat << EOF
+Usage: repo <command> [options...]
+
+Manage all projects and repositories under a root folder. List, switch, batch edit repositories
+
+Commands:
+  repo bootstrap [-f]            - Initialize a repo folder structure from a list file
+  repo config <name> <value>     - Configure a setting
+  repo enter name                - Create a new shell in the root directory of a the repo
+  repo foreach [options] command - Preform operation on all repos
+  repo help                      - Show this help message
+  repo list [-a]                 - List current repos visable by repo
+
+Files:
+  \$HOME/.config/repos/config - repo's config file
+  \$HOME/.config/repos/bootstrap - Default repo list file for \'bootstrap\'
+EOF
+
+  die 0
+}
+
+#
+# ─── INTROSPECTIVE FUNCTIONS ────────────────────────────────────────────────────
+#
+
+function introspect()
+{
+  case $1 in
+    commands|config)
+      "introspect_$1"
+    ;;
+  esac
+}
+
+function introspect_commands()
+{
+  cat <<-EOF
+list
+config
+bootstrap
+foreach
+EOF
+}
+
+function introspect_config()
+{
+  cat <<-EOF
+repo.repo-base-dir
+repo.bootstrap-file
+EOF
+}
+
+#
+# ─── DEBUG AND EXIT FUNCTIONS ───────────────────────────────────────────────────
+#
+
+function debug()
+{
+  [ -n "$DEBUG" ] && echo_e "DEBUG: $*"
+}
+
+function error_out()
+{
+  echo_e "ERROR: $*"
+  die 1
+}
+
+function die()
+{
+  exit $1
+}
+
+#
+# ─── REQUIRE FUNCTIONS ──────────────────────────────────────────────────────────
+#
+
+function require_git()
+{
+  local alt_git
+  alt_git="$(config repo.git-program)"
+
+  local more_info
+  more_info=""
+
+  if [ "$alt_git" != "" ] ; then
+    GIT_PROGRAM="$alt_git"
+    more_info="\nThis command has been set via the repo.git-program configuration."
+  fi
+
+  command -v "$GIT_PROGRAM" >/dev/null 2>&1 || \
+    error_out "This functionality requires Git to be installed, but the command '$GIT_PROGRAM' cannot be located.$more_info"
+}
+
+function require_shell()
+{
+  [ -x "$SHELL" ] || error_out "\$SHELL does not refer to an executable."
+}
+
+function bootstrap_available()
+{
+  [ -f "$REPO_BOOTSTRAP" ] && [ -x "$REPO_BOOTSTRAP" ] && return
+  return 1
+}
+
+#
+# ─── ECHO REPLACEMENTS ──────────────────────────────────────────────────────────
+#
+
+function echo()
+{
+  IFS=' '
+  printf '%s\n' "$*"
+}
+
+function echo_n() 
+{
+  IFS=' '
+  printf '%s' "$*"
+}
+
+function echo_e() 
+{
+  IFS=' '
+  printf '%b\n' "$*"
+}
+
+main "$@"
