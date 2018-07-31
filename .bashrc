@@ -51,8 +51,12 @@ for rm in $HOME/.local/etc/bash/after.d/*.sh ; do
     source $rc
 done
 
-# Setting git completion for dots command
+function has # (command)
+{
+  hash "$1" &>/dev/null
+}
+# Setting git completion for yadm command
 source $HOME/.local/etc/git/git-completion.bash
-[[ -n $(which dots) ]] && __git_complete dots __git_main
+ hash "yadm" &>/dev/null  && __git_complete yadm __git_main
 __git_complete g __git_main
 
