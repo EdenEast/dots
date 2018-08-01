@@ -1,13 +1,10 @@
 #!/bin/bash
 
-
 VERSION=0.0.1
 
 REPO_DIR=${REPO_DIR:-$HOME/repos}
 REPO_CONFIG=${REPO_CONFIG:-$HOME/.config/repo/config}
 REPO_BOOTSTRAP=${REPO_BOOTSTRAP:-$HOME/.config/repo/bootstrap}
-
-GIT_PROGRAM="git"
 
 function main()
 {
@@ -29,18 +26,25 @@ function main()
 
 function add()
 {
-  require_git
-  
   [ $# -eq 0 ] && echo "Failed: No category or url provided" && die 1
-  [ $# -eq 1 ] && echo "Failed: No url provided" && die 1
+  [ $# -eq 1 ] && echo "Failed: No name provided" && die 1
+  [ $# -eq 2 ] && echo "Failed: No url provided" && die 1
 
   local category=$1
-  local url=$2
-  [ -n $3 ] && local name=$3
-  
-  [ ! -d ${REPO_DIR}/$category ] && mkdir -p ${REPO_DIR}/$category
-  cd ${REPO_DIR}/$category
-  $GIT_PROGRAM clone --recurse-submodules -j8 $url $name
+  local name=$2
+  local url=$3
+
+  [ ! -d $REPO_DIR ] && mkdir -p $REPO_DIR
+
+  cd ${REPO_DIR}
+  [[ -d $category/$name && $(ls -A $category/$name) ]] && {
+    echo "$category/$name already exists and is not an empty directory"
+    return
+  } 
+
+  git clone --recurse-submodules -j8 $url $category/$name && {
+    git config --file="${REPO_BOOTSTRAP}" $category.$name "$url"
+  }
 }
 
 function bootstrap()
@@ -71,6 +75,7 @@ function bootstrap()
     printf "%${#output}s\n" | tr ' ' '-'
     echo $output
     printf "%${#output}s\n" | tr ' ' '-'
+
     [ ! -d $category ] && mkdir -p $category
     git clone --recurse-submodules $url $category/$name
   done
@@ -86,6 +91,7 @@ function config()
     done
   else
     [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
+    
     # use git as an interface to write to repo config file
     git config --file="${REPO_CONFIG}" "$@"
   fi
@@ -269,23 +275,6 @@ function die()
 #
 # ─── REQUIRE FUNCTIONS ──────────────────────────────────────────────────────────
 #
-
-function require_git()
-{
-  local alt_git
-  alt_git="$(config repo.git-program)"
-
-  local more_info
-  more_info=""
-
-  if [ "$alt_git" != "" ] ; then
-    GIT_PROGRAM="$alt_git"
-    more_info="\nThis command has been set via the repo.git-program configuration."
-  fi
-
-  command -v "$GIT_PROGRAM" >/dev/null 2>&1 || \
-    error_out "This functionality requires Git to be installed, but the command '$GIT_PROGRAM' cannot be located.$more_info"
-}
 
 function require_shell()
 {
