@@ -13,7 +13,7 @@ function main()
 {
   FULL_COMMAND="$*"
 
-  internal_commands="^(list|config|bootstrap|foreach|enter)"
+  internal_commands="^(add|bootstrap|config|enter|foreach|help|list)$"
   [[ -z "$*" ]] && help
 
   if [[ "$1" =~ $internal_commands ]]; then
@@ -23,8 +23,104 @@ function main()
     $REPO_COMMAND "$@"
   else
     help 0
-    # travel "$@"
   fi
+  die 0
+}
+
+function add()
+{
+  require_git
+  
+  [ $# -eq 0 ] && echo "Failed: No category or url provided" && die 1
+  [ $# -eq 1 ] && echo "Failed: No url provided" && die 1
+
+  local category=$1
+  local url=$2
+  [ -n $3 ] && local name=$3
+  
+  [ ! -d ${REPO_DIR}/$category ] && mkdir -p ${REPO_DIR}/$category
+  cd ${REPO_DIR}/$category
+  $GIT_PROGRAM clone --recurse-submodules -j8 $url $name
+}
+
+function bootstrap()
+{
+  [ ! -f $REPO_BOOTSTRAP ] && echo "Failed to find ${REPO_BOOTSTRAP}" && die 1
+  echo "have to figure out a way to know what category the repo is at "
+}
+
+function config()
+{
+  if [ -z "$*" ]; then
+    echo "repo supports the following configuration"
+    echo
+    for supported_config in $(introspect_config); do
+      echo "  ${supported_config}"
+    done
+  else
+    [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
+    # use git as an interface to write to repo config file
+    git config --file="${REPO_CONFIG}" "$@"
+  fi
+}
+
+function enter() 
+{
+  require_shell
+
+  local repo_name=$(find ${REPO_DIR} -mindepth 2 -maxdepth 2 -type d -name "*$1*" | head -n 1)
+  [[ -z $repo_name ]] && echo "Could not find a result for $1" && die 1
+  cd $repo_name
+
+  repo_name=$(basename $repo_name)
+
+  # shell_opts=""
+  # shell_path=""
+  # if [[ "$SHELL" =~ bash$ ]]; then
+  #   shell_opts="--norc"
+  #   shell_path="\w"
+  # elif [[ "$SHELL" =~ [cz]sh$ ]]; then
+  #   shell_opts="-f"
+  #   shell_path="%~"
+  # fi
+
+  echo "Found repo: $repo_name"
+
+  "$SHELL"
+}
+
+function foreach()
+{
+  for d in $(find ${REPO_DIR} -mindepth 2 -maxdepth 2 ! -path . -type d); do
+    pushd $d &> /dev/null
+      local name=$(basename $d)
+      echo "[$name]: $@"
+      "$@"
+    popd &> /dev/null
+  done
+}
+
+function help()
+{
+    cat << EOF
+Usage: repo <command> [options...]
+
+Manage all projects and repositories under a root folder. List, switch, batch edit repositories
+
+Commands:
+  repo add <category> <url> [name] - Add a repository url in a category
+  repo bootstrap [-f]              - Initialize a repo folder structure from a list file
+  repo config <name> <value>       - Configure a setting
+  repo enter name                  - Create a new shell in the root directory of a the repo
+  repo foreach [options] command   - Preform operation on all repos
+  repo help                        - Show this help message
+  repo list [-a]                   - List current repos visable by repo
+
+Files:
+  \$HOME/.config/repos/config - repo's config file
+  \$HOME/.config/repos/bootstrap - Default repo list file for \'bootstrap\'
+EOF
+
   die 0
 }
 
@@ -90,86 +186,6 @@ function list()
   #   done
   #   echo ""
   # done
-}
-
-function config()
-{
-  if [ -z "$*" ]; then
-    echo "repo supports the following configuration"
-    echo
-    for supported_config in $(introspect_config); do
-      echo "  ${supported_config}"
-    done
-  else
-    [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
-    # use git as an interface to write to repo config file
-    git config --file="${REPO_CONFIG}" "$@"
-  fi
-}
-
-function bootstrap()
-{
-  [ ! -f $REPO_BOOTSTRAP ] && echo "Failed to find ${REPO_BOOTSTRAP}" && die 1
-  echo "have to figure out a way to know what category the repo is at"
-}
-
-function foreach()
-{
-  for d in $(find ${REPO_DIR} -mindepth 2 -maxdepth 2 ! -path . -type d); do
-    pushd $d &> /dev/null
-      local name=$(basename $d)
-      echo "[$name]: $@"
-      "$@"
-    popd &> /dev/null
-  done
-}
-
-function enter() 
-{
-  require_shell
-
-  local repo_name=$(find ${REPO_DIR} -mindepth 2 -maxdepth 2 -type d -name "*$1*" | head -n 1)
-  [[ -z $repo_name ]] && echo "Could not find a result for $1" && die 1
-  cd $repo_name
-
-  repo_name=$(basename $repo_name)
-
-  # shell_opts=""
-  # shell_path=""
-  # if [[ "$SHELL" =~ bash$ ]]; then
-  #   shell_opts="--norc"
-  #   shell_path="\w"
-  # elif [[ "$SHELL" =~ [cz]sh$ ]]; then
-  #   shell_opts="-f"
-  #   shell_path="%~"
-  # fi
-
-  echo "Found repo: $repo_name"
-
-  "$SHELL"
-}
-
-function help()
-{
-    cat << EOF
-Usage: repo <command> [options...]
-
-Manage all projects and repositories under a root folder. List, switch, batch edit repositories
-
-Commands:
-  repo bootstrap [-f]            - Initialize a repo folder structure from a list file
-  repo config <name> <value>     - Configure a setting
-  repo enter name                - Create a new shell in the root directory of a the repo
-  repo foreach [options] command - Preform operation on all repos
-  repo help                      - Show this help message
-  repo list [-a]                 - List current repos visable by repo
-
-Files:
-  \$HOME/.config/repos/config - repo's config file
-  \$HOME/.config/repos/bootstrap - Default repo list file for \'bootstrap\'
-EOF
-
-  die 0
 }
 
 #
