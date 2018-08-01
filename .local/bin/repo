@@ -5,7 +5,7 @@ VERSION=0.0.1
 
 REPO_DIR=${REPO_DIR:-$HOME/repos}
 REPO_CONFIG=${REPO_CONFIG:-$HOME/.config/repo/config}
-REPO_BOOTSTRAP=${REPO_BOOTSTRAP:-$HOME.config/repo/bootstrap}
+REPO_BOOTSTRAP=${REPO_BOOTSTRAP:-$HOME/.config/repo/bootstrap}
 
 GIT_PROGRAM="git"
 
@@ -46,7 +46,34 @@ function add()
 function bootstrap()
 {
   [ ! -f $REPO_BOOTSTRAP ] && echo "Failed to find ${REPO_BOOTSTRAP}" && die 1
-  echo "have to figure out a way to know what category the repo is at "
+
+  [ ! -d $REPO_DIR ] && mkdir -p $REPO_DIR
+  cd $REPO_DIR
+
+  local full_list=($(git config --file="${REPO_BOOTSTRAP}" --list))
+  for entry in ${full_list[@]}; do
+    [[ $entry =~ ([a-zA-Z]+)\.([a-zA-Z]+)=(.*) ]]
+    local category=${BASH_REMATCH[1]}
+    local name=${BASH_REMATCH[2]}
+    local url=${BASH_REMATCH[3]}
+
+    if [ $# -gt 0 ]; then
+      local found=false
+      for i in $@; do
+        [ $category = $i ] && found=true
+      done
+      [ $found = false ] && continue
+    fi
+
+    [ -d $category/$name ] && continue
+
+    local output="Processing: ${category}/${name}"
+    printf "%${#output}s\n" | tr ' ' '-'
+    echo $output
+    printf "%${#output}s\n" | tr ' ' '-'
+    [ ! -d $category ] && mkdir -p $category
+    git clone --recurse-submodules $url $category/$name
+  done
 }
 
 function config()
