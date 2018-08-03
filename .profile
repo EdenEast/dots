@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 # define local folder locations
 export LOCAL_BIN="$HOME/.local/bin"
 export LOCAL_ETC="$HOME/.local/etc"
