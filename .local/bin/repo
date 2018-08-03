@@ -40,7 +40,7 @@ function add()
   [[ -d $category/$name && $(ls -A $category/$name) ]] && {
     echo "$category/$name already exists and is not an empty directory"
     return
-  } 
+  }
 
   git clone --recurse-submodules -j8 $url $category/$name && {
     git config --file="${REPO_BOOTSTRAP}" $category.$name "$url"
@@ -91,13 +91,13 @@ function config()
     done
   else
     [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
-    
+
     # use git as an interface to write to repo config file
     git config --file="${REPO_CONFIG}" "$@"
   fi
 }
 
-function enter() 
+function enter()
 {
   require_shell
 
@@ -159,6 +159,7 @@ EOF
 
 function list()
 {
+  [[ ! -d ${REPO_DIR} ]] && echo "${REPO_DIR} does not exist" && die 1
   # count the list of categories so that an array of categories
   local category_count=$(find ${REPO_DIR}/* -maxdepth 0 -type d | wc -l)
   local category_names=()
@@ -170,7 +171,7 @@ function list()
   for full in ${repo_list[@]}; do
     # cleanup the abs path to just have the category and repo name
     full=${full/${REPO_DIR}\//}
-    
+
     # get the category name
     local category=${full%\/*}
     local name=${full#*\/}
@@ -297,13 +298,13 @@ function echo()
   printf '%s\n' "$*"
 }
 
-function echo_n() 
+function echo_n()
 {
   IFS=' '
   printf '%s' "$*"
 }
 
-function echo_e() 
+function echo_e()
 {
   IFS=' '
   printf '%b\n' "$*"
