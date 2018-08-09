@@ -55,7 +55,7 @@
     diff-patch = "!git diff > $(git branch-name).patch"
 
 # Discard the local branch and update to the lastest remote and clean
-    fu = "!git fetch origin && git reset --hard origin/$(git branch-name)"
+    fu = "!git fetch origin 2>/dev/null ; git reset --hard origin/$(git branch-name)"
 
 # Stash changes, pull changes with a rebase and then apply the stash back
     rcv = "!f() { git stash save --include-untracked ; git fetch origin ; git pull --rebase ; git stash ${1:-pop} ; } ; f"
@@ -64,10 +64,10 @@
     la = "!git config -l | grep alias | cut -c 7-"
 
 # Checking your current branch's behind|ahead status compared to origin/master
-    rel = "!git fetch -nq && git rev-list --left-right --count origin/master...$(git branch-name) | sed -rn 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
+    rel = "!git fetch -nq 2>/dev/null ; git rev-list --left-right --count origin/master...$(git branch-name) | sed -rn 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
 
 # Checking your current branch's status compared to origin of that branch
-    branch-status = "!git fetch -nq && git rev-list --left-right --count origin/$(git branch-name)...$(git branch-name) | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
+    branch-status = "!git fetch -nq 2>/dev/null ; git rev-list --left-right --count origin/$(git branch-name)...$(git branch-name) | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
     bs = "!git branch-status"
 
 # Showing your current commits head/behind of origin/master
@@ -124,7 +124,7 @@
     selfbase = "! git nbase $(git branch-count)"
 
 # Rebasing on origin/master
-    rbm = "!git fetch -nq && git rebase origin/master"
+    rbm = "!git fetch -nq 2>/dev/null ; git rebase origin/master"
 
 # Rebase operations
     rbc = rebase --continue
