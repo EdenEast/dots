@@ -23,6 +23,15 @@ function main()
         [[ -d "$2" ]] && $1 "$2"
     }
 
+    function check_program_file_path()
+    {
+        local p64="/c/Program Files/$2"
+        local p32="/c/Program Files (x86)/$2"
+        
+        check_path $1 "$p64"
+        check_path $1 "$p32"
+    }
+
     # storing default system path and clearing the $PATH variable
     local system_path=$PATH
     unset PATH
@@ -43,7 +52,7 @@ function main()
     append_path /usr/bin
 
     # Adding system path back in
-    local sys_path_array=
+    local sys_path_array=()
     IFS=':' read -ra sys_path_array <<< "$system_path"
     for i in "${sys_path_array[@]}" ; do append_path $i ; done
 
@@ -51,17 +60,20 @@ function main()
     # version of these programs instead of the version that is installed by something like
     # pacman on msys or something like that. These are the default folder locations.
     # If these directories exist then append them to the $PATH variable so I can use them
-    check_path prepend_path "/c/Program Files/CMake/bin"
-    check_path append_path  "/c/Program Files/Microsoft VS Code/bin"
-    check_path append_path  "/c/Program Files (x86)/Yarn/bin"
-    check_path append_path  "/c/Program Files/nodejs"
-    check_path append_path  "/c/Program Files/Perforce"
-    check_path append_path  "/c/Program Files (x86)/MSBuild/14.0/Bin"
+    check_program_file_path prepend_path "CMake/bin"
+    check_program_file_path append_path  "dotnet"
+    check_program_file_path append_path  "Microsoft VS Code/bin"
+    check_program_file_path append_path  "Yarn/bin"
+    check_program_file_path append_path  "nodejs"
+    check_program_file_path append_path  "Perforce"
+    check_program_file_path append_path  "MSBuild/14.0/Bin"
 
     export PATH=$PATH
+
     unset prepend_path
     unset append_path
     unset check_path
+    unset check_program_file_path
 }
 
 main
