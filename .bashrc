@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # If for some reason that the .profile has not been loaded then source it
-[ -z $DOT_PROFILE_LOADED ] && source ~/.profile
+[ -z $DOT_PROFILE_LOADED ]  && source $HOME/.profile
 
 #
 # History config
@@ -18,13 +18,6 @@ HISTFILESIZE=15000
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
-
-#
-# Prompt config
-#
-PROMPT_DIR_COLOR=$CL_CYAN
-PROMPT_MODE=left
-PROMPT_NO_INFO_LINE=true
 
 #
 # Bash config options

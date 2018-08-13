@@ -58,7 +58,7 @@ function main()
     check_path append_path  "/c/Program Files/Perforce"
     check_path append_path  "/c/Program Files (x86)/MSBuild/14.0/Bin"
 
-    export PATH
+    export PATH=$PATH
     unset prepend_path
     unset append_path
     unset check_path
