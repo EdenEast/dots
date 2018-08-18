@@ -4,3 +4,5 @@
 	scaffold = https://github.com/cruizemissile/scaffold
 [engine]
 	eden = https://github.com/cruizemissile/eden
+[keyboard]
+	dactyl-keyboard = https://github.com/tshort/dactyl-keyboard.git

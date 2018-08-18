@@ -64,7 +64,7 @@ function add()
     }
   }
 
-  echo git clone --recurse-submodules -j8 $url $category/$name && {
+  git clone --recurse-submodules -j8 $url $category/$name && {
     [ -z $exclude_config ] && git config --file="${REPO_BOOTSTRAP}" $category.$name "$url"
   }
 }
@@ -283,7 +283,7 @@ EOF
 function help_add()
 {
   cat << EOF
-Usage: repo add [options...] <category> <url> <name>
+Usage: repo add [options...] <category> <name> <url>
 
 Add a new repository into the \$REPO_DIR folder ($REPO_DIR).
 
