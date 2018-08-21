@@ -35,7 +35,7 @@ function add()
       case "$OPTION" in
         h) help add 0          ;;
         v) verbose true        ;;
-        x) exclude_config=true ;;
+        x) save_config=true ;;
         f) force_add=true      ;;
         \?) echo "Invalid option $OPTION" help add 1 ;; 
       esac
@@ -43,9 +43,9 @@ function add()
     shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
   done
 
-  [ ${#positional_args[@]} -eq 0 ] && echo "Failed: No category or url provided" && die 1
-  [ ${#positional_args[@]} -eq 1 ] && echo "Failed: No name provided" && die 1
-  [ ${#positional_args[@]} -eq 2 ] && echo "Failed: No url provided" && die 1
+  [ ${#positional_args[@]} -eq 0 ] && echo "Failed: No category or url provided" && help add 1
+  [ ${#positional_args[@]} -eq 1 ] && echo "Failed: No name provided" && help add 1
+  [ ${#positional_args[@]} -eq 2 ] && echo "Failed: No url provided" && help add 1
 
   local category=${positional_args[0]}
   local name=${positional_args[1]}
@@ -65,7 +65,7 @@ function add()
   }
 
   git clone --recurse-submodules -j8 $url $category/$name && {
-    [ -z $exclude_config ] && git config --file="${REPO_BOOTSTRAP}" $category.$name "$url"
+    [ -n $save_config ] && git config --file="${REPO_BOOTSTRAP}" $category.$name "$url"
   }
 }
 
@@ -289,7 +289,7 @@ Add a new repository into the \$REPO_DIR folder ($REPO_DIR).
 
 Options:
   -h     Show this help message
-  -x     Do not add this entry into the bootstrap file
+  -s     Save this repo into the bootstrap file
   -f     Force add repository to location 
 EOF
 }
