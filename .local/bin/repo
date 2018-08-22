@@ -37,7 +37,7 @@ function add()
         v) verbose true        ;;
         x) save_config=true ;;
         f) force_add=true      ;;
-        \?) echo "Invalid option $OPTION" help add 1 ;; 
+        \?) echo "Invalid option $OPTION" help add 1 ;;
       esac
     done
     shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
@@ -80,7 +80,7 @@ function bootstrap()
         h) help add 0          ;;
         v) verbose true        ;;
         e) edit true           ;;
-        \?) echo "Invalid option $OPTION" help bootstrap 1 ;; 
+        \?) echo "Invalid option $OPTION" help bootstrap 1 ;;
       esac
     done
     shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
@@ -191,6 +191,32 @@ function help()
 
 function list()
 {
+  local positional_args=()
+  local optspec=":hc"
+  while [ $# -gt 0 ]; do
+    unset OPTIND && unset OPTARG
+    while getopts $optspec OPTION ; do
+      case "$OPTION" in
+        h) help list 0          ;;
+        c) list_category=true   ;;
+        \?) echo "Invalid option $OPTION" help bootstrap 1 ;;
+      esac
+    done
+    shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
+  done
+
+  [[ -n $list_category ]] && {
+    local category_list=($(find ${REPO_DIR}/* -maxdepth 0 -type d))
+    for category in ${category_list[@]}; do
+      # remove the $REPO_DIR from the path
+      category=${category/${REPO_DIR}\//}
+      # remove the name of the repo from the path
+      category=${category%\/*}
+      echo $category
+    done
+    die 0
+  }
+
   [[ ! -d ${REPO_DIR} ]] && echo "${REPO_DIR} does not exist" && die 1
   # count the list of categories so that an array of categories
   local category_count=$(find ${REPO_DIR}/* -maxdepth 0 -type d | wc -l)
@@ -208,7 +234,14 @@ function list()
     local category=${full%\/*}
     local name=${full#*\/}
 
-    # echo $c
+    [[ ${#positional_args[@]} -gt 0 ]] && {
+      local match=0
+      for positional in ${positional_args[@]}; do
+        [[ $category == *"$positional"* ]] && match=1 && break
+      done
+      [[ $match -eq 0 ]] && continue
+    }
+
     if [ $category != "${last_category}" ]; then
       last_category=$category
       last_counter=$((last_counter +1))
@@ -290,7 +323,7 @@ Add a new repository into the \$REPO_DIR folder ($REPO_DIR).
 Options:
   -h     Show this help message
   -s     Save this repo into the bootstrap file
-  -f     Force add repository to location 
+  -f     Force add repository to location
 EOF
 }
 
@@ -316,7 +349,15 @@ function help_foreach()
 
 function help_list()
 {
-  echo "list"
+  cat << EOF
+Usage: repo list [options...] <category_wildcard...>
+
+List categories and related repos.
+
+Options:
+  -h     Show this help message
+  -c     List categories
+EOF
 }
 
 #
