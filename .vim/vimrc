@@ -45,6 +45,7 @@
   endif
   call plug#begin(expand(root_dotfile_dir."/plugged"))
 
+  Plug 'junegunn/vim-easy-align'
   Plug 'Yggdroot/indentLine'
   Plug 'chrisbra/vim-diff-enhanced'
   Plug 'duggiefresh/vim-easydir'
@@ -614,6 +615,15 @@ noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 " }}}
 " Livedown {{{
 let g:livedown_open = 1
+" }}}
+" vim-align {{{
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " }}}
 " }}}
 " HexHighlight   --------------------------------------------------------------- {{{
