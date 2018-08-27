@@ -72,24 +72,30 @@ function add()
 function bootstrap()
 {
   local positional_args=()
-  local optspec=":hvec"
+  local optspec=":hvel"
   while [ $# -gt 0 ]; do
     unset OPTIND && unset OPTARG
     while getopts $optspec OPTION ; do
       case "$OPTION" in
         h) help add 0          ;;
-        v) verbose true        ;;
-        e) edit true           ;;
+        v) verbose=true        ;;
+        e) edit_file=true      ;;
+        l) list_file=true      ;;
         \?) echo "Invalid option $OPTION" help bootstrap 1 ;;
       esac
     done
     shift $((OPTIND-1)) ; positional_args+=("$1") ; shift
   done
 
-  [ -n $edit ] && {
+  [[ -n $edit_file ]] && {
     [ ! -f $REPO_BOOTSTRAP ] && touch $REPO_BOOTSTRAP
     $EDITOR $REPO_BOOTSTRAP
-    die 0
+    die $?
+  }
+
+  [[ -n $list_file ]] && {
+    git config --file=${REPO_BOOTSTRAP} --list
+    die $?
   }
 
   [ ! -f $REPO_BOOTSTRAP ] && echo "Failed to find ${REPO_BOOTSTRAP}" && die 1
@@ -318,18 +324,33 @@ function help_add()
   cat << EOF
 Usage: repo add [options...] <category> <name> <url>
 
-Add a new repository into the \$REPO_DIR folder ($REPO_DIR).
+Add a new repository into the \$REPO_DIR folder
 
 Options:
   -h     Show this help message
   -s     Save this repo into the bootstrap file
   -f     Force add repository to location
+
+File:
+  \$REPO_DIR = $REPO_DIR
 EOF
 }
 
 function help_bootstrap()
 {
-  echo "bootstrap"
+  cat << EOF
+Usage: repo bootstrap [options...] <category_wildcard...>
+
+Clone and initialize repos based on the \$REPO_BOOTSTRAP file
+
+Options:
+  -h     Show this help message
+  -e     Edit the \$REPO_DIR file
+  -l     List out all entries in teh \$REPO_BOOTSTRAP file
+
+File:
+  \$REPO_BOOTSTRAP = ${REPO_BOOTSTRAP}
+EOF
 }
 
 function help_config()
