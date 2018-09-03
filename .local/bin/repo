@@ -35,7 +35,7 @@ function add()
       case "$OPTION" in
         h) help add 0          ;;
         v) verbose true        ;;
-        x) save_config=true ;;
+        s) save_config=true ;;
         f) force_add=true      ;;
         \?) echo "Invalid option $OPTION" help add 1 ;;
       esac
