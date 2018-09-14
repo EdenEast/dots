@@ -30,7 +30,12 @@ fi
 
 # system defaults
 export LANG="en_US.UTF-8"
-[[ -z $(hash vivaldi-stable &>/dev/null) ]] && export BROWSER="vivaldi-stable" || export BROWSER="firefox"
+
+# export BROWSER 
+browser_list=('vivaldi' 'vivaldi-stable' 'firefox' 'opera' 'chrome')
+for b in ${browser_list[@]}; do
+    hash $b &>/dev/null && export BROWSER="$b" && break;
+done
 
 # pager and less
 export PAGER="less"
