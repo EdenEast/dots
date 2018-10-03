@@ -57,6 +57,9 @@
 # Discard the local branch and update to the lastest remote and clean
     fu = "!git fetch origin 2>/dev/null ; git reset --hard origin/$(git branch-name)"
 
+# Update branch
+    up = "!git pull --rebase --prune $@ && git submodule update --init --"
+
 # Stash changes, pull changes with a rebase and then apply the stash back
     rcv = "!f() { git stash save --include-untracked ; git fetch origin ; git pull --rebase ; git stash ${1:-pop} ; } ; f"
 
@@ -191,6 +194,7 @@
 
     save = "!git add -A && git commit -m 'SAVEPOINT'"
     wip = "!git add -u && git commit -m 'WIP'"
+    wipe = "!git add -A && git commit -m 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
     undo = reset HEAD~1 --mixed
 
 [fetch]
