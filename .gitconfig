@@ -1,7 +1,6 @@
 # vim: ft=gitconfig:
 
 [core]
-    #excludesfile = ~/.gitignore_global
     filemode = true
     hidedotfiles = true
     ignorecase = true
@@ -9,6 +8,7 @@
 
 [alias]
 # Basic shortcuts ----------------------------------------------------------------------------------
+    d = difftool
     aa = add -A
     au = add -u
     br = branch -av
@@ -36,7 +36,7 @@
     cnr = clone --recurse-submodules -j8
 
 # opening up vim to edit .gitconfig file. VERY USEFUL!
-    ec = "!vim ~/.gitconfig"
+    ec = config --global --edit
     ecl = "!vim ~/.local/etc/git/.gitconfig"
 
 # Clean up all local branches that do not have a remote reference.
@@ -184,8 +184,14 @@
     check = diff --check HEAD^
     churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort
 
+    create = "!f() { git fetch -nq 2>/dev/null ; git checkout -b $1 origin/master && git publish; } ; f"
+
     # Detect moevd or copied lines and ignore whitespace
     blame = blame -w -M -C
+
+    save = "!git add -A && git commit -m 'SAVEPOINT'"
+    wip = "!git add -u && git commit -m 'WIP'"
+    undo = reset HEAD~1 --mixed
 
 [fetch]
     prune = true
@@ -193,12 +199,29 @@
 [push]
     default = simple
 
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+
+; [merge]
+;     tool = splice
+
+; [mergetool "splice"]
+;     cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+;     trustExitCode = true
+
 [merge]
     tool = vimdiff
     conflictstyle = diff3
 
 [mergetool]
     prompt = false
+
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -C 'SpliceInit'"
+    trustExitCode = true
 
 #
 # url shortcuts
@@ -221,28 +244,6 @@
 
 [url "git@github.com:CruizeMissile/"]
     insteadOf = sme:
-#
-# colors
-#
-#[color]
-#    ui = true
-#    status = always
-#
-#[color "branch"]
-#    current = yellow
-#    local = green
-#    remote = red
-#
-#[color "diff"]
-#    meta = yellow bold
-#    frag = magenta bold
-#    old = red bold
-#    new = green bold
-#
-#[color "status"]
-#    added = green
-#    changed = yellow
-#    untracked = red
 
 #
 #includes
