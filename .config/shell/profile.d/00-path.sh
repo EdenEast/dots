@@ -46,15 +46,15 @@ function main()
         for dir in $LOCAL_LIB/* $LOCAL_LIB ; do check_path append_path $dir ; done
     }
 
-    append_path /usr/local/bin
-    append_path /usr/local/sbin
-    append_path /usr/local/opt/srm/bin
-    append_path /usr/bin
+    check_path append_path /usr/local/bin
+    check_path append_path /usr/local/sbin
+    check_path append_path /usr/local/opt/srm/bin
+    check_path append_path /usr/bin
 
     # Adding system path back in
     local sys_path_array=()
     IFS=':' read -ra sys_path_array <<< "$system_path"
-    for i in "${sys_path_array[@]}" ; do append_path $i ; done
+    for i in "${sys_path_array[@]}" ; do check_path append_path $i ; done
 
     # On windows I have some programs that i use a lot on the command line. I want the windows
     # version of these programs instead of the version that is installed by something like
@@ -79,3 +79,4 @@ function main()
 
 main
 unset main
+
