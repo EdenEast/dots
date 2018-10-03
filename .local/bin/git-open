@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This is taken from paulirish/git-open
+# This is taken and modified from paulirish/git-open
 # https://raw.githubusercontent.com/paulirish/git-open/master/git-open
 
 # Use git-sh-setup, similar to git-rebase
@@ -155,8 +155,8 @@ function getConfig() {
 domain=$(getConfig "domain")
 protocol=$(getConfig "protocol")
 
-# Get current branch
-branch=${2:-$(git symbolic-ref -q --short HEAD)}
+# Get current branch / tag / commit
+branch=${2:-$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match 2>/dev/null || git rev-parse HEAD)}
 
 # Split arguments on '/'
 IFS='/' read -r -a pathargs <<<"$urlpath"
@@ -244,12 +244,12 @@ case $( uname -s ) in
             fi;;
 esac
 
-# # Allow printing the url if BROWSER=echo
-# if [[ $BROWSER == "echo" ]]; then
-#   openopt=''
-# else
-#   exec &>/dev/null
-# fi
+# Allow printing the url if BROWSER=echo
+if [[ $BROWSER == "echo" ]]; then
+  openopt=''
+else
+  exec &>/dev/null
+fi
 
 # open it in a browser
 ${BROWSER:-$open} $openopt "$openurl"
