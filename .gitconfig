@@ -51,6 +51,8 @@
 # Create a list of patches from the origin of this branch
     patch = "!git format-patch origin/$(git branch-name)"
 
+    branch-patch=format-patch origin/master
+
 # Create a patch with the branch name
     diff-patch = "!git diff > $(git branch-name).patch"
 
