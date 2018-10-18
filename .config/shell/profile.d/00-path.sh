@@ -8,6 +8,7 @@ function main()
             *":$1:") return ;; # already in path
             *) [[ -z $PATH ]] && PATH="$1" || PATH="$1:$PATH" ;;
         esac
+        echo $PATH
     }
 
     function append_path()
@@ -16,6 +17,7 @@ function main()
             *":$1:") return ;; # already in path
             *) [[ -z $PATH ]] && PATH="$1" || PATH="$PATH:$1" ;;
         esac
+        echo $PATH
     }
 
     function check_path()
@@ -27,7 +29,7 @@ function main()
     {
         local p64="/c/Program Files/$2"
         local p32="/c/Program Files (x86)/$2"
-        
+
         check_path $1 "$p64"
         check_path $1 "$p32"
     }
@@ -40,16 +42,16 @@ function main()
     [[ -d "$LOCAL_BIN" ]] && {
         for dir in $LOCAL_BIN/* $LOCAL_BIN ; do check_path append_path $dir ; done
     }
-    
+
     # adding local lib folder
     [[ -d "$LOCAL_LIB" ]] && {
         for dir in $LOCAL_LIB/* $LOCAL_LIB ; do check_path append_path $dir ; done
     }
 
-    check_path append_path /usr/local/bin
-    check_path append_path /usr/local/sbin
-    check_path append_path /usr/local/opt/srm/bin
-    check_path append_path /usr/bin
+    check_path prepend_path /usr/bin
+    check_path prepend_path /usr/local/opt/srm/bin
+    check_path prepend_path /usr/local/sbin
+    check_path prepend_path /usr/local/bin
 
     # Adding system path back in
     local sys_path_array=()
