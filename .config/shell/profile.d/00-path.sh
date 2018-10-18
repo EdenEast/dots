@@ -8,7 +8,6 @@ function main()
             *":$1:") return ;; # already in path
             *) [[ -z $PATH ]] && PATH="$1" || PATH="$1:$PATH" ;;
         esac
-        echo $PATH
     }
 
     function append_path()
@@ -17,7 +16,6 @@ function main()
             *":$1:") return ;; # already in path
             *) [[ -z $PATH ]] && PATH="$1" || PATH="$PATH:$1" ;;
         esac
-        echo $PATH
     }
 
     function check_path()
