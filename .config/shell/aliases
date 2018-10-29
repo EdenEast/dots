@@ -40,6 +40,11 @@ alias ll="ls -lha $ls_color"
 alias l="ls -la $ls_color"
 unset ls_color
 
+# for python virtual environments quick way to activate and deactivate
+alias vpae='[[ -d ./venv ]] && { [[ -f ./venv/Scripts/activate ]] && { source ./venv/Scripts/activate ; } || { source ./venv/bin/activate ; } }'
+alias vpde='hash deactivate 7>/dev/null && deactivate'
+alias vpwp='which python ; which pip'
+
 # sudo commands
 [[ -n $(which sudo &>/dev/null) ]] && {
     alias pacman="sudo pacman"
