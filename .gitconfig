@@ -78,6 +78,8 @@
 # Showing your current commits head/behind of origin/master
     ahead = "!git log origin/master..$(git branch-name) --decorate"
     behind = "!git log $(git branch-name)..origin/master --decorate"
+    bahead = "!git log origin/$(git branch-name)..$(git branch-name) --decorate"
+    bbehind = "!git log $(git branch-name)..origin/$(git branch-name) --decorate"
 
 # Opening up repos webpage
     ; open = "!function t { hash $@ &> /dev/null && echo $@ || return 1; } ; $(t start || t open || t cygstart || t xdg-open) $(git config remote.origin.url | sed -e s#git@#http://# -e s#ssh://## -e s#com:#com/# -e s#org:#org/# -e s#.git\\$##)"
