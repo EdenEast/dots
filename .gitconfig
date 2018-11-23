@@ -35,6 +35,9 @@
     cmm = commit -m
     cnr = clone --recurse-submodules -j8
 
+# add only non whitespace changes ([A]dd [N]o [W]hitespace)
+    anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
+
 # opening up vim to edit .gitconfig file. VERY USEFUL!
     ec = config --global --edit
     ecl = "!vim ~/.local/etc/git/.gitconfig"
@@ -81,14 +84,14 @@
     bahead = "!git log origin/$(git branch-name)..$(git branch-name) --decorate"
     bbehind = "!git log $(git branch-name)..origin/$(git branch-name) --decorate"
 
-# Opening up repos webpage
-    ; open = "!function t { hash $@ &> /dev/null && echo $@ || return 1; } ; $(t start || t open || t cygstart || t xdg-open) $(git config remote.origin.url | sed -e s#git@#http://# -e s#ssh://## -e s#com:#com/# -e s#org:#org/# -e s#.git\\$##)"
-
 # Opens up the root folder of the repo in the default file explorer
     view = "!function t { hash $1 >&/dev/null && echo $1 || return 1; } ; $(t start || t open || t cygstart || t xdg-open) $(git root)"
 
 # make sure that git chmods a file
     chmod = add --chmod=+x --
+
+# create a new branch from origin master
+    bnew = "!function f { git fetch 2>/dev/null ; git checkout -b $1 origin/master ; git push -u origin $1 ; } ; f"
 
 # Finding files and souce -------------------------------------------------------------------------
     ffile = "!git ls-files | grep -i"
