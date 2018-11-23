@@ -134,10 +134,15 @@ function config()
 {
   if [ -z "$*" ]; then
     echo "repo supports the following configuration"
-    echo
+    echo ""
     for supported_config in $(introspect_config); do
-      echo "  ${supported_config}"
+      echo "${supported_config}"
     done
+
+    echo ""
+    echo "\$REPO_DIR:       $REPO_DIR"
+    echo "\$REPO_CONFIG:    $REPO_CONFIG"
+    echo "\$REPO_BOOTSTRAP: $REPO_BOOTSTRAP"
   else
     [ ! -f $REPO_CONFIG ] && mkdir -p $(dirname $REPO_CONFIG) && touch $REPO_CONFIG
 
