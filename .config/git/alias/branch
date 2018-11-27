@@ -1,0 +1,21 @@
+
+# All these aliases have to deal with branches
+
+[alias]
+    # Clean up all local branches that do not have a remote reference.
+    cleanup = "!f() { git fetch -pq && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D ; } ; f"
+
+    # Push the current branch to the remote "origin", and set it to track the upstream branch
+    publish = "!git push -u origin $(git branch-name)"
+
+    # Delete the remote version of the current branch
+    unpublish = "!git push origin :$(git branch-name)"
+
+    # Start a new local repository and perform initial commit
+    this = !git init && git add . && git commit -m \"Initial commit.\"
+
+    # create a new branch from origin master and publish it to origin
+    create = "!f() { git fetch -nq 2>/dev/null ; git checkout -b $1 origin/master && git publish; } ; f"
+
+
+# vim: ft=gitconfig:

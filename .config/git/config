@@ -1,0 +1,33 @@
+
+# This is the main entry point for git's config file.
+# The config has been broken up into different files for sanity.
+# We are including all of the files that the config was broken up info.
+
+[include]
+    path = ./alias/bootstrap
+    path = ./alias/branch
+    path = ./alias/commit
+    path = ./alias/logs
+    path = ./alias/rebase
+    path = ./alias/shorthand
+    path = ./alias/status
+    path = ./alias/submodule
+    path = ./alias/updates
+    path = ./alias/utils
+    path = ./core
+    path = ./url
+    path = ~/.local/etc/git/config
+
+# Here are some good resources that I haev found
+# http://durdn.com/blog/2012/11/22/muse-have-git-aliases-advanced-examples/
+# http://michaelwales.com/articles/make-gitconfig-work-for-you/
+# https://gist.github.com/robmiller/6018582
+# https://gist.github.com/robmiller/6018582
+
+# intersting ideas
+# https://stackoverflow.com/a/7774433
+# https://gist.github.com/igrigorik/6666860
+# https://github.com/paulirish/git-open
+
+
+# vim: ft=gitconfig:

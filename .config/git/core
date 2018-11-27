@@ -1,0 +1,40 @@
+
+# Most of the core configuration for git
+
+[core]
+    filemode = true
+    hidedotfiles = true
+    ignorecase = true
+    autocrlf = input
+
+[fetch]
+    prune = true
+
+[push]
+    default = simple
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+
+# [merge]
+#     tool = splice
+
+# [mergetool "splice"]
+#     cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+#     trustExitCode = true
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[mergetool]
+    prompt = false
+
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -C 'SpliceInit'"
+    trustExitCode = true
+
+# vim: ft=gitconfig:

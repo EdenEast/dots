@@ -1,0 +1,20 @@
+# vim: ft=gitconfig:
+
+[url "https://github.com/"]
+    insteadOf = gh:
+    insteadOf = github:
+
+[url "git@github.com:"]
+    insteadOf = sgh:
+
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+
+[url "https://bitbucket.com/"]
+    insteadOf = bb:
+
+[url "https://github.com/CruizeMissile/"]
+    insteadOf = me:
+
+[url "git@github.com:CruizeMissile/"]
+    insteadOf = sme:
