@@ -1,5 +1,5 @@
 ! vim: ft=xdefauls
-URxvt.font:xft:ubuntu mono:style=regular:pixelsize=14
+URxvt.font:xft:ubuntu mono:style=regular:pixelsize=16
 URxvt.boldFont:xft:ubuntu mono:style=regular:pixelsize=14
 URxvt.italicFont:xft:ubuntu mono:style=regular:pixelsize=14
 URxvt.boldItalicFont:xft:ubuntu mono:style=regular:pixelsize=14

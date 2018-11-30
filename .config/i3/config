@@ -20,8 +20,8 @@ gaps inner $default_gaps
 gaps outer $default_gaps
 
 # Set some environment variables
-# set $term --no-startup-id urxvt
-set $term --no-startup-id alacritty
+set $term --no-startup-id urxvt
+# set $term --no-startup-id alacritty
 
 # systemd
 set $shutdown sudo shutdown -h now

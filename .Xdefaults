@@ -1,6 +1,6 @@
 
 #include ".config/xrdb/colors/twilight"
-#include ".config/xrdb/fonts/menlo"
+#include ".config/xrdb/fonts/ubuntu-mono"
 
 ! --- Urxvt defaults
 URxvt.termName: rxvt-256color
