@@ -31,7 +31,7 @@ fi
 # system defaults
 export LANG="en_US.UTF-8"
 
-# export BROWSER 
+# export BROWSER
 browser_list=('vivaldi' 'vivaldi-stable' 'firefox' 'opera' 'chrome')
 for b in ${browser_list[@]}; do
     hash $b &>/dev/null && export BROWSER="$b" && break;
@@ -68,5 +68,5 @@ done
 export DOT_PROFILE_LOADED=true
 
 # lauch x server when logging in to tty1
-[[ "$(tty)" = "/dev/tty1" ]] && ( pgrep i3 &>/dev/null && echo "Note: X Server is already running." || xinit )
+[[ "$(tty)" = "/dev/tty1" ]] && ( pgrep i3 &>/dev/null && echo "Note: X Server is already running." || startx )
 

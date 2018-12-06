@@ -17,10 +17,13 @@ URxvt*scrollBar_right: false
 URxvt*urgentOnBell: false
 URxvt.buffered: true
 URxvt.transparent: 0
+Xft.dpi: 96
 
 ! --- Extentions
-URxvt.perl-ext-common: default, url-select,matcher
+URxvt.perl-ext-common: default,url-select,matcher,clipboard
 URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.Control-Shift-C: perl:clipboard:copy
+URxvt.keysym.Control-Shift-V: perl:clipboard:paste
 URxvt.url-select.laucher: firefox
 Urxvt.underlineURLs: true
 Urxvt.matcher.button: 1
