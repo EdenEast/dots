@@ -1,0 +1,208 @@
+# vim: ft=gitconfig:
+ [core]
+    filemode = true
+    hidedotfiles = true
+    ignorecase = true
+    autocrlf = input
+ [alias]
+# Basic shortcuts ----------------------------------------------------------------------------------
+    d = difftool
+    aa = add -A
+    au = add -u
+    br = branch -av
+    ci = commit
+    cl = clean -fd
+    cm = commit
+    cn = clone
+    co = checkout
+    cp = cherry-pick
+    dc = diff --cached
+    ds = diff --stat
+    dw = diff --color-words
+    fp = push --force-with-lease
+    ft = fetch
+    pl = pull --rebase
+    ph = push
+    rb = rebase
+    qq = reset --hard
+    s  = status
+    st = status -s
+    mt = mergetool
+    dis = checkout --
+    fcl = clean -fdx
+    cmm = commit -m
+    cnr = clone --recurse-submodules -j8
+ # add only non whitespace changes ([A]dd [N]o [W]hitespace)
+    anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
+ # opening up vim to edit .gitconfig file. VERY USEFUL!
+    ec = config --global --edit
+    ecl = "!vim ~/.local/etc/git/.gitconfig"
+ # Clean up all local branches that do not have a remote reference.
+    cleanup = "!f() { git fetch -pq && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D ; } ; f"
+ # I want to sneak a commit into the last commit I did.
+    oops = commit --amend --no-edit
+ # want to fixup a commit that is not the last commit. https://blog.filippo.io/git-fixup-amending-an-older-commit/
+    fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+ # Create a list of patches from the origin of this branch
+    patch = "!git format-patch origin/$(git branch-name)"
+     branch-patch=format-patch origin/master
+ # Create a patch with the branch name
+    diff-patch = "!git diff > $(git branch-name).patch"
+ # Discard the local branch and update to the lastest remote and clean
+    fu = "!git fetch origin 2>/dev/null ; git reset --hard origin/$(git branch-name)"
+ # Update branch
+    up = "!git pull --rebase --prune $@ && git submodule update --init --"
+ # Stash changes, pull changes with a rebase and then apply the stash back
+    rcv = "!f() { git stash save --include-untracked ; git fetch origin ; git pull --rebase ; git stash ${1:-pop} ; } ; f"
+ # list all git alias
+    la = "!git config -l | grep alias | cut -c 7-"
+ # Checking your current branch's behind|ahead status compared to origin/master
+    rel = "!git fetch -nq 2>/dev/null ; git rev-list --left-right --count origin/master...$(git branch-name) | sed -rn 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
+ # Checking your current branch's status compared to origin of that branch
+    branch-status = "!git fetch -nq 2>/dev/null ; git rev-list --left-right --count origin/$(git branch-name)...$(git branch-name) | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
+    bs = "!git branch-status"
+ # Showing your current commits head/behind of origin/master
+    ahead = "!git log origin/master..$(git branch-name) --decorate"
+    behind = "!git log $(git branch-name)..origin/master --decorate"
+    bahead = "!git log origin/$(git branch-name)..$(git branch-name) --decorate"
+    bbehind = "!git log $(git branch-name)..origin/$(git branch-name) --decorate"
+ # Opens up the root folder of the repo in the default file explorer
+    view = "!function t { hash $1 >&/dev/null && echo $1 || return 1; } ; $(t start || t open || t cygstart || t xdg-open) $(git root)"
+ # make sure that git chmods a file
+    chmod = add --chmod=+x --
+ # create a new branch from origin master
+    bnew = "!function f { git fetch 2>/dev/null ; git checkout -b $1 origin/master ; git push -u origin $1 ; } ; f"
+ # Finding files and souce -------------------------------------------------------------------------
+    ffile = "!git ls-files | grep -i"
+    gr = grep -Ii --line-number --untracked
+ # Logging -----------------------------------------------------------------------------------------
+    ls = log --pretty=format:'%C(bold yellow)%h%C(bold red)%d %Creset%s%C(bold blue) [%cn]' --decorate
+    ll = log --pretty=format:'%C(bold yellow)%h%C(bold red)%d %Creset%s%C(bold blue) [%cn]' --decorate --numstat
+    sl = log --graph --pretty=format:'%C(auto)%h%Creset%C(auto)%d%Creset %s %C(magenta bold)(%cr)%Creset %C(cyan)<%aN>%Creset' --all --simplify-by-decoration
+    lb = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(bold yellow)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    lf = log --format=format:'%C(bold cyan)%ar %C(reset) %C(green)%f' --name-status
+    last = "!f() { git log -${1:-1} --stat ; } ; f"
+ # Branch checkout status --------------------------------------------------------------------------
+# Push the current branch to the remote "origin", and set it to track the upstream branch
+    publish = "!git push -u origin $(git branch-name)"
+ # Delete the remote version of the current branch
+    unpublish = "!git push origin :$(git branch-name)"
+ # Unstage all stages changes
+    unstage = "!f() { git reset --soft $((($#>=1))&&echo --) ${@:-HEAD --} ; } ; f"
+ # Diff your local branch compated to its origin
+    diff-remote = "!git diff origin/$(git branch-name)...$(git branch-name)"
+ # Diff you local branche compared to origin master
+    diff-omaster = "!git diff origin/master...$(git branch-name)"
+ # Diff conflicted files
+    diff-conflict = "!git diff --color-words --diff-filter=U"
+ # Rebasing ----------------------------------------------------------------------------------------
+# like selfbase but will interactive rebase the number that you pass in. Ex
+# 'git nbase 3' will interactive rebase the last 3 commit in the branch.
+    nbase = "!f() { git rebase -i HEAD~${1:-2} ; } ; f"
+ # interactive rebase the current branch from the start of the branch
+    selfbase = "! git nbase $(git branch-count)"
+ # Rebasing on origin/master
+    rbm = "!git fetch -nq 2>/dev/null ; git rebase origin/master"
+ # Rebase operations
+    rbc = rebase --continue
+    rbs = rebase --skip
+    rba = rebase --abort
+ # Merging -----------------------------------------------------------------------------------------
+    ours = "!f() {(($#>=1)) && ((git checkout --ours $@) && git add $@ ; true) || (git diff --name-only --diff-filter=U | xargs -I % sh -c 'git checkout --ours %; git add %;')} ; f"
+    theirs = "!f() {(($#>=1)) && ((git checkout --theirs $@) && git add $@ ; true) || (git diff --name-only --diff-filter=U | xargs -I % sh -c 'git checkout --theirs %; git add %;')} ; f"
+ # Submodules --------------------------------------------------------------------------------------
+    subup = submodule update --init --recursive
+    subremoteup = submodule update --init --remote
+    subclean = "!git submodule | awk '{ print $2 }' | xargs -I {} sh -c 'rm -rf {} ; mkdir {}'"
+    subremove = "!f() { git submodule deinit $1 && git rm $1; } ; f"
+ # Utility -----------------------------------------------------------------------------------------
+# Get the current branch name (not so useful in itself, but used in other aliases)
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+ # Gets the current number of commits on the current branch since the branch was made
+# This assumes that the branch came from master. Not then change to the parent branch
+    branch-count = "!git rev-list --count HEAD ^origin/master"
+    # branch-parent = "!git rev-list -1 `git rev-list branch-name...master | tail -1`^"
+ # Gets the commit count of the head revision
+    commit-count = rev-list --count HEAD
+ # Showing the status of each local branch
+    local-status = "!git for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"
+ # Returns the root directory of the git repo
+    root = rev-parse --show-toplevel
+ # Returns the abbreviation of the sha1 hash for the current commit
+    abbrev = "!git rev-parse --short ${1-`echo HEAD`}"
+ # Unsure / Experimental ---------------------------------------------------------------------------
+    # stashdiff = stash show -p -w stash@{0} # stash the diff
+    delete-all-history = "!git checkout --orphan latest_branch ; git add -A ; git commit -am \"inital commit\" ; git branch -D master ; git branch -m master ; git push -f origin master"
+    whoami = "!git config user.name ; git config user.email ; git config user.signingkey"
+    author-count = shortlog -sen
+    remote-url = ls-remote --get-url origin
+     # BRanch LiSt Remote
+    brlsr = "!git ls-remote --heads origin | awk '{ print $2 }' | sed -s 's#refs/heads/##'"
+     # View the log and diff for a commit (previous if no SHA1 provided)
+    details = log -n1 -p --format=fuller
+     # Start a new local repository and perform initial commit
+    this = !git init && git add . && git commit -m \"Initial commit.\"
+     # Thin out older metadata within the repository, reduceses filesystem footprint
+    trim = !git reflog expire --expire=now --all && git gc --prune=now
+     check = diff --check HEAD^
+    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort
+     create = "!f() { git fetch -nq 2>/dev/null ; git checkout -b $1 origin/master && git publish; } ; f"
+     # Detect moevd or copied lines and ignore whitespace
+    blame = blame -w -M -C
+     save = "!git add -A && git commit -m 'SAVEPOINT'"
+    wip = "!git add -u && git commit -m 'WIP'"
+    wipe = "!git add -A && git commit -m 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
+    undo = reset HEAD~1 --mixed
+ [fetch]
+    prune = true
+ [push]
+    default = simple
+ [diff]
+    tool = vimdiff
+ [difftool]
+    prompt = false
+ ; [merge]
+;     tool = splice
+ ; [mergetool "splice"]
+;     cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+;     trustExitCode = true
+ [merge]
+    tool = vimdiff
+    conflictstyle = diff3
+ [mergetool]
+    prompt = false
+ [mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -C 'SpliceInit'"
+    trustExitCode = true
+ #
+# url shortcuts
+#
+[url "https://github.com/"]
+    insteadOf = gh:
+    insteadOf = github:
+ [url "git@github.com:"]
+    insteadOf = sgh:
+ [url "https://gist.github.com/"]
+    insteadOf = gist:
+ [url "https://bitbucket.com/"]
+    insteadOf = bb:
+ [url "https://github.com/CruizeMissile/"]
+    insteadOf = me:
+ [url "git@github.com:CruizeMissile/"]
+    insteadOf = sme:
+ #
+#includes
+#
+# ignored by git < 1.7.10
+[include]
+    path = ~/.local/etc/git/.gitconfig
+ # some good resources
+# http://durdn.com/blog/2012/11/22/muse-have-git-aliases-advanced-examples/
+# http://michaelwales.com/articles/make-gitconfig-work-for-you/
+# https://gist.github.com/robmiller/6018582
+# https://gist.github.com/robmiller/6018582
+ # intersting ideas
+# https://stackoverflow.com/a/7774433
+# https://gist.github.com/igrigorik/6666860
+# https://github.com/paulirish/git-open
