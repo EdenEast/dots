@@ -1,0 +1,8 @@
+! vim: ft=xdefaults
+
+URxvt*letterSpace:       -2
+URxvt*font:              xft:Monospace:regular:size=13
+URxvt*imFont:            xft:Monospace:regular:size=13
+URxvt*boldFont:          xft:Monospace:bold:size=13
+URxvt*italicFont:        xft:Monospace:italic:size=13
+URxvt*boldItalicFont:    xft:Monospace:regular:size=13

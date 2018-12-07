@@ -1,39 +1,65 @@
+! ------------------------------------------------------------------------------
+! General settings
+! ------------------------------------------------------------------------------
 
-#include ".config/xrdb/colors/twilight"
-#include ".config/xrdb/fonts/ubuntu-mono"
+URxvt*iso14755:         false
+URxvt*iso14755_52:      false
+URxvt*meta8:            false
+URxvt*metaSendsEscape:  true
+URxvt*saveline:         15000
+URxvt*termName:         xterm-256color
+URxvt*urgentOnBell:     false
+URxvt*visualBell:       false
 
-! --- Urxvt defaults
-URxvt.termName: rxvt-256color
-URxvt*borderLess: false
-URxvt*cursorBlink: false
-URxvt*cursorUnderline: false
-URxvt*depth: 32
-URxvt*geometry: 80X40
-URxvt*internalBoarder: 0
-URxvt*intensityStyles: false
-URxvt*letterSpace: 0
-URxvt*scrollBar: false
-URxvt*scrollBar_right: false
-URxvt*urgentOnBell: false
-URxvt.buffered: true
-URxvt.transparent: 0
-Xft.dpi: 96
+! perl extensions
+URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 
-! --- Extentions
-URxvt.perl-ext-common: default,url-select,matcher,clipboard
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.keysym.Control-Shift-C: perl:clipboard:copy
-URxvt.keysym.Control-Shift-V: perl:clipboard:paste
-URxvt.url-select.laucher: firefox
-Urxvt.underlineURLs: true
-Urxvt.matcher.button: 1
-Urxvt.matcher.rend.0: fg33 bg1
+! ------------------------------------------------------------------------------
+! Appearance settings
+! ------------------------------------------------------------------------------
 
-! --- Font settings
-Xft.antialias: 1
-Xft.autohint: 0
-Xft.hinting: 1
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcddefault
-Xft.rgba: rgb
+URxvt*cursorBlink:          false
+URxvt*depth:                32
+URxvt*externalBorder:       0
+URxvt*internalBorder:       0
+URxvt*scrollBar:            false
+URxvt*scrollBar_floating:   false
+URxvt*scrollBar_right:      false
+URxvt*scrollTtyKeypress:    true
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+
+#include ".config/xrdb/colors/arc"
+#include ".config/xrdb/fonts/monospace"
+
+! ------------------------------------------------------------------------------
+! Macro and clipboard settings
+! ------------------------------------------------------------------------------
+
+URxvt*copyCommand:          xclip -i -selection clipboard
+URxvt*pasteCommand:         xclip -o -selection clipboard
+URxvt*keysym.M-c:           perl:clipboard:copy
+URxvt*keysym.m-v:           perl:clipboard:paste
+URxvt*keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt*keysym.M-Escape:      perl:keyboard-select:activate
+URxvt*keysym.M-s:           perl:keyboard-select:search
+URxvt*keysym.M-u:           perl:url-select:select_next
+URxvt*resize-font.smaller:  C-Down
+URxvt*resize-font.bigger:   C-Up
+URxvt*urlLauncher:          firefox
+URxvt*underlineURLs:        true
+URxvt*urlButton:            1
+URxvt*geometry:             90x30
+
+! ------------------------------------------------------------------------------
+! Tabs settings
+! ------------------------------------------------------------------------------
+
+URxvt*tabbed.tabbar-fg:         4
+URxvt*tabbed.tabbar-bg:         16
+URxvt*tabbed.tab-fg:            15
+URxvt*tabbed.tab-bg:            4
+URxvt*buffered:                 false
+URxvt*keysym.Control-Shift-C:   perl:clipboard:copy
+URxvt*keysym.Control-Shift-V:   perl:clipboard:paste
 
