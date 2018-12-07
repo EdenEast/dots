@@ -100,6 +100,7 @@
   Plug 'rhysd/vim-color-spring-night'
   Plug 'raphamorim/lucario'
   Plug 'KeitaNakamura/neodark.vim'
+  Plug 'dylanaraps/wal.vim'
 
   call plug#end()
 
@@ -331,7 +332,8 @@
 
   syntax on
   try
-    colorscheme neodark
+    " colorscheme neodark
+    colorscheme wal
   catch
     colorscheme default
   endtry
