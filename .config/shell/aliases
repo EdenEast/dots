@@ -45,6 +45,9 @@ alias vpae='[[ -d ./venv ]] && { [[ -f ./venv/Scripts/activate ]] && { source ./
 alias vpde='hash deactivate 7>/dev/null && deactivate'
 alias vpwp='which python ; which pip'
 
+# update the vscode list
+alias update-vscode="code --list-extensions | xargs -L 1 echo code --install-extension > ~/.config/code/install-extensions.sh"
+
 # sudo commands
 [[ -n $(which sudo &>/dev/null) ]] && {
     alias pacman="sudo pacman"
