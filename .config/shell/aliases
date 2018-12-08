@@ -40,6 +40,9 @@ alias ll="ls -lha $ls_color"
 alias l="ls -la $ls_color"
 unset ls_color
 
+alias pacman='sudo pacman --color auto'
+alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
+
 # for python virtual environments quick way to activate and deactivate
 alias vpae='[[ -d ./venv ]] && { [[ -f ./venv/Scripts/activate ]] && { source ./venv/Scripts/activate ; } || { source ./venv/bin/activate ; } }'
 alias vpde='hash deactivate 7>/dev/null && deactivate'
