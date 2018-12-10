@@ -1,0 +1,48 @@
+#!/bin/bash
+
+largest=0
+
+function print_full_status()
+{
+    local line_len=$(($(tput cols) - 1))
+    local period_len=$((line_len - "${#1}" - "${#2}" - 2))
+    
+    printf "$1 "
+    printf '%0.s-' $(seq 1 $period_len)
+    printf " $2\n"
+}
+
+function print_short_status()
+{
+    local period_len=$(($largest - ${#1}))
+    printf "$1"
+    [[ $period_len -gt 0 ]] && printf '%0.s-' $(seq 1 $period_len)
+    # [[ $period_len -eq 0 ]] && 
+    printf "$2\n"
+}
+
+function ahead_behind()
+{
+    local ahbh=$(git rev-list --left-right --count origin/master...$1 | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \1 | Ahead: \2]@p')
+    print_short_status "$1" "$ahbh"
+}
+
+function main()
+{
+    # try and update git remote if connected to the internet
+    git fetch -nq &>/dev/null
+
+    local remote_list=$(git branch --no-color -r | grep -v 'HEAD ->' | grep -v 'origin/master')
+
+    # loop though all of the results and find the largest result
+    for r in ${remote_list[@]} ; do
+        [[ $largest -lt ${#r} ]] && largest=${#r}
+    done
+    largest=$(($largest + 1))
+
+    for r in ${remote_list[@]} ; do
+        echo $(ahead_behind $r)
+    done
+}
+
+main "$@"
