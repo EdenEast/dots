@@ -4,8 +4,6 @@
 # (https://github.com/ggreer/the_silver_searcher/pull/709)
 function ag()
 {
-    emulate -L zsh
-
     # italic blue paths, pink line numbers, underlined purple matches
     command ag --pager="less -iFMRSX" --color-path=34\;3 --color-line-number=35 --color-match=35\;1\;4 "$@"
 }
@@ -163,47 +161,6 @@ function crun()
 function dirsize()
 {
     du -ah --max-depth=1 ${1:-.} | sort -hr
-}
-
-function dotfiles()
-{
-    (( $# == 0 )) && cd $HOME/.dotfiles && return
-
-    local git_args=()
-    local other_args=()
-    local double_dash=0
-
-    while (( $# ))
-    do
-        case "$1" in
-            -v) (cd $HOME/.dotfiles ; vim -c CtrlP ;) ; return 0 ;;
-            --) double_dash=1 ;;
-            *) if [ $double_dash = 0 ]; then git_args+=("$1") ; else other_args+=("$1") ; fi ;;
-        esac
-        shift
-    done
-
-    function normalize_path()
-    {
-        # Remove all /./ sequences.
-        local   path=${1//\/.\//\/}
-
-        # Remove dir/.. sequences.
-        while [[ $path =~ ([^/][^/]*/\.\./) ]]
-        do
-            path=${path/${BASH_REMATCH[0]}/}
-        done
-
-        path=${path//\/\//\/}
-        echo $path
-    }
-
-    (
-        [ "$(git rev-parse --show-toplevel 2>/dev/null)" = $(normalize_path "$HOME/.dotfiles") ] || cd $HOME/.dotfiles
-        [ ${#git_args[@]} -eq 0 ] || git ${git_args[@]}
-        [ ${#other_args[@]} -eq 0 ] || ${other_args[@]}
-    )
-    unset normalize_path
 }
 
 function extract()

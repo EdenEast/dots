@@ -2,4 +2,4 @@
 # .zsh profile
 #
 
-emulate bash -c '. $HOME/.profile'
+emulate bash -c 'source $HOME/.profile'

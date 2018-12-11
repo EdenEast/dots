@@ -23,7 +23,9 @@ alias ct=ctest
 alias df="df -Tha --total"
 alias g=git
 alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
-alias src='source ~/.bashrc'
+[[ $SHELL =~ /zsh$  ]] && alias src='source ~/.config/zsh/.zshrc'
+[[ $SHELL =~ /bash$  ]] && alias src='source ~/.bashrc'
+# alias src='source ~/.bashrc'
 alias t=tmux
 alias v=vim
 alias vp='vim -c CtrlP'

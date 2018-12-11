@@ -19,8 +19,8 @@ plugins=(git)
 unsetopt correct_all
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.config/shell/aliases
-source $HOME/.config/shell/functions
+emulate bash -c 'source $HOME/.config/shell/aliases'
+emulate bash -c 'source $HOME/.config/shell/functions'
 
 
 for rc in $HOME/.local/etc/zsh/zshrc.d/* ; do
@@ -30,4 +30,4 @@ done
 source $HOME/.local/etc/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Note: this must be the last source file
-source $HOME/.local/etc/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+source $HOME/.local/etc/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

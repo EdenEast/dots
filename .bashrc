@@ -40,7 +40,7 @@ for rc in $HOME/.local/etc/bash/bashrc.d/*.sh ; do
 done
 
 # include all files after the before.d and bashrc.d folder
-for rm in $HOME/.local/etc/bash/after.d/*.sh ; do
+for rc in $HOME/.local/etc/bash/after.d/*.sh ; do
     source $rc
 done
 
