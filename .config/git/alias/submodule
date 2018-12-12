@@ -5,6 +5,8 @@
     # Initialize and update submodules for this repo recursivly
     subup = submodule update --init --recursive
 
+    submodule-update=submodule update --recursive --remote
+
     # Update submodules on the remove
     subremoteup = submodule update --init --remote
 
