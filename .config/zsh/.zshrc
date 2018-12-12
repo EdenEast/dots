@@ -1,4 +1,7 @@
 
+# If for some reason that the .profile has not been loaded then source it
+[ -z $DOT_PROFILE_LOADED ]  && emulate bash -c 'source $HOME/.profile'
+
 # changing the location of zcompdump files to .cache
 mkdir -p $HOME/.cache/zsh
 autoload -U compinit

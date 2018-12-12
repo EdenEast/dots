@@ -66,6 +66,7 @@
   Plug 'wincent/replay'
   Plug 'wincent/scalpel'
   Plug 'xuyuanp/nerdtree-git-plugin'
+  Plug 'PotatoesMaster/i3-vim-syntax'
 
 " easy-motion
   Plug 'easymotion/vim-easymotion'
