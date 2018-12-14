@@ -274,7 +274,7 @@
   vnoremap <c-c> "*y:let @+=@*<cr>
 
   nnoremap <c-v> "+P
-  inoremap <c-v> "+P
+  inoremap <c-v> <esc>l"+Pa
   vnoremap <c-v> "+P
 
 " insert mode maps
