@@ -96,9 +96,11 @@ bindsym $mod+Shift+space        floating toggle
 # bindsym $mod+Space              focus mode_toggle # change focus between tiling / floating windows
 # bindsym $mod+Shift+space        floating toggle # toggle tiling / floating
 
-bindsym $mod+Escape             workspace prev
+# bindsym $mod+Escape             workspace prev
 # bindsym $mod+Shift+Escape       exec $HOME/.scripts/prompt "Are you sure you want to exit i3?" "i3-msg exit"
-bindsym $mod+Shift+Escape       exec $HOME/.scripts/rofi/exit.sh
+bindsym $mod+Shift+Escape       exec $HOME/.scripts/lockscreen.sh
+
+bindsym $mod+Tab                workspace prev
 
 # bindsym $mod+Backspace          something
 # bindsym $mod+Shift+Backspace    exec $reboot
@@ -113,7 +115,7 @@ bindsym $mod+Shift+Escape       exec $HOME/.scripts/rofi/exit.sh
 # Letter key bindings
 
 bindsym $mod+q                  kill
-bindsym $mod+Shift+q            kill
+bindsym $mod+Shift+q            exec $HOME/.scripts/rofi/exit.sh
 
 # bindsym $mod+w                  exec $term -e sudo wifi-menu
 bindsym $mod+w                  exec rofi -show window -hide-scrollbar -lines 5 -eh 2 -width 40 -location 8 -xoffset 150 -yoffset 70 -padding 50 -font "RobotoMono Nerd Font 14"
@@ -358,7 +360,7 @@ bindsym XF86Display                 exec --no-startup-id arandr
 # bindsym XF86Reply                 exec
 # bindsym XF86MailForward           exec
 # bindsym XF86Save                  exec
-# bindsym XF86Documents               exec #term -e ranger /Documents
+# bindsym XF86Documents             exec #term -e ranger /Documents
 # bindsym XF86Bettery               exec
 # bindsym XF86Bluetooth             exec
 # bindsym XF86WLAN                  exec
@@ -396,11 +398,11 @@ bar {
         background $black
         statusline $alt_white
         separator $cyan
-        #                  border      background   text
-        focused_workspace  $white  $white $black
-        active_workspace   $blue  $blue $alt_white
-        inactive_workspace $black  $black $white
-        urgent_workspace   $red  $black $red
+        #                  border  background  text
+        focused_workspace  $white  $white      $black
+        active_workspace   $blue   $blue       $alt_white
+        inactive_workspace $black  $black      $white
+        urgent_workspace   $red    $black      $red
     }
     status_command i3status
     position top
