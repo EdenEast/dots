@@ -263,11 +263,21 @@
 " switch cmd to the directory of the open buffer
   noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
+" copy and paste for system buffers
+  nnoremap <c-x> V"*d:let @+=@*<cr>
+  inoremap <c-x> V"*d:let @+=@*<cr>
+  vnoremap <c-x> "*d:let @+=@*<cr>
+
+  nnoremap <c-c> V"*y:let @+=@*<cr>
+  inoremap <c-c> V"*y:let @+=@*<cr>
+  vnoremap <c-c> "*y:let @+=@*<cr>
+
+  nnoremap <c-v> "+P
+  inoremap <c-v> "+P
+  vnoremap <c-v> "+P
+
 " insert mode maps
   inoremap <c-z> <esc>ua
-  inoremap <c-x> <esc>ddi
-  inoremap <c-c> <esc>yyi
-  inoremap <c-v> <esc>pi
   inoremap <c-s> <esc>:w<cr>a
   inoremap <c-a> <esc>ggvG$
   inoremap <c-\> <esc>$a;<esc>o
