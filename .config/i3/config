@@ -393,14 +393,14 @@ mode "resize" {
 # finds out, if available)
 bar {
     colors {
-        background $alt_black
-        statusline $green
-        separator $green
+        background $black
+        statusline $alt_white
+        separator $cyan
         #                  border      background   text
-        focused_workspace  $green  $green $green
-        active_workspace   $green  $green $green
-        inactive_workspace $green  $green $green
-        urgent_workspace   $green  $green $green
+        focused_workspace  $white  $white $black
+        active_workspace   $blue  $blue $alt_white
+        inactive_workspace $black  $black $white
+        urgent_workspace   $red  $black $red
     }
     status_command i3status
     position top
