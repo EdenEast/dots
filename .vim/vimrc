@@ -538,6 +538,12 @@
     au filetype xml setlocal foldmethod=syntax
   augroup end
 
+" xresources
+  augroup ft_xresource
+    au!
+    au bufwritepost ~/.Xresources !xrdb ~/.Xresources
+  augroup end
+
 " yaml
   augroup ft_yaml
     au!

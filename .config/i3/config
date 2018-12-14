@@ -128,7 +128,7 @@ bindsym $mod+r                  exec $term -e ranger
 bindsym $mod+Shift+r            restart
 
 bindsym $mod+t                  split toggle
-bindsym $mod+Shift+t            gaps inner current set $default_gaps ; gaps outer current set $default_gaps
+# bindsym $mod+Shift+t            something
 
 # bindsym $mod+y                  something
 bindsym $mod+Shift+y            resize shrink width 5 px or 5 ppt
@@ -152,13 +152,13 @@ bindsym $mod+s                  gaps inner current plus 5
 bindsym $mod+Shift+s            gaps inner current minus 5
 
 bindsym $mod+d                  exec rofi -show drun -hide-scrollbar -lines 5 -eh 2 -width 40 -location 8 -xoffset 150 -yoffset 70 -padding 50 -font "RobotoMono Nerd Font 14"
-bindsym $mod+Shift+d            gaps inner current set 0 ; gaps outer current set 0
+bindsym $mod+Shift+d            exec rofi -show run -hide-scrollbar -lines 5 -eh 2 -width 40 -location 8 -xoffset 150 -yoffset 70 -padding 50 -font "RobotoMono Nerd Font 14"
 
 bindsym $mod+f                  fullscreen toggle
 # bindsym $mod+Shift+f            something
 
-# bindsym $mod+g                  something
-# bindsym $mod+Shift+g            something
+bindsym $mod+g                  gaps inner current set 0 ; gaps outer current set 0
+bindsym $mod+Shift+g            gaps inner current set $default_gaps ; gaps outer current set $default_gaps
 
 bindsym $mod+h                  focus left
 bindsym $mod+Shift+h            move left

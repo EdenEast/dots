@@ -63,3 +63,22 @@ URxvt*buffered:                 false
 URxvt*keysym.Control-Shift-C:   perl:clipboard:copy
 URxvt*keysym.Control-Shift-V:   perl:clipboard:paste
 
+! ------------------------------------------------------------------------------
+! Rofi settings
+! ------------------------------------------------------------------------------
+
+rofi.modi: window,drun,run
+rofi.case-sensitive: false
+rofi.columns: 1
+rofi.font: Inconsolata 24
+rofi.fuzzy: true
+rofi.hide-scrollbar: true
+rofi.lines: 8
+rofi.localtion: 0
+rofi.opacity: 100
+rofi.padding: 20
+rofi.sidebar-mode: true
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e "{ssh-client} {host}"
+rofi.terminal: urxvt
+rofi.width: 50
