@@ -224,6 +224,7 @@
 " these will change your life
   nnoremap ; :
   inoremap jj <esc>
+  inoremap JJ <esc>
 
 " no need for ex mode
   nnoremap Q <nop>
