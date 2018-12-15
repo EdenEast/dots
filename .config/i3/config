@@ -131,16 +131,16 @@ bindsym $mod+t                  split toggle
 # bindsym $mod+Shift+t            something
 
 # bindsym $mod+y                  something
-bindsym $mod+Shift+y            resize shrink width 5 px or 5 ppt
+bindsym $mod+Shift+y            exec --no-startup-id $HOME/.scripts/i3resize left
 
 bindsym $mod+u                  [title="dropdown"] scratchpad show ; [title="dropdown"] move position center
-bindsym $mod+Shift+u            resize shrink height 5 px or 5 ppt
+bindsym $mod+Shift+u            exec --no-startup-id $HOME/.scripts/i3resize down
 
 # bindsym $mod+i                  something
-bindsym $mod+Shift+i            resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+i            exec --no-startup-id $HOME/.scripts/i3resize up
 
 bindsym $mod+o                  exec dmenu_run
-bindsym $mod+Shift+o            resize grow width 5 px or 5 ppt
+bindsym $mod+Shift+o            exec --no-startup-id $HOME/.scripts/i3resize right
 
 # bindsym $mod+p                  something
 # bindsym $mod+Shift+p            something
