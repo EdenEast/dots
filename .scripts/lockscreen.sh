@@ -19,6 +19,7 @@ has scrot convert && {
 
     # take a screenshot of the desktop and blur it
     scrot -m -z $base
+    pgrep -x dunst && notify-send -i $HOME/.config/i3/lock.png "Locking computer"
     convert $base -blur 0x8 $lock
     took_picture=true
 }
