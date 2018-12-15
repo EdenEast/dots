@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Original source https://github.com/LukeSmithxyz/voidrice/blob/master/.scripts/i3cmds/dmenuumount
+#
+# A dmenu prompt to unmount drives.
+# Provides you with mounted partitions, select one to unmount.
+# Drives mounted at /, /boot and /home will not be options to unmount.
+
+function unmount_usb()
+{
+    [ -z "$drives" ] && exit
+
+    choice=$(echo "$drives" | dmenu -i -p "Unmount which drive?" | awk '{print $1}')
+    [ -z "$choice" ] && exit
+
+    sudo -A umount "$choice" && pgrep -x dunst && notify-send "$choice unmounted."
+}
+
+drives=$(lsblk -nrpo "name,type,size,mountpoint" | awk '$2=="part"&&$4!~/\/boot|\/home$|SWAP/&&length($4)>1{printf "%s (%s)\n",$4,$3}')
+
+if ! grep simple-mtpfs /etc/mtab; then
+    [ -z "$drives" ] && echo "No drives to unmount." &&  exit
+    echo "Unmountable USB drive detected."
+    unmount_usb
+else
+    if [ -n "$drives" ]; then
+        echo "Unmountable USB drive(s) and Android device(s) detected."
+        unmount_usb
+    fi
+fi
