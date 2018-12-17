@@ -1,106 +1,48 @@
 #!/usr/bin/env bash
 
-function usage()
-{
-    local prog=$(basename $BASH_SOURCE)
-    cat<<EOF
-Usage: $prog [options...] old_email new_name new_email
+prog=$(basename "$0")
 
-Options:
-  -f, --force       Force change of author
-EOF
-    exit $1
-}
+force=
+if [ "$1" == "-f" ] ; then
+    force="-f"
+    shift;
+fi
 
-function versions()
-{
-    echo "git change-author 0.0.1"
-    exit 0
-}
+old_email=$1; shift;
+new_author=$1; shift;
+new_email=$1; shift;
 
-function parse_args()
-{
-    positional_args=()
-    local optspec=":hf-:"
-    while [ $# -gt 0 ] ; do
-        unset OPTIND ; unset OPTARG
-        while getopts $optspec OPTION ; do
-            case "$OPTION" in
-                h) usage 0 ;;
-                f) force=true ;;
-                -)
-                    [ $OPTIND -ge 1 ] && optind=$(expr $OPTIND - 1) || optind=$OPTIND
-                    eval OPTION="\$$optind"
-                    OPTARG=$(echo $OPTION | cut -d'=' -f2)
-                    OPTION=$(echo $OPTION | cut -d'=' -f1)
-                    case $OPTION in
-                        --help|--usage) usage 0 ;;
-                        --force) force=true ;;
-                        *) echo "Invalid option: $OPTION $OPTARG" ;;
-                    esac
-                    OPTIND=1 ; shift ;;
-                \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
-            esac
-        done
-        shift $((OPTIND-1)) ; positional_args+=($1) ; shift
-    done
-}
+if test -z "$old_email" -o -z "$new_author" -o -z "$new_email" ; then
+   echo "usage: $prog <old_email> <new_author> <new_email>"
+   echo ""
+   echo "example: $prog [-f] user@old.server.com \"User Name\" user2@new.server.com"
+   exit 1
+fi
 
-function change_author()
-{
-    old_email=${positional_args[0]}
-    new_author=${positional_args[1]}
-    new_email=${positional_args[2]}
+echo "Rewriting commits for $old_email to $new_author <$new_email>"
 
-    echo "Rewriting commits for $old_email to $new_author <$new_email>"
+export old_email
+export new_author
+export new_email
 
-    export old_email
-    export new_author
-    export new_email
-
-    git filter-branch $force --env-filter '
-    an="$GIT_AUTHOR_NAME"
-    am="$GIT_AUTHOR_EMAIL"
-    cn="$GIT_COMMITTER_NAME"
-    cm="$GIT_COMMITTER_EMAIL"
-    
-    if [ "$GIT_COMMITTER_EMAIL" = "$old_email" ]
-    then
-        cn=$new_author
-        cm=$new_email
-    fi
-    if [ "$GIT_AUTHOR_EMAIL" = "$old_email" ]
-    then
-        an=$new_author
-        am=$new_email
-    fi
-    
-    export GIT_AUTHOR_NAME="$an"
-    export GIT_AUTHOR_EMAIL="$am"
-    export GIT_COMMITTER_NAME="$cn"
-    export GIT_COMMITTER_EMAIL="$cm"
-    ' $*
-
-    unset old_email
-    unset new_author
-    unset new_email
-}
-
-function main()
-{
-    parse_args "$@"
-
-    [[ ${#positional_args} -lt 3 ]] && {
-        echo "Missing reqired positional arguments"
-        usage 1
-    }
-
-    [[ ${#positional_args} -gt 3 ]] && {
-        echo "Too many positional arguments given"
-        usage 1
-    }
-
-    change_author
-}
-
-main "$@"
+# shellcheck disable=SC2016,SC2048,SC2086
+git filter-branch $force --env-filter '
+an="$GIT_AUTHOR_NAME"
+am="$GIT_AUTHOR_EMAIL"
+cn="$GIT_COMMITTER_NAME"
+cm="$GIT_COMMITTER_EMAIL"
+if [ "$GIT_COMMITTER_EMAIL" = "$old_email" ]
+then
+    cn=$new_author
+    cm=$new_email
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$old_email" ]
+then
+    an=$new_author
+    am=$new_email
+fi
+export GIT_AUTHOR_NAME="$an"
+export GIT_AUTHOR_EMAIL="$am"
+export GIT_COMMITTER_NAME="$cn"
+export GIT_COMMITTER_EMAIL="$cm"
+' $*

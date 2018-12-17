@@ -94,7 +94,12 @@ function main()
 main "$@"
 
 
-# parse arguments snippet 
+# Idea for parse argument snippets 
+# https://stackoverflow.com/a/47339704
+# https://stackoverflow.com/a/28466267
+# https://stackoverflow.com/a/7680682
+
+# parse arguments snippet
 
 # function parse_arguments()
 # {
