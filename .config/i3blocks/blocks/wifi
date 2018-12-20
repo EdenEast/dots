@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# https://github.com/vivien/i3blocks-contrib/blob/master/wifi/wifi
+
+[[ -z "$INTERFACE" ]] && {
+    [[ -n $BLOCK_INTERFACE ]] && INTERFACE=$BLOCK_INTERFACE || {
+        # Checking to see what the wireless card interface is
+        devices=$(nmcli device show | grep GENERAL.DEVICE | awk '{ print $2 }')
+        for d in ${devices[@]}; do
+            type=$(nmcli device show $d | grep GENERAL.TYPE | awk '{ print $2 }')
+            [[ $type == "wifi" ]] && {
+                INTERFACE=$d ; break
+            }
+        done
+    }
+}
+
+# as per #36 -- it is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+[[ ! -d /sys/class/net/${INTERFACE}/wireless ]] ||
+    [[ "$(cat /sys/class/net/$INTERFACE/operstate)" = 'down' ]] && { echo 'failed' ; exit; };
+
+#------------------------------------------------------------------------
+
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+#------------------------------------------------------------------------
+
+echo $QUALITY% # full text
+echo $QUALITY% # short text
+
+# color
+if [[ $QUALITY -ge 80 ]]; then
+    echo "#00FF00"
+elif [[ $QUALITY -ge 60 ]]; then
+    echo "#FFF600"
+elif [[ $QUALITY -ge 40 ]]; then
+    echo "#FFAE00"
+else
+    echo "#FF0000"
+fi
+
+case $BLOCK_BUTTON in
+    1) ;; # left
+    2) ;; # middle
+    3) ;; # right
+esac

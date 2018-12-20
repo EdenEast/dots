@@ -1,0 +1,38 @@
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden
+# Each block command default to the script name to avoid biolerplate
+
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[updates]
+command=$HOME/.config/i3blocks/blocks/update
+markup=pango
+interval= 3600
+
+[cpu_usage]
+command=$HOME/.config/i3blocks/blocks/cpu
+label=cpu:
+interval=10
+
+[memory]
+command=$HOME/.config/i3blocks/blocks/memory
+label=mem
+interval=15
+
+[battery]
+command=$HOME/.config/i3blocks/blocks/battery
+markup=pango
+interval=30
+
+[time]
+command=$HOME/.config/i3blocks/blocks/clock
+interval=1
+
+[wifi]
+command=$HOME/.config/i3blocks/blocks/wifi
+label=wifi:
+interval=10
+

@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+from subprocess import check_output
+
+status = check_output(['acpi'], universal_newlines=True)
+print('|{}|'.format(status))
