@@ -21,12 +21,12 @@ export VISUAL="vim"
 
 # nvim does not work right now in the terminal on widnows so only
 # check to see if i should use nvim when not on windows
-if [ $OSTYPE != 'msys' ] && [ $OSTYPE != 'cygwin' ]; then
-    if which nvim &>/dev/null; then
-        export EDITOR="nvim"
-        export EDITOR="nvim"
-    fi
-fi
+# if [ $OSTYPE != 'msys' ] && [ $OSTYPE != 'cygwin' ]; then
+#     if which nvim &>/dev/null; then
+#         export EDITOR="nvim"
+#         export EDITOR="nvim"
+#     fi
+# fi
 
 # system defaults
 export LANG="en_US.UTF-8"
