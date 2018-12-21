@@ -18,6 +18,10 @@ URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 ! Appearance settings
 ! ------------------------------------------------------------------------------
 
+#include ".config/xrdb/colors/arc"
+#include ".config/xrdb/fonts/monospace"
+
+URxvt.background:           [90]co_bgr
 URxvt*cursorBlink:          false
 URxvt*depth:                32
 URxvt*externalBorder:       0
@@ -28,9 +32,6 @@ URxvt*scrollBar_right:      false
 URxvt*scrollTtyKeypress:    true
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
-
-#include ".config/xrdb/colors/arc"
-#include ".config/xrdb/fonts/monospace"
 
 ! ------------------------------------------------------------------------------
 ! Macro and clipboard settings
