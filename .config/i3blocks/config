@@ -12,6 +12,11 @@ command=$HOME/.config/i3blocks/blocks/update
 markup=pango
 interval= 3600
 
+[mediaplayer]
+command=$HOME/.config/i3blocks/blocks/mediaplayer
+interval=5
+signal=20
+
 [volume]
 command=$HOME/.config/i3blocks/blocks/volume
 interval=once
