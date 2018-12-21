@@ -41,16 +41,16 @@ set $netrefresh --no-startup-id sudo systemctl restart NetworkManager
 
 
 # Pulseaudio/Pamixer
-set $inc --no-startup-id pamixer --allow-boost -i 5
-set $biginc --no-startup-id pamixer --allow-boost -i 15
-set $dec --no-startup-id pamixer --allow-boost -d 5
-set $bigdec --no-startup-id pamixer --allow-boost -d 15
-set $mute --no-startup-id pamixer --allow-boost -t
+set $inc --no-startup-id pamixer --allow-boost -i 5 && pkill -RTMIN+10 i3blocks
+set $biginc --no-startup-id pamixer --allow-boost -i 15 && pkill -RTMIN+10 i3blocks
+set $dec --no-startup-id pamixer --allow-boost -d 5 && pkill -RTMIN+10 i3blocks
+set $bigdec --no-startup-id pamixer --allow-boost -d 15 && pkill -RTMIN+10 i3blocks
+set $mute --no-startup-id pamixer --allow-boost -t && pkill -RTMIN+10 i3blocks
 set $micmute --no-startup-id pamixer --allow-boost -t
 set $truemute --no-startup-id pamixer -m
 
 # ----------------------------------------------------------------------------
-# Defining colors from Xresource
+# defining colors from Xresource
 
 # set_from_resource $background  background #000000
 # set_from_resource $forground   foreground #000000
