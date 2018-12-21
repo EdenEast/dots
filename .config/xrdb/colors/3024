@@ -1,39 +1,48 @@
 ! vim: ft=xdefaults
 ! 3024
 
+#define co_bgr #a5a2a2
+#define co_fgr #090300
+#define co_cur #a5a2a2
+
+#define co_blk #090300
+#define co_red #db2d20
+#define co_grn #01a252
+#define co_ylw #fded02
+#define co_blu #01a0e4
+#define co_mgt #a16a94
+#define co_cyn #b5e4f4
+#define co_wht #a5a2a2
+
+#define cb_blk #5c5855
+#define cb_red #db2d20
+#define cb_grn #01a252
+#define cb_ylw #fded02
+#define cb_blu #01a0e4
+#define cb_mgt #a16a94
+#define cb_cyn #b5e4f4
+#define cb_wht #f7f7f7
+
 ! special
-*.foreground:   #a5a2a2
-*.background:   #090300
-*.cursorColor:  #a5a2a2
+*background:  co_bgr
+*foreground:  co_fgr
+*cursorColor: co_cur
 
-! black
-*.color0:       #090300
-*.color8:       #5c5855
+*color0:  co_blk
+*color1:  co_red
+*color2:  co_grn
+*color3:  co_ylw
+*color4:  co_blu
+*color5:  co_mgt
+*color6:  co_cyn
+*color7:  co_wht
 
-! red
-*.color1:       #db2d20
-*.color9:       #db2d20
+*color8:  cb_blk
+*color9:  cb_red
+*color10: cb_grn
+*color11: cb_ylw
+*color12: cb_blu
+*color13: cb_mgt
+*color14: cb_cyn
+*color15: cb_wht
 
-! green
-*.color2:       #01a252
-*.color10:      #01a252
-
-! yellow
-*.color3:       #fded02
-*.color11:      #fded02
-
-! blue
-*.color4:       #01a0e4
-*.color12:      #01a0e4
-
-! magenta
-*.color5:       #a16a94
-*.color13:      #a16a94
-
-! cyan
-*.color6:       #b5e4f4
-*.color14:      #b5e4f4
-
-! white
-*.color7:       #a5a2a2
-*.color15:      #f7f7f7

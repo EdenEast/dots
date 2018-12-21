@@ -1,9 +1,9 @@
 ! vim: ft=xdefaults
 ! arc
 
-#define co_bgr  #3f424a
-#define co_fgr  #f8f8ff
-#define co_cur  #c5c8c6
+#define co_bgr #3f424a
+#define co_fgr #f8f8ff
+#define co_cur #c5c8c6
 
 #define co_blk #3f3f3f
 #define co_red #ac3c3c

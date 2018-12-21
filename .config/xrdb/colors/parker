@@ -1,39 +1,48 @@
 ! vim: ft=xdefaults
 ! parker
 
+#define co_bgr #131313
+#define co_fgr #ffffff
+#define co_cur #ffffff
+
+#define co_blk #322a2c
+#define co_red #79220e
+#define co_grn #344b1b
+#define co_ylw #b45b00
+#define co_blu #434045
+#define co_mgt #5c1e25
+#define co_cyn #394745
+#define co_wht #ae8842
+
+#define cb_blk #46423b
+#define cb_red #aa261f
+#define cb_grn #76550f
+#define cb_ylw #b57f02
+#define cb_blu #908862
+#define cb_mgt #624a35
+#define cb_cyn #393e38
+#define cb_wht #a59058
+
 ! special
-*.foreground:   #ffffff
-*.background:   #131313
-*.cursorColor:  #ffffff
+*background:  co_bgr
+*foreground:  co_fgr
+*cursorColor: co_cur
 
-! black
-*.color0:       #322a2c
-*.color8:       #46423b
+*color0:  co_blk
+*color1:  co_red
+*color2:  co_grn
+*color3:  co_ylw
+*color4:  co_blu
+*color5:  co_mgt
+*color6:  co_cyn
+*color7:  co_wht
 
-! red
-*.color1:       #79220e
-*.color9:       #aa261f
+*color8:  cb_blk
+*color9:  cb_red
+*color10: cb_grn
+*color11: cb_ylw
+*color12: cb_blu
+*color13: cb_mgt
+*color14: cb_cyn
+*color15: cb_wht
 
-! green
-*.color2:       #344b1b
-*.color10:      #76550f
-
-! yellow
-*.color3:       #b45b00
-*.color11:      #b57f02
-
-! blue
-*.color4:       #434045
-*.color12:      #908862
-
-! magenta
-*.color5:       #5c1e25
-*.color13:      #624a35
-
-! cyan
-*.color6:       #394745
-*.color14:      #393e38
-
-! white
-*.color7:       #ae8842
-*.color15:      #a59058
