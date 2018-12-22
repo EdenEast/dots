@@ -17,6 +17,12 @@ command=$HOME/.config/i3blocks/blocks/mediaplayer
 interval=5
 signal=20
 
+[backlight]
+command=$HOME/.config/i3blocks/blocks/backlight
+label=bright
+interval=once
+signal=5
+
 [volume]
 command=$HOME/.config/i3blocks/blocks/volume
 interval=once

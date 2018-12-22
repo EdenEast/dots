@@ -351,8 +351,8 @@ bindsym XF86Reload                  restart
 # bindsym XF86Finance               exec
 # bindsym XF86Game                  exec
 # bindsym XF86Shop                  exec
-bindsym XF86MonBrightnessDown       exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp         exec --no-startup-id xbacklight -inc 15
+bindsym XF86MonBrightnessDown       exec --no-startup-id light -U 5 && pkill -RTMIN+5 i3blocks
+bindsym XF86MonBrightnessUp         exec --no-startup-id light -A 5 && pkill -RTMIN+5 i3blocks
 bindsym XF86Display                 exec --no-startup-id arandr
 # bindsym XF86KbdLightOnOff         exec
 # bindsym XF86KbdBrightnessDown     exec
