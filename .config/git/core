@@ -37,4 +37,10 @@
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -C 'SpliceInit'"
     trustExitCode = true
 
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
 # vim: ft=gitconfig:
