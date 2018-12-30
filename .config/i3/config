@@ -29,25 +29,19 @@ set $reboot sudo reboot
 set $sleep systemctl suspend
 set $netrefresh --no-startup-id sudo systemctl restart NetworkManager
 
-# Spotify
-#set $music spotify
-#set $pause dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-#set $trupause dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause
-#set $play dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
-#set $next dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-#set $prev dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-#set $lilfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek
-#set $bigfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek(
-
-
-# Pulseaudio/Pamixer
-set $inc --no-startup-id pamixer --allow-boost -i 5 && pkill -RTMIN+10 i3blocks
-set $biginc --no-startup-id pamixer --allow-boost -i 15 && pkill -RTMIN+10 i3blocks
-set $dec --no-startup-id pamixer --allow-boost -d 5 && pkill -RTMIN+10 i3blocks
-set $bigdec --no-startup-id pamixer --allow-boost -d 15 && pkill -RTMIN+10 i3blocks
-set $mute --no-startup-id pamixer --allow-boost -t && pkill -RTMIN+10 i3blocks
-set $micmute --no-startup-id pamixer --allow-boost -t
-set $truemute --no-startup-id pamixer -m
+# volume and music
+set $vol_inc       ~/.scripts/music_control up
+set $vol_dec       ~/.scripts/music_control down
+set $vol_mute      ~/.scripts/music_control mute
+set $vol_truemute  ~/.scripts/music_control truemute
+set $play_toggle   ~/.scripts/music_control toggle
+set $play_play     ~/.scripts/music_control play
+set $play_pause    ~/.scripts/music_control pause
+set $play_next     ~/.scripts/music_control next
+set $play_prev     ~/.scripts/music_control prev
+set $play_forward  ~/.scripts/music_control forward
+set $play_backward ~/.scripts/music_control backward
+set $play_restart  ~/.scripts/music_control restart
 
 # ----------------------------------------------------------------------------
 # defining colors from Xresource
@@ -288,9 +282,9 @@ exec --no-startup-id $term -T dropdown -e (tmux -a || tmux)
 # ----------------------------------------------------------------------------
 # Extra XF86 Keys
 
-bindsym XF86AudioMute               exec $mute
-bindsym XF86AudioLowerVolume        exec $dec
-bindsym XF86AudioRaiseVolume        exec $inc
+bindsym XF86AudioMute               exec $vol_mute
+bindsym XF86AudioLowerVolume        exec $vol_dec
+bindsym XF86AudioRaiseVolume        exec $vol_inc
 bindsym XF86PowerOff                exec $shutdown
 # bindsym XF86Copy                  exec
 # bindsym XF86Open                  exec
