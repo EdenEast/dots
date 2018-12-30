@@ -11,7 +11,7 @@ export LOCAL_VAR="$HOME/.local/var"
 # export XDG_CONFIG_HOME="${HOME}/.config"
 
 # bspwm config locations
-export BSPWMRC="$LOCAL_ETC/bspwm/bspwmrc"
+# export BSPWMRC="$LOCAL_ETC/bspwm/bspwmrc"
 # export BSPWM_STATE="${XDG_CACHE_HOME}/bspwm/state.json"
 # export BSPWM_FIFO="${XDG_CACHE_HOME}/bspwm/wm_state"
 

@@ -28,3 +28,6 @@ sys_mod_map=/etc/X11/xinit/.Xmodmap
 
 # start i3 and keep it running
 [[ -f /usr/bin/i3 ]] && exec i3
+
+# start bspwm and sxhkd
+# [[ -f /usr/bin/bspwm ]] && exec bspwm
