@@ -48,8 +48,8 @@ function change_spotify()
 
 function change_track()
 {
-    [[ -n $spotify_pid ]] && change_spotify "$@" ; return
-    [[ -n $mpd_pid ]] && change_mpd "$@" ; return
+    [[ -n $spotify_pid ]] &&  { change_spotify "$@" ; return ; }
+    [[ -n $mpd_pid ]] && { change_mpd "$@" ; return ; }
 }
 
 function main()
@@ -58,7 +58,7 @@ function main()
 
     case "$1" in
         u*|d*|m*|truemute) change_volume $1 $num ;;
-        b*|f*|n*|pause|play|prev|r*|t*) change_track $1 $num ;;
+        b*|f*|n*|p*|r*|t*) change_track $1 $num ;;
     esac
 }
 
