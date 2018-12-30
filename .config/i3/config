@@ -80,6 +80,9 @@ exec_always --no-startup-id feh --bg-fill ~/.local/etc/wall.*
 # Networkmanager applet
 exec --no-startup-id nm-applet
 
+# Launching music player daemon
+exec --no-startup-id mpd
+
 # ----------------------------------------------------------------------------
 # Basic bindings
 
@@ -199,6 +202,19 @@ bindsym $mod+Shift+Left     move left
 bindsym $mod+Shift+Right    move right
 bindsym $mod+Shift+Up       move up
 bindsym $mod+Shift+Down     move down
+
+# ----------------------------------------------------------------------------
+# Media keys
+
+# forward and backward in mpd
+bindsym $mod+bracketleft          exec --no-startup-id $play_backward 10
+bindsym $mod+Shift+bracketleft    exec --no-startup-id $play_backward 100
+bindsym $mod+bracketright         exec --no-startup-id $play_forward 10
+bindsym $mod+Shift+bracketright   exec --no-startup-id $play_forward 100
+
+bindsym $mod+Home                 exec --no-startup-id $play_toggle
+bindsym $mod+pageup               exec --no-startup-id $play_prev
+bindsym $mod+pagedown             exec --no-startup-id $play_next
 
 # ----------------------------------------------------------------------------
 # Function keys
