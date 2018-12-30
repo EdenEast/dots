@@ -184,7 +184,7 @@ bindsym $mod+Shift+l            move right
 # bindsym $mod+v                  something
 # bindsym $mod+Shift+v            something
 
-# bindsym $mod+b                  something
+bindsym $mod+b                  bar mode toggle
 # bindsym $mod+Shift+b            something
 
 # bindsym $mod+n                  something
