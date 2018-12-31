@@ -37,6 +37,7 @@ set $vol_truemute  ~/.scripts/music_control truemute
 set $play_toggle   ~/.scripts/music_control toggle
 set $play_play     ~/.scripts/music_control play
 set $play_pause    ~/.scripts/music_control pause
+set $play_stop     ~/.scripts/music_control stop
 set $play_next     ~/.scripts/music_control next
 set $play_prev     ~/.scripts/music_control prev
 set $play_forward  ~/.scripts/music_control forward
@@ -140,7 +141,7 @@ bindsym $mod+o                  exec dmenu_run
 bindsym $mod+Shift+o            exec --no-startup-id $HOME/.scripts/i3resize right
 
 bindsym $mod+p                  exec --no-startup-id $play_toggle
-bindsym $mod+Shift+p            exec --no-startup-id $play_play
+bindsym $mod+Shift+p            exec --no-startup-id $play_stop
 
 # bindsym $mod+a                  something
 # bindsym $mod+Shift+a            something
@@ -299,10 +300,10 @@ exec --no-startup-id $term -T dropdown -e (tmux -a || tmux)
 # Extra XF86 Keys
 
 bindsym XF86AudioMute                 exec $vol_mute
-bindsym XF86AudioLowerVolume          exec $vol_dec 5
+bindsym XF86AudioLowerVolume          exec $vol_dec 2
 bindsym Shift+XF86AudioLowerVolume    exec $vol_dec 10
 bindsym Control+XF86AudioLowerVolume  exec $vol_dec 1
-bindsym XF86AudioRaiseVolume          exec $vol_inc 5
+bindsym XF86AudioRaiseVolume          exec $vol_inc 2
 bindsym Shift+XF86AudioRaiseVolume    exec $vol_inc 10
 bindsym Control+XF86AudioRaiseVolume  exec $vol_inc 1
 bindsym XF86PowerOff                  exec $shutdown
