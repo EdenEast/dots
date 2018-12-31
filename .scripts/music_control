@@ -30,6 +30,9 @@ function change_mpd()
         r*   ) mpc seek %0    ;; # restart
         t*   ) mpc toggle     ;; # toggle
     esac
+
+    # reload i3blocks
+    pkill -RTMIN+20 i3blocks
 }
 
 function change_spotify()
