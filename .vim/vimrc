@@ -67,6 +67,7 @@
   Plug 'wincent/scalpel'
   Plug 'xuyuanp/nerdtree-git-plugin'
   Plug 'PotatoesMaster/i3-vim-syntax'
+  Plug 'jceb/vim-orgmode'
 
 " easy-motion
   Plug 'easymotion/vim-easymotion'
