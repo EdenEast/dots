@@ -139,8 +139,8 @@ bindsym $mod+Shift+i            exec --no-startup-id $HOME/.scripts/i3resize up
 bindsym $mod+o                  exec dmenu_run
 bindsym $mod+Shift+o            exec --no-startup-id $HOME/.scripts/i3resize right
 
-# bindsym $mod+p                  something
-# bindsym $mod+Shift+p            something
+bindsym $mod+p                  exec --no-startup-id $play_toggle
+bindsym $mod+Shift+p            exec --no-startup-id $play_play
 
 # bindsym $mod+a                  something
 # bindsym $mod+Shift+a            something
@@ -212,9 +212,9 @@ bindsym $mod+Shift+bracketleft    exec --no-startup-id $play_backward 100
 bindsym $mod+bracketright         exec --no-startup-id $play_forward 10
 bindsym $mod+Shift+bracketright   exec --no-startup-id $play_forward 100
 
-bindsym $mod+Home                 exec --no-startup-id $play_toggle
-bindsym $mod+pageup               exec --no-startup-id $play_prev
-bindsym $mod+pagedown             exec --no-startup-id $play_next
+# next and prev in mpd
+bindsym $mod+comma                exec --no-startup-id $play_prev
+bindsym $mod+period               exec --no-startup-id $play_next
 
 # ----------------------------------------------------------------------------
 # Function keys
