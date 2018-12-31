@@ -28,6 +28,7 @@ function change_mpd()
         play ) mpc play       ;; # play
         prev ) mpc prev       ;; # prev
         r*   ) mpc seek %0    ;; # restart
+        s*   ) mpc stop       ;; # stop
         t*   ) mpc toggle     ;; # toggle
     esac
 
@@ -61,7 +62,7 @@ function main()
 
     case "$1" in
         u*|d*|m*|truemute) change_volume $1 $num ;;
-        b*|f*|n*|p*|r*|t*) change_track $1 $num ;;
+        b*|f*|n*|p*|r*|s*|t*) change_track $1 $num ;;
     esac
 }
 
