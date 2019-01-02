@@ -207,6 +207,10 @@ bindsym $mod+Shift+Down     move down
 # ----------------------------------------------------------------------------
 # Media keys
 
+# volume controls
+bindsym $mod+minus                exec --no-startup-id $vol_dec 1
+bindsym $mod+plus                 exec --no-startup-id $vol_inc 1
+
 # forward and backward in mpd
 bindsym $mod+bracketleft          exec --no-startup-id $play_backward 10
 bindsym $mod+Shift+bracketleft    exec --no-startup-id $play_backward 100
