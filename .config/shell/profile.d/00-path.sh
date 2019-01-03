@@ -51,6 +51,7 @@ function main()
     check_path prepend_path /usr/local/sbin
     check_path prepend_path /usr/local/bin
     check_path prepend_path $HOME/.config/git/bin
+    check_path prepend_path $HOME/.cargo/bin
 
     # Adding system path back in
     local sys_path_array=()
