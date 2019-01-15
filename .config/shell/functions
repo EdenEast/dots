@@ -121,7 +121,7 @@ function cmake()
         [ $? -ne 0 ] && return $?
 
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
-        "$verbose" && echo "env cmake --build build ${build_args[@]} ${native_args[@]}"
+        "$verbose" && echo "env cmake --build build ${build_args[@]} -- ${native_args[@]}"
         "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
 
         env cmake --build build "${build_args[@]}" "${native_args[@]}"
