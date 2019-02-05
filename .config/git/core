@@ -7,6 +7,9 @@
     ignorecase = true
     autocrlf = input
 
+[credential]
+    helper = store
+
 [fetch]
     prune = true
 
