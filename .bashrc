@@ -12,7 +12,8 @@
 # History config
 #
 # We need HISTCONTROL to save all commands and also duplicate spaces for prompt
-HISTCONTROL=
+# HISTCONTROL=ignoredups:erasedups
+HISTCONTROL=ignoredups
 HISTSIZE=10000
 HISTFILESIZE=15000
 
