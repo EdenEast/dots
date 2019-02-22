@@ -25,6 +25,10 @@ BoldAsFont=-1
 Term=xterm-256color
 CursorType=block
 
+Font=UbuntuMono Nerd Font Mono
+# Font=FuraMono Nerd Font
+FontHeight=12
+
 # themes https://github.com/goreliu/wsl-terminal/tree/master/src/etc/themes
 # twilight
 # ForegroundColour=167,167,167
