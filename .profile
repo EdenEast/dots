@@ -7,8 +7,8 @@ export LOCAL_VAR="$HOME/.local/var"
 
 # export XDG_DATA_HOME="${HOME}/.local/share"
 # export XDG_RUNTIME_DIR="${HOME}/.local/run"
-# export XDG_CACHE_HOME="${HOME}/.cache"
-# export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 # bspwm config locations
 # export BSPWMRC="$LOCAL_ETC/bspwm/bspwmrc"
@@ -59,6 +59,9 @@ export LESS_TERMCAP_me=$'\E[0m'
 export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
+
+# fw config file location should respect ${XDG_CONFIG_HOME}/fw/config
+export FW_CONFIG_PATH="$XDG_CONFIG_HOME/fw/config"
 
 # Soruce all *.sh file in the folder profile.d in .config file
 for rc in $HOME/.config/shell/profile.d/*.sh ; do
