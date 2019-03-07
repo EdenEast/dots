@@ -31,10 +31,15 @@
     "fw": {
       "name": "fw",
       "git": "https://github.com/cruizemissile/fw",
-      "after_clone": "git remote add upstream https://github.com/brocode/fw",
+      "after_clone": null,
       "after_workon": null,
       "override_path": null,
-      "additional_remotes": null,
+      "additional_remotes": [
+        {
+          "name": "upstream",
+          "git": "https://github.com/brocode/fw"
+        }
+      ],
       "tags": [
         "app",
         "cm",
