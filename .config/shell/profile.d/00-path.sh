@@ -77,6 +77,11 @@ function main()
     unset append_path
     unset check_path
     unset check_program_file_path
+
+    # source ~/.config/git/comp to add completion to custom git comands
+    for sh in ~/.config/git/comp/*.sh; do
+        source $sh
+    done
 }
 
 main

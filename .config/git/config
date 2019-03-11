@@ -4,18 +4,18 @@
 # We are including all of the files that the config was broken up info.
 
 [include]
-    path = ./alias/bootstrap
-    path = ./alias/branch
-    path = ./alias/commit
-    path = ./alias/logs
-    path = ./alias/rebase
-    path = ./alias/shorthand
-    path = ./alias/status
-    path = ./alias/submodule
-    path = ./alias/updates
-    path = ./alias/utils
-    path = ./core
-    path = ./url
+    path = ./etc/alias/bootstrap
+    path = ./etc/alias/branch
+    path = ./etc/alias/commit
+    path = ./etc/alias/logs
+    path = ./etc/alias/rebase
+    path = ./etc/alias/shorthand
+    path = ./etc/alias/status
+    path = ./etc/alias/submodule
+    path = ./etc/alias/updates
+    path = ./etc/alias/utils
+    path = ./etc/core
+    path = ./etc/url
     path = ~/.local/etc/git/config
 
 # Here are some good resources that I haev found
