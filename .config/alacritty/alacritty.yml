@@ -154,6 +154,7 @@ persistent_logging: false
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
+# List of themes
 theme_tomorrow_night: &theme_tomorrow_night
   primary:
     background: '0x000000'
@@ -228,29 +229,29 @@ theme_skyfall: &theme_skyfall
 
 theme_lovelace: &theme_lovelace
   primary:
-    background: '0x1D1F28'
-    foreground: '0xFDFDFD'
+    background: '0x1d1f28'
+    foreground: '0xfdfdfd'
   normal:
-    black:   '0x282A36'
-    red:     '0xF37F97'
-    green:   '0x5ADECD'
-    yellow:  '0xF2A272'
-    blue:    '0x8897F4'
-    magenta: '0xC574DD'
-    cyan:    '0x79E6F3'
-    white:   '0xFDFDFD'
+    black:   '0x282a36'
+    red:     '0xf37f97'
+    green:   '0x5adecd'
+    yellow:  '0xf2a272'
+    blue:    '0x8897f4'
+    magenta: '0xc574dd'
+    cyan:    '0x79e6f3'
+    white:   '0xfdfdfd'
   bright:
     black:   '0x414458'
-    red:     '0xFF4971'
-    green:   '0x18E3C8'
-    yellow:  '0xFF8037'
-    blue:    '0x556FFF'
-    magenta: '0xB043D1'
-    cyan:    '0x3FDCEE'
-    white:   '0xBEBEC1'
+    red:     '0xff4971'
+    green:   '0x18e3c8'
+    yellow:  '0xff8037'
+    blue:    '0x556fff'
+    magenta: '0xb043d1'
+    cyan:    '0x3fdcee'
+    white:   '0xbebec1'
 
 colors:
-  *theme_lovelace
+  *theme_skyfall
 
   # Bright and dim foreground colors
   #
