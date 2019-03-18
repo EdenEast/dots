@@ -20,13 +20,30 @@ require("awful.hotkeys_popup.keys")
 
 require("core.errcheck")
 
+local theme_collection = {
+    "skyfall",   -- 1 --
+    "lovelace",  -- 2 --
+}
+
+-- Change this number to change the theme of awesome
+local theme_name = theme_collection[1]
+
+-- setup env
+local env = require("core.env")
+env:init({ theme = theme_name })
+
+-- setup keys
+-- set rules
+-- setup signals
+-- setup focus
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -46,9 +63,6 @@ awful.layout.layouts = {
     awful.layout.suit.max.fullscreen,
 }
 -- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -155,7 +169,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
