@@ -33,6 +33,9 @@ local env = require("core.env")
 env:init({ theme = theme_name })
 
 -- setup keys
+local keys = require("core.keys")
+keys:init({ env = env })
+
 -- set rules
 -- setup signals
 -- setup focus
@@ -284,7 +287,12 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- XF86 Keys
+    ---------------------------------------------------------------------------
+    awful.key({}, "XF86MonBrightnessDown", function() awful.util.spawn("light -U 5") end),
+    awful.key({}, "XF86MonBrightnessUp", function() awful.util.spawn("light -A 5") end)
 )
 
 clientkeys = gears.table.join(
@@ -396,7 +404,7 @@ clientbuttons = gears.table.join(
 )
 
 -- Set keys
-root.keys(globalkeys)
+-- root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
@@ -408,7 +416,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
-                     keys = clientkeys,
+                     keys = keys.clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
