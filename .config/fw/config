@@ -60,7 +60,8 @@
         "after_workon": null,
         "priority": null,
         "workspace": null
-      },
+      }
+	},
     "github_token": null,
     "gitlab": null
   }
