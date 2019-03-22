@@ -1,19 +1,5 @@
 {
   "projects": {
-    "cml": {
-      "name": "cml",
-      "git": "https://github.com/cruizemissile/cml",
-      "after_clone": null,
-      "after_workon": null,
-      "override_path": null,
-      "additional_remotes": null,
-      "tags": [
-        "cm",
-        "cpp",
-        "lib"
-      ],
-      "bare": null
-    },
     "eden": {
       "name": "eden",
       "git": "https://github.com/cruizemissile/eden",
@@ -22,9 +8,7 @@
       "override_path": null,
       "additional_remotes": null,
       "tags": [
-        "cm",
-        "cpp",
-        "engine"
+        "cm"
       ],
       "bare": null
     },
@@ -41,21 +25,8 @@
         }
       ],
       "tags": [
-        "app",
-        "cm",
-        "fork",
-        "rust"
+        "cm"
       ],
-      "bare": null
-    },
-    "gip": {
-      "name": "gip",
-      "git": "https://github.com/cruizemissile/gip",
-      "after_clone": null,
-      "after_workon": null,
-      "override_path": null,
-      "additional_remotes": null,
-      "tags": null,
       "bare": null
     },
     "lust": {
@@ -69,34 +40,6 @@
         "eoe"
       ],
       "bare": null
-    },
-    "pride": {
-      "name": "pride",
-      "git": "https://github.com/cruizemissile/pride",
-      "after_clone": null,
-      "after_workon": null,
-      "override_path": null,
-      "additional_remotes": null,
-      "tags": [
-        "cm",
-        "cpp",
-        "lib"
-      ],
-      "bare": null
-    },
-    "scaffold": {
-      "name": "scaffold",
-      "git": "https://github.com/cruizemissile/scaffold",
-      "after_clone": null,
-      "after_workon": null,
-      "override_path": null,
-      "additional_remotes": null,
-      "tags": [
-        "cm",
-        "cpp",
-        "lib"
-      ],
-      "bare": null
     }
   },
   "settings": {
@@ -106,26 +49,8 @@
     "default_after_clone": null,
     "default_tags": null,
     "tags": {
-      "app": {
-        "after_clone": null,
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      },
       "cm": {
         "after_clone": "git config user.email james.simpson9339@gmail.com",
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      },
-      "cpp": {
-        "after_clone": null,
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      },
-      "engine": {
-        "after_clone": null,
         "after_workon": null,
         "priority": null,
         "workspace": null
@@ -136,25 +61,6 @@
         "priority": null,
         "workspace": null
       },
-      "fork": {
-        "after_clone": null,
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      },
-      "lib": {
-        "after_clone": null,
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      },
-      "rust": {
-        "after_clone": null,
-        "after_workon": null,
-        "priority": null,
-        "workspace": null
-      }
-    },
     "github_token": null,
     "gitlab": null
   }
