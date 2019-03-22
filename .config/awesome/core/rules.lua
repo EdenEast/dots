@@ -10,7 +10,7 @@ rules.base_properties = {
 	focus            = awful.client.focus.filter,
 	raise            = true,
 	size_hints_honor = false,
-	screen           = awful.screen.preferred,	
+	screen           = awful.screen.preferred,
 }
 
 function rules:init(args)
@@ -25,7 +25,7 @@ function rules:init(args)
 		{
 			rule_any = args.floating_any or self.floating_any,
 			properties = { floating = true }
-		}
+		},
 		{
 			rule_any = self.maximized,
 			callback = function(c)
@@ -35,7 +35,7 @@ function rules:init(args)
 		}
 		-- {
 		-- 	rule_any = { type = { "normal", "dialog" }},
-		-- 	expect_any = 
+		-- 	expect_any =
 		-- }
 	}
 
