@@ -44,7 +44,43 @@ end
 -- }}}
 
 ---------------------------------------------------------------------------------------------------
+require('conf.tags')
 local keys = require('conf.keys')
+
+-- Signal function to execute when a new client appears
+_G.client.connect_signal('manage',
+    function(c)
+        -- Set the window as the slave instead of the master
+        if not _G.awesome.startup then
+            awful.client.setslave(c)
+        end
+
+        if _G.awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
+            -- Prevent clients from being unreachable after screen count changes
+            awful.placement.no_offscreen(c)
+        end
+    end
+)
+
+-- Enable sloppy focus, so that focus follows mouse
+_G.client.connect_signal('mouse:enter',
+    function(c)
+        c.emit_signal('request::activate', 'mouse_enter', { raise = true })
+    end
+)
+
+_G.client.connect_signal('focus',
+    function(c)
+        c.border_color = beautiful.border_focus
+    end
+)
+
+_G.client.connect_signal('unfocus',
+    function(c)
+        c.border_color = beautiful.border_normal
+    end
+)
+
 ---------------------------------------------------------------------------------------------------
 
 -- {{{ Variable definitions
@@ -64,37 +100,37 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.max,
-    awful.layout.suit.floating
-}
+-- awful.layout.layouts = {
+--     awful.layout.suit.tile,
+--     awful.layout.suit.max,
+--     awful.layout.suit.floating
+-- }
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
+-- myawesomemenu = {
+--    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+--    { "manual", terminal .. " -e man awesome" },
+--    { "edit config", editor_cmd .. " " .. awesome.conffile },
+--    { "restart", awesome.restart },
+--    { "quit", function() awesome.quit() end },
+-- }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+-- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+--                                     { "open terminal", terminal }
+--                                   }
+--                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+--                                      menu = mymainmenu })
 
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
+-- -- Menubar configuration
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- -- Keyboard map indicator and switcher
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -160,7 +196,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
