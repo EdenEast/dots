@@ -10,7 +10,7 @@ local ctrl = 'Control'
 local shift = 'Shift'
 
 
-local newkeys = awful.util.table.join(
+local globalkeys = awful.util.table.join(
     awful.key({ mod, }, 'F1',
         hotkeys_popup.show_help,
         { description = 'Show this hotkey help', group = 'Awesome' }
@@ -35,7 +35,12 @@ local newkeys = awful.util.table.join(
     -------------------------------------------------------
     awful.key({ mod, }, 'h',
         function()
-            awful.client.focus.bydirection('left')
+            local current_layout = awful.layout.getname(awful.layout.get(awful.screen.focused()))
+            if current_layout == 'max' then
+                awful.client.focus.byidx(-1)
+            else
+                awful.client.focus.bydirection('left')
+            end
             if client.focus then client.focus:raise() end
         end,
         { description = 'Move client focus to left', group = 'Client' }
@@ -56,7 +61,12 @@ local newkeys = awful.util.table.join(
     ),
     awful.key({ mod, }, 'l',
         function()
-            awful.client.focus.bydirection('right')
+            local current_layout = awful.layout.getname(awful.layout.get(awful.screen.focused()))
+            if current_layout == 'max' then
+                awful.client.focus.byidx(1)
+            else
+                awful.client.focus.bydirection('right')
+            end
             if client.focus then client.focus:raise() end
         end,
         { description = 'Move client focus to right', group = 'Client' }
@@ -102,8 +112,16 @@ local newkeys = awful.util.table.join(
 
     -- Jumps
     awful.key({ mod, }, 'u',
-        awful.client.urgent.jumpto,
-        { description = 'jump to urget client', group = 'Client' }
+        function()
+            uc = awful.client.urgent.get()
+            -- If there is no urgent client, go back to teh last tag
+            if uc == nil then
+                awful.tag.history.restore()
+            else
+                awful.client.urgent.jumpto()
+            end
+        end,
+        { description = 'jump to urgent client', group = 'Client' }
     ),
     awful.key({ mod, }, 'Tab',
         function()
@@ -129,110 +147,6 @@ local newkeys = awful.util.table.join(
         { description = 'Select previous', group = 'Layout' }
     )
 )
-
-local oldkeys = awful.util.table.join(
-    awful.key({ mod,           }, "s",      hotkeys_popup.show_help,
-              {description="show help", group="awesome"}),
-    awful.key({ mod,           }, "Left",   awful.tag.viewprev,
-              {description = "view previous", group = "tag"}),
-    awful.key({ mod,           }, "Right",  awful.tag.viewnext,
-              {description = "view next", group = "tag"}),
-    awful.key({ mod,           }, "Escape", awful.tag.history.restore,
-              {description = "go back", group = "tag"}),
-
-    awful.key({ mod,           }, "j",
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
-        {description = "focus next by index", group = "client"}
-    ),
-    awful.key({ mod,           }, "k",
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
-        {description = "focus previous by index", group = "client"}
-    ),
-    awful.key({ mod,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
-
-    -- Layout manipulation
-    awful.key({ mod, shift   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "client"}),
-    awful.key({ mod, shift   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "client"}),
-    awful.key({ mod, ctrl }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ mod, ctrl }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
-    awful.key({ mod,           }, "u", awful.client.urgent.jumpto,
-              {description = "jump to urgent client", group = "client"}),
-    awful.key({ mod,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
-
-    -- Standard program
-    awful.key({ mod,           }, "Return", function () awful.spawn("alacritty") end,
-              {description = "open a terminal", group = "launcher"}),
-    awful.key({ mod, ctrl }, "r", awesome.restart,
-              {description = "reload awesome", group = "awesome"}),
-    awful.key({ mod, shift   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
-
-    awful.key({ mod,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ mod,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ mod, shift   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ mod, shift   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
-    awful.key({ mod, ctrl }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = "increase the number of columns", group = "layout"}),
-    awful.key({ mod, ctrl }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ mod,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
-    awful.key({ mod, shift   }, "space", function () awful.layout.inc(-1)                end,
-              {description = "select previous", group = "layout"}),
-
-    awful.key({ mod, ctrl }, "n",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                    c:emit_signal(
-                        "request::activate", "key.unminimize", {raise = true}
-                    )
-                  end
-              end,
-              {description = "restore minimized", group = "client"}),
-
-    -- Prompt
-    awful.key({ mod },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
-    awful.key({ mod }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ mod }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
-)
-
-local globalkeys = newkeys
--- local globalkeys = oldkeys
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
