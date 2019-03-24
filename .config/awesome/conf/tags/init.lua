@@ -1,45 +1,40 @@
-local gears = require('gears')
 local awful = require('awful')
+local gears = require('gears')
 
 local tags = {
     {
-        type = 'main',
-        defaultapp = '',
+        type = 'chrome',
+        defaultApp = 'google-chrome-beta',
         screen = 1
     },
     {
         type = 'code',
-        defaultapp = 'code',
+        defaultApp = 'code',
         screen = 1
     },
     {
-        type = 'brower',
-        defaultapp = 'vivalid-stable',
+        type = 'social',
+        defaultApp = 'station',
         screen = 1
     },
     {
         type = 'files',
-        defaultapp = 'thunar',
+        defaultApp = 'nautilus',
         screen = 1
     },
     {
         type = 'music',
-        defaultapp = 'ncmpcpp',
+        defaultApp = 'youtube-music',
         screen = 1
     },
     {
         type = 'game',
-        defaultapp = '',
+        defaultApp = '',
         screen = 1
     },
     {
         type = 'any',
-        defaultapp = '',
-        screen = 1
-    },
-    {
-        type = 'any',
-        defaultapp = '',
+        defaultApp = '',
         screen = 1
     }
 }
@@ -52,13 +47,15 @@ awful.layout.layouts = {
 awful.screen.connect_for_each_screen(
     function(s)
         for i, tag in pairs(tags) do
-            local newtag = awful.tag.add(
-                i, {
+        local new_tag =
+            awful.tag.add(
+                i,
+                {
                     layout = awful.layout.suit.tile,
                     gap_single_client = false,
-                    gaps = 4,
+                    gap = 4,
                     screen = s,
-                    defualtApp = tag.defaultapp,
+                    defaultApp = tag.defaultApp,
                     selected = i == 1
                 }
             )
@@ -66,15 +63,14 @@ awful.screen.connect_for_each_screen(
     end
 )
 
-tag.connect_signal('property::layout',
+tag.connect_signal(
+    'property::layout',
     function(t)
-        local current = awful.tag.getproperty(t, 'layout')
-        if (current == awful.layout.suit.max) then
+        local currentLayout = awful.tag.getproperty(t, 'layout')
+        if (currentLayout == awful.layout.suit.max) then
             t.gap = 0
         else
             t.gap = 4
         end
     end
 )
-
-

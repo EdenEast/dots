@@ -44,6 +44,7 @@ end
 -- }}}
 
 ---------------------------------------------------------------------------------------------------
+-- require('configuration.tags')
 require('conf.tags')
 require('conf.client')
 root.keys(require('conf.keys.global'))
