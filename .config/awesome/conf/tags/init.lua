@@ -36,6 +36,11 @@ local tags = {
         type = 'any',
         defaultapp = '',
         screen = 1
+    },
+    {
+        type = 'any',
+        defaultapp = '',
+        screen = 1
     }
 }
 
