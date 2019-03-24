@@ -10,7 +10,127 @@ local ctrl = 'Control'
 local shift = 'Shift'
 
 
-local globalkeys = awful.util.table.join(
+local newkeys = awful.util.table.join(
+    awful.key({ mod, }, 'F1',
+        hotkeys_popup.show_help,
+        { description = 'Show this hotkey help', group = 'Awesome' }
+    ),
+    awful.key({ mod, ctrl }, 'r',
+        awesome.restart,
+        { description = 'Restart awesome', group = 'Awesome' }
+    ),
+    awful.key({ mod, shift }, 'Escape',
+        awesome.quit,
+        { description = 'Quit awesome', group = 'Awesome' }
+    ),
+
+    awful.key({ mod, }, 'Return',
+        function()
+            awful.spawn("alacritty")
+        end,
+        { description = 'Launch terminal', group = 'Launcher' }
+    ),
+
+    -- Movement
+    -------------------------------------------------------
+    awful.key({ mod, }, 'h',
+        function()
+            awful.client.focus.bydirection('left')
+            if client.focus then client.focus:raise() end
+        end,
+        { description = 'Move client focus to left', group = 'Client' }
+    ),
+    awful.key({ mod, }, 'j',
+        function()
+            awful.client.focus.bydirection('down')
+            if client.focus then client.focus:raise() end
+        end,
+        { description = 'Move client focus to down', group = 'Client' }
+    ),
+    awful.key({ mod, }, 'k',
+        function()
+            awful.client.focus.bydirection('up')
+            if client.focus then client.focus:raise() end
+        end,
+        { description = 'Move client focus to up', group = 'Client' }
+    ),
+    awful.key({ mod, }, 'l',
+        function()
+            awful.client.focus.bydirection('right')
+            if client.focus then client.focus:raise() end
+        end,
+        { description = 'Move client focus to right', group = 'Client' }
+    ),
+
+    awful.key({ mod, shift }, 'h',
+        function()
+            awful.client.swap.bydirection('left')
+        end,
+        { description = 'Swap client with one to left', group = 'Client' }
+    ),
+    awful.key({ mod, shift }, 'j',
+        function()
+            awful.client.swap.bydirection('down')
+        end,
+        { description = 'Swap client with one to down', group = 'Client' }
+    ),
+    awful.key({ mod, shift }, 'k',
+        function()
+            awful.client.swap.bydirection('up')
+        end,
+        { description = 'Swap client with one to up', group = 'Client' }
+    ),
+    awful.key({ mod, shift }, 'l',
+        function()
+            awful.client.swap.bydirection('right')
+        end,
+        { description = 'Swap client with one to right', group = 'Client' }
+    ),
+
+    awful.key({ mod, alt }, 'h',
+        function()
+            awful.tag.incmwfact(-0.05)
+        end,
+        { description = 'Increase master width factor', group = 'Client' }
+    ),
+    awful.key({ mod, alt }, 'l',
+        function()
+            awful.tag.incmwfact(0.05)
+        end,
+        { description = 'Decrease master width factor', group = 'Client' }
+    ),
+
+    -- Jumps
+    awful.key({ mod, }, 'u',
+        awful.client.urgent.jumpto,
+        { description = 'jump to urget client', group = 'Client' }
+    ),
+    awful.key({ mod, }, 'Tab',
+        function()
+            awful.client.focus.history.previous()
+            if client.focus then
+                client.focus:raise()
+            end
+        end,
+        { description = 'Go back', group = 'Client' }
+    ),
+
+    -- Layout
+    awful.key({ mod, }, 'y',
+        function()
+            awful.layout.inc(1)
+        end,
+        { description = 'Select next', group = 'Layout' }
+    ),
+    awful.key({ mod, shift }, 'y',
+        function()
+            awful.layout.inc(-1)
+        end,
+        { description = 'Select previous', group = 'Layout' }
+    )
+)
+
+local oldkeys = awful.util.table.join(
     awful.key({ mod,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ mod,           }, "Left",   awful.tag.viewprev,
@@ -110,6 +230,9 @@ local globalkeys = awful.util.table.join(
     awful.key({ mod }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
 )
+
+local globalkeys = newkeys
+-- local globalkeys = oldkeys
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
