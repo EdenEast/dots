@@ -9,11 +9,8 @@ local alt = 'Mod1'
 local ctrl = 'Control'
 local shift = 'Shift'
 
-local keys = {}
 
--- Global keys
----------------------------------------------------------------------------------------------------
-keys.globalkeys = awful.util.table.join(
+local globalkeys = awful.util.table.join(
     awful.key({ mod,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ mod,           }, "Left",   awful.tag.viewprev,
@@ -118,7 +115,7 @@ keys.globalkeys = awful.util.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    keys.globalkeys = gears.table.join(keys.globalkeys,
+    globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ mod }, "#" .. i + 9,
                   function ()
@@ -164,52 +161,4 @@ for i = 1, 9 do
     )
 end
 
--- Client keys
----------------------------------------------------------------------------------------------------
-keys.clientkeys = gears.table.join(
-    awful.key({ mod,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
-    awful.key({ mod, shift   }, "c",      function (c) c:kill()                         end,
-              {description = "close", group = "client"}),
-    awful.key({ mod, ctrl }, "space",  awful.client.floating.toggle                     ,
-              {description = "toggle floating", group = "client"}),
-    awful.key({ mod, ctrl }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-              {description = "move to master", group = "client"}),
-    awful.key({ mod,           }, "o",      function (c) c:move_to_screen()               end,
-              {description = "move to screen", group = "client"}),
-    awful.key({ mod,           }, "t",      function (c) c.ontop = not c.ontop            end,
-              {description = "toggle keep on top", group = "client"}),
-    awful.key({ mod,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ mod,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
-    awful.key({ mod, ctrl }, "m",
-        function (c)
-            c.maximized_vertical = not c.maximized_vertical
-            c:raise()
-        end ,
-        {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ mod, shift   }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c:raise()
-        end ,
-        {description = "(un)maximize horizontally", group = "client"})
-)
-
-return keys
-
--- vim: set et sw=4 sts=4 ts=4
+return globalkeys
