@@ -60,7 +60,10 @@ alias update-vscode="code --list-extensions | xargs -L 1 echo code --install-ext
 }
 
 # shortcut edit files
-alias eA="(cd ~/.config/awesome && $EDITOR rc.lua)"
+alias ea="(cd ~/.config/awesome && $EDITOR rc.lua)"
+alias eg="(cd ~/.config/git && $EDITOR config)"
+alias ev="(cd ~/.vim && $EDITOR vimrc)"
+
 alias edals="$EDITOR ~/.config/shell/aliases"
 alias edbpr="$EDITOR ~/.bash_profile"
 alias edbrc="$EDITOR ~/.bashrc"
