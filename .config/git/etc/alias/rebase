@@ -10,7 +10,7 @@
     selfbase = "! git nbase $(git branch-count)"
 
     # Rebasing on origin/master
-    rbm = "!git fetch -nq 2>/dev/null ; git rebase origin/master"
+    rbm = "!git check-remote -nq 2>/dev/null ; git rebase origin/master"
 
     # Rebase operations
     rbc = rebase --continue

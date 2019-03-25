@@ -3,7 +3,7 @@
 
 [alias]
     # Clean up all local branches that do not have a remote reference.
-    cleanup = "!f() { git fetch -pq && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D ; } ; f"
+    cleanup = "!f() { git check-remote -pq && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D ; } ; f"
 
     # Push the current branch to the remote "origin", and set it to track the upstream branch
     publish = "!git push -u origin $(git branch-name)"
@@ -15,7 +15,7 @@
     this = !git init && git add . && git commit -m \"Initial commit.\"
 
     # Create a new branch from origin master and publish it to origin
-    create = "!f() { git fetch -nq 2>/dev/null ; git checkout -b $1 origin/master && git push -u origin $(git branch-name); } ; f"
+    create = "!f() { git check-remote -nq 2>/dev/null ; git checkout -b $1 origin/master && git push -u origin $(git branch-name); } ; f"
 
     # Delete all local branches and will leave the branch on master
     delete-local-branches="!git checkout master ; git branch --list | grep -v \\* | xargs git branch -D"
