@@ -30,6 +30,12 @@ local globalkeys = awful.util.table.join(
         end,
         { description = 'Launch terminal', group = 'Launcher' }
     ),
+    awful.key({ mod, shift }, 'Return',
+        function()
+            awful.spawn('rofi -show combi')
+        end,
+        { description = 'Open rofi', group = "Launcher" }
+    ),
 
     -- Movement
     -------------------------------------------------------
@@ -145,7 +151,37 @@ local globalkeys = awful.util.table.join(
             awful.layout.inc(-1)
         end,
         { description = 'Select previous', group = 'Layout' }
-    )
+    ),
+
+    -- Movement
+    -------------------------------------------------------
+    awful.key({}, 'XF86AudioForward', function() end, {}),
+    awful.key({}, 'XF86AudioLowerVolume', function() end, {}),
+    awful.key({}, 'XF86AudioMedia', function() end, {}),
+    awful.key({}, 'XF86AudioMicMute', function() end, {}),
+    awful.key({}, 'XF86AudioMute', function() end, {}),
+    awful.key({}, 'XF86AudioNext', function() end, {}),
+    awful.key({}, 'XF86AudioPlay', function() end, {}),
+    awful.key({}, 'XF86AudioPrev', function() end, {}),
+    awful.key({}, 'XF86AudioRaiseVolume', function() end, {}),
+    awful.key({}, 'XF86AudioRecord', function() end, {}),
+    awful.key({}, 'XF86AudioRewind', function() end, {}),
+    awful.key({}, 'XF86AudioStop', function() end, {}),
+    awful.key({}, 'XF86Close', function() end, {}),
+    awful.key({}, 'XF86Display', function() end, {}),
+    awful.key({}, 'XF86Explorer', function() end, {}),
+    awful.key({}, 'XF86HomePage', function() end, {}),
+    awful.key({}, 'XF86KbdBrightnessDown', function() end, {}),
+    awful.key({}, 'XF86KbdBrightnessUp', function() end, {}),
+    awful.key({}, 'XF86KbdLightOnOff', function() end, {}),
+    awful.key({}, 'XF86MonBrightDown', function() end, {}),
+    awful.key({}, 'XF86MonBrightUp', function() end, {}),
+    awful.key({}, 'XF86MyComputer', function() end, {}),
+    awful.key({}, 'XF86PowerOff', function() end, {}),
+    awful.key({}, 'XF86Reload', function() end, {}),
+    awful.key({}, 'XF86ScreenSaver', function() end, {}),
+    awful.key({}, 'XF86Sleep', function() end, {}),
+    awful.key({}, 'XF86Suspend', function() end, {})
 )
 
 -- Bind all key numbers to tags.
