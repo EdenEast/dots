@@ -3,7 +3,7 @@
 
 [alias]
     # Check your current local branch's status compared to it's origin
-    branch-status = "!$(git check-origin) ; git rev-list --left-right --count origin/$(git branch-name)...$(git branch-name) | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
+    branch-status = "!$(git check-remote) ; git rev-list --left-right --count origin/$(git branch-name)...$(git branch-name) | sed -En 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"
     bs = "!git branch-status"
 
     # Show the commits in your local branch that are ahead of origin/master
@@ -22,7 +22,7 @@
     local-status = "!git for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"
 
     # List all remote branches
-    remote-branches = "!$(git check-origin) ; git ls-remote --heads origin | awk '{ print $2 }' | sed -s 's#refs/heads/##'"
+    remote-branches = "!$(git check-remote) ; git ls-remote --heads origin | awk '{ print $2 }' | sed -s 's#refs/heads/##'"
 
     # Checking your current branch's behind|ahead status compared to origin/master
     rel = "!git fetch -nq 2>/dev/null ; git rev-list --left-right --count origin/master...$(git branch-name) | sed -rn 's@([[:digit:]]+)[^[:digit:]]+([[:digit:]]+)@[Behind: \\1 | Ahead: \\2]@p'"

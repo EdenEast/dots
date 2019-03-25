@@ -20,7 +20,7 @@
     dw  = diff --color-words
     fcl = clean -fdx
     fp  = push --force-with-lease
-    ft  = fetch
+    ft  = fetch --all
     mt  = mergetool
     ph  = push
     pl  = pull --rebase
