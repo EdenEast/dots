@@ -155,33 +155,131 @@ local globalkeys = awful.util.table.join(
 
     -- Movement
     -------------------------------------------------------
-    awful.key({}, 'XF86AudioForward', function() end, {}),
-    awful.key({}, 'XF86AudioLowerVolume', function() end, {}),
-    awful.key({}, 'XF86AudioMedia', function() end, {}),
-    awful.key({}, 'XF86AudioMicMute', function() end, {}),
-    awful.key({}, 'XF86AudioMute', function() end, {}),
-    awful.key({}, 'XF86AudioNext', function() end, {}),
-    awful.key({}, 'XF86AudioPlay', function() end, {}),
-    awful.key({}, 'XF86AudioPrev', function() end, {}),
-    awful.key({}, 'XF86AudioRaiseVolume', function() end, {}),
-    awful.key({}, 'XF86AudioRecord', function() end, {}),
-    awful.key({}, 'XF86AudioRewind', function() end, {}),
-    awful.key({}, 'XF86AudioStop', function() end, {}),
-    awful.key({}, 'XF86Close', function() end, {}),
-    awful.key({}, 'XF86Display', function() end, {}),
-    awful.key({}, 'XF86Explorer', function() end, {}),
-    awful.key({}, 'XF86HomePage', function() end, {}),
-    awful.key({}, 'XF86KbdBrightnessDown', function() end, {}),
-    awful.key({}, 'XF86KbdBrightnessUp', function() end, {}),
-    awful.key({}, 'XF86KbdLightOnOff', function() end, {}),
-    awful.key({}, 'XF86MonBrightDown', function() end, {}),
-    awful.key({}, 'XF86MonBrightUp', function() end, {}),
-    awful.key({}, 'XF86MyComputer', function() end, {}),
-    awful.key({}, 'XF86PowerOff', function() end, {}),
-    awful.key({}, 'XF86Reload', function() end, {}),
-    awful.key({}, 'XF86ScreenSaver', function() end, {}),
-    awful.key({}, 'XF86Sleep', function() end, {}),
-    awful.key({}, 'XF86Suspend', function() end, {})
+    awful.key({}, 'XF86AudioForward',
+        function()
+            awful.spawn('~/.scripts/music_control forward')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioLowerVolume',
+        function()
+            awful.spawn('~/.scripts/music_control down')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioMedia',
+        function()
+            -- awful.spawn('~/.scripts/music_control forward')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioMicMute',
+        function()
+            -- awful.spawn('~/.scripts/music_control forward')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioMute',
+        function()
+            awful.spawn('~/.scripts/music_control mute')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioNext',
+        function()
+            awful.spawn('~/.scripts/music_control next')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioPlay',
+        function()
+            awful.spawn('~/.scripts/music_control toggle')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioPrev',
+        function()
+            awful.spawn('~/.scripts/music_control prev')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioRaiseVolume',
+        function()
+            awful.spawn('~/.scripts/music_control up')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioRecord',
+        function()
+            -- awful.spawn('~/.scripts/music_control forward')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioRewind',
+        function()
+            awful.spawn('~/.scripts/music_control backward')
+        end, {}
+    ),
+    awful.key({}, 'XF86AudioStop',
+        function()
+            awful.spawn('~/.scripts/music_control stop')
+        end, {}
+    ),
+    awful.key({}, 'XF86Close',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86Display',
+        function()
+            awful.spawn('arandr')
+        end, {}
+    ),
+    awful.key({}, 'XF86Explorer',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86HomePage',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86KbdBrightnessDown',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86KbdBrightnessUp',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86KbdLightOnOff',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86MonBrightDown',
+        function()
+            awful.spawn('light -U 5')
+        end, {}
+    ),
+    awful.key({}, 'XF86MonBrightUp',
+        function()
+            awful.spawn('light -A 5')
+        end, {}
+    ),
+    awful.key({}, 'XF86MyComputer',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86PowerOff',
+        function()
+            awful.spawn('~/.scripts/lockscreen.sh')
+        end, {}
+    ),
+    awful.key({}, 'XF86Reload',
+        awesome.restart, {}
+    ),
+    awful.key({}, 'XF86ScreenSaver',
+        function()
+        end, {}
+    ),
+    awful.key({}, 'XF86Sleep',
+        function()
+            awful.spawn('~/.scripts/lockscreen.sh')
+        end, {}
+    ),
+    awful.key({}, 'XF86Suspend',
+        function()
+            awful.spawn('~/.scripts/lockscreen.sh')
+        end, {}
+    )
 )
 
 -- Bind all key numbers to tags.
