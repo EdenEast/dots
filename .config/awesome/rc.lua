@@ -47,6 +47,7 @@ end
 
 -- Init all modules
 require('module.decorate-client')
+require('module.exit-screen')
 require('conf.tags')
 require('conf.client')
 root.keys(require('conf.keys.global'))
