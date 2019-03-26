@@ -45,64 +45,114 @@
   endif
   call plug#begin(expand(root_dotfile_dir."/plugged"))
 
-  Plug 'junegunn/vim-easy-align'
-  Plug 'Yggdroot/indentLine'
-  Plug 'chrisbra/vim-diff-enhanced'
-  Plug 'duggiefresh/vim-easydir'
+  " completion
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  let g:deoplete#enable_at_startup = 1
+
+  " TODO: switch to language-server
+  " https://github.com/autozimu/LanguageClient-neovim
+  Plug 'sebastianmarkow/deoplete-rust' "TODO: setup and configure
+  Plug 'Shougo/neco-vim'
+  Plug 'Shougo/denite.nvim'
+
+  " editing
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'glts/vim-textobj-comment'
   Plug 'jiangmiao/auto-pairs'
-  Plug 'kana/vim-textobj-user'
-  Plug 'kien/ctrlp.vim'
-  Plug 'scrooloose/nerdtree'
-  Plug 'shime/vim-livedown'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'tommcdo/vim-exchange'
-  Plug 'tommcdo/vim-lion'
-  Plug 'tpope/tpope-vim-abolish'
+  Plug 'kana/vim-smartinput'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-surround'
-  Plug 'wincent/replay'
-  Plug 'wincent/scalpel'
-  Plug 'xuyuanp/nerdtree-git-plugin'
-  Plug 'PotatoesMaster/i3-vim-syntax'
+
+  " productivity
   Plug 'jceb/vim-orgmode'
+  Plug 'kien/ctrlp.vim'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'tpope/vim-repeat'
+  Plug 'wincent/replay'
 
-" easy-motion
-  Plug 'easymotion/vim-easymotion'
-  Plug 'haya14busa/incsearch.vim'
-  Plug 'haya14busa/incsearch-easymotion.vim'
-
-  Plug 'tpope/vim-markdown', {'for': 'markdown'}
-  Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+  " movement
   Plug 'christoomey/vim-tmux-navigator'
 
-" completion {{{
-  if (has("nvim"))
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'davidhalter/jedi-vim', {'for': 'python'}
-    Plug 'zchee/deoplete-jedi', {'for': 'python'}
-    Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/vimfiler.vim'
-    Plug 'Shougo/unite.vim'
-  else
-    if (has("lua"))
-      Plug 'Shougo/neocomplete.vim'
-      Plug 'Shougo/vimshell.vim'
-      Plug 'Shougo/neco-vim'
-      Plug 'davidhalter/jedi-vim', {'for': 'python'}
-    endif
-  endif " }}}
+  " visual
+  Plug 'Yggdroot/indentLine'
+  Plug 'haya14busa/incsearch.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'xuyuanp/nerdtree-git-plugin'
 
-" themes
+  " text objects
+  Plug 'glts/vim-textobj-comment'
+  Plug 'kana/vim-textobj-user'
+  Plug 'tpope/vim-surround'
+  Plug 'wellle/targets.vim'
+
+  " themes
   Plug 'CruizeMissile/Revolution.vim'
-  Plug 'mhartington/oceanic-next'
-  Plug 'rhysd/vim-color-spring-night'
-  Plug 'raphamorim/lucario'
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'dylanaraps/wal.vim'
+  Plug 'rhysd/vim-color-spring-night'
+
+  " Plug 'junegunn/vim-easy-align'
+  " Plug 'Yggdroot/indentLine'
+  " Plug 'chrisbra/vim-diff-enhanced'
+  " Plug 'duggiefresh/vim-easydir'
+  " Plug 'editorconfig/editorconfig-vim'
+  " Plug 'glts/vim-textobj-comment'
+  " Plug 'jiangmiao/auto-pairs'
+  " Plug 'kana/vim-textobj-user'
+  " Plug 'kien/ctrlp.vim'
+  " Plug 'scrooloose/nerdtree'
+  " Plug 'shime/vim-livedown'
+  " Plug 'terryma/vim-multiple-cursors'
+  " Plug 'tommcdo/vim-exchange'
+  " Plug 'tommcdo/vim-lion'
+  " Plug 'tpope/tpope-vim-abolish'
+  " Plug 'tpope/vim-commentary'
+  " Plug 'tpope/vim-repeat'
+  " Plug 'tpope/vim-surround'
+  " Plug 'wincent/replay'
+  " Plug 'wincent/scalpel'
+  " Plug 'xuyuanp/nerdtree-git-plugin'
+  " Plug 'PotatoesMaster/i3-vim-syntax'
+  " Plug 'jceb/vim-orgmode'
+
+" " easy-motion
+  " Plug 'easymotion/vim-easymotion'
+  " Plug 'haya14busa/incsearch.vim'
+  " Plug 'haya14busa/incsearch-easymotion.vim'
+
+  " Plug 'tpope/vim-markdown', {'for': 'markdown'}
+  " Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+  " Plug 'christoomey/vim-tmux-navigator'
+
+" " completion {{{
+  " if (has("nvim"))
+  "   Plug 'Shougo/deoplete.nvim'
+  "   Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  "   Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  "   Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
+  "   Plug 'Shougo/neco-vim'
+  "   Plug 'Shougo/vimfiler.vim'
+  "   Plug 'Shougo/unite.vim'
+  " else
+  "   if (has("lua"))
+  "     Plug 'Shougo/neocomplete.vim'
+  "     Plug 'Shougo/vimshell.vim'
+  "     Plug 'Shougo/neco-vim'
+  "     Plug 'davidhalter/jedi-vim', {'for': 'python'}
+  "   endif
+  " endif " }}}
+
+" " themes
+  " Plug 'CruizeMissile/Revolution.vim'
+  " Plug 'mhartington/oceanic-next'
+  " Plug 'rhysd/vim-color-spring-night'
+  " Plug 'raphamorim/lucario'
+  " Plug 'KeitaNakamura/neodark.vim'
+  " Plug 'dylanaraps/wal.vim'
 
   call plug#end()
 
@@ -344,12 +394,7 @@
   set virtualedit=onemore " allow the cursor beyond last cursor
 
   syntax on
-  try
-    " colorscheme neodark
-    colorscheme wal
-  catch
-    colorscheme default
-  endtry
+  colorscheme default
 
 "  }}}
 " Folds   ---------------------------------------------------------------------- {{{
