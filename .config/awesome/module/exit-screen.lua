@@ -18,12 +18,12 @@ local pad = function(size)
 end
 
 local poweroff_command = function()
-    awful.spawn.with_shell('poweroff')
+    awful.spawn.with_shell('shutdown now')
     awful.keygrabber.stop(exit_screen_grabber)
 end
 
 local reboot_command = function()
-    awful.spawn.with_shell('reboot')
+    awful.spawn.with_shell('shutdown -r now')
     awful.keygrabber.stop(exit_screen_grabber)
 end
 

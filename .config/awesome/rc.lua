@@ -5,9 +5,10 @@ local beautiful = require("beautiful")
 require('module.error-check')
 require('module.decorate-client')
 require('module.exit-screen')
+require('conf.keys')
 require('conf.tags')
 require('conf.client')
-root.keys(require('conf.keys.global'))
+-- root.keys(require('conf.keys.global'))
 
 -- Signal function to execute when a new client appears
 _G.client.connect_signal('manage',
