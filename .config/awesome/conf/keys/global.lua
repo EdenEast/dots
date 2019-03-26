@@ -19,9 +19,15 @@ local globalkeys = awful.util.table.join(
         awesome.restart,
         { description = 'Restart awesome', group = 'Awesome' }
     ),
-    awful.key({ mod, shift }, 'Escape',
-        awesome.quit,
-        { description = 'Quit awesome', group = 'Awesome' }
+    -- awful.key({ mod, shift }, 'Escape',
+    --     awesome.quit,
+    --     { description = 'Quit awesome', group = 'Awesome' }
+    -- ),
+    awful.key({ mod }, 'Escape',
+        function()
+            exit_screen_show()
+        end,
+        { description = 'exit', group = Awesome }
     ),
 
     awful.key({ mod, }, 'Return',
