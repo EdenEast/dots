@@ -29,7 +29,7 @@ alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
 alias t=tmux
 alias v=vim
 alias vp='vim -c CtrlP'
-alias psake='powershell -c psake'
+alias psake='powershell -c Invoke-Psake'
 
 # default command flags
 alias pgrep='pgrep -l'
@@ -63,24 +63,3 @@ alias update-vscode="code --list-extensions | xargs -L 1 echo code --install-ext
 alias ea="(cd ~/.config/awesome && $EDITOR rc.lua)"
 alias eg="(cd ~/.config/git && $EDITOR config)"
 alias ev="(cd ~/.vim && $EDITOR vimrc)"
-
-alias edals="$EDITOR ~/.config/shell/aliases"
-alias edbpr="$EDITOR ~/.bash_profile"
-alias edbrc="$EDITOR ~/.bashrc"
-alias edfun="$EDITOR ~/.config/shell/functions"
-alias edbsp="$EDITOR ~/.config/bspwm/bspwmrc"
-alias edsx="$EDITOR ~/.config/sxhkd/sxhkdrc"
-alias edg="$EDITOR ~/.config/git"
-alias edi="$EDITOR ~/.config/i3/config"
-alias edlbin="$EDITOR ~/.local/bin"
-alias edlbsh="$EDITOR ~/.local/etc/bash"
-alias edlzsh="$EDITOR ~/.local/etc/zsh"
-alias ednv="$EDITOR ~/.config/nvim/init.vim"
-alias edpr="$EDITOR ~/.profile"
-alias edrrc="$EDITOR ~/.config/ranger/rc.conf"
-alias edrrf="$EDITOR ~/.config/ranger/rifle.conf"
-alias edrsp="$EDITOR ~/.config/ranger/scope.sh"
-alias edsc="$EDITOR ~/.scripts"
-alias edv="$EDITOR ~/.vim/vimrc"
-alias edzpr="$EDITOR ~/.config/zsh/.zprofile"
-alias edzrc="$EDITOR ~/.config/zsh/.zshrc"
