@@ -44,7 +44,9 @@ end
 -- }}}
 
 ---------------------------------------------------------------------------------------------------
--- require('configuration.tags')
+
+-- Init all modules
+require('module.decorate-client')
 require('conf.tags')
 require('conf.client')
 root.keys(require('conf.keys.global'))
