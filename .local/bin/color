@@ -4,7 +4,13 @@ function usage()
 {
     cat << 'EOF'
 Test output color codes for your terminal.
-Usage: color [OPTIONS]
+Usage: color [OPTIONS] [mode]
+
+Mode:
+  blocks  - Output colors in block output
+  dots    - Output colors as dots
+  panes   - Output colors as pane
+
 Options:
   -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
   -f, --forground      Only output forground colors
@@ -17,7 +23,7 @@ function parse_arguments()
     forground_only=0
     background_only=0
     local accepted_values=(8, 16, 256)
-    parse_args=()
+    pos_args=()
     local optspec=":c:fb-"
     while [ $# -gt 0 ] ; do
         unset OPTIND ; unset OPTARG
@@ -47,8 +53,76 @@ function parse_arguments()
                 \?) echo "Invalid option: $OPTION $OPTARG" ; usage 1 ;;
             esac
         done
-        shift $((OPTIND-1)) ; parse_args+=($1) ; shift
+        shift $((OPTIND-1)) ; pos_args+=($1) ; shift
     done
+}
+
+function output_balls()
+{
+    f=3 b=4
+    for j in f b; do
+      for i in {0..7}; do
+        printf -v $j$i %b "\e[${!j}${i}m"
+      done
+    done
+    d=$'\e[1m'
+    t=$'\e[0m'
+    v=$'\e[7m'
+
+    # Symbol
+    s=
+    # s=
+
+    cat << EOF
+
+     $f0$s$d$s$t $f1$s$d$s$t $f2$s$d$s$t $f3$s$d$s$t
+     $f4$s$d$s$t $f5$s$d$s$t $f6$s$d$s$t $f7$s$d$s$t
+
+EOF
+}
+
+function output_blocks()
+{
+    f=3 b=4
+    for j in f b; do
+      for i in {0..7}; do
+        printf -v $j$i %b "\e[${!j}${i}m"
+      done
+    done
+    d=$'\e[1m'
+    t=$'\e[0m'
+    v=$'\e[7m'
+
+    cat << EOF
+
+     $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t
+     $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t
+     $f1██████$d██$t $f2██████$d██$t $f3██████$d██$t $f4██████$d██$t $f5██████$d██$t $f6██████$d██$t
+     $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t $ft██████$d$f7██$t
+
+EOF
+}
+
+function output_panes()
+{
+    f=3 b=4
+    for j in f b; do
+      for i in {0..7}; do
+        printf -v $j$i %b "\e[${!j}${i}m"
+      done
+    done
+    d=$'\e[1m'
+    t=$'\e[0m'
+    v=$'\e[7m'
+
+    cat << EOF
+
+     $f0████$d▄$t  $f1████$d▄$t  $f2████$d▄$t  $f3████$d▄$t  $f4████$d▄$t  $f5████$d▄$t  $f6████$d▄$t  $f7████$d▄$t
+     $f0████$d█$t  $f1████$d█$t  $f2████$d█$t  $f3████$d█$t  $f4████$d█$t  $f5████$d█$t  $f6████$d█$t  $f7████$d█$t
+     $f0████$d█$t  $f1████$d█$t  $f2████$d█$t  $f3████$d█$t  $f4████$d█$t  $f5████$d█$t  $f6████$d█$t  $f7████$d█$t
+     $d$f0 ▀▀▀▀  $d$f1 ▀▀▀▀   $f2▀▀▀▀   $f3▀▀▀▀   $f4▀▀▀▀   $f5▀▀▀▀   $f6▀▀▀▀   $f7▀▀▀▀$t
+
+EOF
 }
 
 function output_colors()
@@ -83,6 +157,16 @@ function output_colors()
 function main()
 {
     parse_arguments "$@"
+
+    local mode=${pos_args[0]}
+    [[ -n $mode ]] && {
+        case "$mode" in
+            dots|dot|ball|balls) output_balls ; return ;;
+            block|blocks) output_blocks ; return ;;
+            pane|panes) output_panes ; return ;;
+        esac
+    }
+
     output_colors
 }
 
