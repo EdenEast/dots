@@ -10,11 +10,6 @@ export LOCAL_VAR="$HOME/.local/var"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CONFIG_HOME="${HOME}/.config"
 
-# bspwm config locations
-# export BSPWMRC="$LOCAL_ETC/bspwm/bspwmrc"
-# export BSPWM_STATE="${XDG_CACHE_HOME}/bspwm/state.json"
-# export BSPWM_FIFO="${XDG_CACHE_HOME}/bspwm/wm_state"
-
 # editor and vim
 [[ -n "$(command -v nvim)" ]] && {
     export EDITOR='nvim'
@@ -23,15 +18,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
     export EDITOR="vim"
     export VISUAL="vim"
 }
-
-# nvim does not work right now in the terminal on widnows so only
-# check to see if i should use nvim when not on windows
-# if [ $OSTYPE != 'msys' ] && [ $OSTYPE != 'cygwin' ]; then
-#     if which nvim &>/dev/null; then
-#         export EDITOR="nvim"
-#         export EDITOR="nvim"
-#     fi
-# fi
 
 # system defaults
 export LANG="en_US.UTF-8"
