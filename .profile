@@ -16,8 +16,13 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # export BSPWM_FIFO="${XDG_CACHE_HOME}/bspwm/wm_state"
 
 # editor and vim
-export EDITOR="vim"
-export VISUAL="vim"
+[[ -n "$(command -v nvim)" ]] && {
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+} || {
+    export EDITOR="vim"
+    export VISUAL="vim"
+}
 
 # nvim does not work right now in the terminal on widnows so only
 # check to see if i should use nvim when not on windows
