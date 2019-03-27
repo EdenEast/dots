@@ -171,9 +171,9 @@
 
 " neovim settings
   if has("nvim")
-    if (has("termguicolors"))
-      set termguicolors
-    endif
+  "   if (has("termguicolors"))
+  "     set termguicolors
+  "   endif
     set clipboard+=unnamedplus
   else
     set clipboard+=unnamed
