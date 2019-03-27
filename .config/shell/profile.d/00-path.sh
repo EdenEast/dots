@@ -34,7 +34,8 @@ function main()
 
     # storing default system path and clearing the $PATH variable
     local system_path=$PATH
-    unset PATH
+    PATH=
+    # unset PATH
 
     # adding local bin folder
     [[ -d "$LOCAL_BIN" ]] && {
@@ -47,8 +48,6 @@ function main()
     }
 
     check_path prepend_path /usr/bin
-    check_path prepend_path /usr/local/opt/srm/bin
-    check_path prepend_path /usr/local/sbin
     check_path prepend_path /usr/local/bin
     check_path prepend_path $HOME/.config/git/bin
     check_path prepend_path $HOME/.cargo/bin
@@ -56,18 +55,18 @@ function main()
     # Adding system path back in
     local sys_path_array=()
     IFS=':' read -ra sys_path_array <<< "$system_path"
-    for i in "${sys_path_array[@]}" ; do check_path append_path $i ; done
+    for i in "${sys_path_array[@]}" ; do  check_path append_path $i ; done
 
     # On windows I have some programs that i use a lot on the command line. I want the windows
     # version of these programs instead of the version that is installed by something like
     # pacman on msys or something like that. These are the default folder locations.
     # If these directories exist then append them to the $PATH variable so I can use them
-    check_program_file_path prepend_path "CMake/bin"
-    check_program_file_path append_path  "dotnet"
-    check_program_file_path append_path  "Microsoft VS Code/bin"
-    check_program_file_path append_path  "Yarn/bin"
-    check_program_file_path append_path  "nodejs"
-    check_program_file_path append_path  "Perforce"
+    # check_program_file_path prepend_path "CMake/bin"
+    # check_program_file_path append_path  "dotnet"
+    # check_program_file_path append_path  "Microsoft VS Code/bin"
+    # check_program_file_path append_path  "Yarn/bin"
+    # check_program_file_path append_path  "nodejs"
+    # check_program_file_path append_path  "Perforce"
     check_program_file_path append_path  "MSBuild/14.0/Bin"
     check_path append_path "$HOME/AppData/Local/Programs/Microsoft VS Code/"
 
