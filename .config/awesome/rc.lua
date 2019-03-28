@@ -97,6 +97,8 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
+barsprtr = wibox.widget.textbox()
+barsprtr:set_text("|")
 sprtr = wibox.widget.textbox()
 sprtr:set_text("  ")
 
@@ -165,11 +167,13 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             sprtr,
-            mytextclock,
-            sprtr,
+            require('widget.cpu'),
+            barsprtr,
             require('widget.volume'),
             sprtr,
             require('widget.battery'),
+            sprtr,
+            mytextclock,
         },
     }
 end)
