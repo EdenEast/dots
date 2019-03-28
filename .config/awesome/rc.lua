@@ -161,6 +161,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            require('widget.battery'),
             s.mylayoutbox,
         },
     }
