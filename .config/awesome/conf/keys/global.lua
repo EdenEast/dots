@@ -159,7 +159,19 @@ local globalkeys = awful.util.table.join(
         { description = 'Select previous', group = 'Layout' }
     ),
 
-    -- Movement
+    -- Layout
+    awful.key({ mod, shift }, 'n',
+        function()
+            local c = awful.client.restore()
+            if c then
+                c:emit_signal(
+                    'request::activate', 'key.unminimize', { raise = true }
+                )
+            end
+        end
+    ),
+
+    -- XF86
     -------------------------------------------------------
     awful.key({}, 'XF86AudioForward',
         function()
