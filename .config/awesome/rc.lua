@@ -167,6 +167,8 @@ awful.screen.connect_for_each_screen(function(s)
             sprtr,
             mytextclock,
             sprtr,
+            require('widget.volume'),
+            sprtr,
             require('widget.battery'),
         },
     }
