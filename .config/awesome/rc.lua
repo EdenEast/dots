@@ -97,6 +97,9 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
+sprtr = wibox.widget.textbox()
+sprtr:set_text("  ")
+
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -151,18 +154,20 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            s.mylayoutbox,
+            sprtr,
             s.mytaglist,
+            sprtr,
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
+            sprtr,
             mytextclock,
+            sprtr,
             require('widget.battery'),
-            s.mylayoutbox,
         },
     }
 end)
