@@ -63,10 +63,10 @@ function main()
     # If these directories exist then append them to the $PATH variable so I can use them
     # check_program_file_path prepend_path "CMake/bin"
     # check_program_file_path append_path  "dotnet"
-    # check_program_file_path append_path  "Microsoft VS Code/bin"
-    # check_program_file_path append_path  "Yarn/bin"
-    # check_program_file_path append_path  "nodejs"
     # check_program_file_path append_path  "Perforce"
+    check_program_file_path append_path  "Microsoft VS Code/bin"
+    check_program_file_path append_path  "Yarn/bin"
+    check_program_file_path append_path  "nodejs"
     check_program_file_path append_path  "MSBuild/14.0/Bin"
     check_path append_path "$HOME/AppData/Local/Programs/Microsoft VS Code/"
 

@@ -11,7 +11,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CONFIG_HOME="${HOME}/.config"
 
 # editor and vim
-[[ -n "$(command -v nvim)" ]] && {
+[[ -n "$(command -v nvim)" && "$OSTYPE" != 'msys' ]] && {
     export EDITOR='nvim'
     export VISUAL='nvim'
 } || {
