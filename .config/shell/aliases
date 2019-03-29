@@ -26,9 +26,10 @@ alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
 [[ $SHELL =~ /zsh$  ]] && alias src='source ~/.config/zsh/.zshrc'
 [[ $SHELL =~ /bash$  ]] && alias src='source ~/.bashrc'
 # alias src='source ~/.bashrc'
+alias e=$EDITOR
+alias ep='vim -c CtrlP'
 alias t=tmux
 alias v=vim
-alias vp='vim -c CtrlP'
 alias psake='powershell -c Invoke-Psake'
 
 # default command flags
@@ -43,7 +44,6 @@ alias ll="ls -lha $ls_color"
 alias l="ls -la $ls_color"
 unset ls_color
 
-alias pacman='sudo pacman --color auto'
 alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
 
 # for python virtual environments quick way to activate and deactivate
@@ -56,7 +56,7 @@ alias update-vscode="code --list-extensions | xargs -L 1 echo code --install-ext
 
 # sudo commands
 [[ -n $(which sudo &>/dev/null) ]] && {
-    alias pacman="sudo pacman"
+    alias pacman="sudo pacman --color auto"
 }
 
 # shortcut edit files
