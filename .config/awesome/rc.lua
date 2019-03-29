@@ -1,5 +1,14 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local naughty = require("naughty")
+
+local theme_collection = {
+    'skyfall', -- 1 --
+}
+
+local theme_name = theme_collection[1]
+local theme_dir = os.getenv('HOME') .. '/.config/awesome/themes/' .. theme_name
+beautiful.init(theme_dir .. '/theme.lua')
 
 -- Init all modules
 require('module.error-check')
@@ -51,7 +60,7 @@ local menubar = require("menubar")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- {{{ Wibar
 -- Create a textclock widget
