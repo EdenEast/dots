@@ -175,62 +175,62 @@ local globalkeys = awful.util.table.join(
     -------------------------------------------------------
     awful.key({}, 'XF86AudioForward',
         function()
-            awful.spawn('~/.scripts/music_control forward')
+            awful.spawn.with_shell('~/.scripts/music_control forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioLowerVolume',
         function()
-            awful.spawn('~/.scripts/music_control down')
+            awful.spawn.with_shell('~/.scripts/music_control down')
         end, {}
     ),
     awful.key({}, 'XF86AudioMedia',
         function()
-            -- awful.spawn('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.scripts/music_control forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioMicMute',
         function()
-            -- awful.spawn('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.scripts/music_control forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioMute',
         function()
-            awful.spawn('~/.scripts/music_control mute')
+            awful.spawn.with_shell('~/.scripts/music_control mute')
         end, {}
     ),
     awful.key({}, 'XF86AudioNext',
         function()
-            awful.spawn('~/.scripts/music_control next')
+            awful.spawn.with_shell('~/.scripts/music_control next')
         end, {}
     ),
     awful.key({}, 'XF86AudioPlay',
         function()
-            awful.spawn('~/.scripts/music_control toggle')
+            awful.spawn.with_shell('~/.scripts/music_control toggle')
         end, {}
     ),
     awful.key({}, 'XF86AudioPrev',
         function()
-            awful.spawn('~/.scripts/music_control prev')
+            awful.spawn.with_shell('~/.scripts/music_control prev')
         end, {}
     ),
     awful.key({}, 'XF86AudioRaiseVolume',
         function()
-            awful.spawn('~/.scripts/music_control up')
+            awful.spawn.with_shell('~/.scripts/music_control up')
         end, {}
     ),
     awful.key({}, 'XF86AudioRecord',
         function()
-            -- awful.spawn('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.scripts/music_control forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioRewind',
         function()
-            awful.spawn('~/.scripts/music_control backward')
+            awful.spawn.with_shell('~/.scripts/music_control backward')
         end, {}
     ),
     awful.key({}, 'XF86AudioStop',
         function()
-            awful.spawn('~/.scripts/music_control stop')
+            awful.spawn.with_shell('~/.scripts/music_control stop')
         end, {}
     ),
     awful.key({}, 'XF86Close',
@@ -239,7 +239,7 @@ local globalkeys = awful.util.table.join(
     ),
     awful.key({}, 'XF86Display',
         function()
-            awful.spawn('arandr')
+            awful.spawn.with_shell('arandr')
         end, {}
     ),
     awful.key({}, 'XF86Explorer',
@@ -264,12 +264,12 @@ local globalkeys = awful.util.table.join(
     ),
     awful.key({}, 'XF86MonBrightnessDown',
         function()
-            awful.spawn('light -U 5')
+            awful.spawn.with_shell('light -U 5')
         end, {}
     ),
     awful.key({}, 'XF86MonBrightnessUp',
         function()
-            awful.spawn('light -A 5')
+            awful.spawn.with_shell('light -A 5')
         end, {}
     ),
     awful.key({}, 'XF86MyComputer',
@@ -278,7 +278,7 @@ local globalkeys = awful.util.table.join(
     ),
     awful.key({}, 'XF86PowerOff',
         function()
-            awful.spawn('~/.scripts/lockscreen.sh')
+            awful.spawn.with_shell('~/.scripts/lockscreen.sh')
         end, {}
     ),
     awful.key({}, 'XF86Reload',
@@ -290,12 +290,12 @@ local globalkeys = awful.util.table.join(
     ),
     awful.key({}, 'XF86Sleep',
         function()
-            awful.spawn('~/.scripts/lockscreen.sh')
+            awful.spawn.with_shell('~/.scripts/lockscreen.sh')
         end, {}
     ),
     awful.key({}, 'XF86Suspend',
         function()
-            awful.spawn('~/.scripts/lockscreen.sh')
+            awful.spawn.with_shell('~/.scripts/lockscreen.sh')
         end, {}
     )
 )
