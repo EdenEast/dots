@@ -12,6 +12,7 @@ beautiful.init(theme_dir .. '/theme.lua')
 
 -- Init all modules
 require('module.error-check')
+require('module.auto-start')
 require('module.decorate-client')
 require('module.exit-screen')
 require('conf.keys')
