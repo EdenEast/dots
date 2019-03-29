@@ -10,7 +10,7 @@ local awful = require('awful')
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.wallpaper = homedir .. '/config/awesome/themes/' .. themename .. 'wallpaper.png'
+theme.wallpaper = homedir .. '/.config/awesome/themes/' .. themename .. '/wallpaper.png'
 
 theme.font = 'monospace 11'
 
