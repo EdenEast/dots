@@ -10,7 +10,8 @@ local awful = require('awful')
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.wallpaper = homedir .. '/.config/awesome/themes/' .. themename .. '/wallpaper.png'
+theme.dir = homedir .. '/.config/awesome/themes/' .. themename
+theme.wallpaper = theme.dir .. '/wallpaper.png'
 
 theme.font = 'monospace 11'
 
@@ -77,5 +78,18 @@ theme.border_radius = dpi(6)
 theme.titlebars_enabled = true
 theme.titlebar_size = dpi(35)
 theme.titlebar_title_enabled = true
+
+-- exit screen
+theme.exit_screen_bg = theme.xcolor0 .. 'cc'
+theme.exit_screen_gr = theme.color7
+theme.exit_screen_font = 'sans 20'
+theme.exit_screen_icon_size = dpi(180)
+
+theme.exit_icon = theme.dir .. '/icons/exit-screen/exit.png'
+theme.lock_icon = theme.dir .. '/icons/exit-screen/lock.png'
+theme.poweroff_icon = theme.dir .. '/icons/exit-screen/poweroff.png'
+theme.hibernate_icon = theme.dir .. '/icons/exit-screen/hibernate.png'
+theme.reboot_icon = theme.dir .. '/icons/exit-screen/reboot.png'
+theme.suspend_icon = theme.dir .. '/icons/exit-screen/suspend.png'
 
 return theme
