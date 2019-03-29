@@ -15,13 +15,13 @@ require('module.error-check')
 require('module.auto-start')
 require('module.decorate-client')
 require('module.exit-screen')
+require('module.title-bar')
 require('conf.keys')
 require('conf.tags')
 require('conf.client')
--- root.keys(require('conf.keys.global'))
 
 -- Signal function to execute when a new client appears
-_G.client.connect_signal('manage',
+client.connect_signal('manage',
     function(c)
         -- Set the window as the slave instead of the master
         if not _G.awesome.startup then

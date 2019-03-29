@@ -16,10 +16,6 @@ local clientkeys = gears.table.join(
     ),
     awful.key({ mod, ctrl }, 'f',
         awful.client.floating.toggle,
-        -- function(c)
-        --     c.fullscreen = not c.fullscreen
-        --     c:raise()
-        -- end,
         { description = 'Toggle fullscreen', group = 'Client' }
     ),
     awful.key({ mod }, 'BackSpace',
