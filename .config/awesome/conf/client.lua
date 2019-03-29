@@ -16,4 +16,10 @@ awful.rules.rules = {
             placement = awful.placement.no_offscreen
         }
     },
+    {
+        rule_any = { type = { 'normal', 'dialog' } },
+        properties = {
+            titlebars_enabled = true
+        }
+    }
 }

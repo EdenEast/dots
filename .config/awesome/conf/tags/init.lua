@@ -1,5 +1,6 @@
 local awful = require('awful')
 local gears = require('gears')
+local beautiful = require('beautiful')
 
 local tags = {
     {
@@ -53,7 +54,7 @@ awful.screen.connect_for_each_screen(
                 {
                     layout = awful.layout.suit.tile,
                     gap_single_client = false,
-                    gap = 4,
+                    gap = beautiful.useless_gap,
                     screen = s,
                     defaultApp = tag.defaultApp,
                     selected = i == 1
@@ -63,14 +64,14 @@ awful.screen.connect_for_each_screen(
     end
 )
 
-tag.connect_signal(
-    'property::layout',
-    function(t)
-        local currentLayout = awful.tag.getproperty(t, 'layout')
-        if (currentLayout == awful.layout.suit.max) then
-            t.gap = 0
-        else
-            t.gap = 4
-        end
-    end
-)
+-- tag.connect_signal(
+--     'property::layout',
+--     function(t)
+--         local currentLayout = awful.tag.getproperty(t, 'layout')
+--         if (currentLayout == awful.layout.suit.max) then
+--             t.gap = 0
+--         else
+--             t.gap = 4
+--         end
+--     end
+-- )

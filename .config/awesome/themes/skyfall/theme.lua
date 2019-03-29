@@ -65,14 +65,14 @@ theme.fg_focus = theme.xcolor4
 theme.fg_urget = theme.xcolor3
 theme.fg_minimize = theme.xcolor8
 
-theme.useless_gap = dpi(3)
-theme.screen_margin = dpi(3)
+theme.useless_gap = dpi(4)
+theme.screen_margin = dpi(4)
 
-theme.border_width = dpi(3)
+theme.border_width = dpi(4)
 theme.border_color = theme.xcolor0
 theme.border_normal = theme.xcolor0
 theme.border_focus = theme.xcolor0
-theme.border_radius = dpi(6)
+theme.border_radius = dpi(4)
 
 -- titlebars
 theme.titlebars_enabled = true
