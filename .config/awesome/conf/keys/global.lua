@@ -262,12 +262,12 @@ local globalkeys = awful.util.table.join(
         function()
         end, {}
     ),
-    awful.key({}, 'XF86MonBrightDown',
+    awful.key({}, 'XF86MonBrightnessDown',
         function()
             awful.spawn('light -U 5')
         end, {}
     ),
-    awful.key({}, 'XF86MonBrightUp',
+    awful.key({}, 'XF86MonBrightnessUp',
         function()
             awful.spawn('light -A 5')
         end, {}
