@@ -19,15 +19,17 @@ nnoremap Q <nop>
 map Y y$
 
 " remove highlighting on escape
-map <silent> <esc> :nohlsearch<cr>
+" NOTE: for some reason when you enter vim with this mapping
+" it adds :2R to the command
+" map <silent> <esc> :nohlsearch<cr>
 
 " re-indent file and jump back to where the cursor was
 map <F7> mzgg=G`z
 
 " incsearch:
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
 
 " center search
 nmap n nzz
