@@ -1,1 +1,4 @@
 plugged/
+plug/
+tmp/
+autoload/plug.vim
