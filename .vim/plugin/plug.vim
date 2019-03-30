@@ -1,16 +1,15 @@
 " Install vim-plug if missing
-let g:root_plug_folder = expand('$HOME/.vim/plug')
-if empty(g:root_plug_folder)
+if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-if !isdirectory(g:root_plug_folder)
+if !isdirectory(glob('~/.vim/pack'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin(g:root_plug_folder)
+call plug#begin(glob('~/.vim/pack'))
 
 " Legacy Vim {{{
   " Compatibility for legacy vim with neovim's async api
