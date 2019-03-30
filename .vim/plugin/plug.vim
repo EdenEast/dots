@@ -1,11 +1,16 @@
 " Install vim-plug if missing
-if empty(glob('~/.vim/autoload/plug.vim'))
+let g:root_plug_folder = expand('$HOME/.vim/plug')
+if empty(g:root_plug_folder)
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plug')
+if !isdirectory(g:root_plug_folder)
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin(g:root_plug_folder)
 
 " Legacy Vim {{{
   " Compatibility for legacy vim with neovim's async api
@@ -88,7 +93,7 @@ call plug#begin('~/.vim/plug')
 
 " Productivity {{{
   Plug 'jceb/vim-orgmode'
-  Plug 'kien/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tpope/vim-repeat'
   Plug 'wincent/replay'
