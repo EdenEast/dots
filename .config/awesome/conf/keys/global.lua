@@ -109,6 +109,19 @@ local globalkeys = awful.util.table.join(
         { description = 'Swap client with one to right', group = 'Client' }
     ),
 
+    awful.key({ mod, ctrl }, 'Left',
+        function()
+            awful.screen.focus_relative(-1)
+        end,
+        { description = 'Focus next screen', group = 'Screen' }
+    ),
+    awful.key({ mod, ctrl }, 'Right',
+        function()
+            awful.screen.focus_relative(1)
+        end,
+        { description = 'Focus prev screen', group = 'Screen' }
+    ),
+
     awful.key({ mod, alt }, 'h',
         function()
             awful.tag.incmwfact(-0.05)
