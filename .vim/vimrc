@@ -1,6 +1,6 @@
-" General settings {{{
-  set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
-  syntax on                 " syntax highlighting
+  " General settings {{{
+    set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
+    syntax on                 " syntax highlighting
   filetype plugin indent on " try to recognize filetype and load rel' plugins
 " }}}
 " Define leader key {{{

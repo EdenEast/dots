@@ -53,10 +53,10 @@ nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 " Move around splits without having to press <C-w> before each movement
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h<C-w>_
+nnoremap <C-j> <C-w>j<C-w>_
+nnoremap <C-k> <C-w>k<C-w>_
+nnoremap <C-l> <C-w>l<C-w>_
 
 " disable arrow keys in normal mode
 " bad me for using the arrow keys
