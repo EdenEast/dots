@@ -3,15 +3,18 @@
   syntax on                 " syntax highlighting
   filetype plugin indent on " try to recognize filetype and load rel' plugins
 " }}}
-
 " Define leader key {{{
   let g:mapleader = "\\"
 
 " alias for leader key
   nmap <space> \
   xmap <space> \
-" }}
+" }}}
 
 source ~/.vim/package.vim
+
+if (!empty(glob('~/.local/etc/vim/vimrc')))
+  source ~/.local/etc/vim/vimrc
+endif
 
 " vim: et:sw=2:ts=2:sts=2
