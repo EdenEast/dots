@@ -31,6 +31,8 @@ call plug#begin('~/.vim/package')
   Plug 'rhysd/vim-color-spring-night'
 " }}}
 " Misc: {{{
+" Better whitespace stripping for vim
+  Plug 'thirtythreeforty/lessspace.vim'
   Plug 'Yggdroot/indentLine'
 " }}}
 call plug#end()
