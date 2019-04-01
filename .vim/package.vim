@@ -6,6 +6,22 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/package')
+" Autocomplete: {{{
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    Plug 'Shougo/neco-syntax'
+    Plug 'Shougo/neco-vim', { 'for': 'vim' }
+    Plug 'racer-rust/vim-racer'
+    Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'bash', 'sh']}
+
+    " For func argument completion
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+
+    " include ctags for deoplete
+    Plug 'Shougo/neoinclude.vim'
+  endif
+" }}}
 " Editing: {{{
   Plug 'editorconfig/editorconfig-vim'
   Plug 'jiangmiao/auto-pairs'
@@ -29,6 +45,8 @@ call plug#begin('~/.vim/package')
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'dylanaraps/wal.vim'
   Plug 'rhysd/vim-color-spring-night'
+" }}}
+" Languages: {{{
 " }}}
 " Misc: {{{
 " Better whitespace stripping for vim
@@ -68,6 +86,8 @@ call plug#end()
 " Plug 'haya14busa/incsearch.vim'
 " Plug 'scrooloose/nerdtree'
 " Plug 'xuyuanp/nerdtree-git-plugin'
+"
+" Plug 'majutsushi/tagbar'
 "
 " " Deoplete: {{{
 "   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
