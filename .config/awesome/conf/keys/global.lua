@@ -36,7 +36,7 @@ local globalkeys = awful.util.table.join(
         end,
         { description = 'Launch terminal', group = 'Launcher' }
     ),
-    awful.key({ mod, shift }, 'Return',
+    awful.key({ mod, ctrl }, 'Return',
         function()
             awful.spawn('rofi -show combi')
         end,
