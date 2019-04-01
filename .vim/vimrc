@@ -17,4 +17,6 @@ if (!empty(glob('~/.local/etc/vim/vimrc')))
   source ~/.local/etc/vim/vimrc
 endif
 
+" pick at this vimrc file for useful bits
+" https://github.com/spf13/spf13-vim/blob/master/.vimrc
 " vim: et:sw=2:ts=2:sts=2
