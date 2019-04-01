@@ -5,11 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" if !isdirectory(glob('~/.vim/pack'))
-"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-" endif
-
-call plug#begin('~/.vim/pack')
+call plug#begin('~/.vim/package')
 
 " Legacy Vim {{{
   " Compatibility for legacy vim with neovim's async api
