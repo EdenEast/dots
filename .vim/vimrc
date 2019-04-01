@@ -12,4 +12,6 @@
   xmap <space> \
 " }}
 
-" vim: et:sw=2:ts=2:sts=2 
+source ~/.vim/package.vim
+
+" vim: et:sw=2:ts=2:sts=2
