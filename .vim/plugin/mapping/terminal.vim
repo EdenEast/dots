@@ -41,12 +41,4 @@ if has('nvim')
   " pasting works quite well in neovim as is so disabling yo
     nnoremap <silent> yo o
     nnoremap <silent> yO O
-
-  " run tests with neoterm in vim-test
-    let g:test#strategy = 'neoterm'
-    nmap <silent> <leader>T :TestNearest<CR>
-    nmap <silent> <leader>t :TestFile<CR>
-    nmap <silent> <leader>a :TestSuite<CR>
-    nmap <silent> <leader>l :TestLast<CR>
 endif
-" }}}

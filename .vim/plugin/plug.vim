@@ -5,18 +5,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-if !isdirectory(glob('~/.vim/pack'))
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" if !isdirectory(glob('~/.vim/pack'))
+"   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 
-call plug#begin(glob('~/.vim/pack'))
+call plug#begin('~/.vim/pack')
 
 " Legacy Vim {{{
   " Compatibility for legacy vim with neovim's async api
-  if !has('nvim')
-    Plug 'roxma/vim-hug-neovim-rpc'
-    Plug 'roxma/nvim-yarp'
-  endif
+  " if !has('nvim')
+  "   Plug 'roxma/vim-hug-neovim-rpc'
+  "   Plug 'roxma/nvim-yarp'
+  " endif
 " }}}
 
 " Deoplete: {{{
@@ -25,7 +25,7 @@ call plug#begin(glob('~/.vim/pack'))
   Plug 'Shougo/neco-vim', { 'for': 'vim' }
   Plug 'fszymanski/deoplete-emoji'
   Plug 'zchee/deoplete-go'
-  Plug 'wokalski/autocomplete-flow'
+  " Plug 'wokalski/autocomplete-flow'
   Plug 'racer-rust/vim-racer'
   Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'bash', 'sh']}
 
@@ -102,7 +102,6 @@ call plug#begin(glob('~/.vim/pack'))
   Plug 'christoomey/vim-tmux-navigator'
 " }}}
 
-
 " Searching: {{{
   " highlights all search results and allows tabbing between them
   Plug 'haya14busa/incsearch.vim'
@@ -174,8 +173,6 @@ call plug#begin(glob('~/.vim/pack'))
    " Indent lines (visual indication)
   Plug 'Yggdroot/indentLine'
 " }}}
-
-
 
 call plug#end()
 
