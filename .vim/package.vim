@@ -24,6 +24,7 @@ call plug#begin('~/.vim/package')
 " }}}
 " Editing: {{{
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'godlygeek/tabular'
   Plug 'jiangmiao/auto-pairs'
   Plug 'kana/vim-smartinput'
   Plug 'terryma/vim-multiple-cursors'
@@ -47,6 +48,7 @@ call plug#begin('~/.vim/package')
   Plug 'rhysd/vim-color-spring-night'
 " }}}
 " Languages: {{{
+  Plug 'sheerun/vim-polyglot'
 " }}}
 " Misc: {{{
 " Better whitespace stripping for vim
