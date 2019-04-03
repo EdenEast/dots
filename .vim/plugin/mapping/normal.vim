@@ -5,6 +5,10 @@
 " I do not use ; so set ; to :
 nnoremap ; :
 
+" Make j and k go up and down visible lines
+nnoremap j gj
+nnoremap k gk
+
 " Quickly edit/reload configuration file
 nnoremap gev :e $MYVIMRC<cr>
 nnoremap gsv :so $MYVIMRC<cr>
