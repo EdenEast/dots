@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function main()
+{
+    trap 'echo ERROR: Operation failed; return' ERR;
+    echo ---- Checking out previous branch ----;
+    git switch @{-1};
+}
+
+main "$@"
