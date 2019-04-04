@@ -1,15 +1,13 @@
-  " General settings {{{
-    set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
-    syntax on                 " syntax highlighting
-  filetype plugin indent on " try to recognize filetype and load rel' plugins
-" }}}
-" Define leader key {{{
-  let g:mapleader = "\\"
+set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
+syntax on                 " syntax highlighting
+filetype plugin indent on " try to recognize filetype and load rel' plugins
+
+" Define leader key
+let g:mapleader = "\\"
 
 " alias for leader key
-  nmap <space> \
-  xmap <space> \
-" }}}
+nmap <space> \
+xmap <space> \
 
 source ~/.vim/package.vim
 

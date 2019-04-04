@@ -37,6 +37,7 @@ call plug#begin('~/.vim/package')
 " Productivity: {{{
   Plug 'jceb/vim-orgmode'
   Plug 'kien/ctrlp.vim'
+  Plug 'w0rp/ale'
 " }}}
 " Text Objects: {{{
   Plug 'glts/vim-textobj-comment'
