@@ -1,1 +1,5 @@
 plugged/
+package/
+tmp/
+autoload/plug.vim
+.netrwhist

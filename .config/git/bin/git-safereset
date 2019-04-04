@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+function main()
+{
+    trap 'echo ERROR: Operation failed; return' ERR
+    echo Making sure there are no changes...
+    last_status=$(git status --porcelain)
+    if [[ $last_status != "" ]]; then
+        echo There are dirty files:
+        echo "$last_status"
+        echo
+        echo -n "Enter Y if you would like to DISCARD these changes or W to commit them as WIP: "
+        read dirty_operation
+        if [ "$dirty_operation" == "Y" ]; then
+            echo Resetting...
+            git reset --hard
+        elif [ "$dirty_operation" == "W" ]; then
+            echo Comitting WIP...
+            git commit -a --message='WIP' > /dev/null && echo WIP Comitted
+        else
+            echo Operation cancelled
+            exit 1
+        fi
+    fi
+}
