@@ -54,6 +54,9 @@ call plug#begin('~/.vim/package')
 " Better whitespace stripping for vim
   Plug 'thirtythreeforty/lessspace.vim'
   Plug 'Yggdroot/indentLine'
+
+  " fancy startup screen
+  Plug 'mhinz/vim-startify'
 " }}}
 call plug#end()
 
