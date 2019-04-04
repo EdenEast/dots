@@ -29,7 +29,7 @@ for b in ${browser_list[@]}; do
 done
 
 # pager and less
-export PAGER="less"
+[[ -n "$(command -v bat)" ]] && export PAGER="less" || export PAGER="bat"
 
 # filename (if known), line number if known, falling back to percent if known,
 # falling back to byte offset, falling back to dash

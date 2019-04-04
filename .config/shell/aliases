@@ -36,6 +36,7 @@ alias psake='powershell -c Invoke-Psake'
 alias pgrep='pgrep -l'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
+alias bat='bat --terminal-width $(tput cols)'
 
 # ls aliases this is needed for osx as ls on mac does not have --color=always
 [[ -n $(command ls --color=auto 2>/dev/null) ]] && ls_color='--color=auto'
