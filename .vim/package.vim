@@ -31,6 +31,9 @@ call plug#begin('~/.vim/package')
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
 " }}}
+" Languages: {{{
+  Plug 'sheerun/vim-polyglot'
+" }}}
 " Productivity: {{{
   Plug 'jceb/vim-orgmode'
   Plug 'kien/ctrlp.vim'
@@ -45,10 +48,8 @@ call plug#begin('~/.vim/package')
   Plug 'CruizeMissile/Revolution.vim'
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'dylanaraps/wal.vim'
+  Plug 'mhinz/vim-janah'
   Plug 'rhysd/vim-color-spring-night'
-" }}}
-" Languages: {{{
-  Plug 'sheerun/vim-polyglot'
 " }}}
 " Misc: {{{
 " Better whitespace stripping for vim
