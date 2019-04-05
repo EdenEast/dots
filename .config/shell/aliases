@@ -56,7 +56,7 @@ alias vpwp='which python ; which pip'
 alias update-vscode="code --list-extensions | xargs -L 1 echo code --install-extension > ~/.config/code/install-extensions.sh"
 
 # sudo commands
-[[ -n $(which sudo &>/dev/null) ]] && {
+[[ -n "$(command -v sudo)" ]] && {
     alias pacman="sudo pacman --color auto"
 }
 
