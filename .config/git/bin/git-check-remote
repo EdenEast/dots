@@ -15,12 +15,8 @@ function main()
                 ;;
         esac
 
-        echo "LAST_FETCHED = $LAST_FETCHED"
-        echo "FETCH_THRESHOLD = $FETCH_THRESHOLD"
-
         # Fork fetch process in background
         if [[ $LAST_FETCH -lt $FETCH_THRESHOLD ]]; then
-            echo "fetching"
             git fetch --all --quiet --prune 2> /dev/null &
         fi
     fi
