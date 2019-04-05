@@ -10,13 +10,13 @@ Mode:
   blocks  - Output colors in block output
   dots    - Output colors as dots
   panes   - Output colors as pane
-  details - Output all bits of color
+  all     - Output all bits of color
 
 Options:
-  -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
   -f, --forground      Only output forground colors
   -b, --background     Only output background colors
 EOF
+  # -c, --colors [bits]  Force the color bits that it will output (8, 16, 256)
     exit $1
 }
 function parse_arguments()
@@ -164,11 +164,10 @@ function main()
         dots|dot|ball|balls) output_balls ;;
         block|blocks) output_blocks ;;
         pane|panes) output_panes ;;
-        detail|details) output_colors ;;
+        all) output_colors ;;
         *)
-            output_balls
-            output_blocks
-            output_panes
+            force_color_mode=16
+            output_colors
     esac
 }
 
