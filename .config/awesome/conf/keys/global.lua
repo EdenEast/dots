@@ -3,12 +3,65 @@ local gears = require('gears')
 require('awful.autofocus')
 local beautiful = require('beautiful')
 local hotkeys_popup = require('awful.hotkeys_popup').widget
+local keychain = require('module.keychain')
 
 local mod = 'Mod4'
 local alt = 'Mod1'
 local ctrl = 'Control'
 local shift = 'Shift'
 
+-- Emacs key sequences
+---------------------------------------------------------------------------------------------------
+local keyseq = { { mod }, 'c', {}, {} }
+
+-- group
+keyseq[3] = {
+    { {}, 'm', {}, {} }, -- music group
+}
+
+-- Music sequence
+keyseq[3][1][3] = {
+    {
+        {}, 'p', function()
+            awful.spawn.with_shell('~/.scripts/music_control toggle')
+        end, { description = 'Toggle play pause', group = '', keyset = { 'p' } }
+    },
+    {
+        {}, 's', function()
+            awful.spawn.with_shell('~/.scripts/music_control stop')
+        end, { description = 'Stop music', group = '', keyset = { 's' } }
+    },
+    {
+        {}, 'h', function()
+            awful.spawn.with_shell('~/.scripts/music_control backward 10')
+        end, { description = 'Backwards', group = '', keyset = { 'h' } }
+    },
+    {
+        {}, 'l', function()
+            awful.spawn.with_shell('~/.scripts/music_control forward 10')
+        end, { description = 'Forward', group = '', keyset = { 'l' } }
+    },
+    {
+        {}, 'j', function()
+            awful.spawn.with_shell('~/.scripts/music_control prev')
+        end, { description = 'Previous', group = '', keyset = { 'j' } }
+    },
+    {
+        {}, 'k', function()
+            awful.spawn.with_shell('~/.scripts/music_control next')
+        end, { description = 'Next', group = '', keyset = { 'k' } }
+    },
+    {
+        {}, 'r', function()
+            awful.spawn.with_shell('~/.scripts/music_control restart')
+        end, { description = 'Reset', group = '', keyset = { 'r' } }
+    },
+    {
+        {}, 'm', function()
+            awful.spawn.with_shell('~/.scripts/music_control mute')
+        end, { description = 'Mute', group = '', keyset = { 'm' } }
+    }
+}
 
 local globalkeys = awful.util.table.join(
     awful.key({ mod, }, 'F1',
@@ -41,6 +94,12 @@ local globalkeys = awful.util.table.join(
             awful.spawn('rofi -show combi')
         end,
         { description = 'Open rofi', group = "Launcher" }
+    ),
+    awful.key({ mod, }, 'c',
+        function()
+            keychain:activate(keyseq, 'user')
+        end,
+        { description = 'User key sequence', group = 'Main' }
     ),
 
     -- Movement
