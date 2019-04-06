@@ -39,15 +39,15 @@ alias egrep='egrep --color=auto'
 alias bat='bat --terminal-width $(tput cols)'
 
 [[ -n "$(command -v exa)" ]] && {
-    alias ls="exa --group-directories-first"
-    alias ll="exa -lha --group-directories-first"
-    alias l="exa -la --group-directories-first"
+    alias ls="exa --group-directories-first --color=auto --git"
+    alias ll="exa --group-directories-first --color=auto --git -la"
+    alias l="exa --group-directories-first --color=auto --git -a"
 } || {
     # ls aliases this is needed for osx as ls on mac does not have --color=always
     [[ -n $(command ls --color=auto 2>/dev/null) ]] && ls_color='--color=auto'
     alias ls="ls --group-directories-first -CFG $ls_color"
     alias ll="ls -lha $ls_color"
-    alias l="ls -la $ls_color"
+    alias l="ls -a $ls_color"
     unset ls_color
 }
 
