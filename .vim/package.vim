@@ -59,6 +59,10 @@ call plug#begin('~/.vim/package')
 
   " fancy startup screen
   Plug 'mhinz/vim-startify'
+
+  if has('nvim')
+    Plug 'kassio/neoterm'
+  endif
 " }}}
 call plug#end()
 
