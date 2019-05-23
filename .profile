@@ -53,6 +53,8 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
 # fw config file location should respect ${XDG_CONFIG_HOME}/fw/config
 export FW_CONFIG_PATH="$XDG_CONFIG_HOME/fw/config"
+export REPO_CONFIG_PATH="$XDG_CONFIG_HOME/repo"
+export REPO_LOCAL_PATH="$LOCAL_ETC/repo"
 
 # Soruce all *.sh file in the folder profile.d in .config file
 for rc in $HOME/.config/shell/profile.d/*.sh ; do
