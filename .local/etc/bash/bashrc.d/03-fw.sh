@@ -1,1 +1,0 @@
-[[ -x $(command -v fw) ]] && eval "$(fw print-bash-setup 2>/dev/null)"

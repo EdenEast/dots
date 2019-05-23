@@ -1,0 +1,9 @@
+name = 'scaffold'
+tags = [
+    'lib',
+    'personal',
+]
+
+[remote]
+url = 'https://github.com/cruizemissile/scaffold'
+upstream = 'origin'

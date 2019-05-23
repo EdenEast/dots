@@ -1,0 +1,9 @@
+name = 'eden'
+tags = [
+    'engine',
+    'personal',
+]
+
+[remote]
+url = 'https://github.com/cruizemissile/eden'
+upstream = 'origin'

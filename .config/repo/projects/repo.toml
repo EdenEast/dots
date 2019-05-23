@@ -1,0 +1,5 @@
+name = 'repo'
+
+[remote]
+url = 'https://github.com/cruizemissile/repo'
+upstream = 'origin'

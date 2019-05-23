@@ -1,0 +1,9 @@
+name = 'pride'
+tags = [
+    'lib',
+    'personal',
+]
+
+[remote]
+url = 'https://github.com/cruizemissile/pride'
+upstream = 'origin'
