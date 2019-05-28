@@ -4,8 +4,8 @@
 # below for more information on how to do so.
 # -------------------------------------------------------------------------------------------------
 
-name = 'lib'
-override_path = 'lib'
+name = 'rust'
+after_clone = 'cargo check'
 
 # -------------------------------------------------------------------------------------------------
 # A note of the toml file format. Toml requires that all values are defined before
