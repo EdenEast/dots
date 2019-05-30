@@ -8,6 +8,7 @@ name = 'repo'
 tags = [
     'app',
     'cm',
+    'code',
     'personal',
     'rust',
 ]
