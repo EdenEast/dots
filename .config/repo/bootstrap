@@ -1,6 +1,0 @@
-[library]
-	pride = https://github.com/cruizemissile/pride
-	cml = https://github.com/cruizemissile/cml
-	scaffold = https://github.com/cruizemissile/scaffold
-[engine]
-	eden = https://github.com/cruizemissile/eden
