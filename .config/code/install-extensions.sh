@@ -2,6 +2,7 @@ code --install-extension ahmadawais.shades-of-purple
 code --install-extension alefragnani.Bookmarks
 code --install-extension alefragnani.project-manager
 code --install-extension Alexey-Strakh.stackoverflow-search
+code --install-extension annliu.1987
 code --install-extension archipa.icl
 code --install-extension belfz.search-crates-io
 code --install-extension brittanychiang.halcyon-vscode
@@ -13,6 +14,7 @@ code --install-extension Compulim.vscode-clock
 code --install-extension danielsrothstan.uixninja-theme
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension dericcain.feather
+code --install-extension dullptr.envytheme
 code --install-extension eamodio.gitlens
 code --install-extension EditorConfig.EditorConfig
 code --install-extension endorfina.roseate
@@ -20,6 +22,7 @@ code --install-extension eppz.eppz-code
 code --install-extension ExodiusStudios.comment-anchors
 code --install-extension fabiospampinato.vscode-todo-plus
 code --install-extension fallenwood.vimL
+code --install-extension file-icons.file-icons
 code --install-extension formulahendry.auto-rename-tag
 code --install-extension ginfuru.ginfuru-onedark-raincoat-theme
 code --install-extension huizhou.githd
@@ -34,11 +37,13 @@ code --install-extension kamikillerto.vscode-colorize
 code --install-extension kevinkyang.auto-comment-blocks
 code --install-extension lunarlimbo.banner-comments-plus
 code --install-extension luqimin.tiny-light
-code --install-extension mischah.relaxed-theme
+code --install-extension mrwilford.theme-gruvball
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.csharp
 code --install-extension ms-vscode.powershell
+code --install-extension ms-vscode.vscode-typescript-tslint-plugin
 code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension NoParanoia.noparanoia
 code --install-extension PeterJausovec.vscode-docker
 code --install-extension philsinatra.nested-comments
 code --install-extension piotrpalarz.vscode-gitignore-generator
@@ -50,6 +55,7 @@ code --install-extension rust-lang.rust
 code --install-extension Samzyre.darkiota
 code --install-extension sanderledegen.angular-follow-selector
 code --install-extension SanderPilon.blockalign
+code --install-extension serayuzgur.crates
 code --install-extension smlombardi.slime
 code --install-extension stackbreak.comment-divider
 code --install-extension stkb.rewrap
