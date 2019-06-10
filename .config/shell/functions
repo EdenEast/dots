@@ -302,6 +302,11 @@ regmv()
     done
 }
 
+function rgl()
+{
+    rg --color always -n $@ | less
+}
+
 function tmux()
 {
     # Make sure even pre-existing tmux sessions use the latest SSH_AUTH_SOCK.
