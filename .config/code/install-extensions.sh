@@ -24,6 +24,7 @@ code --install-extension fabiospampinato.vscode-todo-plus
 code --install-extension fallenwood.vimL
 code --install-extension file-icons.file-icons
 code --install-extension formulahendry.auto-rename-tag
+code --install-extension georgewfraser.vscode-tree-sitter
 code --install-extension ginfuru.ginfuru-onedark-raincoat-theme
 code --install-extension huizhou.githd
 code --install-extension janjoerke.align-by-regex
@@ -32,6 +33,7 @@ code --install-extension josa.markdown-table-formatter
 code --install-extension josef.rouge-theme
 code --install-extension joshpeng.sublime-babel-vscode
 code --install-extension joytrekker.rainier
+code --install-extension JScearcy.rust-doc-viewer
 code --install-extension juanmnl.vscode-theme-1984
 code --install-extension kamikillerto.vscode-colorize
 code --install-extension kevinkyang.auto-comment-blocks
