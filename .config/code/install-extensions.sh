@@ -58,6 +58,7 @@ code --install-extension Samzyre.darkiota
 code --install-extension sanderledegen.angular-follow-selector
 code --install-extension SanderPilon.blockalign
 code --install-extension serayuzgur.crates
+code --install-extension skellock.just
 code --install-extension smlombardi.slime
 code --install-extension stackbreak.comment-divider
 code --install-extension stkb.rewrap
