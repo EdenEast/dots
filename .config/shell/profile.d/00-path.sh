@@ -61,7 +61,8 @@ function main()
     # version of these programs instead of the version that is installed by something like
     # pacman on msys or something like that. These are the default folder locations.
     # If these directories exist then append them to the $PATH variable so I can use them
-    # check_program_file_path prepend_path "CMake/bin"
+    check_program_file_path prepend_path "CMake/bin"
+    check_program_file_path append_path "Git\ LFS"
     # check_program_file_path append_path  "dotnet"
     # check_program_file_path append_path  "Perforce"
     check_program_file_path append_path  "Microsoft VS Code/bin"
