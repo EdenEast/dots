@@ -70,6 +70,7 @@ function main()
     check_program_file_path append_path  "nodejs"
     check_program_file_path append_path  "MSBuild/14.0/Bin"
     check_path append_path "$HOME/AppData/Local/Programs/Microsoft VS Code/"
+    check_path append_path "/c/HashiCorp/Vagrant/bin"
 
     export PATH=$PATH
 
