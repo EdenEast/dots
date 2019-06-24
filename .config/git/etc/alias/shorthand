@@ -26,7 +26,7 @@
     pl  = pull --rebase
     qq  = reset --hard
     rb  = rebase
-    s   = status -s
-    st  = status
+    s   = status
+    st  = status -s
 
 # vim: ft=gitconfig:
