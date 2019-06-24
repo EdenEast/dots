@@ -18,16 +18,4 @@
     path = ./etc/url
     path = ~/.local/etc/git/config
 
-# Here are some good resources that I haev found
-# http://durdn.com/blog/2012/11/22/muse-have-git-aliases-advanced-examples/
-# http://michaelwales.com/articles/make-gitconfig-work-for-you/
-# https://gist.github.com/robmiller/6018582
-# https://gist.github.com/robmiller/6018582
-
-# intersting ideas
-# https://stackoverflow.com/a/7774433
-# https://gist.github.com/igrigorik/6666860
-# https://github.com/paulirish/git-open
-
-
 # vim: ft=gitconfig:
