@@ -24,7 +24,6 @@ code --install-extension fabiospampinato.vscode-todo-plus
 code --install-extension fallenwood.vimL
 code --install-extension file-icons.file-icons
 code --install-extension formulahendry.auto-rename-tag
-code --install-extension georgewfraser.vscode-tree-sitter
 code --install-extension ginfuru.ginfuru-onedark-raincoat-theme
 code --install-extension huizhou.githd
 code --install-extension janjoerke.align-by-regex
@@ -40,13 +39,15 @@ code --install-extension kevinkyang.auto-comment-blocks
 code --install-extension lunarlimbo.banner-comments-plus
 code --install-extension luqimin.tiny-light
 code --install-extension mrwilford.theme-gruvball
+code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.csharp
 code --install-extension ms-vscode.powershell
 code --install-extension ms-vscode.vscode-typescript-tslint-plugin
 code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension Nimda.deepdark-material
 code --install-extension NoParanoia.noparanoia
-code --install-extension PeterJausovec.vscode-docker
+code --install-extension olveralan.spunbeat
 code --install-extension philsinatra.nested-comments
 code --install-extension piotrpalarz.vscode-gitignore-generator
 code --install-extension pnp.polacode
