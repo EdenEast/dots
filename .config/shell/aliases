@@ -20,6 +20,7 @@ alias :qa=exit
 alias c=cmake
 alias cc=cclean
 alias ct=ctest
+alias cdg="cd $(git root)"
 alias df="df -Tha --total"
 alias g=git
 alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
