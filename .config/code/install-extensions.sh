@@ -11,7 +11,6 @@ code --install-extension cheshirekow.cmake-format
 code --install-extension christian-kohler.path-intellisense
 code --install-extension codezombiech.gitignore
 code --install-extension Compulim.vscode-clock
-code --install-extension danielsrothstan.uixninja-theme
 code --install-extension DavidAnson.vscode-markdownlint
 code --install-extension dericcain.feather
 code --install-extension dullptr.envytheme
@@ -38,7 +37,6 @@ code --install-extension kamikillerto.vscode-colorize
 code --install-extension kevinkyang.auto-comment-blocks
 code --install-extension lunarlimbo.banner-comments-plus
 code --install-extension luqimin.tiny-light
-code --install-extension mrwilford.theme-gruvball
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.csharp
@@ -55,7 +53,6 @@ code --install-extension rafamel.subtle-brackets
 code --install-extension RobbOwen.synthwave-vscode
 code --install-extension rpinski.shebang-snippets
 code --install-extension rust-lang.rust
-code --install-extension Samzyre.darkiota
 code --install-extension sanderledegen.angular-follow-selector
 code --install-extension SanderPilon.blockalign
 code --install-extension serayuzgur.crates
