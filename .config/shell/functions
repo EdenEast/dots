@@ -350,3 +350,79 @@ function tmux()
     SESSION_NAME=$(basename "$(pwd)")
     env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
 }
+
+function vscode-update-install()
+{
+    local output_file=$HOME/.config/code/install-extensions.sh
+
+    # clear output file
+    echo "#!/usr/bin/env bash" > $output_file
+    echo "" >> $output_file
+
+    # populate extension list
+    echo "extension_list=(" >> $output_file
+    local ext_list=($(code --list-extensions))
+    for ext in ${ext_list[@]}; do
+        echo "    $ext" >> $output_file
+    done
+    echo ")" >> $output_file
+    echo "" >> $output_file
+
+    cat >> $output_file << EOF
+function main()
+{
+    local current_ext_list=(\$(code --list-extensions))
+    local skip_count=0
+    local install_count=0
+
+    local a=()
+    local name=''
+
+    for ext in \${extension_list[@]}; do
+        a=(\${ext//./ })
+        name=\${a[1]}
+
+        if [[ ! "\${current_ext_list[@]}" =~ "\$ext" ]]; then
+            echo "Installing: \$name..."
+            install "\$ext"
+            install_count=\$((install_count+1))
+        else
+            echo "Skipping:   \$name..."
+            skip_count=\$((skip_count+1))
+        fi
+    done
+
+    # determine if there are any local extensions that are on in the saved list
+    local local_extensions=()
+    local local_count=0
+    for ext in \${current_ext_list}; do
+        a=(\${ext//./ })
+        name=\${a[1]}
+
+        if [[ ! "\$extension_list[@]" =~ "\$ext" ]]; then
+            local_extensions+=(\$name)
+            local_count=\$((local_count+1))
+        fi
+    done
+
+    echo ""
+    echo "Complete! Results:"
+    echo "  Installed: \$install_count"
+    echo "  Skipped:   \$skip_count"
+    if [[ \$local_count -gt 0 ]]; then
+        echo ""
+        echo "There are currently \$local_count extensions installed that are not saved:"
+        for e in \${local_extensions[@]}; do
+            echo "  \$e"
+        done
+    fi
+}
+
+function install()
+{
+    code --install-extension "\$1" 1>/dev/null
+}
+
+main "\$@"
+EOF
+}
