@@ -44,7 +44,7 @@ window:
   decorations: full
 
   # When true, alacritty starts maximized.
-  startup_mode: Windowed
+  start_maximized: false
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -146,17 +146,15 @@ font:
   use_thin_strokes: true
 
 # Display the time it takes to redraw each frame.
-debug:
-  render_timer: false
+render_timer: false
 
 # Keep the log file after quitting Alacritty.
-  persistent_logging: false
+persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# List of themes
-theme_tomorrow_night: &theme_tomorrow_night
+tomorrow_night: &tomorrow_night
   primary:
     background: '0x000000'
     foreground: '0xeaeaea'
@@ -179,96 +177,90 @@ theme_tomorrow_night: &theme_tomorrow_night
     cyan:    '0x54ced6'
     white:   '0xffffff'
 
-theme_arc: &theme_arc
+arc: &arc
   primary:
-    background: '0x3f424a'
-    foreground: '0xf8f8f8'
-#  cursor:
-#    text:   '0x'
-#    cursor: '0x'
+    background: '0x282828'
+    foreground: '0xeaeaea'
   normal:
-    black:   '0x3f3f3f'
-    red:     '0xac3c3c'
-    green:   '0x60b48a'
-    yellow:  '0xdfaf8f'
-    blue:    '0x506070'
-    magenta: '0xdc8cc3'
-    cyan:    '0x8cd0d3'
-    white:   '0xdcdccc'
+    black:   '0x000000'
+    red:     '0xd54e53'
+    green:   '0xb9ca4a'
+    yellow:  '0xe6c547'
+    blue:    '0x7aa6da'
+    magenta: '0xc397d8'
+    cyan:    '0x70c0ba'
+    white:   '0xeaeaea'
   bright:
-    black:   '0x79a9ff'
-    red:     '0xda6e6e'
-    green:   '0xc3bf9f'
-    yellow:  '0xf0dfaf'
-    blue:    '0x94bff3'
-    magenta: '0xec93d3'
-    cyan:    '0x93e0e3'
-    white:   '0xf8f8ff'
+    black:   '0x666666'
+    red:     '0xff3334'
+    green:   '0x9ec400'
+    yellow:  '0xe7c547'
+    blue:    '0x7aa6da'
+    magenta: '0xb77ee0'
+    cyan:    '0x54ced6'
+    white:   '0xffffff'
 
-theme_skyfall: &theme_skyfall
-  primary:
-    background: '0x282f37'
-    foreground: '0xf1fcf9'
-  normal:
-    black:   '0x20262c'
-    red:     '0xdb86ba'
-    green:   '0x74dd91'
-    yellow:  '0xe49186'
-    blue:    '0x75dbe1'
-    magenta: '0xb4a1db'
-    cyan:    '0x9ee9ea'
-    white:   '0xf1fcf9'
-  bright:
-    black:   '0x465463'
-    red:     '0xd04e9d'
-    green:   '0x4bc66d'
-    yellow:  '0xdb695b'
-    blue:    '0x3dbac2'
-    magenta: '0x825ece'
-    cyan:    '0x62cdcd'
-    white:   '0xe0e5e5'
 
-theme_lovelace: &theme_lovelace
-  primary:
-    background: '0x1d1f28'
-    foreground: '0xfdfdfd'
-  normal:
-    black:   '0x282a36'
-    red:     '0xf37f97'
-    green:   '0x5adecd'
-    yellow:  '0xf2a272'
-    blue:    '0x8897f4'
-    magenta: '0xc574dd'
-    cyan:    '0x79e6f3'
-    white:   '0xfdfdfd'
-  bright:
-    black:   '0x414458'
-    red:     '0xff4971'
-    green:   '0x18e3c8'
-    yellow:  '0xff8037'
-    blue:    '0x556fff'
-    magenta: '0xb043d1'
-    cyan:    '0x3fdcee'
-    white:   '0xbebec1'
 
+# Colors (Tomorrow Night Bright)
 colors:
-  *theme_skyfall
+  *arc
+  # Default colors
+ #primary:
+ #  background: '0x000000'
+ #  foreground: '0xeaeaea'
 
-  # Bright and dim foreground colors
-  #
-  # The dimmed foreground color is calculated automatically if it is not present.
-  # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-  # is `false`, the normal foreground color will be used.
-  #
+    # Bright and dim foreground colors
+    #
+    # The dimmed foreground color is calculated automatically if it is not present.
+    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+    # is `false`, the normal foreground color will be used.
+    #dim_foreground: '0x9a9a9a'
+    #bright_foreground: '0xffffff'
+
   # Cursor colors
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  #
+  #cursor:
+  #  text: '0x000000'
+  #  cursor: '0xffffff'
+
+  # Normal colors
+ #normal:
+ #  black:   '0x000000'
+ #  red:     '0xd54e53'
+ #  green:   '0xb9ca4a'
+ #  yellow:  '0xe6c547'
+ #  blue:    '0x7aa6da'
+ #  magenta: '0xc397d8'
+ #  cyan:    '0x70c0ba'
+ #  white:   '0xeaeaea'
+
+  # Bright colors
+ #bright:
+ #  black:   '0x666666'
+ #  red:     '0xff3334'
+ #  green:   '0x9ec400'
+ #  yellow:  '0xe7c547'
+ #  blue:    '0x7aa6da'
+ #  magenta: '0xb77ee0'
+ #  cyan:    '0x54ced6'
+ #  white:   '0xffffff'
+
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
+  #dim:
+  #  black:   '0x000000'
+  #  red:     '0x8c3336'
+  #  green:   '0x7a8530'
+  #  yellow:  '0x97822e'
+  #  blue:    '0x506d8f'
+  #  magenta: '0x80638e'
+  #  cyan:    '0x497e7a'
+  #  white:   '0x9a9a9a'
 
   # Indexed Colors
   #
@@ -278,7 +270,7 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  # indexed_colors: []
+  #indexed_colors: []
 
 # Visual Bell
 #
