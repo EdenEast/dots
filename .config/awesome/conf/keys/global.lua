@@ -60,6 +60,11 @@ keyseq[3][1][3] = {
         {}, 'm', function()
             awful.spawn.with_shell('~/.scripts/music_control mute')
         end, { description = 'Mute', group = '', keyset = { 'm' } }
+    },
+    {
+        {}, 'n', function()
+            awful.spawn("alacritty -e ncmpcpp")
+        end, { description = 'Ncmpcpp', group = '', keyset = { 'n' } }
     }
 }
 
