@@ -1,75 +1,77 @@
 #!/usr/bin/env bash
 
 extension_list=(
-ahmadawais.shades-of-purple
-alefragnani.Bookmarks
-alefragnani.project-manager
-Alexey-Strakh.stackoverflow-search
-annliu.1987
-archipa.icl
-belfz.search-crates-io
-brittanychiang.halcyon-vscode
-bungcip.better-toml
-cheshirekow.cmake-format
-christian-kohler.path-intellisense
-codezombiech.gitignore
-Compulim.vscode-clock
-DavidAnson.vscode-markdownlint
-dericcain.feather
-dullptr.envytheme
-eamodio.gitlens
-EditorConfig.EditorConfig
-endorfina.roseate
-eppz.eppz-code
-ExodiusStudios.comment-anchors
-fabiospampinato.vscode-todo-plus
-fallenwood.vimL
-file-icons.file-icons
-formulahendry.auto-rename-tag
-ginfuru.ginfuru-onedark-raincoat-theme
-huizhou.githd
-janjoerke.align-by-regex
-jolaleye.horizon-theme-vscode
-josa.markdown-table-formatter
-josef.rouge-theme
-joshpeng.sublime-babel-vscode
-joytrekker.rainier
-JScearcy.rust-doc-viewer
-juanmnl.vscode-theme-1984
-kamikillerto.vscode-colorize
-kevinkyang.auto-comment-blocks
-lunarlimbo.banner-comments-plus
-luqimin.tiny-light
-ms-azuretools.vscode-docker
-ms-vscode.cpptools
-ms-vscode.csharp
-ms-vscode.powershell
-ms-vscode.vscode-typescript-tslint-plugin
-msjsdiag.debugger-for-chrome
-Nimda.deepdark-material
-NoParanoia.noparanoia
-olveralan.spunbeat
-philsinatra.nested-comments
-piotrpalarz.vscode-gitignore-generator
-pnp.polacode
-rafamel.subtle-brackets
-RobbOwen.synthwave-vscode
-rpinski.shebang-snippets
-rust-lang.rust
-sanderledegen.angular-follow-selector
-SanderPilon.blockalign
-serayuzgur.crates
-skellock.just
-smlombardi.slime
-stackbreak.comment-divider
-stkb.rewrap
-tinkertrain.theme-panda
-tourervit.phantom
-twxs.cmake
-vincaslt.highlight-matching-tag
-VisualStudioExptTeam.vscodeintellicode
-wmaurer.change-case
-yo1dog.cursor-align
+    ahmadawais.shades-of-purple
+    alefragnani.Bookmarks
+    alefragnani.project-manager
+    Alexey-Strakh.stackoverflow-search
+    annliu.1987
+    archipa.icl
+    bbenoist.vagrant
+    belfz.search-crates-io
+    brittanychiang.halcyon-vscode
+    bungcip.better-toml
+    cheshirekow.cmake-format
+    christian-kohler.path-intellisense
+    codezombiech.gitignore
+    Compulim.vscode-clock
+    DavidAnson.vscode-markdownlint
+    dericcain.feather
+    dullptr.envytheme
+    dunstontc.vscode-rust-syntax
+    eamodio.gitlens
+    EditorConfig.EditorConfig
+    endorfina.roseate
+    eppz.eppz-code
+    ExodiusStudios.comment-anchors
+    fabiospampinato.vscode-todo-plus
+    fallenwood.vimL
+    file-icons.file-icons
+    formulahendry.auto-rename-tag
+    ginfuru.ginfuru-onedark-raincoat-theme
+    huizhou.githd
+    janjoerke.align-by-regex
+    jolaleye.horizon-theme-vscode
+    josa.markdown-table-formatter
+    josef.rouge-theme
+    joshpeng.sublime-babel-vscode
+    joytrekker.rainier
+    JScearcy.rust-doc-viewer
+    juanmnl.vscode-theme-1984
+    kamikillerto.vscode-colorize
+    kevinkyang.auto-comment-blocks
+    lunarlimbo.banner-comments-plus
+    luqimin.tiny-light
+    ms-azuretools.vscode-docker
+    ms-vscode.cpptools
+    ms-vscode.csharp
+    ms-vscode.powershell
+    ms-vscode.vscode-typescript-tslint-plugin
+    msjsdiag.debugger-for-chrome
+    Nimda.deepdark-material
+    NoParanoia.noparanoia
+    olveralan.spunbeat
+    philsinatra.nested-comments
+    piotrpalarz.vscode-gitignore-generator
+    pnp.polacode
+    rafamel.subtle-brackets
+    RobbOwen.synthwave-vscode
+    rpinski.shebang-snippets
+    rust-lang.rust
+    sanderledegen.angular-follow-selector
+    SanderPilon.blockalign
+    serayuzgur.crates
+    skellock.just
+    smlombardi.slime
+    stackbreak.comment-divider
+    stkb.rewrap
+    tinkertrain.theme-panda
+    tourervit.phantom
+    twxs.cmake
+    vincaslt.highlight-matching-tag
+    VisualStudioExptTeam.vscodeintellicode
+    wmaurer.change-case
+    yo1dog.cursor-align
 )
 
 function main()
