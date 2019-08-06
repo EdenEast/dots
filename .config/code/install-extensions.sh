@@ -6,7 +6,6 @@ extension_list=(
     Alexey-Strakh.stackoverflow-search
     annliu.1987
     archipa.icl
-    atomiks.moonlight
     bbenoist.vagrant
     belfz.search-crates-io
     bungcip.better-toml
@@ -16,11 +15,9 @@ extension_list=(
     Compulim.vscode-clock
     DavidAnson.vscode-markdownlint
     dericcain.feather
-    dullptr.envytheme
     dunstontc.vscode-rust-syntax
     eamodio.gitlens
     EditorConfig.EditorConfig
-    EliverLara.mars
     endorfina.roseate
     eppz.eppz-code
     Equinusocio.moxer-icons
@@ -35,7 +32,6 @@ extension_list=(
     josa.markdown-table-formatter
     josef.rouge-theme
     joshpeng.sublime-babel-vscode
-    joytrekker.rainier
     JScearcy.rust-doc-viewer
     juanmnl.vscode-theme-1984
     kamikillerto.vscode-colorize
@@ -70,7 +66,6 @@ extension_list=(
     tinkertrain.theme-panda
     tourervit.phantom
     twxs.cmake
-    uloco.theme-bluloco-dark
     vincaslt.highlight-matching-tag
     VisualStudioExptTeam.vscodeintellicode
     wmaurer.change-case
