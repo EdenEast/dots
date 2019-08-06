@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
 extension_list=(
-    ahmadawais.shades-of-purple
     alefragnani.Bookmarks
     alefragnani.project-manager
     Alexey-Strakh.stackoverflow-search
     annliu.1987
     archipa.icl
+    atomiks.moonlight
     bbenoist.vagrant
     belfz.search-crates-io
-    brittanychiang.halcyon-vscode
     bungcip.better-toml
     cheshirekow.cmake-format
     christian-kohler.path-intellisense
@@ -21,8 +20,10 @@ extension_list=(
     dunstontc.vscode-rust-syntax
     eamodio.gitlens
     EditorConfig.EditorConfig
+    EliverLara.mars
     endorfina.roseate
     eppz.eppz-code
+    Equinusocio.moxer-icons
     ExodiusStudios.comment-anchors
     fabiospampinato.vscode-todo-plus
     fallenwood.vimL
@@ -31,7 +32,6 @@ extension_list=(
     ginfuru.ginfuru-onedark-raincoat-theme
     huizhou.githd
     janjoerke.align-by-regex
-    jolaleye.horizon-theme-vscode
     josa.markdown-table-formatter
     josef.rouge-theme
     joshpeng.sublime-babel-vscode
@@ -42,6 +42,7 @@ extension_list=(
     kevinkyang.auto-comment-blocks
     lunarlimbo.banner-comments-plus
     luqimin.tiny-light
+    minamarkham.yonce-theme
     ms-azuretools.vscode-docker
     ms-vscode.cpptools
     ms-vscode.csharp
@@ -55,6 +56,7 @@ extension_list=(
     piotrpalarz.vscode-gitignore-generator
     pnp.polacode
     rafamel.subtle-brackets
+    rickynormandeau.mariana-pro
     RobbOwen.synthwave-vscode
     rpinski.shebang-snippets
     rust-lang.rust
@@ -68,6 +70,7 @@ extension_list=(
     tinkertrain.theme-panda
     tourervit.phantom
     twxs.cmake
+    uloco.theme-bluloco-dark
     vincaslt.highlight-matching-tag
     VisualStudioExptTeam.vscodeintellicode
     wmaurer.change-case
