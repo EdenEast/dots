@@ -56,6 +56,10 @@ export FW_CONFIG_PATH="$XDG_CONFIG_HOME/fw/config"
 export REPO_CONFIG_PATH="$XDG_CONFIG_HOME/repo"
 export REPO_LOCAL_PATH="$LOCAL_ETC/repo"
 
+# if sccache is install on the machine then set it as a rustc wrapper to
+# cache versioned dependency outputs to only build dependencies once
+[[ $(command -v sccache) ]] && export RUSTC_WRAPPER=sccache
+
 # Soruce all *.sh file in the folder profile.d in .config file
 for rc in $HOME/.config/shell/profile.d/*.sh ; do
     source $rc
