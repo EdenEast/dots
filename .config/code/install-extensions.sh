@@ -28,7 +28,9 @@ extension_list=(
     formulahendry.auto-rename-tag
     ginfuru.ginfuru-onedark-raincoat-theme
     huizhou.githd
+    IBM.output-colorizer
     janjoerke.align-by-regex
+    jeff-hykin.xd-theme
     josa.markdown-table-formatter
     josef.rouge-theme
     joshpeng.sublime-babel-vscode
