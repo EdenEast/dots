@@ -27,6 +27,7 @@ extension_list=(
     file-icons.file-icons
     formulahendry.auto-rename-tag
     ginfuru.ginfuru-onedark-raincoat-theme
+    glitteringkatie.stony-stream
     huizhou.githd
     IBM.output-colorizer
     janjoerke.align-by-regex
