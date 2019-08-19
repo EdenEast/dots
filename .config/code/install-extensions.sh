@@ -1,77 +1,39 @@
 #!/usr/bin/env bash
 
 extension_list=(
-    alefragnani.Bookmarks
-    alefragnani.project-manager
-    Alexey-Strakh.stackoverflow-search
-    annliu.1987
-    archipa.icl
+    alefragnani.numbered-bookmarks
+    Angular.ng-template
+    austin.code-gnu-global
     bbenoist.vagrant
     belfz.search-crates-io
     bungcip.better-toml
-    cheshirekow.cmake-format
     christian-kohler.path-intellisense
-    codezombiech.gitignore
-    Compulim.vscode-clock
     DavidAnson.vscode-markdownlint
-    dericcain.feather
+    DennisVash.summer-time
     dunstontc.vscode-rust-syntax
     eamodio.gitlens
     EditorConfig.EditorConfig
-    endorfina.roseate
-    eppz.eppz-code
     Equinusocio.moxer-icons
-    ExodiusStudios.comment-anchors
-    fabiospampinato.vscode-todo-plus
-    fallenwood.vimL
-    file-icons.file-icons
-    formulahendry.auto-rename-tag
-    ginfuru.ginfuru-onedark-raincoat-theme
-    glitteringkatie.stony-stream
-    huizhou.githd
-    IBM.output-colorizer
-    janjoerke.align-by-regex
-    jeff-hykin.xd-theme
-    josa.markdown-table-formatter
-    josef.rouge-theme
-    joshpeng.sublime-babel-vscode
-    JScearcy.rust-doc-viewer
-    juanmnl.vscode-theme-1984
-    kamikillerto.vscode-colorize
-    kevinkyang.auto-comment-blocks
-    lunarlimbo.banner-comments-plus
-    luqimin.tiny-light
-    minamarkham.yonce-theme
+    fabiospampinato.vscode-projects-plus
+    jeff-hykin.better-cpp-syntax
+    jeff-hykin.better-dockerfile-syntax
+    jeff-hykin.better-shellscript-syntax
+    johnpapa.Angular2
+    jwoelper.theme-lifeonmars
+    mblode.pretty-formatter
+    mhutchie.git-graph
     ms-azuretools.vscode-docker
     ms-vscode.cpptools
     ms-vscode.csharp
-    ms-vscode.powershell
     ms-vscode.vscode-typescript-tslint-plugin
     msjsdiag.debugger-for-chrome
-    Nimda.deepdark-material
-    NoParanoia.noparanoia
-    olveralan.spunbeat
-    philsinatra.nested-comments
-    piotrpalarz.vscode-gitignore-generator
-    pnp.polacode
-    rafamel.subtle-brackets
-    rickynormandeau.mariana-pro
-    RobbOwen.synthwave-vscode
+    panicbit.cargo
     rpinski.shebang-snippets
     rust-lang.rust
     sanderledegen.angular-follow-selector
-    SanderPilon.blockalign
     serayuzgur.crates
     skellock.just
-    smlombardi.slime
-    stackbreak.comment-divider
     stkb.rewrap
-    tinkertrain.theme-panda
-    tourervit.phantom
-    twxs.cmake
-    vincaslt.highlight-matching-tag
-    VisualStudioExptTeam.vscodeintellicode
-    wmaurer.change-case
     yo1dog.cursor-align
 )
 
