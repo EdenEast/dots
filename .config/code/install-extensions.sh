@@ -15,11 +15,15 @@ extension_list=(
     EditorConfig.EditorConfig
     Equinusocio.moxer-icons
     fabiospampinato.vscode-projects-plus
+    fiazluthfi.darkred
+    hpe-dev.hpe-dev
     jeff-hykin.better-cpp-syntax
     jeff-hykin.better-dockerfile-syntax
     jeff-hykin.better-shellscript-syntax
+    jeff-hykin.xd-theme
+    jimmydc.everset
     johnpapa.Angular2
-    jwoelper.theme-lifeonmars
+    kenziebottoms.heptapod
     mblode.pretty-formatter
     mhutchie.git-graph
     ms-azuretools.vscode-docker
@@ -28,12 +32,15 @@ extension_list=(
     ms-vscode.vscode-typescript-tslint-plugin
     msjsdiag.debugger-for-chrome
     panicbit.cargo
+    paulvandermeijs.loved
+    rickynormandeau.mariana-pro
     rpinski.shebang-snippets
     rust-lang.rust
     sanderledegen.angular-follow-selector
     serayuzgur.crates
     skellock.just
     stkb.rewrap
+    wart.ariake-dark
     yo1dog.cursor-align
 )
 
