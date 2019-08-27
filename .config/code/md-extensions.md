@@ -5,19 +5,24 @@
     - 1984
     - 1987
     - 2077
+    - ariake dark
     - becausenever
     - becuasealways
     - cosmic
+    - dark red
     - daybreak
     - deep dark material
     - eppz
     - everset
     - feather
     - flamingo
+    - heptapod
     - hpe dev
     - hydra theme
     - kaia
+    - loved
     - mariana pro
+    - midnight city
     - monokai pro
     - night wolf
     - no-paranoia
