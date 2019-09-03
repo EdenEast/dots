@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
 extension_list=(
+    4ban.rougarou
+    adisreyaj.dark-the-shit-out
+    adriankollarik.draculish
+    alber70g.solarized-light-differentiated
     alefragnani.numbered-bookmarks
     Angular.ng-template
+    annliu.1987
     austin.code-gnu-global
+    bazutya.bazutya
     bbenoist.vagrant
     belfz.search-crates-io
     bungcip.better-toml
     christian-kohler.path-intellisense
+    dannymcgee.summer-vacation-theme
     DavidAnson.vscode-markdownlint
     DennisVash.summer-time
+    dericcain.feather
     dunstontc.vscode-rust-syntax
     eamodio.gitlens
     EditorConfig.EditorConfig
@@ -21,9 +29,11 @@ extension_list=(
     jeff-hykin.better-dockerfile-syntax
     jeff-hykin.better-shellscript-syntax
     jeff-hykin.xd-theme
+    jibjack.styrokai
     jimmydc.everset
     johnpapa.Angular2
     kenziebottoms.heptapod
+    madprops.kya
     mblode.pretty-formatter
     mhutchie.git-graph
     ms-azuretools.vscode-docker
@@ -31,14 +41,19 @@ extension_list=(
     ms-vscode.csharp
     ms-vscode.vscode-typescript-tslint-plugin
     msjsdiag.debugger-for-chrome
+    narenranjit.chandrian
+    Nimda.deepdark-material
     panicbit.cargo
     paulvandermeijs.loved
+    pshershov.blueberry-banana
     rickynormandeau.mariana-pro
+    RobbOwen.synthwave-vscode
     rpinski.shebang-snippets
     rust-lang.rust
     sanderledegen.angular-follow-selector
     serayuzgur.crates
     skellock.just
+    smokeyjoe.marvelous
     stkb.rewrap
     wart.ariake-dark
     yo1dog.cursor-align
