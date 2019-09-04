@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+function die # (code, message)
+{
+    code="$1"
+    shift
+    echo 1>&2 "$@"
+    exit $code
+    exit 1
+}
+
+function has # (command)
+{
+    hash "$1" &>/dev/null
+}
+
+function checkcmd # (command)
+{
+    has "$1" || die 2 "Command not found: '$1' is required"
+}
+
+checkcmd fd
+checkcmd sd
+
+function main()
+{
+    sd -f m '^\s*$' '' $(fd -t f)
+}
+
+main "$@"
