@@ -1,9 +1,18 @@
 #
 # Font
 #
-Font=UbuntuMono Nerd Font Mono
-FontHeight=11
-# FontHeight=12
+
+#
+## Hack
+#
+Font=Hack NF
+FontHeight=10
+
+#
+## UbuntuMono
+#
+#Font=UbuntuMono Nerd Font Mono
+#FontHeight=11
 
 BoldAsFont=-1
 Term=xterm-256color
