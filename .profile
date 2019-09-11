@@ -1,3 +1,6 @@
+# Check that we haven't already been sourced.
+([[ -z ${DOT_USER_PROFILE} ]] && DOT_USER_PROFILE="1") || return
+
 # define local folder locations
 export LOCAL_BIN="$HOME/.local/bin"
 export LOCAL_ETC="$HOME/.local/etc"
@@ -51,8 +54,6 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
-# fw config file location should respect ${XDG_CONFIG_HOME}/fw/config
-export FW_CONFIG_PATH="$XDG_CONFIG_HOME/fw/config"
 export REPO_CONFIG_PATH="$XDG_CONFIG_HOME/repo"
 export REPO_LOCAL_PATH="$LOCAL_ETC/repo"
 

@@ -2,11 +2,14 @@
 # ~/.bashrc
 #
 
+# Check that we haven't already been sourced.
+([[ -z ${DOT_USER_BASHRC} ]] && DOT_USER_BASHRC="1") || return
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# If for some reason that the .profile has not been loaded then source it
-[ -z $DOT_PROFILE_LOADED ]  && source $HOME/.profile
+# # If for some reason that the .profile has not been loaded then source it
+# [ -z $DOT_PROFILE_LOADED ]  && source $HOME/.profile
 
 #
 # History config
