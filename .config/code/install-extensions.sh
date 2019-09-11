@@ -2,9 +2,8 @@
 
 extension_list=(
     4ban.rougarou
-    adisreyaj.dark-the-shit-out
     adriankollarik.draculish
-    alber70g.solarized-light-differentiated
+    AhmedAbdulrahman.aylin
     alefragnani.numbered-bookmarks
     Angular.ng-template
     annliu.1987
@@ -14,6 +13,7 @@ extension_list=(
     belfz.search-crates-io
     bungcip.better-toml
     christian-kohler.path-intellisense
+    danielsrothstan.uixninja-theme
     dannymcgee.summer-vacation-theme
     DavidAnson.vscode-markdownlint
     DennisVash.summer-time
@@ -21,10 +21,14 @@ extension_list=(
     dunstontc.vscode-rust-syntax
     eamodio.gitlens
     EditorConfig.EditorConfig
+    endorfina.roseate
     Equinusocio.moxer-icons
+    evan-buss.font-switcher
     fabiospampinato.vscode-projects-plus
     fiazluthfi.darkred
+    fosshaas.fontsize-shortcuts
     hpe-dev.hpe-dev
+    inksea.inksea-theme
     jeff-hykin.better-cpp-syntax
     jeff-hykin.better-dockerfile-syntax
     jeff-hykin.better-shellscript-syntax
@@ -32,8 +36,9 @@ extension_list=(
     jibjack.styrokai
     jimmydc.everset
     johnpapa.Angular2
+    josef.rouge-theme
+    juanmnl.vscode-theme-1984
     kenziebottoms.heptapod
-    madprops.kya
     mblode.pretty-formatter
     mhutchie.git-graph
     ms-azuretools.vscode-docker
@@ -41,7 +46,6 @@ extension_list=(
     ms-vscode.csharp
     ms-vscode.vscode-typescript-tslint-plugin
     msjsdiag.debugger-for-chrome
-    narenranjit.chandrian
     Nimda.deepdark-material
     panicbit.cargo
     paulvandermeijs.loved
@@ -50,11 +54,13 @@ extension_list=(
     RobbOwen.synthwave-vscode
     rpinski.shebang-snippets
     rust-lang.rust
+    samrapdev.outrun
     sanderledegen.angular-follow-selector
     serayuzgur.crates
     skellock.just
-    smokeyjoe.marvelous
+    smlombardi.slime
     stkb.rewrap
+    tinkertrain.theme-panda
     wart.ariake-dark
     yo1dog.cursor-align
 )
