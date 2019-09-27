@@ -1,0 +1,13 @@
+name = 'lust'
+tags = [
+    'cm',
+    'code',
+    'engine',
+    'personal',
+    'rust',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/lust'
+name = 'origin'
+

@@ -1,0 +1,12 @@
+name = 'eden'
+tags = [
+    'cm',
+    'code',
+    'engine',
+    'personal',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/eden'
+name = 'origin'
+

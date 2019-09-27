@@ -1,0 +1,12 @@
+name = 'cml'
+tags = [
+    'cm',
+    'code',
+    'lib',
+    'personal',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/cml'
+name = 'origin'
+

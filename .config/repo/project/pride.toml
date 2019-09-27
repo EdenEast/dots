@@ -1,0 +1,12 @@
+name = 'pride'
+tags = [
+    'cm',
+    'code',
+    'lib',
+    'personal',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/pride'
+name = 'origin'
+

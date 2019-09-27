@@ -1,0 +1,14 @@
+name = 'repo'
+clone = 'git checkout dev'
+tags = [
+    'app',
+    'cm',
+    'code',
+    'personal',
+    'rust',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/repo'
+name = 'origin'
+
