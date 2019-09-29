@@ -26,6 +26,9 @@ sys_mod_map=/etc/X11/xinit/.Xmodmap
 # if redshift is installed then launch it
 [[ -f /usr/bin/redshift ]] && redshift &
 
+# start leftwm
+# [[ -f /usr/bin/leftwm  ]] && exec dbus-launch leftwm
+
 # start awesome
 [[ -f /usr/bin/awesome ]] && exec awesome
 
