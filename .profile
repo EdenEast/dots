@@ -54,15 +54,17 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
-export REPO_CONFIG_PATH="$XDG_CONFIG_HOME/repo"
-export REPO_LOCAL_PATH="$LOCAL_ETC/repo"
-
 # if sccache is install on the machine then set it as a rustc wrapper to
 # cache versioned dependency outputs to only build dependencies once
 [[ $(command -v sccache) ]] && export RUSTC_WRAPPER=sccache
 
 # Soruce all *.sh file in the folder profile.d in .config file
 for rc in $HOME/.config/shell/profile.d/*.sh ; do
+    source $rc
+done
+
+# Soruce all *.sh file in the folder profile.d in .local file
+for rc in $HOME/.local/etc/profile.d/*.sh ; do
     source $rc
 done
 
