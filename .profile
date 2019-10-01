@@ -64,9 +64,11 @@ for rc in $HOME/.config/shell/profile.d/*.sh ; do
 done
 
 # Soruce all *.sh file in the folder profile.d in .local file
-for rc in $HOME/.local/etc/profile.d/*.sh ; do
-    source $rc
-done
+[[ -d $HOME/.local/etc/profile.d ]] && {
+    for rc in $HOME/.local/etc/profile.d/*.sh ; do
+        source $rc
+    done
+}
 
 export DOT_PROFILE_LOADED=true
 
