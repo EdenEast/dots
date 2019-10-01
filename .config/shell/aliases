@@ -38,6 +38,7 @@ alias pgrep='pgrep -l'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias bat='bat --terminal-width $(tput cols)'
+alias yadm='yadm --yadm-dir $XDG_CONFIG_HOME/yadm'
 
 [[ -n "$(command -v exa)" ]] && {
     alias ls="exa --group-directories-first --color=auto --git"
