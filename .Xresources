@@ -27,10 +27,10 @@ URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 ! Appearance settings
 ! ----------------------------------------------------------------------------------
 
-#include ".config/xrdb/colors/arc"
+#include ".config/xrdb/colors/hotline"
 #include ".config/xrdb/fonts/monospace"
 
-URxvt*background:           [90]co_bgr
+URxvt*background:           [95]co_bgr
 URxvt*cursorBlink:          false
 URxvt*depth:                32
 URxvt*externalBorder:       0
