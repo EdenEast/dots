@@ -2,6 +2,10 @@ set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
 syntax on                 " syntax highlighting
 filetype plugin indent on " try to recognize filetype and load rel' plugins
 
+" Set runtime path for vim
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+set runtimepath+=$XDG_CONFIG_HOME/nvim
+
 " Define leader key
 let g:mapleader = "\\"
 
@@ -9,7 +13,7 @@ let g:mapleader = "\\"
 nmap <space> \
 xmap <space> \
 
-source ~/.vim/package.vim
+source $XDG_CONFIG_HOME/vim/package.vim
 
 if (!empty(glob('~/.local/etc/vim/vimrc')))
   source ~/.local/etc/vim/vimrc

@@ -7,8 +7,7 @@ if exists('$SUDO_USER')
     set nobackup                                 " dont create root-owned files
     set nowritebackup                            " dont create root-owned files
 else
-    set backupdir=~/.local/share/vim/tmp/backup
-    set backupdir+=~/.vim/tmp/backup
+    set backupdir=$XDG_CACHE_HOME/vim/backup
 endif
 
 if has('wildignore')
@@ -28,8 +27,7 @@ set cursorline                                   " highlight current line
 if exists('$SUDO_USER')
     set noswapfile                               " dont create root-owned files
 else
-    set directory=~/.local/share/vim/tmp/swap
-    set directory+=~/.vim/tmp/swap
+    set directory=$XDG_CACHE_HOME/vim/swap
 endif
 
 set expandtab                                    " always use spaces instead of tabs
@@ -157,8 +155,7 @@ if has('persistent_undo')
     if exists('$SUDO_USER')
         set noundofile                           " dont create root-owned files
     else
-        set undodir=~/.local/share/vim/tmp/undo
-        set undodir+=~/.vim/tmp/undo
+        set undodir=$XDG_CACHE_HOME/vim/undo
         set undofile                             " use undo files
     endif
 endif
@@ -170,26 +167,12 @@ if has('viminfo')
     if exists('')
         set viminfo=                             " dont create root-owned files
     else
-        if isdirectory('~/.local/share/vim/tmp')
-            set viminfo+=n~/.local/share/vim/tmp/viminfo
-        else
-            set viminfo+=n~/.vim/tmp/viminfo
-        endif
-
-        if !empty(glob('~/.vim/tmp/viminfo'))
-            if !filereadable(expand('~/.vim/tmp/viminfo'))
-                echoerr 'warning: ~/.vim/tmp/viminfo exists but is not readable'
-            endif
-        endif
+        set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
     endif
 endif
 
 if has('mksession')
-    if isdirectory('~/.local/share/vim/tmp')
-        set viewdir=~/.local/share/vim/tmp/view
-    else
-        set viewdir=~/.vim/tmp/view
-    endif
+    set viewdir=$XDG_CACHE_HOME/vim/view
     set viewoptions=cursor,folds                 " save/restore just these (with :{mk, load}view)
 endif
 
