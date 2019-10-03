@@ -27,7 +27,7 @@ URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 ! Appearance settings
 ! ----------------------------------------------------------------------------------
 
-#include ".config/xrdb/colors/hotline"
+#include ".config/xrdb/colors/divinity"
 #include ".config/xrdb/fonts/monospace"
 
 URxvt*background:           [95]co_bgr
