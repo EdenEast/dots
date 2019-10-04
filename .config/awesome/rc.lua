@@ -3,7 +3,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 
 local theme_collection = {
-    'skyfall', -- 1 --
+    'skyfall',    -- 1 --
+    'lovelace',   -- 2 --
+    'manta',      -- 3 --
+    'emphemeral', -- 4 --
+    'insomnia',   -- 5 --
 }
 
 local theme_name = theme_collection[1]
