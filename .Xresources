@@ -27,7 +27,7 @@ URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 ! Appearance settings
 ! ----------------------------------------------------------------------------------
 
-#include ".config/xrdb/colors/divinity"
+#include ".config/xrdb/colors/insomnia"
 #include ".config/xrdb/fonts/monospace"
 
 URxvt*background:           [95]co_bgr
@@ -92,3 +92,9 @@ rofi.ssh-client: ssh
 rofi.ssh-command: {terminal} -e "{ssh-client} {host}"
 rofi.terminal: urxvt
 rofi.width: 50
+
+! State:           'bg'    'fg'   'bgalt'  'hlbg'  'hlfg'
+rofi.color-window: co_bgr, co_mgt, co_mgt
+rofi.color-normal: co_bgr, co_fgr, co_bgr, co_bgr, co_mgt
+rofi.color-active: co_bgr, co_red, co_ylw, co_bgr, co_red
+rofi.color-urgent: co_bgr, co_fgr, co_bgr, co_bgr, co_red
