@@ -27,10 +27,10 @@ URxvt*perl-ext-common:  default,clipboard,url-select,keyboard-select,resize-font
 ! Appearance settings
 ! ----------------------------------------------------------------------------------
 
-#include ".config/xrdb/colors/insomnia"
+#include ".config/xrdb/colors/ephemeral"
 #include ".config/xrdb/fonts/monospace"
 
-URxvt*background:           [95]co_bgr
+URxvt*background:           co_bgr
 URxvt*cursorBlink:          false
 URxvt*depth:                32
 URxvt*externalBorder:       0
@@ -59,7 +59,7 @@ URxvt*resize-font.bigger:   C-Up
 URxvt*urlLauncher:          firefox
 URxvt*underlineURLs:        true
 URxvt*urlButton:            1
-URxvt*geometry:             90x30
+!URxvt*geometry:             90x30
 
 ! ----------------------------------------------------------------------------------
 ! Tabs settings

@@ -1,0 +1,48 @@
+! vim: ft=xdefaults
+! ephemeral
+
+#define co_bgr #323f4e
+#define co_fgr #f8f8f2
+#define co_cur #f8f8f2
+
+#define co_blk #3d4c5f
+#define co_red #f48fb1
+#define co_grn #a1efd3
+#define co_ylw #f1fa8c
+#define co_blu #92b6f4
+#define co_mgt #bd99ff
+#define co_cyn #87dfeb
+#define co_wht #f8f8f2
+
+#define cb_blk #56687e
+#define cb_red #ee4f84
+#define cb_grn #53e2ae
+#define cb_ylw #f1ff52
+#define cb_blu #6498ef
+#define cb_mgt #985eff
+#define cb_cyn #24d1e7
+#define cb_wht #e5e5e5
+
+! special
+*background:  co_bgr
+*foreground:  co_fgr
+*cursorColor: co_cur
+
+*color0:  co_blk
+*color1:  co_red
+*color2:  co_grn
+*color3:  co_ylw
+*color4:  co_blu
+*color5:  co_mgt
+*color6:  co_cyn
+*color7:  co_wht
+
+*color8:  cb_blk
+*color9:  cb_red
+*color10: cb_grn
+*color11: cb_ylw
+*color12: cb_blu
+*color13: cb_mgt
+*color14: cb_cyn
+*color15: cb_wht
+
