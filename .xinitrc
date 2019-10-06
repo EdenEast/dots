@@ -33,7 +33,7 @@ local_theme_xresoures=$HOME/.local/share/theme/.Xresources
 # Window managers
 
 # awesome
-[[ -f /usr/bin/awesome ]] && exec dbus-launch awesome
+# [[ -f /usr/bin/awesome ]] && exec dbus-launch awesome
 
 # bspwm
 # [[ -f /usr/bin/bspwm ]] && exec dbus-launch bspwm
@@ -45,7 +45,7 @@ local_theme_xresoures=$HOME/.local/share/theme/.Xresources
 # [[ -f /usr/bin/leftwm  ]] && exec dbus-launch leftwm
 
 # qtile
-# [[ -f /usr/bin/qtile  ]] && exec dbus-launch qtile
+[[ -f /usr/bin/qtile  ]] && exec dbus-launch qtile
 
 # xmonad
 # [[ -f /usr/bin/xmonad  ]] && exec dbus-launch xmonad
