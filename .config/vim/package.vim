@@ -25,6 +25,7 @@ call plug#begin('$XDG_CACHE_HOME/vim/packages') " Autocomplete: {{{
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'junegunn/vim-easy-align'
   Plug 'kana/vim-smartinput'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'tpope/vim-commentary'
