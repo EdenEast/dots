@@ -17,7 +17,9 @@ git
 i3
 polybar
 qtile
+script
 vim
+xinit
 xmonad
 xrdb
 xresource
@@ -33,8 +35,10 @@ case $choice in
     i3        ) open_file    $HOME/.config/i3/config ;;
     polybar   ) open_file    $HOME/.config/polybar   ;;
     qtile     ) open_file    $HOME/.config/qtile     ;;
+    script    ) open_dir     $HOME/.script           ;;
     xmonad    ) open_dir     $HOME/.xmonad           ;;
     vim       ) open_dir     $HOME/.config/vim       ;;
+    xinit     ) open_file    $HOME/.xinitrc          ;;
     xrdb      ) open_dir     $HOME/.config/xrdb      ;;
     xresource ) open_file    $HOME/.XResources       ;;
     zsh       ) open_dir vim $HOME/.config/zsh       ;;
