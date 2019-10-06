@@ -90,7 +90,7 @@ local globalkeys = awful.util.table.join(
 
     awful.key({ mod, }, 'Return',
         function()
-            awful.spawn("alacritty")
+            awful.spawn(user.terminal)
         end,
         { description = 'Launch terminal', group = 'Launcher' }
     ),
@@ -105,6 +105,12 @@ local globalkeys = awful.util.table.join(
             keychain:activate(keyseq, 'user')
         end,
         { description = 'User key sequence', group = 'Main' }
+    ),
+    awful.key({ mod }, 'e',
+        function ()
+            awful.spawn.with_shell('$HOME/.script/rofi/edit-config.sh')
+        end,
+        { description = 'Edit config files', group = 'Launcher' }
     ),
 
     -- Movement
