@@ -2,7 +2,7 @@
 
 function open_dir () # directory
 {
-    exec urxvt -e sh -c "cd $@ && vim -c 'CtrlP'" .
+    exec urxvt -e sh -c "cd $@ && vim -c 'CtrlP' ."
 }
 
 function open_file () # file
@@ -34,7 +34,7 @@ case $choice in
     git       ) open_dir     $HOME/.config/git       ;;
     i3        ) open_file    $HOME/.config/i3/config ;;
     polybar   ) open_file    $HOME/.config/polybar   ;;
-    qtile     ) open_file    $HOME/.config/qtile     ;;
+    qtile     ) open_dir    $HOME/.config/qtile     ;;
     script    ) open_dir     $HOME/.script           ;;
     xmonad    ) open_dir     $HOME/.xmonad           ;;
     vim       ) open_dir     $HOME/.config/vim       ;;
