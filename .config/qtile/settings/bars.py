@@ -17,15 +17,15 @@ primary = bar.Bar(
         widget.TextBox('|'),
         widget.Systray(),
         widget.TextBox('|'),
-        # widget.cpugraph(
-        #     graph_color=colors['green'],
-        #     border_color=colors['black']),
-        # widget.memorygraph(graph_color=colors['blue'],
-        #                    border_color=colors['black']),
-        # widget.netgraph(
-        #     graph_color=colors['yellow'],
-        #     border_color=colors['black']),
-        # widget.wlan(interface="wlp2s0"),
+        widget.CPUGraph(
+            graph_color=colors['green'],
+            border_color=colors['black']),
+        widget.MemoryGraph(graph_color=colors['blue'],
+                           border_color=colors['black']),
+        widget.NetGraph(
+            graph_color=colors['yellow'],
+            border_color=colors['black']),
+        widget.Wlan(interface="wlp3s0"),
         widget.TextBox('|'),
         widget.ThermalSensor(),
         widget.TextBox('|'),
