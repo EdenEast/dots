@@ -38,7 +38,7 @@ qtile = [
     # Shrink/Grow
     Key([mod], "i", lazy.layout.grow()),
     Key([mod], "m", lazy.layout.shrink()),
-    Key([mod, shift], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),

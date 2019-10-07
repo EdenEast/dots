@@ -34,7 +34,7 @@ case $choice in
     git       ) open_dir     $HOME/.config/git       ;;
     i3        ) open_file    $HOME/.config/i3/config ;;
     polybar   ) open_file    $HOME/.config/polybar   ;;
-    qtile     ) open_dir    $HOME/.config/qtile     ;;
+    qtile     ) open_dir     $HOME/.config/qtile     ;;
     script    ) open_dir     $HOME/.script           ;;
     xmonad    ) open_dir     $HOME/.xmonad           ;;
     vim       ) open_dir     $HOME/.config/vim       ;;
