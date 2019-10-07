@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# a general audio interface
+
+spotify_pid=$(pgrep spotify)
+mpd_pid=$(pgrep mpd)
+
+function change_volume()
+{
+    case "$1" in
+        u*      ) pamixer --allow-boost -i $2 ;; # volume up
+        d*      ) pamixer --allow-boost -d $2 ;; # volume down
+        m*      ) pamixer --allow-boost -t $2 ;; # volume mute
+        truemute) pamixer -m                  ;; # true mute
+    esac
+
+    # reload i3blocks
+    # pkill -RTMIN+10 i3blocks
+}
+
+function change_mpd()
+{
+    case "$1" in
+        b*   ) mpc seek -"$2" ;; # back
+        f*   ) mpc seek +"$2" ;; # front
+        n*   ) mpc next       ;; # next
+        pause) mpc pause      ;; # pause
+        play ) mpc play       ;; # play
+        prev ) mpc prev       ;; # prev
+        r*   ) mpc seek %0    ;; # restart
+        s*   ) mpc stop       ;; # stop
+        t*   ) mpc toggle     ;; # toggle
+    esac
+
+    # reload i3blocks
+    # pkill -RTMIN+20 i3blocks
+}
+
+function change_spotify()
+{
+    case "$1" in
+        b*   ) ;; # back
+        f*   ) ;; # front
+        n*   ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next      ;; # next
+        pause) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause ;; # pause
+        play ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play      ;; # play
+        prev ) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous  ;; # prev
+        r*   ) ;; # restart
+        t*   ) ;; # toggle
+    esac
+}
+
+function change_track()
+{
+    [[ -n $spotify_pid ]] &&  { change_spotify "$@" ; return ; }
+    [[ -n $mpd_pid ]] && { change_mpd "$@" ; return ; }
+}
+
+function main()
+{
+    [ -z "$2" ] && num="2" || num="$2"
+
+    case "$1" in
+        u*|d*|m*|truemute) change_volume $1 $num ;;
+        b*|f*|n*|p*|r*|s*|t*) change_track $1 $num ;;
+    esac
+}
+
+main "$@"
