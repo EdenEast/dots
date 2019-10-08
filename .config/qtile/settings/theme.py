@@ -1,23 +1,29 @@
 import os
 import re
-import subprocess
+from subprocess import Popen, PIPE
 
-color_regex   = re.compile(r"\*(color\d+):\s*(#[a-fA-F\d]+)")
-backgrd_regex = re.compile(r"\*background:\s*(#[a-fA-F\d]+)")
-foregrd_regex = re.compile(r"\*foreground:\s*(#[a-fA-F\d]+)")
-
-out,err = Popen(['xrdb', '-query'], stdout=PIPE).communicate()
+color_regex   = r"\*(color\d+):\s*(#[a-fA-F\d]+)"
+backgrd_regex = r"^\*background:\s*(?P<background>#[a-fA-F\d]+)"
+foregrd_regex = r"^\*foreground:\s*(?P<foreground>#[a-fA-F\d]+)"
 
 xcolors = {}
+out,err = Popen(['xrdb', '-query'], stdout=PIPE).communicate()
+out = out.decode('ISO-8859-1')
+
 matches =  re.finditer(color_regex, out)
-for match_num, match in enumerate(matches, start=1):
-    xcolors.update({match.group(1) : match.group(2)})
+if matches:
+    for match_num, match in enumerate(matches, start=1):
+        xcolors.update({match.group(1) : match.group(2)})
 
-color_val = re.search(backgrd_regex, out).group(1)
-xcolors.update({'background': color_val})
+match = re.match(backgrd_regex, out)
+if match:
+    xcolors.update({'background': match.group('background')})
 
-color_val = re.search(foregrd_regex, out).group(1)
-xcolors.update({'foreground': color_val})
+match = re.match(foregrd_regex, out)
+if match:
+    xcolors.update({'foreground': match.group('foreground')})
+
+print(xcolors)
 
 colors = {
     'background': xcolors.get('background', '#191919'),
