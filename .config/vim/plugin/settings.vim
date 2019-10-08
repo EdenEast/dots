@@ -7,6 +7,9 @@ if exists('$SUDO_USER')
     set nobackup                                 " dont create root-owned files
     set nowritebackup                            " dont create root-owned files
 else
+    if !isdirectory(expand("$XDG_CACHE_HOME/vim/backup"))
+      call mkdir(expand("$XDG_CACHE_HOME/vim/backup"))
+    endif
     set backupdir=$XDG_CACHE_HOME/vim/backup
 endif
 
@@ -27,6 +30,9 @@ set cursorline                                   " highlight current line
 if exists('$SUDO_USER')
     set noswapfile                               " dont create root-owned files
 else
+    if !isdirectory(expand("$XDG_CACHE_HOME/vim/swap"))
+      call mkdir(expand("$XDG_CACHE_HOME/vim/swap"))
+    endif
     set directory=$XDG_CACHE_HOME/vim/swap
 endif
 
@@ -155,6 +161,9 @@ if has('persistent_undo')
     if exists('$SUDO_USER')
         set noundofile                           " dont create root-owned files
     else
+        if !isdirectory(expand("$XDG_CACHE_HOME/vim/undo"))
+          call mkdir(expand("$XDG_CACHE_HOME/vim/undo"))
+        endif
         set undodir=$XDG_CACHE_HOME/vim/undo
         set undofile                             " use undo files
     endif
@@ -172,6 +181,9 @@ if has('viminfo')
 endif
 
 if has('mksession')
+    if !isdirectory(expand("$XDG_CACHE_HOME/vim/view"))
+      call mkdir(expand("$XDG_CACHE_HOME/vim/view"))
+    endif
     set viewdir=$XDG_CACHE_HOME/vim/view
     set viewoptions=cursor,folds                 " save/restore just these (with :{mk, load}view)
 endif
