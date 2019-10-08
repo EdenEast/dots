@@ -1,27 +1,27 @@
 ! vim: ft=xdefaults
 ! manta
 
-#define co_bgr #1E2541
-#define co_fgr #EEFFFF
-#define co_cur #EEFFFF
+#define co_bgr #1e2541
+#define co_fgr #eeffff
+#define co_cur #eeffff
 
-#define co_blk #1E2541
-#define co_red #F0719B
-#define co_grn #5AF7B0
-#define co_ylw #FFA56B
-#define co_blu #57C7FF
-#define co_mgt #C792EA
-#define co_cyn #89DDFF
-#define co_wht #EEFFFF
+#define co_blk #1e2541
+#define co_red #f0719b
+#define co_grn #5af7b0
+#define co_ylw #ffa56b
+#define co_blu #57c7ff
+#define co_mgt #c792ea
+#define co_cyn #89ddff
+#define co_wht #eeffff
 
 #define cb_blk #354274
-#define cb_red #F02E6E
-#define cb_grn #2CE592
-#define cb_ylw #FF8537
-#define cb_blu #1DA0E2
-#define cb_mgt #A742EA
-#define cb_cyn #47BAE8
-#define cb_wht #DEE6E7
+#define cb_red #f02e6e
+#define cb_grn #2ce592
+#define cb_ylw #ff8537
+#define cb_blu #1da0e2
+#define cb_mgt #a742ea
+#define cb_cyn #47bae8
+#define cb_wht #dee6e7
 
 ! special
 *background:  co_bgr

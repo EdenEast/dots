@@ -1,7 +1,8 @@
 ! vim: ft=xdefaults
 ! arc
 
-#define co_bgr #3f424a
+!#define co_bgr #3f424a
+#define co_bgr #282a36
 #define co_fgr #f8f8ff
 #define co_cur #c5c8c6
 
@@ -14,7 +15,7 @@
 #define co_cyn #8cd0d3
 #define co_wht #dcdccc
 
-#define cb_blk #79A9FF
+#define cb_blk #79a9ff
 #define cb_red #da6e6e
 #define cb_grn #c3bf9f
 #define cb_ylw #f0dfaf
@@ -27,12 +28,6 @@
 *background:  co_bgr
 *foreground:  co_fgr
 *cursorColor: co_cur
-!*underlineColor:   #4682b4
-!*highlightColor:   #4682b4
-!*throughColor:     Blue
-!*colorIT:          #87af5f
-!*colorBD:          #c5c8c6
-!*colorUL:          #87afd7
 
 *color0:  co_blk
 *color1:  co_red
