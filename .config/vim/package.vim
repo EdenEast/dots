@@ -5,7 +5,8 @@ if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('$XDG_CACHE_HOME/vim/packages') " Autocomplete: {{{
+call plug#begin('$XDG_CACHE_HOME/vim/packages')
+  " Autocomplete: {{{
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     Plug 'Shougo/neco-syntax'
@@ -59,6 +60,9 @@ call plug#begin('$XDG_CACHE_HOME/vim/packages') " Autocomplete: {{{
 
   " fancy startup screen
   Plug 'mhinz/vim-startify'
+
+  " hex colorize
+  Plug 'chrisbra/Colorizer'
 
   if has('nvim')
     Plug 'kassio/neoterm'
