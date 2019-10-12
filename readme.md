@@ -27,3 +27,15 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 ```
 
 [yadm]: https://thelocehiliosan.github.io/yadm
+
+## Some Resources
+
+- [How to encrypt dotfiles](https://abdullah.today/2019/10/01/encrypted-dotfiles.html) with keybase and gpg
+- [conf.d like directories](https://chr4.org/blog/2014/09/10/conf-dot-d-like-directories-for-zsh-slash-bash-dotfiles/)
+    for bash and zsh
+
+## Examples
+
+- [neeasade/dotfiles](https://github.com/neeasade/dotfiles) utilize a template based theming system, with the ability to
+    to switch between themes without restarting programs
+- [andschwa/dotfiles](https://github.com/andschwa/dotfiles) use git subtree and stow setup with private subtrees
