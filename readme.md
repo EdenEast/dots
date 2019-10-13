@@ -39,3 +39,5 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 - [neeasade/dotfiles](https://github.com/neeasade/dotfiles) utilize a template based theming system, with the ability to
     to switch between themes without restarting programs
 - [andschwa/dotfiles](https://github.com/andschwa/dotfiles) use git subtree and stow setup with private subtrees
+- [dguo/dotfiles](https://github.com/dguo/dotfiles) interesting remap of caps lock, has all 3 platforms, good readme
+- [xero/dotfiles](https://github.com/xero/dotfiles) well documented and extensive config
