@@ -41,3 +41,4 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 - [andschwa/dotfiles](https://github.com/andschwa/dotfiles) use git subtree and stow setup with private subtrees
 - [dguo/dotfiles](https://github.com/dguo/dotfiles) interesting remap of caps lock, has all 3 platforms, good readme
 - [xero/dotfiles](https://github.com/xero/dotfiles) well documented and extensive config
+- [bspwm simple theme switcher](https://www.reddit.com/r/unixporn/comments/def9ez/bspwm_simple_theme_switcher/)
