@@ -42,3 +42,12 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 - [dguo/dotfiles](https://github.com/dguo/dotfiles) interesting remap of caps lock, has all 3 platforms, good readme
 - [xero/dotfiles](https://github.com/xero/dotfiles) well documented and extensive config
 - [bspwm simple theme switcher](https://www.reddit.com/r/unixporn/comments/def9ez/bspwm_simple_theme_switcher/)
+- [open box fool in the rain](https://www.reddit.com/r/unixporn/comments/8apait/openbox_fool_in_the_rain/)
+- [clean and productive](https://www.reddit.com/r/unixporn/comments/aktm5d/i3gaps_clean_and_productive/)
+- [actual minimal](https://www.reddit.com/r/unixporn/comments/crbv8i/bspwm_actually_minimal/)
+- [openbox vinl](https://www.reddit.com/r/unixporn/comments/7djwht/openbox_vinyl/)
+- [qtile space odyssey](https://www.reddit.com/r/unixporn/comments/dey3bl/qtile_space_odyssey/)
+
+## Rofi scripts
+- [rofi menu scripts](https://gitlab.com/vahnrr/rofi-menus)
+- [i3lock-color faster lockscreen](https://www.reddit.com/r/unixporn/comments/7iddwn/i3lock_faster_and_better_lockscreen/)
