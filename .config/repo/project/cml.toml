@@ -1,7 +1,6 @@
 name = 'cml'
 tags = [
     'cm',
-    'code',
     'lib',
     'personal',
 ]

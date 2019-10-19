@@ -1,7 +1,6 @@
 name = 'scaffold'
 tags = [
     'cm',
-    'code',
     'lib',
     'personal',
 ]
