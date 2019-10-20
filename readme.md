@@ -47,6 +47,17 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 - [actual minimal](https://www.reddit.com/r/unixporn/comments/crbv8i/bspwm_actually_minimal/)
 - [openbox vinl](https://www.reddit.com/r/unixporn/comments/7djwht/openbox_vinyl/)
 - [qtile space odyssey](https://www.reddit.com/r/unixporn/comments/dey3bl/qtile_space_odyssey/)
+- [xmonad workspace](https://www.reddit.com/r/unixporn/comments/cmenre/xmonad_xmonord_update/)
+- [xmonad_xmonord](https://www.reddit.com/r/unixporn/comments/c80q4h/xmonad_xmonord/)
+- [xmonadminimal](https://www.reddit.com/r/unixporn/comments/al4yyy/xmonadminimal/)
+
+## Themes
+- [dreamlike](https://www.reddit.com/r/unixporn/comments/dkgomp/bspwm_dreamlike/)
+- [efficiency](https://www.reddit.com/r/unixporn/comments/djrtdp/bspwm_efficiency/)
+- [simplicity](https://www.reddit.com/r/unixporn/comments/djuz99/i3gaps_simplicity/)
+- [warm and comfy](https://www.reddit.com/r/unixporn/comments/di9qkn/herbstluftwm_warm_and_comfy/)
+- [slate](https://www.reddit.com/r/unixporn/comments/dhz0sj/i3gaps_slate/)
+- [interesting pywal setup](https://www.reddit.com/r/unixporn/comments/djzs4o/i3gapsrounded_having_fun_again_with_pywal/)
 
 ## Rofi scripts
 - [rofi menu scripts](https://gitlab.com/vahnrr/rofi-menus)
