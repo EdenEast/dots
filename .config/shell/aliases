@@ -65,6 +65,10 @@ alias vpwp='which python ; which pip'
     alias pacman="sudo pacman --color auto"
 }
 
+[[ -n "$(command -v pacman)" ]] && {
+    alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"
+}
+
 # shortcut edit files
 alias ea="(cd ~/.config/awesome && $EDITOR rc.lua)"
 alias eg="(cd ~/.config/git && $EDITOR config)"
