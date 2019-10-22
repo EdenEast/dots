@@ -51,7 +51,7 @@ main = do
 
   forM_ [ "xmonad-ws"
         , "xmonad-layout"
-        , "caffeine"
+        -- , "caffeine"
         ]
         $ \file -> safeSpawn "mkfifo" ["/tmp/"++file]
 

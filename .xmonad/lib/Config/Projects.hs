@@ -32,19 +32,19 @@ projects =
             }
   , Project { projectName      = wsTerm
             , projectDirectory = "~/"
-            , projectStartHook = Just $ spawn tty
+            , projectStartHook = Just $ return () -- spawn tty
             }
   , Project { projectName      = wsCode
             , projectDirectory = "~/"
-            , projectStartHook = Just $ spawn code
+            , projectStartHook = Just $ return () -- spawn code
             }
   , Project { projectName      = wsWeb
             , projectDirectory = "~/"
-            , projectStartHook = Just $ spawn browser
+            , projectStartHook = Just $ return () -- spawn browser
             }
   , Project { projectName      = wsMusic
             , projectDirectory = "~/"
-            , projectStartHook = Just $ spawn music
+            , projectStartHook = Just $ return () -- spawn music
             }
   , Project { projectName      = wsMail
             , projectDirectory = "~/"
