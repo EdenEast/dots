@@ -45,7 +45,7 @@ local_theme_xresoures=$HOME/.local/share/theme/.Xresources
 # [[ -f /usr/bin/leftwm  ]] && exec dbus-launch leftwm
 
 # qtile
-[[ -f /usr/bin/qtile  ]] && exec dbus-launch qtile
+# [[ -f /usr/bin/qtile  ]] && exec dbus-launch qtile
 
 # xmonad
-# [[ -f /usr/bin/xmonad  ]] && exec dbus-launch xmonad
+[[ -f /usr/bin/xmonad  ]] && exec dbus-launch xmonad

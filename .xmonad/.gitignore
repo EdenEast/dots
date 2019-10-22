@@ -1,2 +1,4 @@
-*
-!*.hs
+*.hi
+*.o
+*.errors
+xmonad-*-linux
