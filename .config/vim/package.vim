@@ -57,6 +57,7 @@ call plug#begin('$XDG_CACHE_HOME/vim/packages')
 " Better whitespace stripping for vim
   Plug 'thirtythreeforty/lessspace.vim'
   Plug 'Yggdroot/indentLine'
+  Plug 'ciaranm/securemodelines'
 
   " fancy startup screen
   Plug 'mhinz/vim-startify'
