@@ -17,7 +17,8 @@ def init_apps():
             '-cornersize',
             '30',
             '-locker',
-            os.path.expanduser('~/.config/qtile/scripts/lock_screen.py')
+            # os.path.expanduser('~/.config/qtile/scripts/lock_screen.py')
+            os.path.expanduser('~/.script/wm/lock')
         ],
         # Optional
         ['mpd'],

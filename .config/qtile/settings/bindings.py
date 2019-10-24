@@ -54,7 +54,8 @@ qtile = [
 ]
 
 system = [
-    Key([mod, shift], "x", lazy.function(lock_screen())),
+    # Key([mod, shift], "x", lazy.function(lock_screen())),
+    Key([mod, shift], "x", lazy.spawn("./.script/wm/lock")),
     Key([], 'XF86MonBrightnessUp', lazy.function(change_backlight('up'))),
     Key([], 'XF86MonBrightnessDown', lazy.function(change_backlight('down'))),
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('pactl set-sink-volume 0 +5%')),
