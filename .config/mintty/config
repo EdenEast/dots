@@ -11,8 +11,11 @@ CursorBlinks=no
 ThemeFile=ephemeral
 
 # ThemeFile=ephemeral
+# ThemeFile=hotline
+# ThemeFile=insomnia
 # ThemeFile=lovelace
 # ThemeFile=manta
+# ThemeFile=neon
 # ThemeFile=skyfall
 
 # Font
