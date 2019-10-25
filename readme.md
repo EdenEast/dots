@@ -62,3 +62,6 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 ## Rofi scripts
 - [rofi menu scripts](https://gitlab.com/vahnrr/rofi-menus)
 - [i3lock-color faster lockscreen](https://www.reddit.com/r/unixporn/comments/7iddwn/i3lock_faster_and_better_lockscreen/)
+
+## Awesome
+- [rounded](https://www.reddit.com/r/unixporn/comments/dmvcev/awesome_rounded/)
