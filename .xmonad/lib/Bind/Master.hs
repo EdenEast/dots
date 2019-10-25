@@ -1,16 +1,97 @@
 -- |
 module Bind.Master where
 
+import System.IO
 import XMonad
+import XMonad.Actions.DynamicWorkspaces
+import XMonad.Util.EZConfig
+import XMonad.Util.NamedActions
+import XMonad.Util.Run
 import System.Exit
 
 import qualified XMonad.StackSet                   as W
 import qualified Data.Map                          as M
 import qualified XMonad.Actions.FlexibleManipulate as F
+import qualified XMonad.Actions.Navigation2D       as Nav2d
+import App.Alias
+import Config.Options
+
 -- Keys --
 -------------------------------------------------------------------------------
-defaultKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+-- keys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
+keyBindings conf = 
+    subtitle "State" : mkNamedKeymap conf
+    [ ("M-S-r", addName "Restart Xmonad" $ restartXMonad)
+    , ("M-C-r", addName "Rebuild Xmonad" $ rebuildXMonad)
+    , ("M-q",   addName "Kill"           $ kill)
+    , ("M-C-q", addName "Quit Xmonad"    $ quitXMonad)
+    ] ++
 
+    subtitle "Navigation" : mkNamedKeymap conf
+    [ ("M-k", addName "Focus window above"  $ Nav2d.windowGo Nav2d.U False)
+    , ("M-j", addName "Focus window below"  $ Nav2d.windowGo Nav2d.D False)
+    , ("M-h", addName "Focus window left"   $ Nav2d.windowGo Nav2d.L False)
+    , ("M-l", addName "Focus window right"  $ Nav2d.windowGo Nav2d.R False)
+    , ("M-S-k", addName "Swap window above" $ Nav2d.windowSwap Nav2d.U False)
+    , ("M-S-j", addName "Swap window below" $ Nav2d.windowSwap Nav2d.D False)
+    , ("M-S-h", addName "Swap window left"  $ Nav2d.windowSwap Nav2d.L False)
+    , ("M-S-l", addName "Swap window right" $ Nav2d.windowSwap Nav2d.R False)
+    , ("M-C-k", addName "Swap screen above" $ Nav2d.windowSwap Nav2d.U False >> Nav2d.screenGo Nav2d.U False)
+    , ("M-C-j", addName "Swap screen below" $ Nav2d.windowSwap Nav2d.D False >> Nav2d.screenGo Nav2d.D False)
+    , ("M-C-h", addName "Swap screen left"  $ Nav2d.windowSwap Nav2d.L False >> Nav2d.screenGo Nav2d.L False)
+    , ("M-C-l", addName "Swap screen right" $ Nav2d.windowSwap Nav2d.R False >> Nav2d.screenGo Nav2d.R False)
+    ] ++
+
+    subtitle "Application Launching" : mkNamedKeymap conf
+    [ ("M-<Return>", addName "Terminal" $ spawn (term options))
+    , ("M-o w",      addName "Browser"  $ spawn (browser))
+    ] ++
+
+    -- standard jumping around workspaces etc.
+    [ (m ++ k, windows $ f w)
+    | (w, k) <- zip (XMonad.workspaces conf) (spaces options)
+    , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
+    ]
+
+    where
+        wsKeys = map show $ [1..9] ++ [0]
+
+        rebuildXMonad :: X ()
+        rebuildXMonad = do
+            spawn "xmonad --recompile && xmonad --restart"
+        
+        restartXMonad :: X ()
+        restartXMonad = do
+            spawn "xmonad --restart"
+
+        quitXMonad :: X ()
+        quitXMonad = io (exitWith ExitSuccess)
+
+        
+-- defaultKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
+-- defaultKeys c = mkKeymap c $
+--     [ ("M-<Return>", spawn (term options))
+--     , ("M-C-r", spawn ("xmonad --recompile && xmonad --restart"))
+--     , ("M-C-q", io exitSuccess)
+--     , ("M-q", kill)
+
+--     -- Navigation
+--     , ("M-j", windows W.focusDown)
+--     , ("M-k", windows W.focusUp)
+
+--     -- Applications
+--     , ("M-a k", kill)
+--     , ("M-a w", spawn browser)
+--     , ("M-a e", spawn code)
+
+--     -- Session
+--     , ("M-q l", spawn screensaver)
+--     , ("M-q r", broadcastMessage ReleaseResources
+--                 >> spawn ("xmonad --recompile && xmonad --restart"))
+--     ]
+
+defaultKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+-- origKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
@@ -99,6 +180,12 @@ defaultKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+    h <- spawnPipe "zenity --text-info --font=terminus"
+    hPutStr h (unlines $ showKm x)
+    hClose h
+    return ()
 
 -- Mouse bindings: default actions bound to mouse events
 mouseBindings' :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())

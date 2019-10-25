@@ -1,11 +1,10 @@
--- |
-
 import Control.Monad
 import Data.Monoid
 import XMonad
 import XMonad.Actions.DynamicProjects
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Util.NamedActions
 import XMonad.Util.Replace
 import XMonad.Util.Run
 
@@ -32,7 +31,7 @@ defaults = def {
   borderWidth        = border theme,
 
   -- key bindings
-  keys               = defaultKeys,
+  -- keys               = keyBindings,
   mouseBindings      = mouseBindings',
 
   layoutHook         = layout,
@@ -57,6 +56,7 @@ main = do
 
   xmonad
     . docks
+    . addDescrKeys' ((mask options, xK_F1), showKeybindings) keyBindings
     . ewmh
     . navigate
     . dynamicProjects projects

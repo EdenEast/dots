@@ -14,6 +14,9 @@ compositor = "compton &"
 notifications :: String
 notifications = "dunst"
 
+screensaver :: String
+screensaver = "~/.script/wm/lock"
+
 xresource :: String
 xresource = "[[ -f ~/.Xresources ]] && nohup xrdb -merge -I$HOME ~/.Xresoruces > /dev/null"
 
