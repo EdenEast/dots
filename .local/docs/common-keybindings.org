@@ -1,0 +1,71 @@
+* Common window manager keybindings
+** Window Manager System and state
+    | Key Binding     | Action                    |
+    |-----------------+---------------------------|
+    | mod + q         | Kill window               |
+    | mod + S + q     | Restart/reload changes WM |
+    | mod + C + q     | Quit WM                   |
+    | mod + <esc>     | Machine state menu        |
+    | mod + <return>  | Launch Terminal           |
+    | mod + <space>   | Scratchpad/drop down term |
+    | mod + C <space> | Launcher                  |
+    |                 |                           |
+
+** Movement and Navigation
+    | Key Binding          | Action                            |
+    |----------------------+-----------------------------------|
+    | mod + [h,j,k,l]      | Move focus of window in direction |
+    | mod + S + [h,j,k,l]  | Move window in direction          |
+    | mod + C + []h,j,k,l] | Resize window in direction        |
+    |                      |                                   |
+    | ...                  | [move between screens/monitors]   |
+    |                      |                                   |
+    | mod + [0-9]          | Focus workspace                   |
+    | mod + S [0-9]        | Move window to workspace          |
+    | mod + C [0-9]        | Copy window to workspace          |
+    |                      |                                   |
+
+** Window related
+    | Key Binding | Action                 |
+    |-------------+------------------------|
+    | mod + f     | Full/Fill screen       |
+    | mod + S = f | Foat screen            |
+    | mod + b     | Toggle panel/bar       |
+    | mod + S + b | Toggle Titlebar if any |
+    |             |                        |
+
+** Groups
+*** Application [a]
+**** editor [e]
+**** kill [k]
+**** music [m]
+**** performance (htop,gotop..) [p]
+**** web [w]
+*** Edit [e]
+**** awesome [a]
+**** bash [b]
+**** fish [f]
+**** git [g]
+**** picker [e]
+**** qtile [q]
+**** vim [v]
+**** xmonad [x]
+**** zsh [z]
+*** Layout [y]
+**** floating [f]
+**** maximized [m]
+**** master/stack [s]
+**** grid [g]
+**** three col [t]
+*** Media [m]
+**** mute [m]
+**** play/pause [p]
+**** ...
+*** System [s]
+*** Thoughts behind subgroups/key-chaining/emacs-coords
+    A way to group similar actions around a key that pnumonicly makes it easy to remember.
+    To access the subgroup should be `mod + [key]` to enter the subgroup
+
+**** To enter the subgroup is mod + [key]
+**** More common operations in the mod group are accessable with a combinaration of [S, C, A]
+**** The key that is defined as the subgroup should also be mapped so that you can press with or without mod
