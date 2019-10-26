@@ -57,8 +57,8 @@ gs = Gaps'
 gapses :: l a -> ModifiedLayout Gaps l a
 gapses     = gaps [(U, u gs), (R, x gs), (L, x gs), (D, d gs)]
 
-spacingses :: l a -> ModifiedLayout Spacing l a
-spacingses = spacingRaw True (Border      0  (x' gs) (x' gs) (x' gs))
+spacing :: l a -> ModifiedLayout Spacing l a
+spacing = spacingRaw True (Border      0  (x' gs) (x' gs) (x' gs))
                         True (Border (x' gs) (x' gs) (x' gs) (x' gs))
                         True
 
@@ -69,19 +69,19 @@ full = named "Fullscreen"
 bsp  = named "Binary Partition"
      $ IfMax 1 full
      $ gapses
-     . spacingses
+     . spacing
      $ emptyBSP
 
 tall = named "Tall"
      $ IfMax 1 full
      $ gapses
-     . spacingses
+     . spacing
      $ ResizableTall 1 (2/100) (1/2) []
 
 tcm  = named "Three Columns"
      $ IfMax 1 full
      $ gapses
-     . spacingses
+     . spacing
      $ ThreeColMid 1 (1/10) (1/2)
 
 tabs = named "Tabbed"

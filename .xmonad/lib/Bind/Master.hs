@@ -3,7 +3,14 @@ module Bind.Master where
 
 import System.IO
 import XMonad
+import XMonad.Actions.CopyWindow
 import XMonad.Actions.DynamicWorkspaces
+import XMonad.Actions.MessageFeedback
+import XMonad.Layout.ToggleLayouts
+import XMonad.Operations
+-- import XMonad.Layout.WindowNavigation
+-- import XMonad.Layout.MultiToggle
+-- import XMonad.Layout.MultiToggle.Instances
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedActions
 import XMonad.Util.Run
@@ -16,42 +23,73 @@ import qualified XMonad.Actions.Navigation2D       as Nav2d
 import App.Alias
 import Config.Options
 
+nav2dConfig = def
+  { Nav2d.defaultTiledNavigation = Nav2d.centerNavigation
+  , Nav2d.floatNavigation = Nav2d.centerNavigation
+  , Nav2d.screenNavigation = Nav2d.lineNavigation
+  }
+
 -- Keys --
 -------------------------------------------------------------------------------
 -- keys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
-keyBindings conf = 
-    subtitle "State" : mkNamedKeymap conf
+keyBindings conf = let
+    subKeys str ks = subtitle str : mkNamedKeymap conf ks
+    dirKeys = ["j", "k", "h", "l"]
+    arrowKeys = ["<D>", "<U>", "<L>", "<R>"]
+    dirs = [Nav2d.D, Nav2d.U, Nav2d.L, Nav2d.R]
+
+    zipM  m nm ks as f = zipWith(\k d -> (m ++ k, addName nm $ f d)) ks as
+    zipM' m nm ks as f b = zipWith(\k d -> (m ++ k, addName nm $ f d b)) ks as
+
+    in
+
+    subKeys "System"
     [ ("M-S-r", addName "Restart Xmonad" $ restartXMonad)
     , ("M-C-r", addName "Rebuild Xmonad" $ rebuildXMonad)
-    , ("M-q",   addName "Kill"           $ kill)
+    , ("M-q"  , addName "Kill"           $ kill)
     , ("M-C-q", addName "Quit Xmonad"    $ quitXMonad)
-    ] ++
+    ] ^++^
 
-    subtitle "Navigation" : mkNamedKeymap conf
-    [ ("M-k", addName "Focus window above"  $ Nav2d.windowGo Nav2d.U False)
-    , ("M-j", addName "Focus window below"  $ Nav2d.windowGo Nav2d.D False)
-    , ("M-h", addName "Focus window left"   $ Nav2d.windowGo Nav2d.L False)
-    , ("M-l", addName "Focus window right"  $ Nav2d.windowGo Nav2d.R False)
-    , ("M-S-k", addName "Swap window above" $ Nav2d.windowSwap Nav2d.U False)
-    , ("M-S-j", addName "Swap window below" $ Nav2d.windowSwap Nav2d.D False)
-    , ("M-S-h", addName "Swap window left"  $ Nav2d.windowSwap Nav2d.L False)
-    , ("M-S-l", addName "Swap window right" $ Nav2d.windowSwap Nav2d.R False)
-    , ("M-C-k", addName "Swap screen above" $ Nav2d.windowSwap Nav2d.U False >> Nav2d.screenGo Nav2d.U False)
-    , ("M-C-j", addName "Swap screen below" $ Nav2d.windowSwap Nav2d.D False >> Nav2d.screenGo Nav2d.D False)
-    , ("M-C-h", addName "Swap screen left"  $ Nav2d.windowSwap Nav2d.L False >> Nav2d.screenGo Nav2d.L False)
-    , ("M-C-l", addName "Swap screen right" $ Nav2d.windowSwap Nav2d.R False >> Nav2d.screenGo Nav2d.R False)
-    ] ++
+    subKeys "Navigation"
+    (
+      zipM' "M-" "Navigate window" dirKeys dirs Nav2d.windowGo False
+      ++ zipM' "M-S-" "Move window" dirKeys dirs Nav2d.windowSwap False
+    ) ^++^
 
-    subtitle "Application Launching" : mkNamedKeymap conf
+    -- [ ("M-k", addName "Focus window above"  $ Nav2d.windowGo Nav2d.U False)
+    -- , ("M-j", addName "Focus window below"  $ Nav2d.windowGo Nav2d.D False)
+    -- , ("M-h", addName "Focus window left"   $ Nav2d.windowGo Nav2d.L False)
+    -- , ("M-l", addName "Focus window right"  $ Nav2d.windowGo Nav2d.R False)
+    -- , ("M-S-k", addName "Swap window above" $ Nav2d.windowSwap Nav2d.U False)
+    -- , ("M-S-j", addName "Swap window below" $ Nav2d.windowSwap Nav2d.D False)
+    -- , ("M-S-h", addName "Swap window left"  $ Nav2d.windowSwap Nav2d.L False)
+    -- , ("M-S-l", addName "Swap window right" $ Nav2d.windowSwap Nav2d.R False)
+    -- , ("M-C-k", addName "Swap screen above" $ Nav2d.windowSwap Nav2d.U False >> Nav2d.screenGo Nav2d.U False)
+    -- , ("M-C-j", addName "Swap screen below" $ Nav2d.windowSwap Nav2d.D False >> Nav2d.screenGo Nav2d.D False)
+    -- , ("M-C-h", addName "Swap screen left"  $ Nav2d.windowSwap Nav2d.L False >> Nav2d.screenGo Nav2d.L False)
+    -- , ("M-C-l", addName "Swap screen right" $ Nav2d.windowSwap Nav2d.R False >> Nav2d.screenGo Nav2d.R False)
+    -- ] ^++^
+
+    subKeys "Launcher"
     [ ("M-<Return>", addName "Terminal" $ spawn (term options))
     , ("M-o w",      addName "Browser"  $ spawn (browser))
-    ] ++
+    , ("M-o o",      addName "Rofi Rum" $ spawn ("rofi -show drun"))
+    ] ^++^
 
-    -- standard jumping around workspaces etc.
-    [ (m ++ k, windows $ f w)
-    | (w, k) <- zip (XMonad.workspaces conf) (spaces options)
-    , (m, f) <- [("M-", W.greedyView), ("M-S-", W.shift)]
+    subKeys "Workspace"
+    (
+       zipM "M-" "View workspace" wsKeys [0..] (withNthWorkspace W.greedyView)
+    ++ zipM "M-S-" "Move w to ws" wsKeys [0..] (withNthWorkspace W.shift)
+    ++ zipM "M-S-C-" "Copy w to ws" wsKeys [0..] (withNthWorkspace copy)
+    -- ++ zipM' "M-" "Focus window" dirKeys dirs Nav2d.windowGo True
+    -- ++ zipM' "M-S-" "Move window" dirKeys dirs Nav2d.windowSwap True
+    ) ^++^
+
+    subKeys "Layout"
+    [ ("M-y y", addName "Next Layout" $ sendMessage NextLayout)
     ]
+
+
 
     where
         wsKeys = map show $ [1..9] ++ [0]
@@ -59,7 +97,7 @@ keyBindings conf =
         rebuildXMonad :: X ()
         rebuildXMonad = do
             spawn "xmonad --recompile && xmonad --restart"
-        
+
         restartXMonad :: X ()
         restartXMonad = do
             spawn "xmonad --restart"
@@ -67,7 +105,7 @@ keyBindings conf =
         quitXMonad :: X ()
         quitXMonad = io (exitWith ExitSuccess)
 
-        
+
 -- defaultKeys :: XConfig l -> M.Map (KeyMask, KeySym) (X ())
 -- defaultKeys c = mkKeymap c $
 --     [ ("M-<Return>", spawn (term options))

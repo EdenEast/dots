@@ -2,6 +2,7 @@ import Control.Monad
 import Data.Monoid
 import XMonad
 import XMonad.Actions.DynamicProjects
+import XMonad.Actions.Navigation2D
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.NamedActions
@@ -60,4 +61,5 @@ main = do
     . ewmh
     . navigate
     . dynamicProjects projects
+    . withNavigation2DConfig nav2dConfig
     $ defaults
