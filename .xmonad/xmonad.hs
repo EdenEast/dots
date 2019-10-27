@@ -49,8 +49,10 @@ main = do
   -- xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc"
   replace
 
-  forM_ [ "xmonad-ws"
-        , "xmonad-layout"
+  -- forM_ [ "xmonad-ws"
+  --       , "xmonad-layout"
+  forM_ [ ".xmonad-title-log"
+        , ".xmonad-workspace-log"
         -- , "caffeine"
         ]
         $ \file -> safeSpawn "mkfifo" ["/tmp/"++file]
