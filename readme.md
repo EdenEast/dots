@@ -65,3 +65,19 @@ curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
 
 ## Awesome
 - [rounded](https://www.reddit.com/r/unixporn/comments/dmvcev/awesome_rounded/)
+- [lines](https://www.reddit.com/r/unixporn/comments/dpy9wu/awesome_lines/)
+
+## Herbsluftwm
+- [singularity](https://www.reddit.com/r/unixporn/comments/dp5278/herbstluftwm_creamy_singularity/)
+
+## 2bwm
+- [doot](https://www.reddit.com/r/unixporn/comments/dq8xbs/2bwm_doot/)
+
+## More reddit posts to save
+- [kde nordic kwin](https://www.reddit.com/r/unixporn/comments/dncmja/kde_plasma_nordic_manjaro_gridtilingkwin/)
+- [bspwm workflow](https://www.reddit.com/r/unixporn/comments/co4kan/bspwm_wallpaper_is_bloat/)
+- [xmonad with lemonbar](https://www.reddit.com/r/unixporn/comments/4b96v0/xmonadlemonbar_dual_monitor_desktop_on_freebsd/)
+- [xmonad theme switcher](https://www.reddit.com/r/unixporn/comments/6rwqnh/xmonad_ive_been_working_on_this_one_for_a_while/)
+- [nice lemonbar and 2bwm](https://www.reddit.com/r/unixporn/comments/a7f1oa/2bwmlemonbar_light_rice/)
+- [bspwm and powerline lemonbar](https://www.reddit.com/r/unixporn/comments/bni61i/bspwm_a_powerline_attempt_in_lemonbar/)
+- [bspwm clickable lemonbar](https://www.reddit.com/r/unixporn/comments/b12d3s/bspwm_add_button_clicked_lemonbar/)
