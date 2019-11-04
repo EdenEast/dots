@@ -15,7 +15,7 @@ local theme_dir = os.getenv('HOME') .. '/.config/awesome/themes/' .. theme_name
 beautiful.init(theme_dir .. '/theme.lua')
 
 user = {
-    terminal = "urxvt"
+    terminal = "alacritty"
 }
 
 -- Init all modules
