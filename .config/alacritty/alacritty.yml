@@ -318,7 +318,7 @@ theme_lovelace: &theme_neon
     white:   '0xf8f8f8'
 
 colors:
-  *theme_ephemeral
+  *theme_neon
 
   # Bright and dim foreground colors
   #
