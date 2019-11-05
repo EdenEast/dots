@@ -7,10 +7,10 @@ if exists('$SUDO_USER')
     set nobackup                                 " dont create root-owned files
     set nowritebackup                            " dont create root-owned files
 else
-    if !isdirectory(expand("$XDG_CACHE_HOME/vim/backup"))
-      call mkdir(expand("$XDG_CACHE_HOME/vim/backup"))
+    if !isdirectory(expand("$HOME/.cache/vim/backup"))
+      call mkdir(expand("$HOME/.cache/vim/backup"))
     endif
-    set backupdir=$XDG_CACHE_HOME/vim/backup
+    set backupdir=$HOME/.cache/vim/backup
 endif
 
 if has('wildignore')
@@ -30,10 +30,10 @@ set cursorline                                   " highlight current line
 if exists('$SUDO_USER')
     set noswapfile                               " dont create root-owned files
 else
-    if !isdirectory(expand("$XDG_CACHE_HOME/vim/swap"))
-      call mkdir(expand("$XDG_CACHE_HOME/vim/swap"))
+    if !isdirectory(expand("$HOME/.cache/vim/swap"))
+      call mkdir(expand("$HOME/.cache/vim/swap"))
     endif
-    set directory=$XDG_CACHE_HOME/vim/swap
+    set directory=$HOME/.cache/vim/swap
 endif
 
 set expandtab                                    " always use spaces instead of tabs
@@ -161,10 +161,10 @@ if has('persistent_undo')
     if exists('$SUDO_USER')
         set noundofile                           " dont create root-owned files
     else
-        if !isdirectory(expand("$XDG_CACHE_HOME/vim/undo"))
-          call mkdir(expand("$XDG_CACHE_HOME/vim/undo"))
+        if !isdirectory(expand("$HOME/.cache/vim/undo"))
+          call mkdir(expand("$HOME/.cache/vim/undo"))
         endif
-        set undodir=$XDG_CACHE_HOME/vim/undo
+        set undodir=$HOME/.cache/vim/undo
         set undofile                             " use undo files
     endif
 endif
@@ -176,15 +176,15 @@ if has('viminfo')
     if exists('')
         set viminfo=                             " dont create root-owned files
     else
-        set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+        set viminfo+=n$HOME/.cache/vim/viminfo
     endif
 endif
 
 if has('mksession')
-    if !isdirectory(expand("$XDG_CACHE_HOME/vim/view"))
-      call mkdir(expand("$XDG_CACHE_HOME/vim/view"))
+    if !isdirectory(expand("$HOME/.cache/vim/view"))
+      call mkdir(expand("$HOME/.cache/vim/view"))
     endif
-    set viewdir=$XDG_CACHE_HOME/vim/view
+    set viewdir=$HOME/.cache/vim/view
     set viewoptions=cursor,folds                 " save/restore just these (with :{mk, load}view)
 endif
 

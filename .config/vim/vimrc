@@ -3,8 +3,8 @@ syntax on                 " syntax highlighting
 filetype plugin indent on " try to recognize filetype and load rel' plugins
 
 " Set runtime path for vim
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
-set runtimepath+=$XDG_CONFIG_HOME/nvim
+set runtimepath=$HOME/.config/vim,$HOME/.config/vim/after,$VIM,$VIMRUNTIME
+set runtimepath+=$HOME/.config/nvim
 
 " Define leader key
 let g:mapleader = "\\"
@@ -13,7 +13,7 @@ let g:mapleader = "\\"
 nmap <space> \
 xmap <space> \
 
-source $XDG_CONFIG_HOME/vim/package.vim
+source $HOME/.config/vim/package.vim
 
 if (!empty(glob('~/.local/etc/vim/vimrc')))
   source ~/.local/etc/vim/vimrc
