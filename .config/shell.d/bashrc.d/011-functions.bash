@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# Until .agrc exists...
-# (https://github.com/ggreer/the_silver_searcher/pull/709)
-function ag()
-{
-    # italic blue paths, pink line numbers, underlined purple matches
-    command ag --pager="less -iFMRSX" --color-path=34\;3 --color-line-number=35 --color-match=35\;1\;4 "$@"
-}
-
 function cclean()
 {
     (
@@ -16,67 +8,6 @@ function cclean()
     )
 }
 
-# if [ $ZSH_VERSION ]; then
-# function cd()
-# {
-#     # https://github.com/djoot/all-bash-history/blob/master/acd_func.sh
-#     local x2 the_new_dir adir index non_optional
-#     local -i cnt
-
-#     if [[ $1 == '-h' ]]; then
-#         dirs -v
-#         return 0
-#     fi
-
-#     if [[ $1 == '--' ]]; then
-#         shift
-#         (( $# )) && non_optional="$@" || non_optional="$HOME"
-#         the_new_dir=''
-#     else
-#         the_new_dir=$1
-#         [[ -z $1 ]] && the_new_dir=$HOME
-#     fi
-
-#     if [[ ${the_new_dir:0:1} == '-' ]]; then
-#         # Extract dir N from dirs
-#         index=${the_new_dir:1}
-#         [[ -z $index ]] && index=1
-#         adir=$(dirs +$index)
-#         [[ -z $adir ]] && return 1
-#         the_new_dir=$adir
-#     fi
-
-#     # '~' has to be substituted by ${HOME}
-#     [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
-
-#     # Now change to the new dir and add to the top of the stack
-#     [ -z $non_optional ] && pushd "${the_new_dir}" &>/dev/null || pushd -- "${non_optional}" &>/dev/null
-#     [[ $? -ne 0 ]] && return 1
-#     the_new_dir=$(pwd)
-
-#     # Trim down everything beyond 11th entry
-#     popd -n +11 2>/dev/null 1>/dev/null
-
-#     # Remove any other occurence of this dir, skipping the top of the stack
-#     for ((cnt=1; cnt <= 10; cnt++)); do
-#         x2=$(dirs +${cnt} 2>/dev/null)
-#         [[ $? -ne 0 ]] && return 0
-#         [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
-#         if [[ "${x2}" == "${the_new_dir}" ]]; then
-#             popd -n +$cnt 2>/dev/null 1>/dev/null
-#             cnt=cnt-1
-#         fi
-#     done
-
-#     return 0
-# }
-# fi
-
-# if [[ $BASH_VERSION > "2.05a" ]]; then
-#     # ctrl+q shows the menu
-#     # bind -x "\"\C-q\":cd -- ;\C-m"
-#     # bind '"\ew"':"cd -- ;\C-m"
-# fi
 function cmake()
 {
     local verbose=false
@@ -192,57 +123,6 @@ function extract()
         done
     fi
 }
-
-function fastrm
-{
-    for var in $@
-    do
-        if [[ -d $var ]]; then
-            if [[ -z $(hash rsync &>/dev/null) ]]; then
-                (
-                    cd $var
-                    perl -e 'for(<*>){((stat)[9]<(unlink))}'
-                )
-            else
-                mkdir empty
-                rsync -a --delete empty/ $var/
-                rm -rf empty
-            fi
-        elif [[ -e $var ]]; then
-            rm $var
-        fi
-    done
-}
-
-# https://stackoverflow.com/a/33269762
-# function gdiff()
-# {
-#     local REG=`tput op`
-#     local GRP=`tput setaf 6`
-#     local ADD=`tput setaf 2`
-#     local REM=`tput setaf 1`
-
-#     local NL=$'\n'
-#     local GRP_LABEL="${GRP}@@ %df,%dn +%dF,%dN @@${REG}"
-
-#     local UNCH_GRP_FMT=''
-
-#     [[ "${1}" == '@full' ]] && {
-
-#         UNCH_GRP_FMT="${GRP_LABEL}${NL}%="
-#         shift
-#     }
-
-#     diff \
-#         --new-line-format="${ADD}+%L${REG}" \
-#         --old-line-format="${REM}-%L${REG}" \
-#         --unchanged-line-format=" %L${REG}" \
-#         --new-group-format="${GRP_LABEL}${NL}%>" \
-#         --old-group-format="${GRP_LABEL}${NL}%<" \
-#         --changed-group-format="${GRP_LABEL}${NL}%<%>" \
-#         --unchanged-group-format="${UNCH_GRP_FMT}" \
-#             "${@}" | less -FXR
-# }
 
 function history()
 {

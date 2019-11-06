@@ -1,36 +1,57 @@
+#
+#    ███████╗███████╗██╗  ██╗██████╗  ██████╗
+#    ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
+#      ███╔╝ ███████╗███████║██████╔╝██║
+#     ███╔╝  ╚════██║██╔══██║██╔══██╗██║
+# ██╗███████╗███████║██║  ██║██║  ██║╚██████╗
+# ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+#
 
-# If for some reason that the .profile has not been loaded then source it
-[ -z $DOT_PROFILE_LOADED ]  && emulate bash -c 'source $HOME/.profile'
+if [ -d $HOME/.config/shell.d/rc.d/ ]; then
+    for rc in $HOME/.config/shell.d/rc.d/*.sh; do
+        emulate bash -c '. $rc'
+        # source $rc
+    done
+fi
 
-# changing the location of zcompdump files to .cache
-mkdir -p $HOME/.cache/zsh
-autoload -U compinit
-compinit -d $HOME/.cache/zsh/zcompdump-$(whoami)-$ZSH_VERSION
+if [ -d $HOME/.config/shell.d/zsh.d/ ]; then
+    for rc in $HOME/.config/shell.d/zsh.d/*.sh; do
+        source $rc
+    done
+fi
 
-# Path to oh-my-zsh
-export ZSH=$HOME/.local/etc/zsh/oh-my-zsh
+# # If for some reason that the .profile has not been loaded then source it
+# [ -z $DOT_PROFILE_LOADED ]  && emulate bash -c 'source $HOME/.profile'
 
-# oh-my-zsh options
-ENABLE_CORRECTION=false            # I dont need corrections
-COMPLETION_WATING_DOTS=true        # Don't show red dots while waiting for completion
-DISABLE_UNTRACTED_FILES_DIRTY=true # Untracted files are not dirty
-DISABLE_AUTO_UPDATE=true           # I will handle updates myself with dots repo
+# # changing the location of zcompdump files to .cache
+# mkdir -p $HOME/.cache/zsh
+# autoload -U compinit
+# compinit -d $HOME/.cache/zsh/zcompdump-$(whoami)-$ZSH_VERSION
 
-plugins=(git)
+# # Path to oh-my-zsh
+# export ZSH=$HOME/.local/etc/zsh/oh-my-zsh
 
-# Stop trying to correct me. I am not that bad
-unsetopt correct_all
+# # oh-my-zsh options
+# ENABLE_CORRECTION=false            # I dont need corrections
+# COMPLETION_WATING_DOTS=true        # Don't show red dots while waiting for completion
+# DISABLE_UNTRACTED_FILES_DIRTY=true # Untracted files are not dirty
+# DISABLE_AUTO_UPDATE=true           # I will handle updates myself with dots repo
 
-source $ZSH/oh-my-zsh.sh
-emulate bash -c 'source $HOME/.config/shell/aliases'
-emulate bash -c 'source $HOME/.config/shell/functions'
+# plugins=(git)
+
+# # Stop trying to correct me. I am not that bad
+# unsetopt correct_all
+
+# source $ZSH/oh-my-zsh.sh
+# emulate bash -c 'source $HOME/.config/shell/aliases'
+# emulate bash -c 'source $HOME/.config/shell/functions'
 
 
-for rc in $HOME/.local/etc/zsh/zshrc.d/* ; do
-    source $rc
-done
+# for rc in $HOME/.local/etc/zsh/zshrc.d/* ; do
+#     source $rc
+# done
 
-source $HOME/.local/etc/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source $HOME/.local/etc/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Note: this must be the last source file
-source $HOME/.local/etc/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# # Note: this must be the last source file
+# source $HOME/.local/etc/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
