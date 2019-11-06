@@ -2,31 +2,33 @@
 # Most of the basic shorthands for things that I do all the time.
 
 [alias]
+    a   = add
     aa  = add -A
     au  = add -u
+    b   = branch
     br  = branch -av
-    ci  = commit
+    c   = commit
     cl  = clean -fd
-    cm  = commit
-    cmm = commit -m
+    clf = clean -fdx
+    cm  = commit -m
+    cma = commit -am
     cn  = clone
     cnr = clone --recurse-submodules -j8
     co  = checkout
     cp  = cherry-pick
-    d   = difftool
-    dc  = diff --cached
-    dis = checkout --
+    d   = diff
+    dc  = diff --cache
     ds  = diff --stat
     dw  = diff --color-words
-    fcl = clean -fdx
+    f   = fetch --all
     fp  = push --force-with-lease
-    ft  = fetch --all
-    mt  = mergetool
-    ph  = push
+    l   = log
+    p   = pull
     pl  = pull --rebase
-    qq  = reset --hard
-    rb  = rebase
-    s   = status
-    st  = status -s
+    pu  = push
+    r   = rebase
+    s   = status -s
+    ss  = status
+    t   = tag
 
-# vim: ft=gitconfig:
+# vim: ft=gitconfig et:
