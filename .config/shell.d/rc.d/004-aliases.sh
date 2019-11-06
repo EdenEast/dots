@@ -1,0 +1,63 @@
+# directories
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias cd..='cd ..'
+
+# quick shortcuts
+alias c=cargo
+alias e=$EDITOR
+alias g=git
+alias m=make
+alias t=tmux
+alias v=vim
+alias y=yadm
+
+alias cb='cargo b'
+alias cc='cargo c'
+alias cl="cargo clean"
+alias cr='cargo r'
+alias ct='cargo t'
+alias cm=cmake
+alias jt=just
+
+alias psake='powershell -c Invoke-Psake'
+
+# default command flags
+alias bat='bat --terminal-width $(tput cols)'
+alias df="df -Tha --total"
+alias egrep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias pgrep='pgrep -l'
+
+# source rc file for your shell
+[[ $SHELL =~ /bash$ ]] && alias src='source $HOME/.bashrc'
+[[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
+
+# if exa is installed use that for ls
+[[ -n "$(command -v exa)" ]] && {
+    alias l="exa --group-directories-first --color=auto --git -a"
+    alias ls="exa --group-directories-first --color=auto --git"
+    alias ll="exa --group-directories-first --color=auto --git -l"
+    alias lll="exa --group-directories-first --color=auto --git -la"
+} || {
+    # have to check if we are on a bsd system (cough, cough... mac) as
+    # it does not have color mode because of course...
+    [[ -n $(command ls --color=auto 2>/dev/null) ]] && ls_color='--color=always'
+    alias l="ls --group-directories-first -ahCF $ls_color"
+    alias ls="ls --group-directories-first -hCF $ls_color"
+    alias ll="ls --group-directories-first -lhCF $ls_color"
+    alias lll="ls --group-directories-first -alhCF $ls_color"
+    unset ls_color
+}
+
+[[ -n $(command -v pacman) ]] && {
+    alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
+    alias pacman="sudo pacman --color auto"
+    alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"
+}
+
