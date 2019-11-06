@@ -1,1 +1,0 @@
-[[ -x $(command -v repo) ]] && eval "$(repo script 2>/dev/null)"

@@ -14,5 +14,11 @@
 }
 
 [[ -f $HOME/.bashrc ]] && source $HOME/.bashrc
-
 [[ -f $HOME/.profile ]] && source $HOME/.profile
+
+[[ -d $HOME/.local/etc/shell.d/login.d ]] && {
+    for rc in $HOME/.config/shell.d/login.d/*.sh; do
+        source $rc
+    done
+}
+
