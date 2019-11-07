@@ -34,6 +34,12 @@ alias egrep='egrep --color=auto'
 alias grep='grep --color=auto'
 alias pgrep='pgrep -l'
 
+# git and yadm shortcuts
+alias ga="git add"
+alias gs="git status -s"
+alias ya="yadm add"
+alias ys="yadm status -s"
+
 # source rc file for your shell
 [[ $SHELL =~ /bash$ ]] && alias src='source $HOME/.bashrc'
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
