@@ -26,6 +26,7 @@
     p   = pull
     pl  = pull --rebase
     pu  = push
+    qq  = reset --hard
     r   = rebase
     s   = status -s
     ss  = status
