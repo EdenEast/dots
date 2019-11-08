@@ -17,7 +17,7 @@
 [[ -f $HOME/.profile ]] && source $HOME/.profile
 
 [[ -d $HOME/.local/etc/shell.d/login.d ]] && {
-    for rc in $HOME/.config/shell.d/login.d/*.sh; do
+    for rc in $HOME/.local/etc/shell.d/login.d/*.sh; do
         source $rc
     done
 }
