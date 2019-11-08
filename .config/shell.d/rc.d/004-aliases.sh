@@ -45,7 +45,7 @@ alias ys="yadm status -s"
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
 
 # if exa is installed use that for ls
-[[ -n "$(command -v exa)" ]] && {
+[[ -x "$(command -v exa)" ]] && {
     alias l="exa --group-directories-first --color=auto --git -a"
     alias ls="exa --group-directories-first --color=auto --git"
     alias ll="exa --group-directories-first --color=auto --git -l"
@@ -53,7 +53,7 @@ alias ys="yadm status -s"
 } || {
     # have to check if we are on a bsd system (cough, cough... mac) as
     # it does not have color mode because of course...
-    [[ -n $(command ls --color=auto 2>/dev/null) ]] && ls_color='--color=always'
+    [[ -x "$(command ls --color=auto)" ]] && ls_color='--color=always'
     alias l="ls --group-directories-first -ahCF $ls_color"
     alias ls="ls --group-directories-first -hCF $ls_color"
     alias ll="ls --group-directories-first -lhCF $ls_color"
@@ -61,7 +61,7 @@ alias ys="yadm status -s"
     unset ls_color
 }
 
-[[ -n $(command -v pacman) ]] && {
+[[ -x "$(command -v pacman)" ]] && {
     alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
     alias pacman="sudo pacman --color auto"
     alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"

@@ -1,8 +1,8 @@
 # if repo is installed then soure the work script
-[[ -x $(command -v repo) ]] && eval "$(repo script 2>/dev/null)"
+[[ -x "$(command -v repo)" ]] && eval "$(repo script)"
 
 # if sccache is installed add that as a rustc wrapper
-[[ $(command -v sccahe) ]] && export RUSTC_WRAPPER="$(which sccache)"
+[[ -x "$(command -v sccache)" ]] && export RUSTC_WRAPPER="sccache"
 
 # if jump is installed then source 'jump shell'
-[[ $(command -v jump) ]] && eval "$(jump shell)"
+[[ -x "$(command -v jump)" ]] && eval "$(jump shell)"
