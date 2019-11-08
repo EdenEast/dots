@@ -23,42 +23,42 @@ keyseq[3] = {
 keyseq[3][1][3] = {
     {
         {}, 'p', function()
-            awful.spawn.with_shell('~/.scripts/music_control toggle')
+            awful.spawn.with_shell('~/.script/wm/soundctl toggle')
         end, { description = 'Toggle play pause', group = '', keyset = { 'p' } }
     },
     {
         {}, 's', function()
-            awful.spawn.with_shell('~/.scripts/music_control stop')
+            awful.spawn.with_shell('~/.script/wm/soundctl stop')
         end, { description = 'Stop music', group = '', keyset = { 's' } }
     },
     {
         {}, 'h', function()
-            awful.spawn.with_shell('~/.scripts/music_control backward 10')
+            awful.spawn.with_shell('~/.script/wm/soundctl backward 10')
         end, { description = 'Backwards', group = '', keyset = { 'h' } }
     },
     {
         {}, 'l', function()
-            awful.spawn.with_shell('~/.scripts/music_control forward 10')
+            awful.spawn.with_shell('~/.script/wm/soundctl forward 10')
         end, { description = 'Forward', group = '', keyset = { 'l' } }
     },
     {
         {}, 'j', function()
-            awful.spawn.with_shell('~/.scripts/music_control prev')
+            awful.spawn.with_shell('~/.script/wm/soundctl prev')
         end, { description = 'Previous', group = '', keyset = { 'j' } }
     },
     {
         {}, 'k', function()
-            awful.spawn.with_shell('~/.scripts/music_control next')
+            awful.spawn.with_shell('~/.script/wm/soundctl next')
         end, { description = 'Next', group = '', keyset = { 'k' } }
     },
     {
         {}, 'r', function()
-            awful.spawn.with_shell('~/.scripts/music_control restart')
+            awful.spawn.with_shell('~/.script/wm/soundctl restart')
         end, { description = 'Reset', group = '', keyset = { 'r' } }
     },
     {
         {}, 'm', function()
-            awful.spawn.with_shell('~/.scripts/music_control mute')
+            awful.spawn.with_shell('~/.script/wm/soundctl mute')
         end, { description = 'Mute', group = '', keyset = { 'm' } }
     },
     {
@@ -258,62 +258,62 @@ local globalkeys = awful.util.table.join(
     -------------------------------------------------------
     awful.key({}, 'XF86AudioForward',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control forward')
+            awful.spawn.with_shell('~/.script/wm/soundctl forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioLowerVolume',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control down')
+            awful.spawn.with_shell('~/.script/wm/soundctl down')
         end, {}
     ),
     awful.key({}, 'XF86AudioMedia',
         function()
-            -- awful.spawn.with_shell('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.script/wm/soundctl forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioMicMute',
         function()
-            -- awful.spawn.with_shell('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.script/wm/soundctl forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioMute',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control mute')
+            awful.spawn.with_shell('~/.script/wm/soundctl mute')
         end, {}
     ),
     awful.key({}, 'XF86AudioNext',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control next')
+            awful.spawn.with_shell('~/.script/wm/soundctl next')
         end, {}
     ),
     awful.key({}, 'XF86AudioPlay',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control toggle')
+            awful.spawn.with_shell('~/.script/wm/soundctl toggle')
         end, {}
     ),
     awful.key({}, 'XF86AudioPrev',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control prev')
+            awful.spawn.with_shell('~/.script/wm/soundctl prev')
         end, {}
     ),
     awful.key({}, 'XF86AudioRaiseVolume',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control up')
+            awful.spawn.with_shell('~/.script/wm/soundctl up')
         end, {}
     ),
     awful.key({}, 'XF86AudioRecord',
         function()
-            -- awful.spawn.with_shell('~/.scripts/music_control forward')
+            -- awful.spawn.with_shell('~/.script/wm/soundctl forward')
         end, {}
     ),
     awful.key({}, 'XF86AudioRewind',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control backward')
+            awful.spawn.with_shell('~/.script/wm/soundctl backward')
         end, {}
     ),
     awful.key({}, 'XF86AudioStop',
         function()
-            awful.spawn.with_shell('~/.scripts/music_control stop')
+            awful.spawn.with_shell('~/.script/wm/soundctl stop')
         end, {}
     ),
     awful.key({}, 'XF86Close',
