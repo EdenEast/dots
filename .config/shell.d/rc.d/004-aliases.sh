@@ -57,7 +57,7 @@ alias ys="yadm status -s"
     alias l="ls --group-directories-first -ahCF $ls_color"
     alias ls="ls --group-directories-first -hCF $ls_color"
     alias ll="ls --group-directories-first -lhCF $ls_color"
-    alias lll="ls --group-directories-first -alhCF $ls_color"
+    alias lll="ls --group-directories-first -alhF $ls_color"
     unset ls_color
 }
 
