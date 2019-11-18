@@ -53,7 +53,7 @@ alias ys="yadm status -s"
 } || {
     # have to check if we are on a bsd system (cough, cough... mac) as
     # it does not have color mode because of course...
-    [[ -x "$(command ls --color=auto)" ]] && ls_color='--color=always'
+    [[ -n "$(command ls --color=auto)" ]] && ls_color='--color=always'
     alias l="ls --group-directories-first -ahCF $ls_color"
     alias ls="ls --group-directories-first -hCF $ls_color"
     alias ll="ls --group-directories-first -lhCF $ls_color"
