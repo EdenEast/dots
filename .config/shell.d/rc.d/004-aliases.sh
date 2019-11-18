@@ -48,16 +48,16 @@ alias ys="yadm status -s"
 [[ -x "$(command -v exa)" ]] && {
     alias l="exa --group-directories-first --color=auto --git -a"
     alias ls="exa --group-directories-first --color=auto --git"
-    alias ll="exa --group-directories-first --color=auto --git -l"
-    alias lll="exa --group-directories-first --color=auto --git -la"
+    alias ll="exa --group-directories-first --color=auto --git -la"
+    alias lll="exa --group-directories-first --color=auto --git -l"
 } || {
     # have to check if we are on a bsd system (cough, cough... mac) as
     # it does not have color mode because of course...
     [[ -n "$(command ls --color=auto)" ]] && ls_color='--color=always'
     alias l="ls --group-directories-first -ahCF $ls_color"
-    alias ls="ls --group-directories-first -hCF $ls_color"
-    alias ll="ls --group-directories-first -lhCF $ls_color"
-    alias lll="ls --group-directories-first -alhF $ls_color"
+    alias ls="ls --group-directories-first -hCFG $ls_color"
+    alias ll="ls --group-directories-first -alh $ls_color"
+    alias lll="ls --group-directories-first -lh $ls_color"
     unset ls_color
 }
 
