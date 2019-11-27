@@ -22,8 +22,8 @@ curl -fsSL https://raw.github.com/cruizemissile/dots/master/.scripts/install | b
 Manual installation with [yadm]
 
 ```bash
-curl -fsSLO https://raw.github.com/TheLocehiliosan/yadm/master/yadm
-./yadm clone --bootstrap https://github.com/cruizemissile/dots
+curl -fsSLO https://github.com/CruizeMissile/dots/raw/master/.local/bin/yadm
+YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/cruizemissile/dots
 ```
 
 [yadm]: https://thelocehiliosan.github.io/yadm
