@@ -8,6 +8,7 @@
     b   = branch
     br  = branch -av
     c   = commit
+    ca  = commit -a
     cl  = clean -fd
     clf = clean -fdx
     cm  = commit -m
