@@ -30,6 +30,7 @@
     r   = rebase
     s   = status -s
     ss  = status
+    st  = status -s
     t   = tag
 
 # vim: ft=gitconfig et:
