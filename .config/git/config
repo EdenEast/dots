@@ -18,4 +18,7 @@
     path = ./etc/url
     path = ~/.local/etc/git/config
 
+[commit]
+    template = ~/.config/git/commit-message-template
+
 # vim: ft=gitconfig:

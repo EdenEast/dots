@@ -20,3 +20,10 @@ A list of some resources to learn and understand git
 
 - [Branch Status](https://stackoverflow.com/a/7774433)
 - [Git Open In Browser](https://github.com/paulirish/git-open)
+
+### Commit message best practices
+
+----------
+
+- [How to write a git commit message](https://chris.beams.io/posts/git-commit/)
+- [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
