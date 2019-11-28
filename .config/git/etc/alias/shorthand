@@ -18,12 +18,13 @@
     co  = checkout
     cp  = cherry-pick
     d   = diff
-    dc  = diff --cache
+    dc  = diff --cached
     ds  = diff --stat
     dw  = diff --color-words
     f   = fetch --all
     fp  = push --force-with-lease
     l   = log
+    o   = open
     p   = pull
     pl  = pull --rebase
     pu  = push
