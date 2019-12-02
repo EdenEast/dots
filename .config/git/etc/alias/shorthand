@@ -7,12 +7,12 @@
     au  = add -u
     b   = branch
     br  = branch -av
-    c   = commit
-    ca  = commit -a
+    c   = commit --verbose
+    ca  = commit -a --verbose
     cl  = clean -fd
     clf = clean -fdx
-    cm  = commit -m
-    cma = commit -am
+    cm  = commit -m --verbose
+    cma = commit -am --verbose
     cn  = clone
     cnr = clone --recurse-submodules -j8
     co  = checkout

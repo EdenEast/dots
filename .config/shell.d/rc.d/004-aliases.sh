@@ -30,10 +30,10 @@ alias pgrep='pgrep -l'
 
 # git and yadm shortcuts
 alias ga="git add"
-alias gc="git commit"
+alias gc="git commit --verbose"
 alias gs="git status -s"
 alias ya="yadm add"
-alias yc="yadm commit"
+alias yc="yadm commit --verbose"
 alias ys="yadm status -s"
 
 # source rc file for your shell
