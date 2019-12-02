@@ -1,5 +1,4 @@
 name = 'repo'
-clone = 'git checkout dev'
 tags = [
     'app',
     'cm',
