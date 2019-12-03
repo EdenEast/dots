@@ -1,0 +1,4 @@
+[alias]
+f = "fmt"
+cp = "clippy -- -Dwarnings"
+
