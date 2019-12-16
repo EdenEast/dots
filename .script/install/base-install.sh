@@ -64,10 +64,10 @@ inst rustup
     # cargo extensions
     cargo install cargo-bloated
     cargo install cargo-edit
-    cargo install cargo-edit
     cargo install cargo-expand
     cargo install cargo-outdated
     cargo install cargo-tree
+    cargo install cargo-update
 }
 
 ## web dev
