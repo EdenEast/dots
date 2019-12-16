@@ -63,9 +63,11 @@ inst rustup
 
     # cargo extensions
     cargo install cargo-bloated
+    cargo install cargo-deps
     cargo install cargo-edit
     cargo install cargo-expand
     cargo install cargo-outdated
+    cargo install cargo-release
     cargo install cargo-tree
     cargo install cargo-update
 }
