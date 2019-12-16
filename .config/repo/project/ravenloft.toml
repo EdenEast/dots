@@ -1,0 +1,11 @@
+name = 'ravenloft'
+tags = [
+    'app',
+    'cm',
+    'personal',
+]
+
+[[remotes]]
+url = 'https://github.com/cruizemissile/ravenloft'
+name = 'origin'
+
