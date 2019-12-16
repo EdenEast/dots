@@ -37,17 +37,36 @@ inst make cmake gcc clang
 inst rustup
 
 [[ -x "$(command -v rustup)" ]] && {
+    # install stable rust
     rustup install stable
+
+    # install nightly
+    rustup toolchain add nightly
+
+    # setting default toolchain to be stable
+    rustup default stable
+
     rustup component add rls rust-analysis rust-src
     rustup component add clippy
+    rustup component add racer
 
     # install sccache and then force it to be the rustc_wrapper
     cargo install sccache
     export RUSTC_WRAPPER=sccache
+
+    # try to install racer but, as it is nightly it might fail
+    cargo +nightly install racer
+
+    # useful rust applications for developing rust
     cargo install just
     cargo install mdbook
-    cargo install cargo-outdated
+
+    # cargo extensions
     cargo install cargo-bloated
+    cargo install cargo-edit
+    cargo install cargo-edit
+    cargo install cargo-expand
+    cargo install cargo-outdated
     cargo install cargo-tree
 }
 
