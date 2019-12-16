@@ -38,6 +38,10 @@ inst rustup
 
 [[ -x "$(command -v rustup)" ]] && {
     rustup install stable
+    rustup component add rls rust-analysis rust-src
+    rustup component add clippy
+
+    # install sccache and then force it to be the rustc_wrapper
     cargo install sccache
     export RUSTC_WRAPPER=sccache
     cargo install just
