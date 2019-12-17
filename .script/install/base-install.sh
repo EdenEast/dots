@@ -52,7 +52,8 @@ inst rustup
 
     # install sccache and then force it to be the rustc_wrapper
     cargo install sccache
-    export RUSTC_WRAPPER=sccache
+    [ -z $RUSTC_WRAPPER ] && export RUSTC_WRAPPER=sccache
+    [ -z $SCCACHE_DIR ]   && export SCCACHE_DIR="$HOME/.cache/sccache"
 
     # try to install racer but, as it is nightly it might fail
     cargo +nightly install racer
