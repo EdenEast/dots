@@ -253,6 +253,13 @@ local globalkeys = awful.util.table.join(
             end
         end
     ),
+    awful.key({ mod }, 'b',
+        function()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible
+        end,
+        { description = 'Toggle panel', group = 'Layout' }
+    ),
 
     -- XF86
     -------------------------------------------------------
