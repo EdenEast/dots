@@ -24,6 +24,12 @@ local clientkeys = gears.table.join(
         end,
         { description = 'Close', group = 'Client' }
     ),
+    awful.key({ mod }, 'q',
+        function(c)
+            c:kill()
+        end,
+        { description = 'Close', group = 'Client' }
+    ),
     awful.key({ mod }, 't',
         function(c)
             c.ontop = not c.ontop
