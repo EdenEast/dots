@@ -3,6 +3,7 @@ tags = [
     'cm',
     'engine',
     'personal',
+    'rust',
 ]
 
 [[remotes]]
