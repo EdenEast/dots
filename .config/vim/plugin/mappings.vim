@@ -62,6 +62,10 @@ noremap gy "+y
 " copy whole file to system clipboard
 nnoremap gY gg"+yG
 
+" paste from system clipboard
+nnoremap gp "+p
+nnoremap gP "+P
+
 " Open files relative to current path:
 nnoremap <leader>e :edit <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
