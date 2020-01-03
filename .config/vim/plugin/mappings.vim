@@ -60,7 +60,7 @@ nnoremap <tab><tab> <c-^>
 noremap gy "+y
 
 " copy whole file to system clipboard
-nnoremap gY gg"+yG
+nnoremap gY mzgg"+yG'z:echo "file copied"<cr>
 
 " paste from system clipboard
 nnoremap gp "+p
