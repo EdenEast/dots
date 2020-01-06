@@ -1,6 +1,7 @@
 
 " When entering a window or leaving insert mode highlight
 " trailing whitespace
+if !exists('g:vscode')
   augroup trailing_whitespace
     autocmd!
     autocmd BufWinEnter * match Error /\s\+%#@<!$/
@@ -16,3 +17,4 @@
       \     execute 'normal! g`"zvzz' |
       \ endif
   augroup end
+endif

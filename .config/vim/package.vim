@@ -6,6 +6,23 @@ if empty(glob('$HOME/.config/vim/autoload/plug.vim'))
 endif
 
 call plug#begin('$HOME/.cache/vim/packages')
+" if neovim is being used inside of vscode we dont need a lot more
+" functionality as vscode has most of it
+if exists('g:vscode')
+" Editing: {{{
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'kana/vim-smartinput'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'tpope/vim-repeat'
+" }}}
+" Text Objects: {{{
+  Plug 'glts/vim-textobj-comment'
+  Plug 'kana/vim-textobj-user'
+  Plug 'tpope/vim-surround'
+  Plug 'wellle/targets.vim'
+" }}}
+else
   " Autocomplete: {{{
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
@@ -68,6 +85,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   if has('nvim')
     Plug 'kassio/neoterm'
   endif
+endif
 " }}}
 call plug#end()
 
