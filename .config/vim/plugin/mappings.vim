@@ -205,6 +205,11 @@ endfunction " }}}
 " These mappings will only be sourced when nvim is running from vscode
 function s:vscode_mappings() " {{{
   " navigation between windows
+  nnoremap <C-j> :call VSCodeNotify('workbench.action.terminal.focus')<cr>
+
+  " For some reason these two bindings dont take
+  nnoremap <C-b> :call VSCodeNotify('workbench.action.toggleSidebarVisiblity')<cr>
+  nnoremap <C-h> :call VSCodeNotify('editor.actions.addSelectedToNextFindNext')<cr>
 endfunction " }}}
 
 " -----------------------------------------------------------------------------
