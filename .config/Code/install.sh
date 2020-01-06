@@ -1,4 +1,4 @@
-extentions=(
+extensions=(
     adamsome.vscode-theme-gruvbox-minor
     asvetliakov.vscode-neovim
     belfz.search-crates-io
