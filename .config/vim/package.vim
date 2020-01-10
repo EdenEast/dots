@@ -19,6 +19,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'tpope/vim-surround'           " surround motion
   Plug 'wellle/targets.vim'           " additional text objects
   Plug 'kana/vim-textobj-function'    " text object for functions
+  Plug 'wellle/line-targets.vim'      " line text objects ci-
 " }}}
 " Editing: {{{
   " Plug 'jiangmiao/auto-pairs'       " autofil () && {}
