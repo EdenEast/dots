@@ -84,3 +84,11 @@ if !exists('g:vscode')
 endi
 call plug#end()
 
+" Automagicly install missing plugins on startup
+augroup Plug
+  autocmd!
+  autocmd VimEnter *
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \|   PlugInstall --sync | q
+    \| endif
+augroup END
