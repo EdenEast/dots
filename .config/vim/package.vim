@@ -6,24 +6,29 @@ if empty(glob('$HOME/.config/vim/autoload/plug.vim'))
 endif
 
 call plug#begin('$HOME/.cache/vim/packages')
-" If we are in vscode then it already has a lot of functionality
-" that we dont need plugins to fill. In this case we are using neovim
-" as just a modal editor
-if exists('g:vscode')
-" Editing: {{{
-  " Plug 'jiangmiao/auto-pairs'
-  " Plug 'junegunn/vim-easy-align'
-  " Plug 'kana/vim-smartinput'
-  " Plug 'terryma/vim-multiple-cursors'
-  " Plug 'tpope/vim-repeat'
-" }}}
+" There are two environments that I use vim/neovim in,
+" traditional terminal vim/neovim and vscode -> neovim
+" When using neovim in vscode I do not need most of my
+" plugins as they are more enhancements to make vim more
+" like a code editor, but there are some plugins that
+" enhance or change the code of vim's modal editor
+" these plugins are required regardless of what env I am in
 " Text Objects: {{{
-  Plug 'glts/vim-textobj-comment' " comment text object
-  Plug 'kana/vim-textobj-user'    " define your own text objects
-  Plug 'tpope/vim-surround'       " surround motion
-  Plug 'wellle/targets.vim'       " additional text objects
+  Plug 'glts/vim-textobj-comment'     " comment text object
+  Plug 'kana/vim-textobj-user'        " define your own text objects
+  Plug 'tpope/vim-surround'           " surround motion
+  Plug 'wellle/targets.vim'           " additional text objects
+  Plug 'kana/vim-textobj-function'    " text object for functions
 " }}}
-else
+" Editing: {{{
+  " Plug 'jiangmiao/auto-pairs'       " autofil () && {}
+  Plug 'kana/vim-smartinput'          " help autofil coding syntax like () && {}
+  Plug 'terryma/vim-multiple-cursors' " ability to have multiple cursors
+  Plug 'tpope/vim-repeat'             " make . support plugins
+  Plug 'junegunn/vim-easy-align'      " alignment motions
+" }}}
+
+if !exists('g:vscode')
   " Autocomplete: {{{
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
@@ -39,16 +44,11 @@ else
     " include ctags for deoplete
     Plug 'Shougo/neoinclude.vim'
   endif
-" }}}
+  " }}}
 " Editing: {{{
   Plug 'editorconfig/editorconfig-vim'
   Plug 'godlygeek/tabular'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'junegunn/vim-easy-align'
-  Plug 'kana/vim-smartinput'
-  Plug 'terryma/vim-multiple-cursors'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-repeat'
 " }}}
 " Languages: {{{
   Plug 'sheerun/vim-polyglot'
@@ -57,12 +57,6 @@ else
   Plug 'jceb/vim-orgmode'
   Plug 'kien/ctrlp.vim'
   Plug 'w0rp/ale'
-" }}}
-" Text Objects: {{{
-  Plug 'glts/vim-textobj-comment' " comment text object
-  Plug 'kana/vim-textobj-user'    " define your own text objects
-  Plug 'tpope/vim-surround'       " surround motion
-  Plug 'wellle/targets.vim'       " additional text objects
 " }}}
 " Themes: {{{
   Plug 'CruizeMissile/Revolution.vim'
@@ -86,7 +80,7 @@ else
   if has('nvim')
     Plug 'kassio/neoterm'
   endif
-endif
 " }}}
+endi
 call plug#end()
 
