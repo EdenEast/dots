@@ -92,11 +92,11 @@ function s:vim_mappings() "{{{
   cmap w!! w !sudo tee % >/dev/null
 
   " command typo mapping and shift fixes
-  cmap W w
-  cmap WQ wq
-  cmap wQ wq
-  cmap Q q
-  cmap Tabe tabe
+  " cmap W w
+  " cmap WQ wq
+  " cmap wQ wq
+  " cmap Q q
+  " cmap Tabe tabe
 
   " a quicker and easier way to escape insert mode
   inoremap jj <esc>
@@ -119,11 +119,6 @@ function s:vim_mappings() "{{{
   nnoremap <C-j> <C-w>j<C-w>_
   nnoremap <C-k> <C-w>k<C-w>_
   nnoremap <C-l> <C-w>l<C-w>_
-
-  " Open files relative to current path:
-  nnoremap <leader>e :edit <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
   " Folding: {{{
   " Folding hotkeys are accessable from <leader>f
