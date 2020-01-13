@@ -8,7 +8,7 @@ if exists('$SUDO_USER')
     set nowritebackup                            " dont create root-owned files
 else
     if !isdirectory(expand("$HOME/.cache/vim/backup"))
-      call mkdir(expand("$HOME/.cache/vim/backup"))
+      call mkdir(expand("$HOME/.cache/vim/backup", "p"))
     endif
     set backupdir=$HOME/.cache/vim/backup
 endif
@@ -31,7 +31,7 @@ if exists('$SUDO_USER')
     set noswapfile                               " dont create root-owned files
 else
     if !isdirectory(expand("$HOME/.cache/vim/swap"))
-      call mkdir(expand("$HOME/.cache/vim/swap"))
+      call mkdir(expand("$HOME/.cache/vim/swap", "p"))
     endif
     set directory=$HOME/.cache/vim/swap
 endif
@@ -162,7 +162,7 @@ if has('persistent_undo')
         set noundofile                           " dont create root-owned files
     else
         if !isdirectory(expand("$HOME/.cache/vim/undo"))
-          call mkdir(expand("$HOME/.cache/vim/undo"))
+          call mkdir(expand("$HOME/.cache/vim/undo", "p"))
         endif
         set undodir=$HOME/.cache/vim/undo
         set undofile                             " use undo files
@@ -182,7 +182,7 @@ endif
 
 if has('mksession')
     if !isdirectory(expand("$HOME/.cache/vim/view"))
-      call mkdir(expand("$HOME/.cache/vim/view"))
+      call mkdir(expand("$HOME/.cache/vim/view", "p"))
     endif
     set viewdir=$HOME/.cache/vim/view
     set viewoptions=cursor,folds                 " save/restore just these (with :{mk, load}view)
