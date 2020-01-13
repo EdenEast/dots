@@ -171,8 +171,10 @@ function s:vim_mappings() "{{{
       tnoremap <c-l> <C-\><C-n><C-w>l
 
     " easily escape terminal
-      tnoremap <leader><esc> <C-\><C-n><esc><cr>
-      tnoremap <C-o> <C-\><C-n><esc><cr>
+      tnoremap <Esc> <C-\><C-n>
+      tnoremap <M-[> <Esc> " To send an escape key to the shell
+      " tnoremap <leader><esc> <C-\><C-n><esc><cr>
+      " tnoremap <C-o> <C-\><C-n><esc><cr>
 
     " quickly toggle term
       nnoremap <silent> <leader>o :vertical botright Ttoggle<cr><C-w>l
