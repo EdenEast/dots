@@ -27,7 +27,8 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'terryma/vim-multiple-cursors' " ability to have multiple cursors
   Plug 'tpope/vim-repeat'             " make . support plugins
   Plug 'junegunn/vim-easy-align'      " alignment motions
-  Plug 'justinmk/vim-sneak'
+  Plug 'justinmk/vim-sneak'           " Jump to any location specified by two characters
+  Plug 'joereynolds/place.vim'        " add insertions to your text without moving your cursor
 " }}}
 
 if !exists('g:vscode')
