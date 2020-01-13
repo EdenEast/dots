@@ -16,7 +16,7 @@ call plug#begin('$HOME/.cache/vim/packages')
 " Text Objects: {{{
   Plug 'glts/vim-textobj-comment'     " comment text object
   Plug 'kana/vim-textobj-user'        " define your own text objects
-  Plug 'machakann/vim-sandwich'       " search/select/edit sandwiched textobjects
+  " Plug 'machakann/vim-sandwich'       " search/select/edit sandwiched textobjects
   Plug 'wellle/targets.vim'           " additional text objects
   Plug 'kana/vim-textobj-function'    " text object for functions
   Plug 'wellle/line-targets.vim'      " line text objects ci-
@@ -27,6 +27,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'terryma/vim-multiple-cursors' " ability to have multiple cursors
   Plug 'tpope/vim-repeat'             " make . support plugins
   Plug 'junegunn/vim-easy-align'      " alignment motions
+  Plug 'justinmk/vim-sneak'
 " }}}
 
 if !exists('g:vscode')

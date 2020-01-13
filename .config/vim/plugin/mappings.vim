@@ -5,7 +5,8 @@
 " Those can be vim, nvim, nvim in vscode
 function s:common_mappings() " {{{
   " I do not use ; so set ; to :
-  nnoremap ; :
+  " nnoremap ; :
+  " nnoremap ; ;
 
   " Make j and k go up and down visible lines
   nnoremap j gj
