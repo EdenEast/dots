@@ -16,7 +16,7 @@ call plug#begin('$HOME/.cache/vim/packages')
 " Text Objects: {{{
   Plug 'glts/vim-textobj-comment'     " comment text object
   Plug 'kana/vim-textobj-user'        " define your own text objects
-  Plug 'tpope/vim-surround'           " surround motion
+  Plug 'machakann/vim-sandwich'       " search/select/edit sandwiched textobjects
   Plug 'wellle/targets.vim'           " additional text objects
   Plug 'kana/vim-textobj-function'    " text object for functions
   Plug 'wellle/line-targets.vim'      " line text objects ci-
