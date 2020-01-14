@@ -6,6 +6,7 @@
     hidedotfiles = true
     ignorecase = true
     autocrlf = input
+    pager = $GIT_PAGER
 
 [credential]
     helper = store

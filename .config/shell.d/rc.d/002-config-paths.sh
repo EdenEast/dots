@@ -10,3 +10,8 @@ export VIMDOTDIR="$XDG_CONFIG_HOME/vim"
 # make yadm conform to $XDG_* paths
 export YADM_DIR="$XDG_CONFIG_HOME/yadm"
 
+[[ -n "$(command -v delta)" ]] && {
+    export GIT_PAGER="delta --dark"
+} || {
+    export GIT_PAGER="less"
+}
