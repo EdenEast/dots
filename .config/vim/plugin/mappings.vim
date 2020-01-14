@@ -116,10 +116,10 @@ function s:vim_mappings() "{{{
   nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
   " Move around splits without having to press <C-w> before each movement
-  nnoremap <C-h> <C-w>h<C-w>_
-  nnoremap <C-j> <C-w>j<C-w>_
-  nnoremap <C-k> <C-w>k<C-w>_
-  nnoremap <C-l> <C-w>l<C-w>_
+  nnoremap <C-h> <C-w>h
+  nnoremap <C-j> <C-w>j
+  nnoremap <C-k> <C-w>k
+  nnoremap <C-l> <C-w>l
 
   " Folding: {{{
   " Folding hotkeys are accessable from <leader>f
