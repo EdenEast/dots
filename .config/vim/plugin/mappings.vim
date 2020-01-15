@@ -33,7 +33,7 @@ function s:common_mappings() " {{{
 
   " center search
   nmap n nzz
-  nmap N nzz
+  nmap N Nzz
 
   " change dir to current file's dir
   nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -105,6 +105,9 @@ function s:vim_mappings() "{{{
   " Quickly edit/reload configuration file
   nnoremap gev :e $MYVIMRC<cr>
   nnoremap gsv :so $MYVIMRC<cr>
+
+  " I never use this widnow and only ever get there by trying to quit so just quit
+  nmap q: :q
 
   " Toggle fold at current location
   " NOTE: not sure I want to use <tab> for this functionality
