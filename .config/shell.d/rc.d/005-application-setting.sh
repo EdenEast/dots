@@ -9,3 +9,11 @@
 
 # if jump is installed then source 'jump shell'
 [[ -x "$(command -v jump)" ]] && eval "$(jump shell)"
+
+# if git-delta is installed then use this as the git pager
+[[ -n "$(command -v delta)" ]] && {
+    export GIT_PAGER="delta --dark"
+} || {
+    export GIT_PAGER="less"
+}
+
