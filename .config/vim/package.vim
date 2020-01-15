@@ -31,6 +31,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'joereynolds/place.vim'        " add insertions to your text without moving your cursor
 " }}}
 "Fuzzy {{{
+  " Install fzf into ~/.local/opt folder and install vim plugin
   Plug 'junegunn/fzf', {'dir': '~/.local/opt/fzf', 'do': './install --bin'}
   Plug 'junegunn/fzf.vim'
 "}}}
@@ -53,17 +54,16 @@ if !exists('g:vscode')
   endif
   " }}}
 " Editing: {{{
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'godlygeek/tabular'
-  Plug 'tpope/vim-commentary'
+  Plug 'editorconfig/editorconfig-vim' " vim respects .editorconfig files
+  Plug 'tpope/vim-commentary'          " language agnostic comment motions
+  Plug 'airblade/vim-rooter'           " open vim at the root of a project
 " }}}
 " Languages: {{{
-  Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'          " Install support for most languages
 " }}}
 " Productivity: {{{
-  Plug 'jceb/vim-orgmode'
-  " Plug 'kien/ctrlp.vim'
-  Plug 'w0rp/ale'
+  Plug 'jceb/vim-orgmode'              " emacs' org-mode support
+  Plug 'w0rp/ale'                      " agnostic linter framework
 " }}}
 " Themes: {{{
   Plug 'CruizeMissile/Revolution.vim'
@@ -71,18 +71,23 @@ if !exists('g:vscode')
   Plug 'dylanaraps/wal.vim'
   Plug 'mhinz/vim-janah'
   Plug 'rhysd/vim-color-spring-night'
-" }}}
+  Plug 'morhetz/gruvbox'
+ " }}}
 " Misc: {{{
-" Better whitespace stripping for vim
-  Plug 'thirtythreeforty/lessspace.vim'
-  Plug 'Yggdroot/indentLine'
-  Plug 'ciaranm/securemodelines'
+
+  Plug 'thirtythreeforty/lessspace.vim' " Better whitespace stripping for vim
+  Plug 'Yggdroot/indentLine'            " display indentation lines
+  Plug 'ciaranm/securemodelines'        " secure alternative to modelines
 
   " fancy startup screen
   Plug 'mhinz/vim-startify'
 
   " hex colorize
   Plug 'chrisbra/Colorizer'
+
+  "Gui enhancements
+  Plug 'itchyny/lightline.vim'         " status line
+  Plug 'machakann/vim-highlightedyank' " highlight yanked text
 
   if has('nvim')
     Plug 'kassio/neoterm'
