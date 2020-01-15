@@ -38,9 +38,63 @@ if has_key(plugs, 'fzf.vim')
     \ call fzf#vim#files(<q-args>, {'source': 'fd --type file --follow',
     \                               'options': '--tiebreak=index'}, <bang>0)
 
-  " rg is the new ctrl-p, long life rg
-  nnoremap <c-p> :Files<cr>
+  " Search hidden files as well
+  command! -bang -nargs=? -complete=dir HFiles
+    \ call fzf#vim#files(<q-args>, {'source': 'fd --type file --follow --hidden',
+    \                               'options': '--tiebreak=index'}, <bang>0)
 
-  nnoremap <leader>s :Rg<space>
-  nnoremap <leader>S :RG<space>
+  " Mappings
+  " All search mapping function are accessable through '<leader>s'
+
+  " rg search all files for search term
+  nnoremap <leader>ss :Rg<space>
+  nnoremap <leader>sS :RG<space>
+
+  " search for a file to open
+  nnoremap <leader>sf :Files<cr>
+
+  " search for files including hidden ones
+  nnoremap <leader>sF :HFiles<cr>
+
+  " search all open buffers
+  nnoremap <leader>sb :Buffers<cr>
+
+  " search/jump to an open window
+  nnoremap <leader>sw :Windows<cr>
+
+  " search the mark list
+  nnoremap <leader>sm :Marks<cr>
+
+  " search lines in all loaded buffers
+  nnoremap <leader>sl :Lines<space>
+
+  " search lines in current buffer
+  nnoremap <leader>sL :BLines<space>
+
+  " List of all fzf commands
+  "
+  " :Files [PATH]     Files (similar to :FZF)
+  " :GFiles [OPTS]    Git files (git ls-files)
+  " :GFiles?          Git files (git status)
+  " :Buffers          Open buffers
+  " :Colors           Color schemes
+  " :Ag [PATTERN]     ag search result (ALT-A to select all, ALT-D to deselect all)
+  " :Rg [PATTERN]     rg search result (ALT-A to select all, ALT-D to deselect all)
+  " :Lines [QUERY]    Lines in loaded buffers
+  " :BLines [QUERY]   Lines in the current buffer
+  " :Tags [QUERY]     Tags in the project (ctags -R)
+  " :BTags [QUERY]    Tags in the current buffer
+  " :Marks            Marks
+  " :Windows          Windows
+  " :Locate PATTERN   locate command output
+  " :History          v:oldfiles and open buffers
+  " :History:         Command history
+  " :History/         Search history
+  " :Snippets         Snippets (UltiSnips)
+  " :Commits          Git commits (requires fugitive.vim)
+  " :BCommits         Git commits for the current buffer
+  " :Commands         Commands
+  " :Maps             Normal mode mappings
+  " :Helptags         Help tags 1
+  " :Filetypes        File types
 endif
