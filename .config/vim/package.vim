@@ -30,6 +30,10 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'justinmk/vim-sneak'           " Jump to any location specified by two characters
   Plug 'joereynolds/place.vim'        " add insertions to your text without moving your cursor
 " }}}
+"Fuzzy {{{
+  Plug 'junegunn/fzf', {'dir': '~/.local/opt/fzf', 'do': './install --bin'}
+  Plug 'junegunn/fzf.vim'
+"}}}
 
 if !exists('g:vscode')
   " Autocomplete: {{{
