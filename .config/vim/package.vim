@@ -62,7 +62,7 @@ if !exists('g:vscode')
 " }}}
 " Productivity: {{{
   Plug 'jceb/vim-orgmode'
-  Plug 'kien/ctrlp.vim'
+  " Plug 'kien/ctrlp.vim'
   Plug 'w0rp/ale'
 " }}}
 " Themes: {{{
