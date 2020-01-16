@@ -9,5 +9,5 @@ if has('gui') || (has('nvim') && (has('win32') || has('win64')))
   set guioptions-=r       " remove right hand scrollbar always present
   set guioptions-=b       " remove bottom bar
 
-  colorscheme neodark
+  colorscheme gruvbox
 endif
