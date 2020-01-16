@@ -38,10 +38,7 @@ call plug#begin('$HOME/.cache/vim/packages')
 
 if !exists('g:vscode')
   " Autocomplete: {{{
-  if has('nvim')
-    " Semantic language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  endif
   " }}}
 " Editing: {{{
   Plug 'editorconfig/editorconfig-vim' " vim respects .editorconfig files

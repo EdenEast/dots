@@ -15,6 +15,11 @@ filetype plugin indent on " try to recognize filetype and load rel' plugins
 set runtimepath=$HOME/.config/vim,$HOME/.config/vim/after,$VIM,$VIMRUNTIME
 set runtimepath+=$HOME/.config/nvim
 
+" Set some path variables
+let g:config_root = $HOME . '/.config/vim'
+let g:cache_root = $HOME . '/.cache/vim'
+let g:package_root = g:cache_root . '/packages'
+
 " Define leader key
 let g:mapleader = "\\"
 
