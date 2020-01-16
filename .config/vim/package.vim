@@ -39,18 +39,8 @@ call plug#begin('$HOME/.cache/vim/packages')
 if !exists('g:vscode')
   " Autocomplete: {{{
   if has('nvim')
-    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    Plug 'Shougo/neco-syntax'
-    Plug 'Shougo/neco-vim', { 'for': 'vim' }
-    Plug 'racer-rust/vim-racer'
-    Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'bash', 'sh']}
-
-    " For func argument completion
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-
-    " include ctags for deoplete
-    Plug 'Shougo/neoinclude.vim'
+    " Semantic language support
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
   endif
   " }}}
 " Editing: {{{
@@ -104,3 +94,20 @@ augroup Plug
     \|   PlugInstall --sync | q
     \| endif
 augroup END
+
+  " Autocomplete: {{{
+  " if has('nvim')
+  "   Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+  "   Plug 'Shougo/neco-syntax'
+  "   Plug 'Shougo/neco-vim', { 'for': 'vim' }
+  "   Plug 'racer-rust/vim-racer'
+  "   Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'bash', 'sh']}
+
+  "   " For func argument completion
+  "   Plug 'Shougo/neosnippet'
+  "   Plug 'Shougo/neosnippet-snippets'
+
+  "   " include ctags for deoplete
+  "   Plug 'Shougo/neoinclude.vim'
+  " endif
+  " }}}
