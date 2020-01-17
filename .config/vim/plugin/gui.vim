@@ -1,4 +1,4 @@
-if has('gui') || (has('nvim') && (has('win32') || has('win64')))
+if has('gui_running') || (has('nvim') && (has('win32') || has('win64')))
   " Turn off scrollbars. (Default on macOS is "egmrL").
   " set guifont=Source\ Code\ Pro\ Light:h13
   au GUIEnter * simalt ~x " open maximized
