@@ -12,6 +12,9 @@ function s:common_mappings() " {{{
   nnoremap j gj
   nnoremap k gk
 
+  nnoremap <leader>w :w<cr>
+  nnoremap <leader>W :w!<cr>
+
   " Avoid unintentional switching to Ex mode.
   nnoremap Q <nop>
 
