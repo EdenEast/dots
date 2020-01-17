@@ -58,7 +58,8 @@ if has_key(plugs, 'coc.nvim')
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
 
-  let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
+  " not sure that this is required seams to work when i dont set this
+  " let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
   " Use K to show documentation in preview windw
   nnoremap <silent> K :call <SID>show_documentation()<CR>
