@@ -13,7 +13,7 @@ if has_key(plugs, 'coc.nvim')
     CocInstall coc-yank
 
     " Filetypes
-    CocInstall rls
+    CocInstall coc-rls
     CocInstall coc-go
   endfunction
   command! -nargs=0 CocInstallExtensions call s:install_extensions()
