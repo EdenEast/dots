@@ -50,7 +50,6 @@ if !exists('g:vscode')
 " }}}
 " Productivity: {{{
   Plug 'jceb/vim-orgmode'              " emacs' org-mode support
-  Plug 'w0rp/ale'                      " agnostic linter framework
 " }}}
 " Themes: {{{
   Plug 'CruizeMissile/Revolution.vim'
