@@ -14,6 +14,9 @@ if has_key(plugs, 'fzf.vim')
   " Open fzf window bellow and about 20% of the screen
   let g:fzf_layout = { 'down': '~20%' }
 
+  " If it is possible jump to existing windows
+  let g:fzf_buffers_jump = 1
+
   " Set Rg command to have a preview
   command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
@@ -45,10 +48,14 @@ if has_key(plugs, 'fzf.vim')
 
   " Mappings
   " All search mapping function are accessable through '<leader>s'
+  " The action I use the most should have a shortcut to it
+  " for this case I find that rg though a folder is the most
+  " useful and the thing I use the most. This should be accessable
+  " quickly to it will be capital S as a shortcut.
 
   " rg search all files for search term
-  nnoremap <leader>ss :Rg<space>
-  nnoremap <leader>sS :RG<space>
+  nnoremap <leader>S :Rg<space>
+  nnoremap <leader>ss :RG<space>
 
   " search for a file to open
   nnoremap <leader>sf :Files<cr>
