@@ -29,6 +29,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'junegunn/vim-easy-align'      " alignment motions
   Plug 'justinmk/vim-sneak'           " Jump to any location specified by two characters
   Plug 'joereynolds/place.vim'        " add insertions to your text without moving your cursor
+  Plug 'AndrewRadev/splitjoin.vim'    " Split and join programming lines
 " }}}
 "Fuzzy {{{
   " Install fzf into ~/.local/opt folder and install vim plugin
@@ -60,10 +61,11 @@ if !exists('g:vscode')
   Plug 'morhetz/gruvbox'
  " }}}
 " Misc: {{{
-
+  Plug 'psliwka/vim-smoothie'           " Smooth scrolling
   Plug 'thirtythreeforty/lessspace.vim' " Better whitespace stripping for vim
   Plug 'Yggdroot/indentLine'            " display indentation lines
   Plug 'ciaranm/securemodelines'        " secure alternative to modelines
+  Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
 
   " fancy startup screen
   Plug 'mhinz/vim-startify'
