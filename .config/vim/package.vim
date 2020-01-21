@@ -28,7 +28,6 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'tpope/vim-repeat'             " make . support plugins
   Plug 'junegunn/vim-easy-align'      " alignment motions
   Plug 'justinmk/vim-sneak'           " Jump to any location specified by two characters
-  Plug 'joereynolds/place.vim'        " add insertions to your text without moving your cursor
   Plug 'AndrewRadev/splitjoin.vim'    " Split and join programming lines
 " }}}
 "Fuzzy {{{
