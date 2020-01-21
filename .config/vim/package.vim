@@ -47,6 +47,7 @@ if !exists('g:vscode')
 " }}}
 " Languages: {{{
   Plug 'sheerun/vim-polyglot'          " Install support for most languages
+  Plug 'vmchale/just-vim'              " Justfile syntax
 " }}}
 " Productivity: {{{
   Plug 'jceb/vim-orgmode'              " emacs' org-mode support
