@@ -26,6 +26,10 @@ function s:common_mappings() " {{{
   " it adds :2R to the command
   " map <silent> <esc> :nohlsearch<cr>
 
+  " Refresh the current file
+  map <F5> :e %<cr>
+  map <leader><F5> :source %<cr>
+
   " re-indent file and jump back to where the cursor was
   map <F7> mzgg=G`z
 
