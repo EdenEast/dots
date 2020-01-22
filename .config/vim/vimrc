@@ -11,13 +11,35 @@ set nocompatible          " vim NOT vi! Mistakes were made if I am in vi
 syntax on                 " syntax highlighting
 filetype plugin indent on " try to recognize filetype and load rel' plugins
 
-" Set runtime path for vim
-set runtimepath=$HOME/.config/vim,$HOME/.config/vim/after,$VIM,$VIMRUNTIME
-set runtimepath+=$HOME/.config/nvim
+" Function to setup [n]vim's runtimepath pre vim-plug. Depending on what
+" version of nvim/vim we are using and front end we want to take the default
+" runtime that is setup and prepend to it so that our config is loaded and
+" loaded before anything else. For the case of nvim-qt on windows we want to
+" load ginit.vim which will set the qt version of the popupmenu off. The setting
+" is only loaded when you are in nvim-qt and is in the runtime. If we just override
+" the runtime then we lose loading the setting we want to disable.
+function! s:setup_rtp()
+  let orig = reverse(split(&runtimepath, ','))
+  let result =
+    \   [expand('$HOME/.config/vim')]
+    \ + [expand('$HOME/.config/vim/after')]
+    \ + [expand('$VIM')]
+    \ + [expand('$VIMRUNTIME')]
+    \ + [expand('$HOME/.config/nvim')]
+  for iter in orig
+    if get(result, iter) == 0
+      call add(result, iter)
+    endif
+  endfor
+  let &runtimepath = join(result, ',')
+endfunction
+call s:setup_rtp()
 
 " Set some path variables
 let g:config_root = $HOME . '/.config/vim'
 let g:cache_root = $HOME . '/.cache/vim'
+let g:local_root = $HOME . '/.local/etc/vim'
+let g:local_rc = g:local_root . '/vimrc'
 let g:package_root = g:cache_root . '/packages'
 
 " Define leader key
@@ -29,8 +51,8 @@ xmap <space> \
 
 source $HOME/.config/vim/package.vim
 
-if (!empty(glob('~/.local/etc/vim/vimrc')))
-  source ~/.local/etc/vim/vimrc
+if (!empty(glob(g:local_rc)))
+  source g:local_rc
 endif
 
 " pick at this vimrc file for useful bits
