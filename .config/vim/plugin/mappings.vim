@@ -94,6 +94,9 @@ function s:common_mappings() " {{{
 
   " Search for selected text
   vnoremap * "xy/<C-R>x<CR>
+
+  " When I am in insert mode wanting to paste would be nice to use <c-v>
+  inoremap <c-v> <c-r>+
 endfunction " }}}
 
 " -----------------------------------------------------------------------------
