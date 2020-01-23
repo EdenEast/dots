@@ -20,6 +20,9 @@ function s:common_mappings() " {{{
   " that you were on. This is very handy. Also we dont use Ex mode
   nnoremap Q !!$SHELL <cr>
 
+  " Yank the current line and then execute it as a :command
+  nnoremap <c-q> yy:@" <cr>
+
   " Multi-mode mappings (Normal, Visual)
   map Y y$
 
