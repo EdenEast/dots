@@ -15,8 +15,10 @@ function s:common_mappings() " {{{
   nnoremap <leader>w :w<cr>
   nnoremap <leader>W :w!<cr>
 
-  " Avoid unintentional switching to Ex mode.
-  nnoremap Q <nop>
+  " Read the current line and execute that in your $SHELL.
+  " The resulting output of the command will replace the line
+  " that you were on. This is very handy. Also we dont use Ex mode
+  nnoremap Q !!$SHELL <cr>
 
   " Multi-mode mappings (Normal, Visual)
   map Y y$
