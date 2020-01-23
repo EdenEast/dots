@@ -14,6 +14,7 @@ https://lib.rs/command-line-utilities
 * https://lib.rs/crates/novault           -  Vaultless password management cli
 * https://lib.rs/crates/nsh               -  A shell written in rust
 * https://lib.rs/crates/quickcfg          -  Basic configuration of a system
+* https://lib.rs/crates/semverver         -  Automatic verification of semver adhrence in rust library crates
 * https://lib.rs/crates/silicon           -  Create beautiful images of your code
 * https://lib.rs/crates/xpg               -  Xkcd-style password generator
 
@@ -21,12 +22,14 @@ https://lib.rs/command-line-utilities
 https://lib.rs/keywords/cargo
 
 * https://lib.rs/crates/cargo-asm           -  A cargo subcommand that displays the generated assembly of Rust source code
+* https://lib.rs/crates/cargo-bloat         -  Find out what takes most of the space in your executable
 * https://lib.rs/crates/cargo-call-stack    -  Whole program static stack analysis
 * https://lib.rs/crates/cargo-cook          -  A third-party cargo extension which allows you to cook your crate
 * https://lib.rs/crates/cargo-deny          -  Cargo plugin to help you manage large dependency graphs
 * https://lib.rs/crates/cargo-edit          -  Add and remove dependencies by modifying your Cargo.toml
 * https://lib.rs/crates/cargo-expand        -  Wrapper around rustc –pretty=expanded. Shows the result of macro
 * https://lib.rs/crates/cargo-husky         -  Husky for cargo
+* https://lib.rs/crates/cargo-gui           -  A browser interface for working through rustc errors and running cargo commands
 * https://lib.rs/crates/cargo-modules       -  A cargo plugin for  showing a tree-like overview of a crate's modules
 * https://lib.rs/crates/cargo-outdated      -  Cargo subcommand for displaying when dependencies are out of date
 * https://lib.rs/crates/cargo-prefetch      -  Cargo subcommand to download popular crates
