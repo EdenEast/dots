@@ -33,7 +33,7 @@ else
     if !isdirectory(expand("$HOME/.cache/vim/swap"))
       call mkdir(expand("$HOME/.cache/vim/swap", "p"))
     endif
-    set directory=$HOME/.cache/vim/swap
+    set directory=$HOME/.cache/vim/swap//
 endif
 
 set expandtab                                    " always use spaces instead of tabs
@@ -44,15 +44,15 @@ if has('folding')
       set fillchars+=fold:·                      " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
     endif
 
-    if has('nvim-0.3.1')
+    if has('nvim')
         set fillchars+=eob:\                     " suppress ~ at EndOfBuffer
     endif
 
     set foldmethod=indent                        " not as cool as syntax, but faster
     set foldlevelstart=99                        " start unfolded
-                                                 " set foldtext=eden#settings#foldtext()
 endif
 
+set formatoptions+=j                             " remove comment leader when joning comments
 set formatoptions+=n                             " smart auto indenting inside numbered lists
 set hidden                                       " allows you to hide buffers with unsaved changes without being prompted
 
@@ -71,7 +71,7 @@ set incsearch                                    " do incremental searching
 set iskeyword+=-                                 " treat - seperated words as a word object
 set iskeyword+=_                                 " treat _ seperated words as a word object
 
-set laststatus=2 "always show status line
+set laststatus=2                                 "always show status line
 set lazyredraw                                   " dont bother updating screen durring macro playback
 
 if has('linebreak')
@@ -173,7 +173,7 @@ set updatecount=80                               " update swap file every 80 cha
 set updatetime=2000                              " cursorhold interval
 
 if has('viminfo')
-    if exists('')
+    if exists('$SUDO_USER')
         set viminfo=                             " dont create root-owned files
     else
         set viminfo+=n$HOME/.cache/vim/viminfo
