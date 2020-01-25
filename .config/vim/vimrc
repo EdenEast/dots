@@ -42,12 +42,9 @@ let g:local_root = $HOME . '/.local/etc/vim'
 let g:local_rc = g:local_root . '/vimrc'
 let g:package_root = g:cache_root . '/packages'
 
-" Define leader key
-let g:mapleader = "\\"
-
-" alias for leader key
-nmap <space> \
-xmap <space> \
+"Define leader key as <space> and local-leader as '\'
+let g:mapleader = "\<space>"
+let g:maplocalleader = "\\"
 
 source $HOME/.config/vim/package.vim
 
