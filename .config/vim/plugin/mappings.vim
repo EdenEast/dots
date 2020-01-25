@@ -5,6 +5,9 @@ nnoremap k gk
 nnoremap <leader>w :w<cr>
 nnoremap <leader>W :w!<cr>
 
+nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :q!<cr>
+
 " Read the current line and execute that in your $SHELL.
 " The resulting output of the command will replace the line
 " that you were on. This is very handy. Also we dont use Ex mode
@@ -24,6 +27,8 @@ map Y y$
 " Refresh the current file
 map <F5> :e %<cr>
 map <leader><F5> :source %<cr>
+
+map <F2> :tabedit $HOME/.config/vim/vimrc<cr>
 
 " re-indent file and jump back to where the cursor was
 map <F7> mzgg=G`z
