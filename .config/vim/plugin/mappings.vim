@@ -17,7 +17,7 @@ nnoremap Q !!$SHELL <cr>
 nnoremap <c-q> yy:@" <cr>
 
 " Multi-mode mappings (Normal, Visual)
-map Y y$
+" map Y y$
 
 " remove highlighting on escape
 " NOTE: for some reason when you enter vim with this mapping
@@ -28,7 +28,7 @@ map Y y$
 map <F5> :e %<cr>
 map <leader><F5> :source %<cr>
 
-map <F2> :tabedit $HOME/.config/vim/vimrc<cr>
+map <F4> :tabedit $HOME/.config/vim/vimrc<cr>
 
 " re-indent file and jump back to where the cursor was
 map <F7> mzgg=G`z
@@ -153,52 +153,70 @@ nnoremap <C-l> <C-w>l
   nnoremap <leader>f9 :set foldlevel=9<cr>
 " }}}
 
-
 " Terminal: {{{
 if has('nvim')
-  " use neovim-remote (pip3 install neovim-remote) allows
-  " opening a new split inside neovim instead of nesting
-  " neovim processes for git commit
-    let $VISUAL      = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
-    let $GIT_EDITOR  = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
-    let $EDITOR      = 'nvr -l'
-    let $ECTO_EDITOR = 'nvr -l'
+  " split navication in terminal
+  tnoremap <c-h> <c-\><c-w>h
+  tnoremap <c-j> <c-\><c-w>j
+  tnoremap <c-k> <c-\><c-w>k
+  tnoremap <c-l> <c-\><c-w>l
 
-  " set cursor modes
-    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-          \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-          \,sm:block-blinkwait175-blinkoff150-blinkon175
+  " escape terminal
+  tnoremap <esc> <c-\><c-n>
+  tnoremap <m-[> <esc>
 
-  " interactive find replace preview
-    set inccommand=nosplit
+  " the modifier to interact with the terminal is <leader>t
+  nnoremap <leader>t :vertical botright Ttoggle<cr><c-w>l
 
-  " Navigate neovim + neovim terminal emulator with alt+direction
-    tnoremap <c-h> <C-\><C-n><C-w>h
-    tnoremap <c-j> <C-\><C-n><C-w>j
-    tnoremap <c-k> <C-\><C-n><C-w>k
-    tnoremap <c-l> <C-\><C-n><C-w>l
-
-  " easily escape terminal
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <M-[> <Esc> " To send an escape key to the shell
-    " tnoremap <leader><esc> <C-\><C-n><esc><cr>
-    " tnoremap <C-o> <C-\><C-n><esc><cr>
-
-  " quickly toggle term
-    nnoremap <silent> <leader>o :vertical botright Ttoggle<cr><C-w>l
-    nnoremap <silent> <leader>O :horizontal rightbelow Ttoggle<cr><C-w>j
-    nnoremap <silent> <leader><space> :vertical botright Ttoggle<cr><C-w>l
-
-    " close terminal
-    tnoremap <silent> <leader>o <C-\><C-n>:Ttoggle<cr>
-    tnoremap <silent> <leader><space> <C-\><C-n>:Ttoggle<cr>
-
-  " send stuff to REPL using NeoTerm
-    nnoremap <silent> <c-s>l :TREPLSendLine<CR>
-    vnoremap <silent> <c-s>s :TREPLSendSelection<CR>
-
-  " pasting works quite well in neovim as is so disabling yo
-    nnoremap <silent> yo o
-    nnoremap <silent> yO O
+  " vs term://git-cmd.exe --no-cd --command=usr/bin/bash.exe -l -i
 endif
-" }}}
+" }}
+
+" " Terminal: {{{
+" if has('nvim')
+"   " use neovim-remote (pip3 install neovim-remote) allows
+"   " opening a new split inside neovim instead of nesting
+"   " neovim processes for git commit
+"     let $VISUAL      = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
+"     let $GIT_EDITOR  = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
+"     let $EDITOR      = 'nvr -l'
+"     let $ECTO_EDITOR = 'nvr -l'
+
+"   " set cursor modes
+"     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+"           \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+"           \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+"   " interactive find replace preview
+"     set inccommand=nosplit
+
+"   " Navigate neovim + neovim terminal emulator with alt+direction
+"     tnoremap <c-h> <C-\><C-n><C-w>h
+"     tnoremap <c-j> <C-\><C-n><C-w>j
+"     tnoremap <c-k> <C-\><C-n><C-w>k
+"     tnoremap <c-l> <C-\><C-n><C-w>l
+
+"   " easily escape terminal
+"     tnoremap <Esc> <C-\><C-n>
+"     tnoremap <M-[> <Esc> " To send an escape key to the shell
+"     " tnoremap <leader><esc> <C-\><C-n><esc><cr>
+"     " tnoremap <C-o> <C-\><C-n><esc><cr>
+
+"   " quickly toggle term
+"     nnoremap <silent> <leader>o :vertical botright Ttoggle<cr><C-w>l
+"     nnoremap <silent> <leader>O :horizontal rightbelow Ttoggle<cr><C-w>j
+"     nnoremap <silent> <leader><space> :vertical botright Ttoggle<cr><C-w>l
+
+"     " close terminal
+"     tnoremap <silent> <leader>o <C-\><C-n>:Ttoggle<cr>
+"     tnoremap <silent> <leader><space> <C-\><C-n>:Ttoggle<cr>
+
+"   " send stuff to REPL using NeoTerm
+"     nnoremap <silent> <c-s>l :TREPLSendLine<CR>
+"     vnoremap <silent> <c-s>s :TREPLSendSelection<CR>
+
+"   " pasting works quite well in neovim as is so disabling yo
+"     nnoremap <silent> yo o
+"     nnoremap <silent> yO O
+" endif
+" " }}}
