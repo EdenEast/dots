@@ -9,5 +9,8 @@ if has('gui_running') || has('nvim')
   set guioptions-=r       " remove right hand scrollbar always present
   set guioptions-=b       " remove bottom bar
 
-  colorscheme gruvbox
+  " If we are gruvbox the we want the hard variant
+  let g:gruvbox_material_background = 'hard'
+
+  colorscheme gruvbox-material
 endif

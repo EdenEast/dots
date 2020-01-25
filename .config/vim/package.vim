@@ -51,7 +51,9 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'dylanaraps/wal.vim'
   Plug 'mhinz/vim-janah'
   Plug 'rhysd/vim-color-spring-night'
-  Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+  Plug 'artanikin/vim-synthwave84'
+  Plug 'flrnd/candid.vim'
 " }}}
 " Misc: {{{
   Plug 'psliwka/vim-smoothie'           " Smooth scrolling
@@ -59,8 +61,8 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'Yggdroot/indentLine'            " display indentation lines
   Plug 'ciaranm/securemodelines'        " secure alternative to modelines
   Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
-  Plug 'mhinz/vim-startify' " fancy startup screen
-  Plug 'chrisbra/Colorizer' " hex colorize
+  Plug 'mhinz/vim-startify'             " fancy startup screen
+  Plug 'chrisbra/Colorizer'             " hex colorize
 
   " Only neovim has a built in terminal so if we are in neovim
   " then install terminal plugin
