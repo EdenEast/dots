@@ -1,238 +1,199 @@
-" -----------------------------------------------------------------------------
-" Common mappings
-"
-" These mappings will be sourced regardless of env that nvim is running in.
-" Those can be vim, nvim, nvim in vscode
-function s:common_mappings() " {{{
-  " I do not use ; so set ; to :
-  " nnoremap ; :
-  " nnoremap ; ;
+" Make j and k go up and down visible lines
+nnoremap j gj
+nnoremap k gk
 
-  " Make j and k go up and down visible lines
-  nnoremap j gj
-  nnoremap k gk
+nnoremap <leader>w :w<cr>
+nnoremap <leader>W :w!<cr>
 
-  nnoremap <leader>w :w<cr>
-  nnoremap <leader>W :w!<cr>
+" Read the current line and execute that in your $SHELL.
+" The resulting output of the command will replace the line
+" that you were on. This is very handy. Also we dont use Ex mode
+nnoremap Q !!$SHELL <cr>
 
-  " Read the current line and execute that in your $SHELL.
-  " The resulting output of the command will replace the line
-  " that you were on. This is very handy. Also we dont use Ex mode
-  nnoremap Q !!$SHELL <cr>
+" Yank the current line and then execute it as a :command
+nnoremap <c-q> yy:@" <cr>
 
-  " Yank the current line and then execute it as a :command
-  nnoremap <c-q> yy:@" <cr>
+" Multi-mode mappings (Normal, Visual)
+map Y y$
 
-  " Multi-mode mappings (Normal, Visual)
-  map Y y$
+" remove highlighting on escape
+" NOTE: for some reason when you enter vim with this mapping
+" it adds :2R to the command
+" map <silent> <esc> :nohlsearch<cr>
 
-  " remove highlighting on escape
-  " NOTE: for some reason when you enter vim with this mapping
-  " it adds :2R to the command
-  " map <silent> <esc> :nohlsearch<cr>
+" Refresh the current file
+map <F5> :e %<cr>
+map <leader><F5> :source %<cr>
 
-  " Refresh the current file
-  map <F5> :e %<cr>
-  map <leader><F5> :source %<cr>
+" re-indent file and jump back to where the cursor was
+map <F7> mzgg=G`z
 
-  " re-indent file and jump back to where the cursor was
-  map <F7> mzgg=G`z
+" incsearch:
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
 
-  " incsearch:
-  " map /  <Plug>(incsearch-forward)
-  " map ?  <Plug>(incsearch-backward)
-  " map g/ <Plug>(incsearch-stay)
+" center search
+nmap n nzz
+nmap N Nzz
 
-  " center search
-  nmap n nzz
-  nmap N Nzz
+" change dir to current file's dir
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-  " change dir to current file's dir
-  nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
-  " Switch between the last two files
-  nnoremap <leader><leader> <c-^>
+" copy to system clipboard
+noremap gy "+y
 
-  " copy to system clipboard
-  noremap gy "+y
+" copy whole file to system clipboard
+nnoremap gY mzgg"+yG'z:echo "file copied"<cr>
 
-  " copy whole file to system clipboard
-  nnoremap gY mzgg"+yG'z:echo "file copied"<cr>
+" paste from system clipboard
+nnoremap gp "+p
+nnoremap gP "+P
 
-  " paste from system clipboard
-  nnoremap gp "+p
-  nnoremap gP "+P
+" disable arrow keys in normal mode
+" bad me for using the arrow keys
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
-  " disable arrow keys in normal mode
-  " bad me for using the arrow keys
-  nnoremap <Left> :echoe "Use h"<CR>
-  nnoremap <Right> :echoe "Use l"<CR>
-  nnoremap <Up> :echoe "Use k"<CR>
-  nnoremap <Down> :echoe "Use j"<CR>
+" Repurpose cursor keys
+" nnoremap <slient> <Up> :cprevious<cr>
+" nnoremap <slient> <Down> :cnext<cr>
+" nnoremap <slient> <Left> :cpfile<cr>
+" nnoremap <slient> <Right> :cnfile<cr>
 
-  " Repurpose cursor keys
-  " nnoremap <slient> <Up> :cprevious<cr>
-  " nnoremap <slient> <Down> :cnext<cr>
-  " nnoremap <slient> <Left> :cpfile<cr>
-  " nnoremap <slient> <Right> :cnfile<cr>
+" nnoremap <slient> <S-Up> :lprevious<cr>
+" nnoremap <slient> <S-Down> :lnext<cr>
+" nnoremap <slient> <S-Left> :lpfile<cr>
+" nnoremap <slient> <S-Right> :lnfile<cr>
 
-  " nnoremap <slient> <S-Up> :lprevious<cr>
-  " nnoremap <slient> <S-Down> :lnext<cr>
-  " nnoremap <slient> <S-Left> :lpfile<cr>
-  " nnoremap <slient> <S-Right> :lnfile<cr>
+" sort selected lines
+vmap gs :sort<CR>
 
-  " sort selected lines
-  vmap gs :sort<CR>
+" Tab/shift-tab to indent/outdent in visual mode.
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
-  " Tab/shift-tab to indent/outdent in visual mode.
-  vnoremap <Tab> >gv
-  vnoremap <S-Tab> <gv
+" Keep selection when indenting/outdenting.
+vnoremap > >gv
+vnoremap < <gv
 
-  " Keep selection when indenting/outdenting.
-  vnoremap > >gv
-  vnoremap < <gv
+" Search for selected text
+vnoremap * "xy/<C-R>x<CR>
 
-  " Search for selected text
-  vnoremap * "xy/<C-R>x<CR>
+" When I am in insert mode wanting to paste would be nice to use <c-v>
+inoremap <c-v> <c-r>+
 
-  " When I am in insert mode wanting to paste would be nice to use <c-v>
-  inoremap <c-v> <c-r>+
-endfunction " }}}
+" When you forget to sudo... make sure to write the file
+cmap w!! w !sudo tee % >/dev/null
 
-" -----------------------------------------------------------------------------
-" Vim specific mappings
-"
-" These mappings will be sourced when running in vim or nvim but not in vscode
-function s:vim_mappings() "{{{
-  " When you forget to sudo... make sure to write the file
-  cmap w!! w !sudo tee % >/dev/null
+" command typo mapping and shift fixes
+" cmap W w
+" cmap WQ wq
+" cmap wQ wq
+" cmap Q q
+" cmap Tabe tabe
 
-  " command typo mapping and shift fixes
-  " cmap W w
-  " cmap WQ wq
-  " cmap wQ wq
-  " cmap Q q
-  " cmap Tabe tabe
+" a quicker and easier way to escape insert mode
+inoremap jj <esc>
 
-  " a quicker and easier way to escape insert mode
-  inoremap jj <esc>
+" Quickly edit/reload configuration file
+nnoremap gev :e $MYVIMRC<cr>
+nnoremap gsv :so $MYVIMRC<cr>
 
-  " Quickly edit/reload configuration file
-  nnoremap gev :e $MYVIMRC<cr>
-  nnoremap gsv :so $MYVIMRC<cr>
+" I never use this widnow and only ever get there by trying to quit so just quit
+nmap q: :q
 
-  " I never use this widnow and only ever get there by trying to quit so just quit
-  nmap q: :q
+" Toggle fold at current location
+" NOTE: not sure I want to use <tab> for this functionality
+" nnoremap <Tab> za
 
-  " Toggle fold at current location
-  " NOTE: not sure I want to use <tab> for this functionality
-  " nnoremap <Tab> za
+" Open files relative to current path:
+nnoremap <leader>e :edit <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
-  " Open files relative to current path:
-  nnoremap <leader>e :edit <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
-  nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+" Move around splits without having to press <C-w> before each movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-  " Move around splits without having to press <C-w> before each movement
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
+" Folding: {{{
+" Folding hotkeys are accessable from <leader>f
 
-  " Folding: {{{
-  " Folding hotkeys are accessable from <leader>f
+" Toggle the current fold
+  nnoremap <leader>ff za
+  vnoremap <leader>ff za
 
-  " Toggle the current fold
-    nnoremap <leader>ff za
-    vnoremap <leader>ff za
+  " Open what ever fold we are in
+  nnoremap <leader>fo zczO
+  " focus the current line, close all folds and
+  " open the fold for the current line
+  nnoremap <leader>fa mzzMzvzz12<c-e>`z
 
-    " Open what ever fold we are in
-    nnoremap <leader>fo zczO
-    " focus the current line, close all folds and
-    " open the fold for the current line
-    nnoremap <leader>fa mzzMzvzz12<c-e>`z
-
-    nnoremap <leader>f0 :set foldlevel=0<cr>
-    nnoremap <leader>f1 :set foldlevel=1<cr>
-    nnoremap <leader>f2 :set foldlevel=2<cr>
-    nnoremap <leader>f3 :set foldlevel=3<cr>
-    nnoremap <leader>f4 :set foldlevel=4<cr>
-    nnoremap <leader>f5 :set foldlevel=5<cr>
-    nnoremap <leader>f6 :set foldlevel=6<cr>
-    nnoremap <leader>f7 :set foldlevel=7<cr>
-    nnoremap <leader>f8 :set foldlevel=8<cr>
-    nnoremap <leader>f9 :set foldlevel=9<cr>
-  " }}}
+  nnoremap <leader>f0 :set foldlevel=0<cr>
+  nnoremap <leader>f1 :set foldlevel=1<cr>
+  nnoremap <leader>f2 :set foldlevel=2<cr>
+  nnoremap <leader>f3 :set foldlevel=3<cr>
+  nnoremap <leader>f4 :set foldlevel=4<cr>
+  nnoremap <leader>f5 :set foldlevel=5<cr>
+  nnoremap <leader>f6 :set foldlevel=6<cr>
+  nnoremap <leader>f7 :set foldlevel=7<cr>
+  nnoremap <leader>f8 :set foldlevel=8<cr>
+  nnoremap <leader>f9 :set foldlevel=9<cr>
+" }}}
 
 
-  " Terminal: {{{
-  if has('nvim')
-    " use neovim-remote (pip3 install neovim-remote) allows
-    " opening a new split inside neovim instead of nesting
-    " neovim processes for git commit
-      let $VISUAL      = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
-      let $GIT_EDITOR  = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
-      let $EDITOR      = 'nvr -l'
-      let $ECTO_EDITOR = 'nvr -l'
+" Terminal: {{{
+if has('nvim')
+  " use neovim-remote (pip3 install neovim-remote) allows
+  " opening a new split inside neovim instead of nesting
+  " neovim processes for git commit
+    let $VISUAL      = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
+    let $GIT_EDITOR  = 'nvr -cc split --remote-wait +"setlocal bufhidden=delete"'
+    let $EDITOR      = 'nvr -l'
+    let $ECTO_EDITOR = 'nvr -l'
 
-    " set cursor modes
-      set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-            \,sm:block-blinkwait175-blinkoff150-blinkon175
+  " set cursor modes
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+          \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+          \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-    " interactive find replace preview
-      set inccommand=nosplit
+  " interactive find replace preview
+    set inccommand=nosplit
 
-    " Navigate neovim + neovim terminal emulator with alt+direction
-      tnoremap <c-h> <C-\><C-n><C-w>h
-      tnoremap <c-j> <C-\><C-n><C-w>j
-      tnoremap <c-k> <C-\><C-n><C-w>k
-      tnoremap <c-l> <C-\><C-n><C-w>l
+  " Navigate neovim + neovim terminal emulator with alt+direction
+    tnoremap <c-h> <C-\><C-n><C-w>h
+    tnoremap <c-j> <C-\><C-n><C-w>j
+    tnoremap <c-k> <C-\><C-n><C-w>k
+    tnoremap <c-l> <C-\><C-n><C-w>l
 
-    " easily escape terminal
-      tnoremap <Esc> <C-\><C-n>
-      tnoremap <M-[> <Esc> " To send an escape key to the shell
-      " tnoremap <leader><esc> <C-\><C-n><esc><cr>
-      " tnoremap <C-o> <C-\><C-n><esc><cr>
+  " easily escape terminal
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <M-[> <Esc> " To send an escape key to the shell
+    " tnoremap <leader><esc> <C-\><C-n><esc><cr>
+    " tnoremap <C-o> <C-\><C-n><esc><cr>
 
-    " quickly toggle term
-      nnoremap <silent> <leader>o :vertical botright Ttoggle<cr><C-w>l
-      nnoremap <silent> <leader>O :horizontal rightbelow Ttoggle<cr><C-w>j
-      nnoremap <silent> <leader><space> :vertical botright Ttoggle<cr><C-w>l
+  " quickly toggle term
+    nnoremap <silent> <leader>o :vertical botright Ttoggle<cr><C-w>l
+    nnoremap <silent> <leader>O :horizontal rightbelow Ttoggle<cr><C-w>j
+    nnoremap <silent> <leader><space> :vertical botright Ttoggle<cr><C-w>l
 
-      " close terminal
-      tnoremap <silent> <leader>o <C-\><C-n>:Ttoggle<cr>
-      tnoremap <silent> <leader><space> <C-\><C-n>:Ttoggle<cr>
+    " close terminal
+    tnoremap <silent> <leader>o <C-\><C-n>:Ttoggle<cr>
+    tnoremap <silent> <leader><space> <C-\><C-n>:Ttoggle<cr>
 
-    " send stuff to REPL using NeoTerm
-      nnoremap <silent> <c-s>l :TREPLSendLine<CR>
-      vnoremap <silent> <c-s>s :TREPLSendSelection<CR>
+  " send stuff to REPL using NeoTerm
+    nnoremap <silent> <c-s>l :TREPLSendLine<CR>
+    vnoremap <silent> <c-s>s :TREPLSendSelection<CR>
 
-    " pasting works quite well in neovim as is so disabling yo
-      nnoremap <silent> yo o
-      nnoremap <silent> yO O
-  endif
-  " }}}
-endfunction " }}}
-
-" -----------------------------------------------------------------------------
-" Vscode specific mappings
-"
-" These mappings will only be sourced when nvim is running from vscode
-function s:vscode_mappings() " {{{
-  " navigation between windows
-  nnoremap <C-j> :call VSCodeNotify('workbench.action.terminal.focus')<cr>
-
-  " For some reason these two bindings dont take
-  nnoremap <C-b> :call VSCodeNotify('workbench.action.toggleSidebarVisiblity')<cr>
-  nnoremap <C-h> :call VSCodeNotify('editor.actions.addSelectedToNextFindNext')<cr>
-endfunction " }}}
-
-" -----------------------------------------------------------------------------
-"
-call s:common_mappings()
-if exists('g:vscode')
-  call s:vscode_mappings()
-else
-  call s:vim_mappings()
+  " pasting works quite well in neovim as is so disabling yo
+    nnoremap <silent> yo o
+    nnoremap <silent> yO O
 endif
+" }}}
