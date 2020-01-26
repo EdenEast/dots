@@ -63,6 +63,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
   Plug 'mhinz/vim-startify'             " fancy startup screen
   Plug 'chrisbra/Colorizer'             " hex colorize
+  Plug 'moll/vim-bbye'                  " helper around closing buffers
 
   " Only neovim has a built in terminal so if we are in neovim
   " then install terminal plugin

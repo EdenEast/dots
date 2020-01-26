@@ -5,7 +5,7 @@ nnoremap k gk
 nnoremap <leader>w :w<cr>
 nnoremap <leader>W :w!<cr>
 
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :Bdelete<cr>
 nnoremap <leader>Q :q!<cr>
 
 " Read the current line and execute that in your $SHELL.
