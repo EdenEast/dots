@@ -5,8 +5,11 @@ nnoremap k gk
 nnoremap <leader>w :w<cr>
 nnoremap <leader>W :w!<cr>
 
-nnoremap <leader>q :Bdelete<cr>
+nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :q!<cr>
+
+nnoremap <leader>c :Bdelete<cr>
+nnoremap <leader>C :Bdelete!<cr>
 
 " Read the current line and execute that in your $SHELL.
 " The resulting output of the command will replace the line
