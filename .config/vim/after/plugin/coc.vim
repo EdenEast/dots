@@ -15,6 +15,10 @@ if has_key(plugs, 'coc.nvim')
     " Filetypes
     CocInstall coc-rls
     CocInstall coc-go
+    CocInstall coc-markdownlint
+    CocInstall coc-yaml
+    CocInstall coc-tsserver
+    CocInstall coc-vimlsp
   endfunction
   command! -nargs=0 CocInstallExtensions call s:install_extensions()
 
