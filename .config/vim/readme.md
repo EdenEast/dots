@@ -16,8 +16,8 @@ taking the time to live in vim is making me find solutions to the rough edges of
 <!-- BEGIN-MARKDOWN-TOC -->
 
 - [Workflow](#workflow)
-    - [Operating System](#operating-system)
-    - [Languages](#languages)
+  - [Operating System](#operating-system)
+  - [Languages](#languages)
 - [XDG Environment](#xdg-environment)
 - [Resources](#resources)
 
