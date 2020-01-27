@@ -15,6 +15,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'airblade/vim-rooter'           " open vim at the root of a project
   Plug 'editorconfig/editorconfig-vim' " vim respects .editorconfig files
   Plug 'junegunn/vim-easy-align'       " alignment motions
+  Plug 'machakann/vim-sandwich'        " Search/select/edit sandwiched textobjects (surrond)
   Plug 'justinmk/vim-sneak'            " Jump to any location specified by two characters
   Plug 'kana/vim-smartinput'           " help autofil coding syntax like () && {}
   Plug 'terryma/vim-multiple-cursors'  " ability to have multiple cursors
