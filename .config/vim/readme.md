@@ -75,3 +75,5 @@ set &runtimepath += "$HOME/.config/vim"
     way to understand how to integrate rust into vim workflow and use it as my project editor
 - [boost productivity in vim](https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/) A good article with
     useful tips to speed up vimj
+- [init.vim](https://github.com/fannheyward/init.vim/blob/master/init.vim) just want to store for
+    now as did not have time to read yet
