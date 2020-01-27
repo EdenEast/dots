@@ -1,4 +1,4 @@
-" Install vim-plug if missing
+"qInstall vim-plug if missing
 if empty(glob('$HOME/.config/vim/autoload/plug.vim'))
   silent !mkdir -p "$HOME/.config/vim/autoload"
   silent !curl -fLo "$HOME/.config/vim/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -71,6 +71,14 @@ call plug#begin('$HOME/.cache/vim/packages')
   if has('nvim')
     Plug 'kassio/neoterm'
   endif
+" }}}
+" Local Packages: {{{
+" if (!empty(glob(expand($HOME/.local/etc/vim/package.vim))))
+"   source $HOME/.local/etc/vim/package.vim
+" endif
+if filereadable(expand('$HOME/.local/etc/vim/package.vim'))
+  source $HOME/.local/etc/vim/package.vim
+endif
 " }}}
 call plug#end()
 
