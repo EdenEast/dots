@@ -5,27 +5,24 @@ if has_key(plugs, 'coc.nvim')
   " Setting the location of coc extensions to be in ~/.cache/vim/coc
   let g:coc_extension_root = g:cache_root . '/coc'
 
-  function! s:install_extensions() abort
-    " Coc itself
-    CocInstall coc-marketplace
-
-    " Fundemental
-    CocInstall coc-yank
-
-    " Filetypes
-    CocInstall coc-rls
-    CocInstall coc-go
-    CocInstall coc-markdownlint
-    CocInstall coc-yaml
-    CocInstall coc-tsserver
-    CocInstall coc-vimlsp
-  endfunction
-  command! -nargs=0 CocInstallExtensions call s:install_extensions()
-
-  " Check if there are any folders in g:coc_extension_root . /node_modules
-  if empty(finddir(g:coc_extension_root . "/node_modules"))
-    call s:install_extensions()
-  endif
+  " List of global coc-extensions
+  let g:coc_global_extensions = [
+    \ 'coc-pairs',
+    \ 'coc-json',
+    \ 'coc-html',
+    \ 'coc-tsserver',
+    \ 'coc-eslint',
+    \ 'coc-lists',
+    \ 'coc-yank',
+    \ 'coc-yaml',
+    \ 'coc-git',
+    \ 'coc-marketplace',
+    \ 'coc-lines',
+    \ 'coc-markdownlint',
+    \ 'coc-rls',
+    \ 'coc-go',
+    \ 'coc-vimlsp',
+    \ ]
 
   " Better display for messages
   " set cmdheight=2
