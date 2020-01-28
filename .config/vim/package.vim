@@ -23,6 +23,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'psliwka/vim-smoothie'           " Smooth scrolling
   Plug 'terryma/vim-multiple-cursors'   " ability to have multiple cursors
   Plug 'thirtythreeforty/lessspace.vim' " Better whitespace stripping for vim
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " }}}
 "Fuzzy: {{{
   " Install fzf into ~/.local/opt folder and install vim plugin
