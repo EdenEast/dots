@@ -26,7 +26,7 @@ taking the time to live in vim is making me find solutions to the rough edges of
 </details>
 
 This configuration is setup to work with vim, neovim, and neovim though vscode.
-The configuration will try it's best to gracefully degrdate functionality if
+The configuration will try it's best to gracefully degrade functionality if
 the current flavor does not support the feature.
 
 ## Workflow
@@ -40,16 +40,16 @@ On windows I use msys/mingw (git-bash) as it is impossible to work on cmd and po
 to my workflow. I would love to use neovim in my emulated bash environment but the tui does not work. This means that
 the only option I have is to use nvim-qt.
 
-As you would expect neovim just works on linix because long live linux!
+As you would expect neovim just works on linux because long live linux!
 
 ### Languages
 
-As a game develper I use primarly c/c++ for development. Most tools in windows are written in c#. Around a year ago I
-learned rust. After learning rust I dont think I can ever go back to c/c++. C/C++ is dead to me after leaning rust.
+As a game developer I use primarily c/c++ for development. Most tools in windows are written in c#. Around a year ago I
+learned rust. After learning rust I don't think I can ever go back to c/c++. C/C++ is dead to me after leaning rust.
 
 ## XDG Environment
 
-I am a big advicate of adding your configuration files into some sort of dotfiles so you can clone your configuration
+I am a big advocate of adding your configuration files into some sort of dotfiles so you can clone your configuration
 files on any machine you are on and you are all setup. I have a problem with how vim stores it's configuration files.
 Vim does not follow the `$XDG_CONFIG_HOME` convention and has it's configuration files in `~/.vim` and `~/.vimrc` file. No
 application should be cluttering my `$HOME` directory. There is a way to force vim to use a different location for it's
@@ -70,10 +70,10 @@ set &runtimepath += "$HOME/.config/vim"
 ## Resources
 
 - [wincent/wincent](https://github.com/wincent/wincent/tree/master/roles/dotfiles/files/.vim) a well rounded vim
-    configuration with great degredation of settings. Also split up into files and optimizing loading times
+    configuration with great degradation of settings. Also split up into files and optimizing loading times
 - [johoo](https://github.com/jonhoo/configs) A rust open source contributor and all around great and simple setup. Great
     way to understand how to integrate rust into vim workflow and use it as my project editor
 - [boost productivity in vim](https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/) A good article with
-    useful tips to speed up vimj
+    useful tips to speed up vim
 - [init.vim](https://github.com/fannheyward/init.vim/blob/master/init.vim) just want to store for
     now as did not have time to read yet
