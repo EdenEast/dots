@@ -148,9 +148,9 @@ endif
 
 set tabstop=4                                    " spaces per tab
 
-"if has('termguicolors')
-"set termguicolors                               " use guifg/guibg instead of ctermfg/ctermbg in terminal
-"endif
+if has('termguicolors')
+  set termguicolors                              " use guifg/guibg instead of ctermfg/ctermbg in terminal
+endif
 
 set textwidth=120                                " automatically hard wrap at 120 columns
 
