@@ -61,6 +61,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'junegunn/vim-easy-align'        " alignment motions
   Plug 'machakann/vim-sandwich'         " Search/select/edit sandwiched textobjects (surrond)
   Plug 'tpope/vim-commentary'           " language agnostic comment motions
+  Plug 'christoomey/vim-sort-motion'    " Sort motion
 " }}}
 " Text Objects: {{{
   Plug 'glts/vim-textobj-comment'       " comment text object

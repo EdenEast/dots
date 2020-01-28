@@ -79,9 +79,6 @@ nnoremap <Down> :echoe "Use j"<CR>
 " nnoremap <slient> <S-Left> :lpfile<cr>
 " nnoremap <slient> <S-Right> :lnfile<cr>
 
-" sort selected lines
-vmap gs :sort<CR>
-
 " Tab/shift-tab to indent/outdent in visual mode.
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
@@ -119,11 +116,6 @@ nmap q: :q
 " Toggle fold at current location
 " NOTE: not sure I want to use <tab> for this functionality
 " nnoremap <Tab> za
-
-" Open files relative to current path:
-nnoremap <leader>e :edit <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>s :split <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <leader>v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
 " Move around splits without having to press <C-w> before each movement
 nnoremap <C-h> <C-w>h
