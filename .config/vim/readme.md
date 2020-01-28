@@ -77,3 +77,5 @@ set &runtimepath += "$HOME/.config/vim"
     useful tips to speed up vim
 - [init.vim](https://github.com/fannheyward/init.vim/blob/master/init.vim) just want to store for
     now as did not have time to read yet
+- [floating fzf window](https://github.com/Blacksuan19/init.nvim) has a good configuration for fzf
+    and a interesting way to have a floating window in nvim
