@@ -13,15 +13,15 @@ call plug#begin('$HOME/.cache/vim/packages')
 " }}}
 " Editor Extension: {{{
   Plug 'AndrewRadev/splitjoin.vim'      " Split and join programming lines
-  Plug 'Yggdroot/indentLine'            " display indentation lines
-  Plug 'chrisbra/Colorizer'             " hex colorize
-  Plug 'ciaranm/securemodelines'        " secure alternative to modelines
-  Plug 'editorconfig/editorconfig-vim'  " vim respects .editorconfig files
-  Plug 'kana/vim-smartinput'            " help autofil coding syntax like () && {}
-  Plug 'mhinz/vim-startify'             " fancy startup screen
-  Plug 'moll/vim-bbye'                  " helper around closing buffers
+  Plug 'Yggdroot/indentLine'            " Display indentation lines
+  Plug 'chrisbra/Colorizer'             " Hex colorize
+  Plug 'ciaranm/securemodelines'        " Secure alternative to modelines
+  Plug 'editorconfig/editorconfig-vim'  " Vim respects .editorconfig files
+  Plug 'kana/vim-smartinput'            " Help autofil coding syntax like () && {}
+  Plug 'mhinz/vim-startify'             " Fancy startup screen
+  Plug 'moll/vim-bbye'                  " Helper around closing buffers
   Plug 'psliwka/vim-smoothie'           " Smooth scrolling
-  Plug 'terryma/vim-multiple-cursors'   " ability to have multiple cursors
+  Plug 'terryma/vim-multiple-cursors'   " Ability to have multiple cursors
   Plug 'thirtythreeforty/lessspace.vim' " Better whitespace stripping for vim
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " }}}
@@ -31,16 +31,16 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'junegunn/fzf.vim'
 "}}}
 " Gui Enhancements: {{{
-  Plug 'itchyny/lightline.vim'          " status line
-  Plug 'machakann/vim-highlightedyank'  " highlight yanked text
+  Plug 'itchyny/lightline.vim'          " Status line
+  Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
   Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
 "}}}
 " Navigation: {{{
-  Plug 'airblade/vim-rooter'            " open vim at the root of a project
+  Plug 'airblade/vim-rooter'            " Open vim at the root of a project
   Plug 'justinmk/vim-sneak'             " Jump to any location specified by two characters
 " }}}
 " Languages: {{{
-  Plug 'jceb/vim-orgmode'               " emacs' org-mode support
+  Plug 'jceb/vim-orgmode'               " Emacs' org-mode support
   Plug 'sheerun/vim-polyglot'           " Install support for most languages
   Plug 'vmchale/just-vim'               " Justfile syntax
 " }}}
@@ -56,20 +56,21 @@ call plug#begin('$HOME/.cache/vim/packages')
 " }}}
 " Vim Language: {{{
 " Actions: {{{
-  Plug 'tpope/vim-repeat'               " make . support plugins
+  Plug 'tpope/vim-repeat'               " Make . support plugins
 " }}}
 " Motions: {{{
-  Plug 'junegunn/vim-easy-align'        " alignment motions
+  Plug 'junegunn/vim-easy-align'        " Alignment motions
   Plug 'machakann/vim-sandwich'         " Search/select/edit sandwiched textobjects (surrond)
-  Plug 'tpope/vim-commentary'           " language agnostic comment motions
+  Plug 'tpope/vim-commentary'           " Language agnostic comment motions
   Plug 'christoomey/vim-sort-motion'    " Sort motion
+  Plug 'christoomey/vim-system-copy'    " Copying to the system clipboard with text-objects and motions
 " }}}
 " Text Objects: {{{
-  Plug 'glts/vim-textobj-comment'       " comment text object
-  Plug 'kana/vim-textobj-function'      " text object for functions
-  Plug 'kana/vim-textobj-user'          " define your own text objects
-  Plug 'wellle/line-targets.vim'        " line text objects ci-
-  Plug 'wellle/targets.vim'             " additional text objects
+  Plug 'glts/vim-textobj-comment'       " Comment text object
+  Plug 'kana/vim-textobj-function'      " Text object for functions
+  Plug 'kana/vim-textobj-user'          " Define your own text objects
+  Plug 'wellle/line-targets.vim'        " Line text objects ci-
+  Plug 'wellle/targets.vim'             " Additional text objects
 " }}}
 " Neovim: {{{
   if has('nvim')
@@ -83,9 +84,6 @@ if filereadable(expand('$HOME/.local/etc/vim/package.vim'))
   source $HOME/.local/etc/vim/package.vim
 endif
 " }}}
-" }}}
-" Window And Splits: {{{
-
 " }}}
 call plug#end()
 " }}}

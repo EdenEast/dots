@@ -51,16 +51,6 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" copy to system clipboard
-noremap gy "+y
-
-" copy whole file to system clipboard
-nnoremap gY mzgg"+yG'z:echo "file copied"<cr>
-
-" paste from system clipboard
-nnoremap gp "+p
-nnoremap gP "+P
-
 " disable arrow keys in normal mode
 " bad me for using the arrow keys
 nnoremap <Left> :echoe "Use h"<CR>
