@@ -48,6 +48,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'CruizeMissile/Revolution.vim'
   Plug 'KeitaNakamura/neodark.vim'
   Plug 'artanikin/vim-synthwave84'
+  Plug 'bluz71/vim-nightfly-guicolors'
   Plug 'dylanaraps/wal.vim'
   Plug 'flrnd/candid.vim'
   Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
