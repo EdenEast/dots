@@ -1,4 +1,5 @@
 {
+    "suggest.noselect": false,
     "markdownlint.config": {
         "default": true,
         "line-length": false
