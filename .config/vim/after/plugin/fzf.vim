@@ -15,13 +15,16 @@ if has_key(plugs, 'fzf.vim')
    \ 'spinner': ['fg', 'Label'],
    \ 'header':  ['fg', 'Comment'] }
 
- let g:fzf_layout = { 'window': 'call float#create_center_window()' }
- let $FZF_DEFAULT_COMMAND = '--reverse' " top to bottom
+ let g:fzf_layout = { 'window': 'call float#create_center_window()', 'down': '40%' }
+ let $FZF_DEFAULT_OPTS = '--reverse -m' " top to bottom
 
  " Use rg if installed
  if executable('rg')
    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
    set grepprg=rg\ --vimgrep
+
+   "  Allow rg to take optional arguments
+   command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case' . <q-args>, 1, <bang>0)
  endif
 
  " Use fd for file finding if installed
@@ -65,6 +68,18 @@ if has_key(plugs, 'fzf.vim')
          \ 'window': 'call float#create_center_window()'})
  endfunction
 endif
+
+" Search for a file to open with preview
+nnoremap <leader>f :call FloatingFzf()<cr>
+
+" Search files with rg
+nnoremap <leader>s :Rg<space>
+
+" Search lines in current buffer
+nnoremap <leader>/ :BLines<cr>
+
+" Search lines in all buffers
+nnoremap <leader>? :Lines<cr>
 
 "if has_key(plugs, 'fzf.vim')
 "  " Customize fzf colors to match your color scheme
