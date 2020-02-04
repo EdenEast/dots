@@ -27,3 +27,9 @@ A list of some resources to learn and understand git
 
 - [How to write a git commit message](https://chris.beams.io/posts/git-commit/)
 - [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+
+### Some good links for git talk
+
+- [Deep dive into git](https://youtu.be/fBP18-taaNw)
+- [Advanced Git: Graphs, Hashes, and compression oh-my](https://youtu.be/ig5E8CcdM9g)
+- [Advanced Git Tutorial](https://youtu.be/0SJCYPsef54)
