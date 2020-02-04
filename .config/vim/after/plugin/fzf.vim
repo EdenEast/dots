@@ -24,7 +24,7 @@ if has_key(plugs, 'fzf.vim')
    set grepprg=rg\ --vimgrep
 
    "  Allow rg to take optional arguments
-   command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case' . <q-args>, 1, <bang>0)
+   command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case ' . <q-args>, 1, <bang>0)
  endif
 
  " Use fd for file finding if installed
