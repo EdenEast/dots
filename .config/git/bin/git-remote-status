@@ -48,7 +48,7 @@ function main()
         local behind_diff=$(($largest_behind - ${#behind}))
 
         printf "$result"
-        printf '%0.s-' $(seq 1 $name_diff)
+        printf '%0.s ' $(seq 1 $name_diff)
         printf "[ Behind:"
         printf '%0.s ' $(seq 1 $behind_diff)
         printf "$behind | Ahead:"
