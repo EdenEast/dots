@@ -30,4 +30,7 @@
     # View the log and diff for a commit (previous if no SHA1 provided)
     details = log -n1 -p --format=fuller
 
+    # View the tree with only the decorations
+    show-tree = log --graph --decorate  --oneline --simplify-by-decoration --all
+
 # vim: ft=gitconfig:
