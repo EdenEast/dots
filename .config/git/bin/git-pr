@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+# Checkout a pull request by number.
+# This will create a new local branch with a name based on the remote's branch name
+#
+# Suppored remote hosting sites:
+#   - Github
+#   - Gitlab
+
+PR_BRANCH="pr/$1"
+
+git fetch origin
+
+git branch -D $PR_BRANCH
+
+# right now we are assuming that we are on github. will have to check for the
+# correct remote hosting site later based on the remote url
+
+# Github defines their pull request refs like:
+# https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally
+#   refs/pull/head:
+
+# Fetch the pr locally
+git fetch origin refs/pull/$1/head:"${PR_BRANCH}"
+
+# Find the sha of the pr in question. With this hash we can get the branch.
+PR_SHA=$(git rev-parse "${PR_BRANCH}")
+REMOTE_BRANCH=$(git branch -r --contains "${PR_SHA}")
+
+echo git checkout -f -t $REMOTE_BRANCH
+# echo git checkout -f -t $REMOTE_BRANCH
