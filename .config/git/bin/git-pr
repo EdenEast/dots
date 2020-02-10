@@ -11,7 +11,10 @@ PR_BRANCH="pr/$1"
 
 git fetch origin
 
-git branch -D $PR_BRANCH
+branch_exists=$(git show-ref refs/heads/pr/$1)
+[ -n "$branch_exists" ] && {
+    git branch -D $PR_BRANCH
+}
 
 # right now we are assuming that we are on github. will have to check for the
 # correct remote hosting site later based on the remote url
@@ -23,9 +26,6 @@ git branch -D $PR_BRANCH
 # Fetch the pr locally
 git fetch origin refs/pull/$1/head:"${PR_BRANCH}"
 
-# Find the sha of the pr in question. With this hash we can get the branch.
-PR_SHA=$(git rev-parse "${PR_BRANCH}")
-REMOTE_BRANCH=$(git branch -r --contains "${PR_SHA}")
+# checkout branch
+git checkout $PR_BRANCH
 
-echo git checkout -f -t $REMOTE_BRANCH
-# echo git checkout -f -t $REMOTE_BRANCH
