@@ -19,7 +19,6 @@ PRT_FILE=$COL_BLU
 PRT_TIME=$COL_CYN
 PRT_DESC=$COL_GRN
 PRT_AUTH=$COL_YLW
-PRT_BRAK=$COL_WHT
 
 CURRENT_DIRECTORY_FILES=$(git ls-files | grep -vF '/')
 for file in $CURRENT_DIRECTORY_FILES; do
@@ -28,14 +27,9 @@ for file in $CURRENT_DIRECTORY_FILES; do
     log_msg=( $(git log -n 1 HEAD --format="$file%n%cr%n%s%n[%aN]%n" -- "$file") )
     unset IFS
 
-    printf "%b%-30.30s%b %b%-21s %s %s%b\\n" "$PRT_FILE" "${log_msg[0]}"  "$COL_RST" "$PRT_TIME" "${log_msg[1]}" "${log_msg[2]}" "${log_msg[3]}" "$COL_RST"
+    printf "%b%-30.30s%b %b%-15s %b%s %b%s%b\\n" \
+        "$PRT_FILE" "${log_msg[0]}" "$COL_RST" \
+        "$PRT_TIME" "${log_msg[1]}" \
+        "$PRT_DESC" "${log_msg[2]}" \
+        "$PRT_AUTH" "${log_msg[3]}" "$COL_RST"
 done
-
-# git ls-files | grep -vF '/' | while read -r file; do
-#     IFS='
-# '
-#     log_msg=( $(git log -n 1 HEAD --format="$file%n%cr%n%s%n%[%aN]%n" -- "$file") )
-#     unset IFS
-#     # lightblue:"\e[1;34m" reset:"\e[0m" medgray:"\e[1;30m"
-#     printf "%b%-30.30s%b %b%-21s %s %s%b\\n" "\\e[1;34m" "${log_msg[0]}" "\\e[0m" "\\e[1;30m" "${log_msg[1]}" "${log_msg[2]}" "${log_msg[3]}" "\\e[0m"
-# done
