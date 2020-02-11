@@ -6,6 +6,7 @@
 # Suppored remote hosting sites:
 #   - Github
 #   - Gitlab
+#   - bitbucket
 
 # Defaults
 VERBOSE=0
@@ -66,7 +67,10 @@ elif [[ $REMOTE_URL =~ "gitlab" ]]; then
     # https://www.jvt.me/posts/2019/01/19/git-ref-gitlab-merge-requests/
     REF_MAP="refs/merge-requests/$1/head:${PR_BRANCH}"
 elif [[ $REMOTE_URL =~ "bitbucket" ]]; then
-    die "Bitbucket has not been implemented yet"
+    verbose "Bitbucket remote detected"
+
+    # https://www.atlassian.com/git/articles/pull-request-proficiency-fetching-abilities-unlocked
+    REF_MAP="refs/pull-request/*/head:${PR_BRANCH}"
 else
     die "Remote hosting provider is not supported"
 fi
