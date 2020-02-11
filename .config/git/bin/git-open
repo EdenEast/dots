@@ -147,13 +147,13 @@ fi
 # Allow config options to replace the server or the protocol
 openurl="$protocol://$domain"
 
-function getConfig() {
+function get_config() {
   config=$(git config --get-urlmatch "open.$1" "$openurl")
   echo "${config:-${!1}}"
 }
 
-domain=$(getConfig "domain")
-protocol=$(getConfig "protocol")
+domain=$(get_config "domain")
+protocol=$(get_config "protocol")
 
 # Get current branch / tag / commit
 branch=${2:-$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match 2>/dev/null || git rev-parse HEAD)}
@@ -161,9 +161,37 @@ branch=${2:-$(git symbolic-ref -q --short HEAD || git describe --tags --exact-ma
 # Split arguments on '/'
 IFS='/' read -r -a pathargs <<<"$urlpath"
 
+# Check if the current branch is a pull request.
+# There are different protocol/formats for a pr branch
+# pr-[0-9]+$
+# pr/[0-9]+$
+# pr/pr-[0-9]+$
+is_pr=0
+pr_branch_patterns=('^pr-([0-9]+)$' '^pr/([0-9]+)$' '^pr/pr-([0-9]+)$')
+for pr_pattern in ${pr_branch_patterns[@]} ; do
+    [[ "$branch_name" =~ $pr_pattern ]] && {
+        pr_number="${BASH_REMATCH[1]}"
+        is_pr=1 ; break
+    }
+done
+
+function get_pr_branch_ref() {
+    if [[ "$domain" =~ "github" ]]; then
+        echo "/pull/$pr_number"
+    elif [[ "$domain" =~ "gitlab" ]]; then
+        echo "/merge_requests/$pr_number"
+    elif [[ "$domain" =~ "bitbucket" ]]; then
+        echo "/pull-request/$pr_number"
+    fi
+}
+
+pr_branch_ref=$(get_pr_branch_ref)
+
 if (( is_issue )); then
   # For issues, take the numbers and preprend 'issues/'
   providerBranchRef="/issues/${branch//[^0-9]/}"
+elif (( is_pr )); then
+    providerBranchRef=$pr_branch_ref
 else
   # Make # and % characters url friendly
   #   github.com/paulirish/git-open/pull/24
