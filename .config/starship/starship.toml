@@ -20,3 +20,22 @@ style = "bold yellow"
 [git_state]
 progress_divider = " of "
 cherry_pick = "🍒 PICKING"
+
+[git_status]
+style = "bold blue"
+
+[java]
+disabled = true
+
+[crystal]
+disabled = true
+
+[php]
+disabled = true
+
+[ruby]
+disabled = true
+
+[terraform]
+disabled = true
+
