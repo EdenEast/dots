@@ -7,6 +7,7 @@ if has_key(plugs, 'coc.nvim')
 
   " List of global coc-extensions
   let g:coc_global_extensions = [
+    \ 'coc-angular',
     \ 'coc-pairs',
     \ 'coc-json',
     \ 'coc-html',
