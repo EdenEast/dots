@@ -26,7 +26,7 @@
     l   = log
     o   = open
     p   = pull
-    pl  = pull --rebase
+    pl  = pull --ff-only
     pu  = push
     qq  = reset --hard
     r   = rebase
