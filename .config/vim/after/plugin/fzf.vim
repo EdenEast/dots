@@ -70,7 +70,7 @@ if has_key(plugs, 'fzf.vim')
 endif
 
 " Search for a file to open with preview
-nnoremap <leader>f :call FloatingFzf()<cr>
+nnoremap <leader>e :call FloatingFzf()<cr>
 
 " Search files with rg
 nnoremap <leader>s :Rg<space>

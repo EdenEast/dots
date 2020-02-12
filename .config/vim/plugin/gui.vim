@@ -11,6 +11,4 @@ if has('gui_running') || has('nvim')
 
   " If we are gruvbox the we want the hard variant
   let g:gruvbox_material_background = 'hard'
-
-  colorscheme gruvbox-material
 endif
