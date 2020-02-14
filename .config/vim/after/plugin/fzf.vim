@@ -29,9 +29,9 @@ if has_key(plugs, 'fzf.vim')
 
  " Use fd for file finding if installed
  if executable('fd')
-   let $FZF_DEFAULT_COMMAND = 'fd --type f --follow'
+   let $FZF_DEFAULT_COMMAND = 'fd --type f --follow --hidden --exclude ".git/*"'
    command! -bang -nargs=? -complete=dir Files
-         \ call fzf#vim#files(<q-args>, {'source': 'fd --type file --follow',
+         \ call fzf#vim#files(<q-args>, {'source': 'fd --type file --follow --hidden --exclude ".git/*"',
          \                               'options': '--tiebreak=index'}, <bang>0)
  endif
 
