@@ -11,8 +11,8 @@
     ca  = commit -a --verbose
     cl  = clean -fd
     clf = clean -fdx
-    cm  = commit -m --verbose
-    cma = commit -am --verbose
+    cm  = commit --verbose -m
+    cma = commit --verbose -am
     cn  = clone
     cnr = clone --recurse-submodules -j8
     co  = checkout
