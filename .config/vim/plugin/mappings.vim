@@ -31,6 +31,7 @@ nnoremap <c-q> yy:@" <cr>
 map <F5> :e %<cr>
 map <leader><F5> :source %<cr>
 
+map <F3> :set spell!<cr>
 map <F4> :tabedit $HOME/.config/vim/vimrc<cr>
 
 " re-indent file and jump back to where the cursor was
