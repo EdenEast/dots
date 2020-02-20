@@ -42,6 +42,7 @@ call plug#begin('$HOME/.cache/vim/packages')
 " Languages: {{{
   Plug 'jceb/vim-orgmode'               " Emacs' org-mode support
   Plug 'rust-lang/rust.vim'             " Rust language support defined as I need all features not just polyglot
+  Plug 'arzg/vim-rust-syntax-ext'       " Extend syntax support for rust
   Plug 'sheerun/vim-polyglot'           " Install support for most languages
   Plug 'vmchale/just-vim'               " Justfile syntax
 " }}}
