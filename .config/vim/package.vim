@@ -54,6 +54,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'dylanaraps/wal.vim'
   Plug 'flrnd/candid.vim'
   Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
+  Plug 'arzg/vim-colors-xcode'
   Plug 'mhinz/vim-janah'
   Plug 'rhysd/vim-color-spring-night'
 " }}}
