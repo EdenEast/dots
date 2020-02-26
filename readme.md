@@ -16,14 +16,14 @@ Dot files uses [yadm] as a manager. Note that iI havent commented / docuemnted m
 One line installation with curl.
 
 ```bash
-curl -fsSL https://raw.github.com/cruizemissile/dots/master/.scripts/install | bash -s --
+curl -fsSL https://raw.github.com/edeneast/dots/master/.scripts/install | bash -s --
 ```
 
 Manual installation with [yadm]
 
 ```bash
 curl -fsSLO https://github.com/CruizeMissile/dots/raw/master/.local/bin/yadm
-YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/cruizemissile/dots
+YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edeneast/dots
 ```
 
 [yadm]: https://thelocehiliosan.github.io/yadm

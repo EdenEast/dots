@@ -341,7 +341,7 @@ bindsym XF86AudioRewind               exec --no-startup-id $play_backward 10
 bindsym XF86AudioForward              exec --no-startup-id $play_forward 10
 # bindsym XF86Phone                     exec
 # bindsym XF86Tools                     exec
-bindsym XF86HomePage                  exec $BROWSER https://github.com/cruizemissile
+bindsym XF86HomePage                  exec $BROWSER https://github.com/edeneast
 bindsym XF86Reload                    restart
 # bindsym XF86ScrollUp                  exec
 # bindsym XF86ScrollDown                exec
