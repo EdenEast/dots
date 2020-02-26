@@ -6,6 +6,6 @@ tags = [
 ]
 
 [[remotes]]
-url = 'https://github.com/cruizemissile/cml'
+url = 'https://github.com/edeneast/cml'
 name = 'origin'
 

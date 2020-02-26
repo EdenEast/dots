@@ -6,6 +6,6 @@ tags = [
 ]
 
 [[remotes]]
-url = 'https://github.com/cruizemissile/eden'
+url = 'https://github.com/edeneast/eden'
 name = 'origin'
 
