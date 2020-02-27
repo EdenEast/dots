@@ -161,7 +161,30 @@ theme_arc: &theme_arc
     cyan:    '0x93e0e3'
     white:   '0xf8f8ff'
 
-theme_arc: &theme_insomnia
+theme_code: &theme_code
+  primary:
+    background: '0x292a30'
+    foreground: '0xdfdfe0'
+  normal:
+    black:   '0x393b44'
+    red:     '0xff8170'
+    green:   '0x78c2b3'
+    yellow:  '0xd9c97c'
+    blue:    '0x4eb0cc'
+    magenta: '0xff7ab2'
+    cyan:    '0xb281eb'
+    white:   '0xdfdfe0'
+  bright:
+    black:   '0x7f8c98'
+    red:     '0xff8170'
+    green:   '0xacf2e4'
+    yellow:  '0xffa14f'
+    blue:    '0x6bdfff'
+    magenta: '0xff7ab2'
+    cyan:    '0xdabaff'
+    white:   '0xdfdfe0'
+
+theme_insomnia: &theme_insomnia
   primary:
     background: '0x21252b'
     foreground: '0x9da5b4'
@@ -253,7 +276,7 @@ theme_lovelace: &theme_ephemeral
     cyan:    '0x24d1e7'
     white:   '0xe5e5e5'
 
-theme_lovelace: &theme_neon
+theme_neon: &theme_neon
   primary:
     background: '0x1e1e1e'
     foreground: '0xf8f8f8'
@@ -277,7 +300,7 @@ theme_lovelace: &theme_neon
     white:   '0xf8f8f8'
 
 colors:
-  *theme_neon
+  *theme_code
 
 # Visual Bell
 #

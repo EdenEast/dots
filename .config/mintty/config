@@ -8,8 +8,9 @@ CursorBlinks=no
 
 # Font
 # -----------------------------------------------------------------------------
-ThemeFile=neon
+ThemeFile=code
 
+# ThemeFile=code
 # ThemeFile=ephemeral
 # ThemeFile=hotline
 # ThemeFile=insomnia
