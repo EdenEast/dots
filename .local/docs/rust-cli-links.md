@@ -1,6 +1,7 @@
 # list of command line utilities
 https://lib.rs/command-line-utilities
 
+* https://lib.rs/crates/bat               -  A cat replacement with syntax-highlighting
 * https://lib.rs/crates/bingrep           -  Cross platform binary parser and colorizer
 * https://lib.rs/crates/broot             -  Fuzzy search + tree + cd + ls
 * https://lib.rs/crates/cargo-call-stack  -  Static whole program stack analysis
@@ -14,6 +15,7 @@ https://lib.rs/command-line-utilities
 * https://lib.rs/crates/novault           -  Vaultless password management cli
 * https://lib.rs/crates/nsh               -  A shell written in rust
 * https://lib.rs/crates/quickcfg          -  Basic configuration of a system
+* https://lib.rs/crates/starship          -  Fast and customizable prompt for most shells
 * https://lib.rs/crates/semverver         -  Automatic verification of semver adhrence in rust library crates
 * https://lib.rs/crates/silicon           -  Create beautiful images of your code
 * https://lib.rs/crates/xpg               -  Xkcd-style password generator
