@@ -7,6 +7,13 @@
     export SCCACHE_DIR="$HOME/.cache/sccache"
 }
 
+# if zoxide is insatlled then source helper scripts
+[[ -x "$(command -v zoxide)" ]] && {
+    export _ZO_DATA="$HOME/.cache/zoxide/data"
+    mkdir -p $HOME/.cache/zoxide
+    eval "$(zoxide init bash)"
+}
+
 # if jump is installed then source 'jump shell'
 [[ -x "$(command -v jump)" ]] && eval "$(jump shell)"
 
