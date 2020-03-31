@@ -27,15 +27,34 @@ nnoremap <c-q> yy:@" <cr>
 " it adds :2R to the command
 " map <silent> <esc> :nohlsearch<cr>
 
-" Refresh the current file
-map <F5> :e %<cr>
-map <leader><F5> :source %<cr>
+" Open vim config file in a new tab to make edits from anywhere
+" while using vim (also dont use <F1> for help, have :h for that)
+map <F1> :tabedit $HOME/.config/vim/vimrc<cr>
 
+" Open NERDTree file viewer
+map <F2> :NERDTreeToggle<cr>
+
+" Toggle spelling quickly
 map <F3> :set spell!<cr>
-map <F4> :tabedit $HOME/.config/vim/vimrc<cr>
 
-" re-indent file and jump back to where the cursor was
-map <F7> mzgg=G`z
+" re-indent file and jump back to current cursor position
+map <leader><F3> mzgg=G`z
+
+" " Refresh the current file
+map <F4> :e! %<cr>
+map <leader><F4> :source %<cr>
+
+" Quickfix jumping shortcuts
+"
+" Jump to the next and previous entry in quickfix list
+" using <F5> and <F7> keys. To move to the first and last
+" are accessable through leader modifiers. To run make
+" that is per language but the key is <F6>
+map <F5> :cp<cr>
+map <leader><F5> :cp<cr>
+" map <F6> :make<cr>
+map <F7> :cn<cr>
+map <leader><F7> :cn<cr>
 
 " incsearch:
 " map /  <Plug>(incsearch-forward)

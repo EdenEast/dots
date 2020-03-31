@@ -12,6 +12,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language server client and completion engine
 " }}}
 " Editor Extension: {{{
+  Plug 'AndrewRadev/sideways.vim'       " Move function arguments and list items
   Plug 'AndrewRadev/splitjoin.vim'      " Split and join programming lines
   Plug 'Yggdroot/indentLine'            " Display indentation lines
   Plug 'chrisbra/Colorizer'             " Hex colorize
@@ -34,6 +35,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'itchyny/lightline.vim'          " Status line
   Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
   Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
+  Plug 'preservim/nerdtree'             " File system explorer
 "}}}
 " Navigation: {{{
   Plug 'airblade/vim-rooter'            " Open vim at the root of a project
