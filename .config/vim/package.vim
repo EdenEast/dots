@@ -39,7 +39,6 @@ call plug#begin('$HOME/.cache/vim/packages')
 "}}}
 " Navigation: {{{
   Plug 'airblade/vim-rooter'            " Open vim at the root of a project
-  Plug 'justinmk/vim-sneak'             " Jump to any location specified by two characters
 " }}}
 " Languages: {{{
   Plug 'jceb/vim-orgmode'               " Emacs' org-mode support
