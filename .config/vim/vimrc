@@ -36,9 +36,9 @@ endfunction
 call s:setup_rtp()
 
 " Set some path variables
-let g:config_root = $HOME . '/.config/vim'
-let g:cache_root = $HOME . '/.cache/vim'
-let g:local_root = $HOME . '/.local/etc/vim'
+let g:config_root = expand($HOME . '/.config/vim')
+let g:cache_root = expand($HOME . '/.cache/vim')
+let g:local_root = expand($HOME . '/.local/etc/vim')
 let g:local_rc = g:local_root . '/vimrc'
 let g:package_root = g:cache_root . '/packages'
 

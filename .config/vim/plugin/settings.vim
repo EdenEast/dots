@@ -181,10 +181,10 @@ if has('viminfo')
 endif
 
 if has('mksession')
-  if !isdirectory(expand("$HOME/.cache/vim/view"))
-    call mkdir(expand("$HOME/.cache/vim/view", "p"))
+  if !isdirectory(expand("$HOME/.cache/vim/session"))
+    call mkdir(expand("$HOME/.cache/vim/session", "p"))
   endif
-  set viewdir=$HOME/.cache/vim/view
+  set viewdir=$HOME/.cache/vim/session
   set viewoptions=cursor,folds                   " save/restore just these (with :{mk, load}view)
 endif
 

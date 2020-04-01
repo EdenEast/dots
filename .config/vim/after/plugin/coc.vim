@@ -5,6 +5,9 @@ if has_key(plugs, 'coc.nvim')
   " Setting the location of coc extensions to be in ~/.cache/vim/coc
   let g:coc_extension_root = g:cache_root . '/coc'
 
+  " Setting the location of the workspace folder
+  " let g:WorkspaceFolders = g:cache_root . '/coc/sessions'
+
   " List of global coc-extensions
   let g:coc_global_extensions = [
     \ 'coc-angular',
