@@ -36,6 +36,7 @@ call plug#begin('$HOME/.cache/vim/packages')
   Plug 'machakann/vim-highlightedyank'  " Highlight yanked text
   Plug 'ryanoasis/vim-devicons'         " File type icons to Vim plugins
   Plug 'preservim/nerdtree'             " File system explorer
+  Plug 'unblevable/quick-scope'         " Lightning fast left-right movement in Vim
 "}}}
 " Navigation: {{{
   Plug 'airblade/vim-rooter'            " Open vim at the root of a project
