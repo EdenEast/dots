@@ -1,11 +1,9 @@
 name = 'pride'
 tags = [
-    'cm',
     'lib',
     'personal',
 ]
 
 [[remotes]]
-url = 'https://github.com/edeneast/pride'
 name = 'origin'
-
+url = 'ssh://git@github.com/edeneast/pride'

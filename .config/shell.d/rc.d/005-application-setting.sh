@@ -1,5 +1,7 @@
 # if repo is installed then soure the work script
-[[ -x "$(command -v repo)" ]] && eval "$(repo script)"
+[ -x "$(command -v repo)" ] && {
+    [ -x "$(command -v fzf)" ] && eval "$(repo init bash --fzf)" || eval "$(repo init bash)"
+}
 
 # if sccache is installed add that as a rustc wrapper
 [[ -x "$(command -v sccache)" ]] && {

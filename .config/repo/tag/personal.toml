@@ -1,2 +1,2 @@
 name = 'personal'
-
+clone = 'git config user.name "James Simpson" ; git config user.email "edenofest@gmail.com"'

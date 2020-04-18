@@ -1,11 +1,9 @@
 name = 'scaffold'
 tags = [
-    'cm',
     'lib',
     'personal',
 ]
 
 [[remotes]]
-url = 'https://github.com/edeneast/scaffold'
 name = 'origin'
-
+url = 'ssh://git@github.com/edeneast/scaffold'

@@ -1,11 +1,9 @@
 name = 'cml'
 tags = [
-    'cm',
     'lib',
     'personal',
 ]
 
 [[remotes]]
-url = 'https://github.com/edeneast/cml'
 name = 'origin'
-
+url = 'ssh://git@github.com/edeneast/cml'

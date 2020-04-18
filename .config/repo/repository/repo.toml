@@ -1,12 +1,10 @@
 name = 'repo'
 tags = [
     'app',
-    'cm',
     'personal',
     'rust',
 ]
 
 [[remotes]]
-url = 'https://github.com/edeneast/repo'
 name = 'origin'
-
+url = 'ssh://git@github.com/edeneast/repo'
