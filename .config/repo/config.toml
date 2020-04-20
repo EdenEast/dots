@@ -1,2 +1,2 @@
-root = '/home/eden/dev/workspace'
+root = '~/dev/workspace'
 default_scheme = 'ssh'
