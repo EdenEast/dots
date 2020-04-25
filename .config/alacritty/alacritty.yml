@@ -21,17 +21,17 @@ scrolling:
 
 # ------------------------------  Fonts  --------------------------------------
 font:
-  size: 10.0
+  size: 7.0
   normal:
-    family: Hack NF
+    family: Hack Nerd Font
     style: Regular
 
   bold:
-    family: Hack NF
+    family: Hack Nerd Font
     style: Bold
 
   italic:
-    family: Hack NF
+    family: Hack Nerd Font
     style: Italic
 
 # ------------------------------  Themes  -------------------------------------
@@ -245,11 +245,11 @@ cursor:
 live_config_reload: true
 
 # ------------------------------  Shell  --------------------------------------
-shell:
-  program: cmd.exe /C "C:\Program Files\Git\bin\bash.exe"
-  args:
-    - --login
-    - -i
+# shell:
+#   program: cmd.exe /C "C:\Program Files\Git\bin\bash.exe"
+#   args:
+#     - --login
+#     - -i
 
 alt_send_esc: true
 
