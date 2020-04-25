@@ -7,29 +7,33 @@
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 #
 
-if [ -d $HOME/.config/shell.d/rc.d/ ]; then
-    for rc in $HOME/.config/shell.d/rc.d/*.sh; do
-        emulate bash -c ". $rc"
-    done
-fi
+autoload -Uz compinit
+compinit
 
-if [ -d $HOME/.config/shell.d/zsh.d/ ]; then
-    for rc in $HOME/.config/shell.d/zsh.d/*.zsh; do
-        source $rc
-    done
-fi
 
-if [ -d $HOME/.local/etc/shell.d/rc.d ]; then
-    for rc in $HOME/.local/etc/shell.d/rc.d/*.sh; do
-        emulate bash -c ". $rc"
-    done
-fi
+# if [ -d $HOME/.config/shell.d/rc.d/ ]; then
+#     for rc in $HOME/.config/shell.d/rc.d/*.sh; do
+#         emulate bash -c ". $rc"
+#     done
+# fi
 
-if [ -d $HOME/.local/etc/shell.d/zsh.d ]; then
-    for rc in $HOME/.local/etc/shell.d/zsh.d/*.zsh; do
-        source $rc
-    done
-fi
+# if [ -d $HOME/.config/shell.d/zsh.d/ ]; then
+#     for rc in $HOME/.config/shell.d/zsh.d/*.zsh; do
+#         source $rc
+#     done
+# fi
+
+# if [ -d $HOME/.local/etc/shell.d/rc.d ]; then
+#     for rc in $HOME/.local/etc/shell.d/rc.d/*.sh; do
+#         emulate bash -c ". $rc"
+#     done
+# fi
+
+# if [ -d $HOME/.local/etc/shell.d/zsh.d ]; then
+#     for rc in $HOME/.local/etc/shell.d/zsh.d/*.zsh; do
+#         source $rc
+#     done
+# fi
 
 # # If for some reason that the .profile has not been loaded then source it
 # [ -z $DOT_PROFILE_LOADED ]  && emulate bash -c 'source $HOME/.profile'
