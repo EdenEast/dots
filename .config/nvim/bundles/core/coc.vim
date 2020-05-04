@@ -5,15 +5,24 @@ let g:coc_config_home = g:config_root
 let g:coc_data_home = g:cache_root . '/coc'
 
 let g:coc_global_extensions  = [
+      \ 'coc-actions',
+      \ 'coc-clangd',
+      \ 'coc-cmake',
       \ 'coc-eslint',
       \ 'coc-explorer',
       \ 'coc-git',
+      \ 'coc-github',
+      \ 'coc-go',
       \ 'coc-json',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
+      \ 'coc-pairs',
       \ 'coc-rust-analyzer',
+      \ 'coc-tslint',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
+      \ 'coc-yaml',
+      \ 'coc-zi',
       \ ]
 
 
@@ -54,6 +63,11 @@ function! s:select_current_word()
 endfunc
 
 " File and buffer explorer ------------------------------------------------------------------------
+let g:coc_exploerer_global_presets = {
+      \ 'floating' : {
+      \  'position' : 'floating'
+      \  }
+      \}
 noremap <silent> <F2> :execute 'CocCommand explorer' .
       \ ' --toggle' .
       \ ' --sources=file+'<CR>
@@ -84,6 +98,16 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Actions -----------------------------------------------------------------------------------------
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+
+" Note the nmap is a motion
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 
 " Code actions ------------------------------------------------------------------------------------
 nnoremap <leader>cn <Plug>(coc-rename)

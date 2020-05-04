@@ -1,4 +1,6 @@
 {
+    "explorer.previewAction.onHover": false,
+    "explorer.icon.enableNerdfont": true,
     "suggest.noselect": false,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",
