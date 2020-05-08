@@ -1,5 +1,6 @@
 " Language server client and completion engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vn-ki/coc-clap'
 
 let g:coc_config_home = g:config_root
 let g:coc_data_home = g:cache_root . '/coc'
@@ -18,6 +19,7 @@ let g:coc_global_extensions  = [
       \ 'coc-marketplace',
       \ 'coc-pairs',
       \ 'coc-rust-analyzer',
+      \ 'coc-snippets',
       \ 'coc-tslint',
       \ 'coc-tsserver',
       \ 'coc-vimlsp',
@@ -109,15 +111,24 @@ endfunction
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 
+" Coc and Clap ------------------------------------------------------------------------------------
+nmap <silent> <leader>ce :<C-u>Clap coc_diagnostics<cr>
+let g:which_key_map.c.e = 'Lsp Show Diagnostics'
+
+nmap <silent> <leader>co :<C-u>Clap coc_outline<cr>
+let g:which_key_map.c.o = 'Lsp Show Outline'
+
+" TODO: find somewhere to put Clap coc_services coc_symbols coc_outline
+
 " Code actions ------------------------------------------------------------------------------------
-nnoremap <leader>cn <Plug>(coc-rename)
+nmap <leader>cn <Plug>(coc-rename)
 let g:which_key_map.c.n = 'rename'
 
-nnoremap <leader>cf <Plug>(coc-format-selected)
-vnoremap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
+vmap <leader>cf <Plug>(coc-format-selected)
 let g:which_key_map.c.f = 'format'
 
-nnoremap <leader>cF <Plug>(coc-fix-current)
+nmap <leader>cF <Plug>(coc-fix-current)
 let g:which_key_map.c.F = 'fix'
 
 " Git actions -------------------------------------------------------------------------------------
