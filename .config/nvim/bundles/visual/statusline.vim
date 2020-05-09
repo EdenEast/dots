@@ -6,11 +6,12 @@ if !exists("g:lightline")
         \ 'colorscheme': 'wombat',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
         \ },
         \ 'component_function': {
         \   'gitbranch': 'FugitiveHead',
-        \   'filename': 'LightlineFilename'
+        \   'filename': 'LightlineFilename',
+        \   'cocstatus': 'coc#status'
         \ },
         \ }
 endif
@@ -18,3 +19,6 @@ endif
 function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
