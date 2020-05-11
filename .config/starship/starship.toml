@@ -1,6 +1,20 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
 
+# Define order to make prompt on one line
+# https://starship.rs/config/#default-prompt-order
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "hg_branch",
+    "character",
+]
+
 [character]
 symbol = "➜"     # The "symbol" segment is being set to "➜"
 
@@ -10,9 +24,22 @@ disabled = true
 [conda]
 disabled = true
 
+[crystal]
+disabled = true
+
 [directory]
-truncation_length = 3
+truncation_length = 2
+truncate_to_repo = true
 style = "bold cyan"
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
 
 [git_branch]
 style = "bold yellow"
@@ -27,13 +54,19 @@ style = "bold blue"
 [java]
 disabled = true
 
-[crystal]
+[julia]
 disabled = true
 
 [php]
 disabled = true
 
+[python]
+disabled = true
+
 [ruby]
+disabled = true
+
+[singularity]
 disabled = true
 
 [terraform]
