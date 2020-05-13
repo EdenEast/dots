@@ -1,7 +1,7 @@
 " To check if neovim-qt is running, use `exists('g:GuiLoaded')`,
 " see https://github.com/equalsraf/neovim-qt/issues/219
 if exists('g:GuiLoaded')
-  " call GuiWindowMaximized(1)
+  call GuiWindowMaximized(1)
   GuiTabline 0
   GuiPopupmenu 0
   " GuiLinespace 2
@@ -14,5 +14,10 @@ if exists('g:GuiLoaded')
   " For Windows, Ctrl-6 does not work. So we use this mapping instead.
   nnoremap <silent> <C-6> <C-^>
 
-  set guifont=Hack\ Nerd\ Font\ Mono:10,Consolas:h11
+  " let g:default_gui_font = 'Consolas'
+  " let g:default_gui_font = 'UbuntuMono NF'
+  let g:default_gui_font = 'Hack Nerd Font Mono'
+  let g:default_gui_font_size = 9
+
+  call eden#font#reset()
 endif
