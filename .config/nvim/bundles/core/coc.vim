@@ -79,7 +79,7 @@ let g:coc_exploerer_global_presets = {
       \}
 noremap <silent> <F2> :execute 'CocCommand explorer' .
       \ ' --toggle' .
-      \ ' --sources=file+'<CR>
+      \ ' --sources=buffer-,file+'<CR>
 
 " Function text objects ---------------------------------------------------------------------------
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
