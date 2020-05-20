@@ -20,4 +20,8 @@ if exists('g:GuiLoaded')
   let g:default_gui_font_size = 9
 
   call eden#font#reset()
+
+  command! -nargs=0 -bar GuiFontInc call eden#font#inc()
+  command! -nargs=0 -bar GuiFontDec call eden#font#dec()
+  command! -nargs=0 -bar GuiFontReset call eden#font#reset()
 endif

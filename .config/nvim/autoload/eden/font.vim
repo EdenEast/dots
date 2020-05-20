@@ -12,7 +12,7 @@ function eden#font#dec() abort
   call eden#font#sizechange(l:fontname, l:size)
 endfunction
 
-function eden#font#sizechange(fontname, size)
+function eden#font#sizechange(fontname, size) abort
   let &guifont = substitute(a:fontname, '\v\s', '\ ', '') . ':h' . a:size
   execute 'GuiFont ' . a:fontname . ':h' . a:size
 endfunction
@@ -21,3 +21,4 @@ function eden#font#reset() abort
   let &guifont = substitute(g:default_gui_font, '\v\s', '\ ', '') . ':h' . g:default_gui_font_size
   execute 'GuiFont ' . g:default_gui_font . ':h' . g:default_gui_font_size
 endfunction
+
