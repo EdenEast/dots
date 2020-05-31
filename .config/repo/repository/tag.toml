@@ -1,0 +1,10 @@
+name = 'tag'
+tags = [
+    'app',
+    'personal',
+    'rust',
+]
+
+[[remotes]]
+name = 'origin'
+url = 'ssh://git@github.com/tdsimpson/sniper-tag'
