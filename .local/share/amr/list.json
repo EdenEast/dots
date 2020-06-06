@@ -1,3 +1,4 @@
+
 {
   "mangas": [
     {
@@ -8,9 +9,15 @@
     },
     {
       "m": "Manga Here",
+      "n": "Drifters",
+      "u": "http://www.mangahere.cc/manga/drifters/",
+      "l": "http://www.mangahere.cc/manga/drifters/c079/"
+    },
+    {
+      "m": "Manga Here",
       "n": "God of Martial Arts",
       "u": "http://www.mangahere.cc/manga/god_of_martial_arts/",
-      "l": "http://www.mangahere.cc/manga/god_of_martial_arts/c113.3/",
+      "l": "http://www.mangahere.cc/manga/god_of_martial_arts/c114.2/",
       "y": 10
     },
     {
@@ -22,15 +29,28 @@
     },
     {
       "m": "Manga Here",
-      "n": "Kakegurui",
-      "u": "http://www.mangahere.cc/manga/kakegurui/",
-      "l": "http://www.mangahere.cc/manga/kakegurui/c001/"
+      "n": "Imawa no Kuni no Alice",
+      "u": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/",
+      "l": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/c064.1/"
+    },
+    {
+      "m": "Manga Here",
+      "n": "Iris Zero",
+      "u": "http://www.mangahere.cc/manga/iris_zero/",
+      "l": "http://www.mangahere.cc/manga/iris_zero/c001/"
     },
     {
       "m": "Manga Here",
       "n": "Koe no Katachi",
       "u": "http://www.mangahere.cc/manga/koe_no_katachi/",
       "l": "http://www.mangahere.cc/manga/koe_no_katachi/c062.5/"
+    },
+    {
+      "m": "Manga Here",
+      "n": "Komi-san wa Komyushou Desu",
+      "u": "http://www.mangahere.cc/manga/komi_san_wa_komyushou_desu/",
+      "l": "http://www.mangahere.cc/manga/komi_san_wa_komyushou_desu/c019.5/",
+      "y": 1101
     },
     {
       "m": "Manga Here",
@@ -53,37 +73,6 @@
     },
     {
       "m": "Manga Here",
-      "n": "The Breaker",
-      "u": "http://www.mangahere.cc/manga/the_breaker/",
-      "l": "http://www.mangahere.cc/manga/the_breaker/v06/c037/",
-      "y": 1101
-    },
-    {
-      "m": "Manga Here",
-      "n": "Kakegurui Midari",
-      "u": "http://www.mangahere.cc/manga/kakegurui_midari/",
-      "l": "http://www.mangahere.cc/manga/kakegurui_midari/c001/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Drifters",
-      "u": "http://www.mangahere.cc/manga/drifters/",
-      "l": "http://www.mangahere.cc/manga/drifters/c077/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Saotome Girl, Hitakakusu",
-      "u": "http://www.mangahere.cc/manga/saotome_girl_hitakakusu/",
-      "l": "http://www.mangahere.cc/manga/saotome_girl_hitakakusu/v06/c080/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Wortenia Senki",
-      "u": "http://www.mangahere.cc/manga/wortenia_senki/",
-      "l": "http://www.mangahere.cc/manga/wortenia_senki/c001/"
-    },
-    {
-      "m": "Manga Here",
       "n": "ReLIFE",
       "u": "http://www.mangahere.cc/manga/relife/",
       "l": "http://www.mangahere.cc/manga/relife/c222/",
@@ -91,28 +80,25 @@
     },
     {
       "m": "Manga Here",
-      "n": "Imawa no Kuni no Alice",
-      "u": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/",
-      "l": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/c001/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Iris Zero",
-      "u": "http://www.mangahere.cc/manga/iris_zero/",
-      "l": "http://www.mangahere.cc/manga/iris_zero/c001/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Oukoku Game",
-      "u": "http://www.mangahere.cc/manga/oukoku_game/",
-      "l": "http://www.mangahere.cc/manga/oukoku_game/c001/"
+      "n": "Saotome Girl, Hitakakusu",
+      "u": "http://www.mangahere.cc/manga/saotome_girl_hitakakusu/",
+      "l": "http://www.mangahere.cc/manga/saotome_girl_hitakakusu/v06/c081/"
     },
     {
       "m": "Manga Here",
       "n": "Vinland Saga",
       "u": "http://www.mangahere.cc/manga/vinland_saga/",
-      "l": "http://www.mangahere.cc/manga/vinland_saga/v17/c142/"
+      "l": "http://www.mangahere.cc/manga/vinland_saga/v21/c172/",
+      "y": 1101
+    },
+    {
+      "m": "Manga Here",
+      "n": "Wortenia Senki",
+      "u": "http://www.mangahere.cc/manga/wortenia_senki/",
+      "l": "http://www.mangahere.cc/manga/wortenia_senki/c028/",
+      "y": 1101
     }
   ],
   "bookmarks": []
 }
+
