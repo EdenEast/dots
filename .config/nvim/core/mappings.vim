@@ -75,8 +75,8 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <A-h> <C-w>3<
 nnoremap <A-l> <C-w>3>
-nnoremap <A-j> <C-w>3+
-nnoremap <A-k> <C-w>3-
+nnoremap <A-k> <C-w>3+
+nnoremap <A-j> <C-w>3-
 
 " Function key mappings -------------------------------------------------------
 " Open vim config file in a new tab to make edits from anywhere
