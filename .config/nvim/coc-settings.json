@@ -1,6 +1,7 @@
 {
     "explorer.previewAction.onHover": false,
     "explorer.icon.enableNerdfont": true,
+    "explorer.file.showHiddenFiles": true,
     "suggest.noselect": false,
     "suggest.completionItemKindLabels": {
         "keyword": "\uf1de",
