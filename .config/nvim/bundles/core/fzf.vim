@@ -5,7 +5,7 @@ Plug 'junegunn/fzf.vim'
 let $FZF_DEFAULT_OPTS = '-m' " top to bottom
 
 if executable('rg')
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    let $FZF_DEFAULT_COMMAND = 'rg --files --smart-case --hidden --follow --glob "!.git/*"'
 
     set grepprg=rg\ --vimgrep
 
@@ -20,31 +20,28 @@ if executable('fd')
                 \                               'options': '--tiebreak=index'}, <bang>0)
 endif
 
-" Search for file
-nnoremap <silent> <leader><cr> :Files<cr>
-
 " Search files in directory
-nnoremap <silent> <leader>fd :Files<cr>
+nnoremap <silent> <leader>fd :<c-u>Files<cr>
 let g:which_key_map.f.d = 'file in dirs'
 
+nnoremap <silent> <leader>fg :<c-u>GFiles<cr>
+let g:which_key_map.f.g = 'file in git'
+
 " Search files with rg
-nnoremap <silent> <leader>fr :Rg<space>
+nnoremap <silent> <leader>fr :<c-u>Rg<space>
 let g:which_key_map.f.r = 'rg search'
 
 " Search lines in current buffer
-nnoremap <silent> <leader>f/ :BLines<cr>
+nnoremap <silent> <leader>f/ :<c-u>BLines<cr>
 let g:which_key_map.f['/'] = 'lines'
 
 " Search lines in all buffers
-nnoremap <silent> <leader>f? :Lines<cr>
+nnoremap <silent> <leader>f? :<c-u>Lines<cr>
 let g:which_key_map.f['?'] = 'buffer lines'
 
-" Search files with rg
-nnoremap <leader>\ :Rg<space>""<Left>
-
 " Search lines in current buffer
-nnoremap <silent> <leader>/ :BLines<cr>
+nnoremap <silent> <leader>/ :<c-u>BLines<cr>
 
 " Search lines in all buffers
-nnoremap <silent> <leader>? :Lines<cr>
+nnoremap <silent> <leader>? :<c-u>Lines<cr>
 
