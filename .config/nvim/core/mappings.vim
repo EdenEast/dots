@@ -40,6 +40,12 @@ vnoremap * "xy/<C-R>x<CR>
 nnoremap <silent><expr> <Leader>th (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 let g:which_key_map.t.h = 'highlight search'
 
+nnoremap <leader>w :<c-u>w<cr>
+let g:which_key_map.w = 'write'
+
+nnoremap <leader>q :<c-u>q<cr>
+let g:which_key_map.q = 'quit'
+
 " Buffers ---------------------------------------------------------------------
 nnoremap <leader>bw :w<cr>
 let g:which_key_map.b.w = 'write'
@@ -56,7 +62,7 @@ let g:which_key_map.b.p = 'prev'
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bNext<cr>
 
-" Buffers ---------------------------------------------------------------------
+" Tabs ------------------------------------------------------------------------
 nnoremap [t :tabprevious<cr>
 nnoremap ]t :tabNext<cr>
 
