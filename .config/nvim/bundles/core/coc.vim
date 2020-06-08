@@ -119,10 +119,10 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 
 " Coc and Clap ------------------------------------------------------------------------------------
-nmap <silent> <leader>ce :<C-u>Clap coc_diagnostics<cr>
+nmap <silent> <leader>ce :<C-u>CocList diagnostics<cr>
 let g:which_key_map.c.e = 'Lsp Show Diagnostics'
 
-nmap <silent> <leader>co :<C-u>Clap coc_outline<cr>
+nmap <silent> <leader>co :<C-u>CocList outline<cr>
 let g:which_key_map.c.o = 'Lsp Show Outline'
 
 " TODO: find somewhere to put Clap coc_services coc_symbols coc_outline
@@ -148,7 +148,4 @@ let g:which_key_map.g.i = 'chunk diff at point'
 
 nnoremap <leader>gm <Plug>(coc-git-commit)
 let g:which_key_map.g.m = 'commit message at point'
-
-" not sure that this is required seams to work when i dont set this
-" let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
