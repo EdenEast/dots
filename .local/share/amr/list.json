@@ -1,4 +1,3 @@
-
 {
   "mangas": [
     {
@@ -17,14 +16,14 @@
       "m": "Manga Here",
       "n": "God of Martial Arts",
       "u": "http://www.mangahere.cc/manga/god_of_martial_arts/",
-      "l": "http://www.mangahere.cc/manga/god_of_martial_arts/c114.2/",
+      "l": "http://www.mangahere.cc/manga/god_of_martial_arts/c115.1/",
       "y": 10
     },
     {
       "m": "Manga Here",
       "n": "Horimiya",
       "u": "http://www.mangahere.cc/manga/horimiya/",
-      "l": "http://www.mangahere.cc/manga/horimiya/c114/",
+      "l": "http://www.mangahere.cc/manga/horimiya/c115/",
       "y": 1102
     },
     {
@@ -32,12 +31,6 @@
       "n": "Imawa no Kuni no Alice",
       "u": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/",
       "l": "http://www.mangahere.cc/manga/imawa_no_kuni_no_alice/c064.1/"
-    },
-    {
-      "m": "Manga Here",
-      "n": "Iris Zero",
-      "u": "http://www.mangahere.cc/manga/iris_zero/",
-      "l": "http://www.mangahere.cc/manga/iris_zero/c001/"
     },
     {
       "m": "Manga Here",
@@ -86,6 +79,12 @@
     },
     {
       "m": "Manga Here",
+      "n": "Tonari no Kashiwagi-san",
+      "u": "http://www.mangahere.cc/manga/tonari_no_kashiwagi_san/",
+      "l": "http://www.mangahere.cc/manga/tonari_no_kashiwagi_san/c084/"
+    },
+    {
+      "m": "Manga Here",
       "n": "Vinland Saga",
       "u": "http://www.mangahere.cc/manga/vinland_saga/",
       "l": "http://www.mangahere.cc/manga/vinland_saga/v21/c172/",
@@ -101,4 +100,3 @@
   ],
   "bookmarks": []
 }
-
