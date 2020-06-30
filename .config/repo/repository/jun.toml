@@ -1,0 +1,10 @@
+name = 'jun'
+tags = [
+    'app',
+    'personal',
+    'rust',
+]
+
+[[remotes]]
+name = 'origin'
+url = 'ssh://git@github.com/edeneast/jun'
