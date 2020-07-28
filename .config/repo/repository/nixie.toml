@@ -1,0 +1,10 @@
+name = 'nixie'
+tags = [
+    'config',
+    'nix',
+    'personal',
+]
+
+[[remotes]]
+name = 'origin'
+url = 'ssh://git@github.com/edeneast/nixie'
