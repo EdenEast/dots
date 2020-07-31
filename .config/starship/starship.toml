@@ -12,34 +12,21 @@ prompt_order = [
     "git_state",
     "git_status",
     "hg_branch",
+    "docker_context",
+    "nix_shell",
     "character",
 ]
 
+# Change timeout of scanning files to 10 mili secs
+scan_timeout = 10
+
 [character]
 symbol = "➜"     # The "symbol" segment is being set to "➜"
-
-[aws]
-disabled = true
-
-[conda]
-disabled = true
-
-[crystal]
-disabled = true
 
 [directory]
 truncation_length = 2
 truncate_to_repo = true
 style = "bold cyan"
-
-[elixir]
-disabled = true
-
-[elm]
-disabled = true
-
-[erlang]
-disabled = true
 
 [git_branch]
 style = "bold yellow"
@@ -50,25 +37,4 @@ cherry_pick = "🍒 PICKING"
 
 [git_status]
 style = "bold blue"
-
-[java]
-disabled = true
-
-[julia]
-disabled = true
-
-[php]
-disabled = true
-
-[python]
-disabled = true
-
-[ruby]
-disabled = true
-
-[singularity]
-disabled = true
-
-[terraform]
-disabled = true
 
