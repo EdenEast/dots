@@ -6,10 +6,6 @@
 # |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
 
 
-# Provide links or keys to any relevant tickets,
-# articles or other resources
-# Example: Github issue #23
-
 # --- COMMIT END ---
 # Type can be
 #    feat     (new feature)
@@ -27,6 +23,3 @@
 #    Separate subject from body with a blank line
 #    Use the body to explain what and why vs. how
 #    Can use multiple lines with "-" for bullet points in body
-# --------------------
-# For more information about this template, check out
-# https://gist.github.com/adeekshith/cd4c95a064977cdc6c50
