@@ -38,6 +38,10 @@ alias ya="yadm add"
 alias yc="yadm commit --verbose"
 alias ys="yadm status -s"
 
+# tmux shortcuts
+alias tn="tmux -u new"
+alias ta="tmux -u attach"
+
 # source rc file for your shell
 [[ $SHELL =~ /bash$ ]] && alias src='source $HOME/.bashrc'
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
