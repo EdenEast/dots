@@ -25,7 +25,8 @@ $character\
 scan_timeout = 10
 
 [character]
-symbol = "➜"     # The "symbol" segment is being set to "➜"
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold green)"
 
 [directory]
 truncation_length = 2
@@ -36,9 +37,12 @@ style = "bold cyan"
 style = "bold yellow"
 
 [git_state]
-progress_divider = " of "
-cherry_pick = "🍒 PICKING"
+format = "[\\($state($progress_current of $progress_total)\\)]($style)"
+cherry_pick = "[🍒 PICKING](bold red)"
 
 [git_status]
 style = "bold blue"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
 
