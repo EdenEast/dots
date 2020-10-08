@@ -3,19 +3,23 @@ add_newline = false
 
 # Define order to make prompt on one line
 # https://starship.rs/config/#default-prompt-order
-prompt_order = [
-    "username",
-    "hostname",
-    "directory",
-    "git_branch",
-    "git_commit",
-    "git_state",
-    "git_status",
-    "hg_branch",
-    "docker_context",
-    "nix_shell",
-    "character",
-]
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$nix_shell\
+$package\
+$go\
+$rust\
+$status\
+$character\
+"""
 
 # Change timeout of scanning files to 10 mili secs
 scan_timeout = 10
