@@ -101,8 +101,14 @@ set &runtimepath += "$HOME/.config/vim"
 - [jonhoo/config][jonhoo] A rust open source contributor great rust setup.
 - [hardcoreplayers/thinkvim][thinkvim] An interesting vim distribution with good settings and organization
 - [zenbro/dotfiles][zenbro] The idea of the bundle folder came from this when I saw that you can define Plug import and settings together
+- [faerryn/fey_neovim][fey_neovim] Configuration completely written in lua with module organization
+- [tjdevries/config_manager][tjdevries] Nvim core member with nvim configuration with lua and built in lsp
+- [lucaslollobrigida/dotfiles][lucaslollobrigida] Interesting transition between coc and nvim-lsp. Also uses packer
 
 [wincent]: https://github.com/wincent/wincent/tree/0d0b647/roles/dotfiles/files/.vim
 [jonhoo]: https://github.com/jonhoo/configs/tree/617ff2f/editor/.config/nvim
 [thinkvim]: https://github.com/hardcoreplayers/ThinkVim/tree/c56462c/
 [zenbro]: https://github.com/zenbro/dotfiles/blob/d3f4bd3/.nvimrc
+[fey_neovim]: https://github.com/faerryn/fey_neovim
+[tjdevries]: https://github.com/tjdevries/config_manager/tree/3053ed9/xdg_config/nvim
+[lucaslollobrigida]: https://github.com/lucaslollobrigida/dotfiles/tree/7f3a268/vim/.config/nvim
