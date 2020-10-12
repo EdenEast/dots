@@ -17,4 +17,5 @@ let &runtimepath = g:nvim_user_config_path
 call eden#setup_paths(g:original_rtp, g:original_packpath)
 call eden#init()
 call eden#whichkey_init()
+call eden#source_file(g:config_root, 'core/core.vim')
 
