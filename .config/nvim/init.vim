@@ -12,7 +12,11 @@
 let g:nvim_user_config_path = fnamemodify(resolve(expand('<sfile>')), ':p:h')
 let g:original_rtp = &rtp
 let g:original_packpath = &packpath
-let &runtimepath = g:nvim_user_config_path
+
+" Only override runtimepath if paths have not been setup before
+if !exists('g:eden_has_path_setup')
+  let &runtimepath = g:nvim_user_config_path
+endif
 
 call eden#setup_paths(g:original_rtp, g:original_packpath)
 call eden#init()
