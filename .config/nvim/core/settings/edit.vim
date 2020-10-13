@@ -2,6 +2,9 @@ scriptencoding utf-8
 
 set autoindent                  " maintain indent of current line
 set backspace=indent,start,eol  " allow unrestricted backspaceing in insert mode
+if has('clipboard')
+  set clipboard=unnamedplus       " use '+' register for all yanks, and deletes
+endif
 set expandtab                   " always use spaces instead of tabs
 set formatoptions+=j            " remove comment leader when joning comments
 set formatoptions+=n            " smart auto indenting inside numbered lists
