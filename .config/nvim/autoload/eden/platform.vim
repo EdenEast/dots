@@ -26,7 +26,7 @@ endfunction
 
 function eden#platform#path_sep()
   if eden#platform#windows()
-    return '\\'
+    return '\'
   endif
   return '/'
 endfunction

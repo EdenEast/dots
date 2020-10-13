@@ -21,6 +21,7 @@ endif
 call eden#setup_paths(g:original_rtp, g:original_packpath)
 call eden#init()
 call eden#whichkey_init()
+call eden#theme#init()
 call eden#source_file(g:config_root, 'core/core.vim')
 
 if has("nvim")

@@ -96,6 +96,12 @@ function eden#init()
   augroup end
 endfunction
 
+function eden#source_if_exists(filename)
+  if filereadable(a:filename)
+    execute 'source' a:filename
+  endif
+endfunction
+
 function eden#source_file(path, filename)
   let abs = resolve(a:path . '/' . a:filename)
   execute 'source' fnameescape(abs)
