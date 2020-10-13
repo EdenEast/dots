@@ -49,5 +49,6 @@ return require('packer').startup({
   end,
   config = {
     package_root = string.format("%s/site/pack", vim.g.cache_root),
+    compile_path = string.format("%s/plugin/packer_compiled.vim", vim.g.local_config_root)
   }
 })
