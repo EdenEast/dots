@@ -28,20 +28,13 @@ return require('packer').startup({
     -- Packer manage packer as an optional plugin
     use { 'wbthomason/packer.nvim', opt = true }
 
-    use 'junegunn/fzf.vim'
-
-    -- Lsp
-    -- use 'neovim/nvim-lspconfig'
-    -- use 'nvim-lua/plenary.nvim'
-    -- use 'nvim-lua/completion-nvim'
-    -- use 'nvim-lua/diagnostic-nvim'
-    -- use 'nvim-lua/popup.nvim'
-    -- use 'nvim-lua/lsp-status.nvim'
-
-    -- Languages
-    -- use 'vmchale/just-vim'
-    -- use {'iamcco/markdown-preview.nvim', ft = ['markdown'], run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-    -- use 'rust-lang/rust.vim'
+    -- Search
+    use {
+        'junegunn/fzf.vim',
+        requires = {
+          { 'junegunn/fzf', run = ':fzf#install()' }
+        }
+    }
 
     -- Themes
     use 'arzg/vim-colors-xcode'
