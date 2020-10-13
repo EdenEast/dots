@@ -19,3 +19,7 @@ call eden#init()
 call eden#whichkey_init()
 call eden#source_file(g:config_root, 'core/core.vim')
 
+if has("nvim-0.5")
+  lua require('plugin')
+endif
+

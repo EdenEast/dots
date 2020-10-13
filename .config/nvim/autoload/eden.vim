@@ -33,8 +33,8 @@ function eden#setup_paths(original_rtp, original_packpath)
 
   " Packpath ------------------------------------------------------------------
   let l:o_packpaths = split(a:original_packpath, ',')
-  let l:packpaths = [g:config_root, g:local_config_root . 'site']
-  let l:after_packpath = [g:config_root . '/after', g:local_config_root . 'site/after']
+  let l:packpaths = [ g:config_root, g:local_config_root . '/site', g:cache_root . '/site' ]
+  let l:after_packpath = [ g:config_root . '/after', g:local_config_root . '/site/after', g:cache_root . '/site/after' ]
 
   for iter in l:o_packpaths
     if iter =~ '[/\\]after$'
