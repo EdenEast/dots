@@ -15,7 +15,9 @@ function eden#setup_paths(original_rtp, original_packpath)
   " Runtimepath ---------------------------------------------------------------
   let l:o_rtps = split(a:original_rtp, ',')
   let l:rtps = [g:config_root, g:local_config_root]
-  let l:after_rtps = [g:config_root . '/after', g:local_config_root . '/after']
+  let l:after_rtps =
+              \   [ eden#path#join([g:config_root, 'after']) ]
+              \ + [ eden#path#join([g:local_config_root, 'after']) ]
 
   for iter in l:o_rtps
     if iter =~ '[/\\]after$'
@@ -33,8 +35,14 @@ function eden#setup_paths(original_rtp, original_packpath)
 
   " Packpath ------------------------------------------------------------------
   let l:o_packpaths = split(a:original_packpath, ',')
-  let l:packpaths = [ g:config_root, g:local_config_root . '/site', g:cache_root . '/site' ]
-  let l:after_packpath = [ g:config_root . '/after', g:local_config_root . '/site/after', g:cache_root . '/site/after' ]
+  let l:packpaths =
+              \   [ g:config_root ]
+              \ + [ eden#path#join([g:local_config_root, 'site']) ]
+              \ + [ eden#path#join([g:cache_root, 'site']) ]
+  let l:after_packpath =
+              \   [ eden#path#join([g:config_root, 'after']) ]
+              \ + [ eden#path#join([g:local_config_root, 'after', 'site']) ]
+              \ + [ eden#path#join([g:cache_root, 'site']) ]
 
   for iter in l:o_packpaths
     if iter =~ '[/\\]after$'

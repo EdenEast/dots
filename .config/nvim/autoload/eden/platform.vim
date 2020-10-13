@@ -24,6 +24,13 @@ function eden#platform#distro()
   return substitute(system('lsb_release -si'), '[\n]\+', '', 'g')
 endfunction
 
+function eden#platform#path_sep()
+  if eden#platform#windows()
+    return '\\'
+  endif
+  return '/'
+endfunction
+
 " Vim information
 function eden#platform#nvim()
   return has('nvim')

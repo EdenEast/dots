@@ -1,3 +1,5 @@
+local util = require('util')
+
 local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 if not packer_exists then
   local repo_url = "https://github.com/wbthomason/packer.nvim"
@@ -7,10 +9,18 @@ if not packer_exists then
   )
 
   vim.fn.mkdir(dest, "p")
-  print("Downloading packer")
   local out = vim.fn.system(string.format("git clone %s %s", repo_url, dest .. "packer.nvim"))
-  print(out)
-  print("packer.nvim installed")
+
+  -- Adding packer path to the runtimepath
+  pcall(vim.cmd, [[packadd packer.nvim]])
+
+  local autocmds = {
+    startup = {
+      { "VimEnter", "*", [[:PackerInstall]] }
+    }
+  }
+
+  util.create_augroups(autocmds)
 end
 
 return require('packer').startup({
