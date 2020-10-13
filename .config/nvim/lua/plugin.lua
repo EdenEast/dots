@@ -36,6 +36,11 @@ return require('packer').startup({
         }
     }
 
+    -- Util and quality of life
+    use {
+      'airblade/vim-rooter'
+    }
+
     -- Themes
     use 'arzg/vim-colors-xcode'
     use 'sainnhe/gruvbox-material'
