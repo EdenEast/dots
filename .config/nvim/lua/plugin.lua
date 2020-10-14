@@ -50,6 +50,7 @@ return require('packer').startup({
       'airblade/vim-rooter',
       'markonm/traces.vim',   -- Improved searching
       'jiangmiao/auto-pairs', -- Insert or delete brackets, parens, quotes in pair.
+      'mhinz/vim-startify',   -- The fancy start screen for Vim
     }
 
     -- Motions and text objects
