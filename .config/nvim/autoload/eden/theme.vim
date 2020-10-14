@@ -5,6 +5,7 @@ function eden#theme#init()
   " In our local_config_root ($HOME/.local/share/nvim) after/plugin/theme.vim
   " will be sourced with after everything has been loaded.
   let g:colorscheme_file = eden#path#join([g:local_config_root, 'after', 'plugin', 'theme.vim'])
+  call eden#source_if_exists(g:colorscheme_file)
 
   augroup themes
     autocmd!

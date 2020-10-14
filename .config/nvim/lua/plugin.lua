@@ -28,12 +28,21 @@ return require('packer').startup({
     -- Packer manage packer as an optional plugin
     use { 'wbthomason/packer.nvim', opt = true }
 
+    -- Lsp
+    use {
+      'neovim/nvim-lspconfig',        -- Quickstart configurations for the Nvim LSP client
+      'nvim-lua/completion-nvim',     -- Completion functionalitty for LSP
+      'nvim-lua/diagnostic-nvim',     -- Diagnostic information for LSP
+      'nvim-lua/lsp-status.nvim',     -- LSP status information
+      'nvim-lua/lsp_extensions.nvim', -- LSP extensions like inlay hints
+    }
+
     -- Search
     use {
-        'junegunn/fzf.vim',
-        requires = {
-          { 'junegunn/fzf', run = ':fzf#install()' }
-        }
+      'junegunn/fzf.vim',
+      requires = {
+        { 'junegunn/fzf', run = ':fzf#install()' }
+      }
     }
 
     -- Util and quality of life
