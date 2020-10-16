@@ -14,6 +14,8 @@
 let g:nvim_user_config_path = fnamemodify(resolve(expand('<sfile>')), ':p:h')
 let &runtimepath = g:nvim_user_config_path . ',' . g:nvim_user_config_path . '/after,' . &runtimepath
 
+let g:neovide_cursor_animation_length=0.05
+
 call eden#init()
 call eden#whichkey_init()
 call eden#source_file($VIM_PATH, 'core/core.vim')
