@@ -67,7 +67,6 @@ endif
 
 set showmode                  " this should be the default
 
-set syntax
 if has('syntax')
   set synmaxcol=200           " dont bother syntax highlighting long lines
 endif
