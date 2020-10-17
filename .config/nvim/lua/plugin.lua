@@ -37,6 +37,24 @@ return require('packer').startup({
       'nvim-lua/lsp_extensions.nvim', -- LSP extensions like inlay hints
     }
 
+    -- Languages
+    use {
+      {
+        -- Preview markdown files in browser
+        'iamcco/markdown-preview.nvim',
+        run = function() vim.fn['mkdp#util#install']() end,
+        ft = {'markdown', 'vimwiki'},
+        cmd = 'MarkdownPreview',
+      },
+      {
+        -- syntax highlighting mega pack
+        'sheerun/vim-polyglot',
+        setup = function()
+          vim.g.ployglot_disabled = {'markdown', 'lua'}
+        end
+      },
+    }
+
     -- Search
     use {
       'junegunn/fzf.vim',
