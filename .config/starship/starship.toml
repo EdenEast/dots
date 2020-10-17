@@ -14,9 +14,6 @@ $git_status\
 $hg_branch\
 $docker_context\
 $nix_shell\
-$package\
-$go\
-$rust\
 $status\
 $character\
 """
