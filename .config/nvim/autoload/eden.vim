@@ -91,20 +91,22 @@ function eden#init()
   " autocmd to source init.vim when ever a file in changed either global or local config root
   augroup source_nvim_config
     autocmd!
-    autocmd BufWritePost $VIM_PATH/* execute 'source' $MYVIMRC
-    autocmd BufWritePost $VIM_LOCAL_PATH/* source $MYVIMRC
+    autocmd BufWritePost $VIM_PATH/* execute eden#source_file(expand("%:p"))
   augroup end
 endfunction
 
 function eden#source_if_exists(filename)
   if filereadable(a:filename)
-    execute 'source' a:filename
+    call eden#source_file(a:filename)
   endif
 endfunction
 
-function eden#source_file(path, filename)
-  let abs = resolve(a:path . '/' . a:filename)
-  execute 'source' fnameescape(abs)
+function eden#source_file(filename)
+  if a:filename =~ '.vim$'
+    execute 'source' a:filename
+  elseif a:filename =~ '.lua$'
+    execute 'luafile' a:filename
+  endif
 endfunction
 
 function eden#whichkey_init()
