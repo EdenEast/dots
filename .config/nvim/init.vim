@@ -25,6 +25,6 @@ call eden#theme#init()
 call eden#source_file(g:config_root, 'core/core.vim')
 
 if has("nvim")
-  lua require('plugin')
+  lua require('init')
 endif
 

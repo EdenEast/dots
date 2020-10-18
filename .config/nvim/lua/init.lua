@@ -1,2 +1,2 @@
-local ok, _ = pcall(function() require('eden.lsp') end)
+require('plugin')
 
