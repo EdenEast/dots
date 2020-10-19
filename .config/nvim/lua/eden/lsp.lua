@@ -26,10 +26,15 @@ local servers = {
   vimls = {},
 }
 
-for server, config in pairs(servers) do
-  config.on_attach = custom_on_attach(config)
-  config.capabilities = util.deep_extend('keep', config.capabilities or {}, nvim_status.capabilities)
+local function setup()
+  for server, config in pairs(servers) do
+    config.on_attach = custom_on_attach(config)
+    config.capabilities = util.deep_extend('keep', config.capabilities or {}, nvim_status.capabilities)
 
-  nvim_lsp[server].setup(config)
+    nvim_lsp[server].setup(config)
+  end
 end
 
+return {
+  setup = setup
+}

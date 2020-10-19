@@ -1,6 +1,7 @@
 if !has('nvim')
   finish
 endif
+finish
 
 " Diagnostic settings ---------------------------------------------------------
 let g:diagnostic_enable_virtual_text = 1
