@@ -18,7 +18,7 @@ function install_packer()
   -- Call PackerInstall once nvim has finished sourcing config
   local autocmds = {
     startup = {
-      { 'VimEnter', '*', [[:PackerInstall]] }
+      { 'VimEnter', '*', [[:PackerSync]] }
     }
   }
   util.create_augroups(autocmds)
