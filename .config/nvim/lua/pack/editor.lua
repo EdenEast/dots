@@ -53,3 +53,9 @@ use {
 --     rooter.setup()
 --   end
 -- }
+
+-- Integration with chrome/firefox with firenvim
+use {
+  'glacambre/firenvim',
+  run = function() vim.fn['firevim#install'](0) end
+}
