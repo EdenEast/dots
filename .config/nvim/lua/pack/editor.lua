@@ -35,8 +35,11 @@ use {
 -- change root
 use {
   'airblade/vim-rooter',
-  setup = function() vim.g.rooter_patterns = { '.git', '.git/', '.root', '.root/' } end
+  setup = function()
+    vim.g.rooter_patterns = { '.git', '.git/', '.root', '.root/' }
+  end
 }
+
 -- use {
 --   'oberblastmeister/rooter.nvim',
 --   config = function()
