@@ -6,4 +6,5 @@ use 'sainnhe/gruvbox-material'
 use 'Yggdroot/indentLine'
 use 'mhinz/vim-startify'
 use {'liuchengxu/vim-which-key', cmd = 'WhichKey'}
+use 'itchyny/lightline.vim'
 
