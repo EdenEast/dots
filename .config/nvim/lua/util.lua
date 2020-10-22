@@ -20,10 +20,6 @@ util.create_augroups = function(definitions)
   end
 end
 
-util.keymap = function(mode, key, result)
-  vim.api.nvim_buf_set_keymap(0, mode, key, result, { noremap = true, silent = true })
-end
-
 --- extends table with depth
 util.deep_extend = function(policy, ...)
   local result = {}
