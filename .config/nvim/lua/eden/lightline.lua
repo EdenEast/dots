@@ -2,7 +2,7 @@ local util = require('util')
 
 local function setup()
   vim.g.lightline = {
-    colorscheme = 'gruvbox',
+    colorscheme = 'wombat',
     active = {
       left = {
         {'mode', 'paste'},
