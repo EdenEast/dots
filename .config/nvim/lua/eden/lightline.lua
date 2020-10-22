@@ -9,11 +9,13 @@ local function setup()
         {'fugitive', 'readonly', 'filename', 'modified'}
       },
       right = {
-        { 'filetype', 'lspstatus', 'cocstatus', 'percent'},
+        { 'lineinfo', 'percent' },
+        { 'lspstatus', 'cocstatus'},
+        { 'filetype' },
       }
     },
     component = {
-      lineinfo = ' %3l:%-2v',
+      lineinfo = '%3l:%-2v',
     },
     component_type = {
       readonly = 'error',
