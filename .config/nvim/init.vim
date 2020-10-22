@@ -18,6 +18,8 @@ if !exists('g:eden_has_path_setup')
   let &runtimepath = g:nvim_user_config_path
 endif
 
+let g:eden_use_builtin_lsp = 0
+
 call eden#setup_paths(g:original_rtp, g:original_packpath)
 call eden#init()
 call eden#whichkey_init()

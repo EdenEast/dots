@@ -1,4 +1,5 @@
 local use = require('packer').use
+local disable_lsp = vim.g.eden_use_builtin_lsp == 0
 
 -- Lsp configs
 use {
@@ -9,6 +10,17 @@ use {
     'nvim-lua/diagnostic-nvim',
     'nvim-lua/lsp-status.nvim',
     'tjdevries/lsp_extensions.nvim',
-  }
+  },
+  disable = disable_lsp,
+}
+
+use {
+  'neoclide/coc.nvim',
+  branch = 'release',
+  diable = not disable_lsp,
+  config = function()
+    vim.g.coc_config_home = vim.g.config_root
+    vim.g.coc_data_home = vim.fn['eden#path#join']({vim.g.cache_root, 'coc'})
+  end
 }
 

@@ -1,4 +1,4 @@
-if !has('nvim')
+if !has('nvim') || g:eden_use_builtin_lsp == 0
   finish
 endif
 
