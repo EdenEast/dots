@@ -3,7 +3,7 @@ local use = require('packer').use
 -- polyglot
 use {
   'sheerun/vim-polyglot',
-  setup = function()
+  config = function()
     vim.g.vim_markdown_folding_disabled = 1
     vim.g.vim_markdown_override_foldtext = 0
     vim.g.vim_markdown_no_default_key_mappings = 1
@@ -37,10 +37,19 @@ use {
 }
 
 -- Extend rust syntax support
-use 'arzg/vim-rust-syntax-ext'
+use {
+  'arzg/vim-rust-syntax-ext',
+  ft = { 'rust' }
+}
 
 -- rust pest file
-use 'pest-parser/pest.vim'
+use {
+  'pest-parser/pest.vim',
+  ft = { 'pest' }
+}
 
 -- Just file
-use 'vmchale/just-vim'
+use {
+  'vmchale/just-vim',
+  ft = { 'just' }
+}

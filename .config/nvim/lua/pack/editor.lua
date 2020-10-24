@@ -13,7 +13,7 @@ use 'AndrewRadev/splitjoin.vim'
 -- Better whitespace stripping for Vim
 use {
   'thirtythreeforty/lessspace.vim',
-  setup = function()
+  config = function()
     vim.g.lessspace_normal = 0
   end
 }
@@ -21,7 +21,7 @@ use {
 -- editorconfig integration
 use {
   'editorconfig/editorconfig-vim',
-  setup = function()
+  config = function()
     vim.g.EditorConfig_exclude_patterns = { 'fugitive://.*', 'scp://.*' }
   end
 }
@@ -29,13 +29,14 @@ use {
 -- Min/Max buffer
 use {
   'szw/vim-maximizer',
-  startup = function() vim.g.maximizer_set_default_mapping = 0 end
+  config = function() vim.g.maximizer_set_default_mapping = 0 end,
+  cmd = { 'MaximizerToggle' },
 }
 
 -- change root
 use {
   'airblade/vim-rooter',
-  setup = function()
+  config = function()
     vim.g.rooter_patterns = { '.git', '.git/', '.root', '.root/' }
   end
 }
