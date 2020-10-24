@@ -28,7 +28,7 @@ let g:coc_global_extensions  = [
 set updatetime=300
 
 " Highlight the symbol and its references when holding the cursor.
-if g:coc_loaded
+if exists('g:coc_loaded')
   autocmd CursorHold * silent call CocActionAsync('highlight')
 endif
 
