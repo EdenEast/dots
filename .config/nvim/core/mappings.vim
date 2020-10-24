@@ -81,12 +81,6 @@ nnoremap <A-j> <C-w>3-
 map <F1> :tabedit $HOME/.config/nvim/init.vim<cr>
 map <leader><F1> :source $MYVIMRC<cr>
 
-" Toggle spelling quickly
-map <F3> :set spell!<cr>
-
-" re-indent file and jump back to current cursor position
-map <leader><F3> mzgg=G`z
-
 " " Refresh the current file
 map <F4> :e! %<cr>
 map <leader><F4> :call eden#source_file(expand('%'))<cr>
