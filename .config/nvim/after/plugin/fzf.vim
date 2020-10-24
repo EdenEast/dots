@@ -23,6 +23,12 @@ let g:which_key_map.f.g = 'file in git'
 nnoremap <silent> <leader>fc :<c-u>Commands!<cr>
 let g:which_key_map.f.g = 'file in git'
 
+nnoremap <silent> <leader>fh :<c-u>History!<cr>
+let g:which_key_map.f.h = 'history'
+
+nnoremap <silent> <leader>fm :<c-u>Marks!<cr>
+let g:which_key_map.f.m = 'marks'
+
 " Search lines in current buffer
 nnoremap <silent> // :<c-u>BLines!<cr>
 
