@@ -89,10 +89,10 @@ function eden#init()
   endif
 
   " autocmd to source init.vim when ever a file in changed either global or local config root
-  augroup source_nvim_config
-    autocmd!
-    autocmd BufWritePost $VIM_PATH/* execute eden#source_file(expand("%:p"))
-  augroup end
+  " augroup source_nvim_config
+  "   autocmd!
+  "   autocmd BufWritePost $VIM_PATH/* execute eden#source_file(expand("%:p"))
+  " augroup end
 endfunction
 
 function eden#source_if_exists(filename)

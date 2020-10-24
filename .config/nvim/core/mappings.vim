@@ -92,7 +92,7 @@ map <leader><F3> mzgg=G`z
 
 " " Refresh the current file
 map <F4> :e! %<cr>
-map <leader><F4> :source %<cr>
+map <leader><F4> :call eden#source_file(expand('%'))<cr>
 
 " Quickfix jumping shortcuts
 "
