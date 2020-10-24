@@ -27,7 +27,7 @@ use {
   'iamcco/markdown-preview.nvim',
   run = function() vim.fn['mkdp#util#install']() end,
   ft = {'markdown', 'vimwiki'},
-  cmd = 'MarkdownPreview',
+  cmd = { 'MarkdownPreview', 'MarkdownPreviewToggle' },
   config = {
     function()
       vim.g.mkdp_auto_close = 0
