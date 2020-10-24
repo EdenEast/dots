@@ -28,7 +28,9 @@ let g:coc_global_extensions  = [
 set updatetime=300
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+if g:coc_loaded
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
