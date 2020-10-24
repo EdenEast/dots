@@ -8,3 +8,6 @@ command! PackerUpdate packadd packer.nvim | lua require('plugin').update()
 command! PackerSync packadd packer.nvim | lua require('plugin').sync()
 command! PackerClean packadd packer.nvim | lua require('plugin').clean()
 command! PackerCompile packadd packer.nvim | lua require('plugin').compile()
+
+nnoremap <F2> :<c-u>PackerCompile<cr>
+nnoremap <leader><F2> :<c-u>PackerSync<cr>
