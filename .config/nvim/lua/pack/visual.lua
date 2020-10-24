@@ -11,10 +11,10 @@ use {'liuchengxu/vim-which-key', cmd = 'WhichKey'}
 use {
   'glepnir/dashboard-nvim',
   config = function() require'eden/dashboard'.setup() end,
+  disable = true,
 }
 use {
   'mhinz/vim-startify',
-  disable = true,
 }
 
 -- Status line
