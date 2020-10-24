@@ -41,6 +41,10 @@ use {
   end
 }
 
+-- secure modelines
+use 'ciaranm/securemodelines'
+use 'dstein64/vim-startuptime'
+
 -- use {
 --   'oberblastmeister/rooter.nvim',
 --   config = function()
