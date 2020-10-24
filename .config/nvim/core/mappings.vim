@@ -22,9 +22,6 @@ nmap N Nzz
 " Swtich between the last two buffers
 nnoremap <leader><leader> <c-^>
 
-" I never use this widnow and only ever get there by trying to quit so just quit
-nmap q: :q
-
 " Tab/shift-tab to indent/outdent in visual mode.
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
