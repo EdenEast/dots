@@ -23,10 +23,10 @@ let g:eden_use_builtin_lsp = 0
 call eden#setup_paths(g:original_rtp, g:original_packpath)
 call eden#init()
 call eden#whichkey_init()
-call eden#theme#init()
-call eden#source_file(g:config_root . '/core/core.vim')
+call eden#source_file(eden#path#join([g:config_root, 'core', 'core.vim']))
 
 if has("nvim")
   lua require('init')
 endif
+call eden#theme#init()
 
