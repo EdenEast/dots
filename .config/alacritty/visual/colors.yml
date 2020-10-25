@@ -1,12 +1,12 @@
 import:
-  # - C:/Users/James/.config/alacritty/visual/colors/arc.yml
-  - C:/Users/James/.config/alacritty/visual/colors/code.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/ephemeral.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/insomnia.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/lovelace.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/neon.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/skyfall.yml
-  # - C:/Users/James/.config/alacritty/visual/colors/tomorrow_night.yml
+  # - ~/.config/alacritty/visual/colors/arc.yml
+  - ~/.config/alacritty/visual/colors/code.yml
+  # - ~/.config/alacritty/visual/colors/ephemeral.yml
+  # - ~/.config/alacritty/visual/colors/insomnia.yml
+  # - ~/.config/alacritty/visual/colors/lovelace.yml
+  # - ~/.config/alacritty/visual/colors/neon.yml
+  # - ~/.config/alacritty/visual/colors/skyfall.yml
+  # - ~/.config/alacritty/visual/colors/tomorrow_night.yml
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
