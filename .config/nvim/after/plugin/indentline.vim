@@ -14,4 +14,5 @@ let g:indentLine_fileTypeExclude = [
       \ 'vista_kind',
       \ 'vista',
       \ 'Help',
+      \ 'term',
       \]
