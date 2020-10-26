@@ -68,6 +68,10 @@ use {
   'glacambre/firenvim',
   cond = 'vim.g.started_by_firenvim',
   run = function() vim.fn['firenvim#install'](0) end,
+  config = function()
+    vim.o.laststatus = 0
+    vim.bo.filetype = 'markdown'
+  end,
 }
 
 -- Utils
@@ -75,3 +79,6 @@ use {
   'tweekmonster/helpful.vim',
   cmd = { 'HelpfulVersion' },
 }
+
+-- maybe?
+-- use 'nanotee/zoxide.vim'
