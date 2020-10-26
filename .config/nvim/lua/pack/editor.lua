@@ -66,7 +66,7 @@ use 'dstein64/vim-startuptime'
 -- Integration with chrome/firefox with firenvim
 use {
   'glacambre/firenvim',
-  run = function() vim.fn['firevim#install'](0) end
+  run = function() vim.fn['firenvim#install'](0) end,
 }
 
 -- Utils
