@@ -2,6 +2,7 @@ local use = require('packer').use
 
 -- Pairs
 -- use 'doums/coBra'
+-- use 'tmsvg/pear-tree'
 use 'jiangmiao/auto-pairs'
 
 -- Enhanced search
@@ -66,4 +67,10 @@ use 'dstein64/vim-startuptime'
 use {
   'glacambre/firenvim',
   run = function() vim.fn['firevim#install'](0) end
+}
+
+-- Utils
+use {
+  'tweekmonster/helpful.vim',
+  cmd = { 'HelpfulVersion' },
 }

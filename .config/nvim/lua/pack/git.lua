@@ -5,3 +5,8 @@ use {
   'jreybert/vimagit',
   cmd = 'Magit',
 }
+
+-- Note: Something to watch as a replacement for Magit
+-- use {
+--   'TimUntersberger/neogit'
+-- }
