@@ -20,8 +20,6 @@ use {
   diable = not disable_lsp,
   config = function()
     vim.g.coc_loaded = 'true'
-    vim.g.coc_config_home = vim.g.config_root
-    vim.g.coc_data_home = vim.fn['eden#path#join']({vim.g.cache_root, 'coc'})
   end
 }
 

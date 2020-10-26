@@ -2,6 +2,8 @@ if g:eden_use_builtin_lsp != 0
   finish
 endif
 
+let g:coc_config_home = g:config_root
+let g:coc_data_home = eden#path#join([g:cache_root, 'coc'])
 let g:coc_global_extensions  = [
       \ 'coc-actions',
       \ 'coc-clangd',
