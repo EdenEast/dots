@@ -4,6 +4,6 @@ use {
   'junegunn/fzf.vim',
   requires = {
     'junegunn/fzf',
-    run = function() vim.fn['fzf#install()']() end,
+    run = function() vim.fn['fzf#install']() end,
   },
 }
