@@ -1,27 +1,36 @@
-function eden#theme#init()
-  " My eyes bleed with light themes. Save my eyes plz
-  set background=dark
-
-  let g:colorscheme_file = g:cache_root . '/theme.vim'
-  call eden#check_source(g:colorscheme_file)
-
-  augroup themes
-    autocmd!
-    autocmd ColorScheme * call eden#theme#post()
-  augroup end
+function! eden#theme#init()
+  " local cached colorscheme or default
+  let l:default = 'xcodedark'
+  let l:cache = s:theme_cache_file()
+  if !exists('g:colors_name')
+    set background=dark
+    let l:scheme = filereadable(l:cache) ? readfile(l:cache)[0] : l:default
+    silent! execute 'colorscheme' l:scheme
+  endif
 endfunction
 
-function eden#theme#post()
-  let l:command = ['']
-  let l:command += ["if exists(\'g:colors_name\')"]
-  let l:command += ["  if g:colors_name != \'" . g:colors_name . "\'"]
-  let l:command += ['    colorscheme ' . g:colors_name]
-  let l:command += ['  endif']
-  let l:command += ['else']
-  let l:command += ['  colorscheme ' . g:colors_name]
-  let l:command += ['endif']
-  call writefile(l:command, g:colorscheme_file)
-
-  " let l:command = "if g:colors_name != \'".g:colors_name."\'|  colorscheme ".g:colors_name."|endif"
-  " call writefile(split(l:command, "|"), g:colorscheme_file)
+function! s:theme_autoload()
+  if exists('g:colors_name')
+    call writefile([g:colors_name], s:theme_cache_file())
+  endif
 endfunction
+
+function! s:theme_cache_file()
+  return eden#path#join([g:cache_root, 'theme.txt'])
+endfunction
+
+function! s:theme_cleanup()
+  if !exists('g:colors_name')
+    return
+  endif
+
+  highlight clear
+endfunction
+
+augroup eden_themes
+  autocmd!
+  autocmd ColorScheme * call s:theme_autoload()
+  if has('patch-8.0.1781') || has('nvim-0.3.2')
+    autocmd ColorSchemePre * call s:theme_cleanup()
+  endif
+augroup END

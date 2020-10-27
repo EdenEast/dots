@@ -1,22 +1,80 @@
-function eden#init()
-  " Make sure that we NEVER EVER go back to vi. This is the future not the past
-  if &compatible
-    set nocompatible
+function eden#setup_paths(original_rtp, original_packpath)
+  if exists('g:eden_has_path_setup')
+    return
   endif
+  let g:eden_has_path_setup = 1
 
-  " I will always want syntax no matter what
-  syntax on
-
-  " Make vim try and understand filetypes and load related plugins
-  filetype plugin indent on
-
-  " Set main configuration directory as parent directory
+  " Define main configuration paths
   let $VIM_PATH=expand('$HOME/.config/nvim')
   let g:config_root=expand('$HOME/.config/nvim')
   let g:cache_root=expand('$HOME/.cache/nvim')
   let g:package_root=g:cache_root . '/packages'
   let $VIM_LOCAL_PATH=expand('$HOME/.local/share/nvim')
   let g:local_config_root=expand('$HOME/.local/share/nvim')
+
+  " Runtimepath ---------------------------------------------------------------
+  let l:o_rtps = split(a:original_rtp, ',')
+  let l:rtps = [g:config_root, g:local_config_root]
+  let l:after_rtps =
+              \   [ eden#path#join([g:config_root, 'after']) ]
+              \ + [ eden#path#join([g:local_config_root, 'after']) ]
+
+  for iter in l:o_rtps
+    if iter =~ '[/\\]after$'
+      if index(l:after_rtps, iter) == -1
+        call add(l:after_rtps, iter)
+      endif
+    else
+      if index(l:rtps, iter) == -1
+        call add(l:rtps, iter)
+      endif
+    endif
+  endfor
+
+  let &runtimepath = join(l:rtps, ',') . ',' . join(l:after_rtps, ',')
+
+  " Packpath ------------------------------------------------------------------
+  let l:o_packpaths = split(a:original_packpath, ',')
+  let l:packpaths =
+              \   [ g:config_root ]
+              \ + [ eden#path#join([g:local_config_root, 'site']) ]
+              \ + [ eden#path#join([g:cache_root, 'site']) ]
+  let l:after_packpath =
+              \   [ eden#path#join([g:config_root, 'after']) ]
+              \ + [ eden#path#join([g:local_config_root, 'after', 'site']) ]
+              \ + [ eden#path#join([g:cache_root, 'site']) ]
+
+  for iter in l:o_packpaths
+    if iter =~ '[/\\]after$'
+      if index(l:after_packpath, iter) == -1
+        call add(l:after_packpath, iter)
+      endif
+    else
+      if index(l:packpaths, iter) == -1
+        call add(l:packpaths, iter)
+      endif
+    endif
+  endfor
+
+  let &packpath = join(l:packpaths, ',') . ',' . join(l:after_packpath, ',')
+endfunction
+
+function eden#init()
+  if exists('g:eden_has_initialized')
+    return
+  endif
+  let g:eden_has_initialized = 1
+
+  if &compatible
+    set nocompatible
+  endif
+
+  " These are the basics of any editor
+  syntax on
+  filetype plugin indent on
+
+  " Making sure that our encoding is correct
+  set encoding=UTF-8
 
   " Initialize base requirements
   if has('vim_starting')
@@ -31,46 +89,24 @@ function eden#init()
   endif
 
   " autocmd to source init.vim when ever a file in changed either global or local config root
-  augroup source_nvim_config
-    autocmd!
-    autocmd BufWritePost $VIM_PATH/* execute 'source' $MYVIMRC
-    autocmd BufWritePost $VIM_LOCAL_PATH/* source $MYVIMRC
-  augroup end
+  " augroup source_nvim_config
+  "   autocmd!
+  "   autocmd BufWritePost $VIM_PATH/* execute eden#source_file(expand("%:p"))
+  " augroup end
 endfunction
 
-function eden#source_file(root_path, path)
-  let abspath = resolve(a:root_path . '/' . a:path)
-  execute 'source' fnameescape(abspath)
-endfunction
-
-function eden#check_source(filename)
+function eden#source_if_exists(filename)
   if filereadable(a:filename)
-    let content = readfile(a:filename)
-    if !empty(content)
-      execute 'source' a:filename
-    endif
+    call eden#source_file(a:filename)
   endif
 endfunction
 
-function eden#source_lua_file(root_path, path)
-  let abspath = resolve(a:root_path . '/' . a:path)
-  execute 'luafile' fnameescape(abspath)
-endfunction
-
-function eden#check_lua_source(filename)
-  if filereadable(a:filename)
-    let content = readfile(a:filename)
-    if !empty(content)
-      execute 'luafile' a:filename
-    endif
+function eden#source_file(filename)
+  if a:filename =~ '.vim$'
+    execute 'source' a:filename
+  elseif a:filename =~ '.lua$'
+    execute 'luafile' a:filename
   endif
-endfunction
-
-function eden#source_after()
-  let l:files = split(globpath(g:config_root, 'after/**/*.vim'), '\n')
-  for l:file in l:files
-    call eden#check_source(l:file)
-  endfor
 endfunction
 
 function eden#whichkey_init()

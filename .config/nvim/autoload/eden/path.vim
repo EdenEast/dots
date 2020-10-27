@@ -5,8 +5,6 @@ function eden#path#create_dir(path)
   endif
 endfunction
 
-" function eden#path#join(root ...)
-"   return simplify(resolve(a:root))
-" endfunction
-
-"function eden#path#runtime_path()
+function eden#path#join(paths)
+  return join(a:paths, eden#platform#path_sep())
+endfunction

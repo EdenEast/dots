@@ -1,2 +1,0 @@
-Plug 'markonm/traces.vim'
-

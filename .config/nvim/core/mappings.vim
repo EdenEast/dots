@@ -22,9 +22,6 @@ nmap N Nzz
 " Swtich between the last two buffers
 nnoremap <leader><leader> <c-^>
 
-" I never use this widnow and only ever get there by trying to quit so just quit
-nmap q: :q
-
 " Tab/shift-tab to indent/outdent in visual mode.
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
@@ -84,15 +81,9 @@ nnoremap <A-j> <C-w>3-
 map <F1> :tabedit $HOME/.config/nvim/init.vim<cr>
 map <leader><F1> :source $MYVIMRC<cr>
 
-" Toggle spelling quickly
-map <F3> :set spell!<cr>
-
-" re-indent file and jump back to current cursor position
-map <leader><F3> mzgg=G`z
-
 " " Refresh the current file
 map <F4> :e! %<cr>
-map <leader><F4> :source %<cr>
+map <leader><F4> :call eden#source_file(expand('%'))<cr>
 
 " Quickfix jumping shortcuts
 "
@@ -105,4 +96,3 @@ map <leader><F5> :cp<cr>
 " map <F6> :make<cr>
 map <F7> :cn<cr>
 map <leader><F7> :cn<cr>
-
