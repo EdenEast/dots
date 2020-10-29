@@ -2,7 +2,12 @@ local use = require('packer').use
 
 -- Themes
 use 'arzg/vim-colors-xcode'
-use 'sainnhe/gruvbox-material'
+use {
+  'sainnhe/gruvbox-material',
+  config = function()
+    vim.g.gruvbox_material_background = 'medium'
+  end,
+}
 
 use 'Yggdroot/indentLine'
 use {'liuchengxu/vim-which-key', cmd = 'WhichKey'}
