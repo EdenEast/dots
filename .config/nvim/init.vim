@@ -28,5 +28,6 @@ call eden#source_file(eden#path#join([g:config_root, 'core', 'core.vim']))
 if has("nvim")
   lua require('init')
 endif
-call eden#theme#init()
+
+" call eden#theme#init()
 
