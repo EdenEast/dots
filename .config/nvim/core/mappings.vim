@@ -56,6 +56,12 @@ let g:which_key_map.b.n = 'next'
 nnoremap <leader>bp :bprevious<cr>
 let g:which_key_map.b.p = 'prev'
 
+" Delete all bufers except for current buffer:
+" - save file | delete all buffers | edit file in last opened register | delete [no name] buffer created from deleting
+"   all buffers | move cursor back to position
+nnoremap <leader>bo :w\|%bd\|e#\|bd#<cr>\|'"
+let g:which_key_map.b.o = 'only'
+
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bNext<cr>
 
