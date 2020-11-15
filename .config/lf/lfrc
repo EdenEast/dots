@@ -17,7 +17,6 @@ set findlen 2
 set ignorecase true
 set smartcase true
 
-
 # cmd open ${{
 #     case $(file --mime-type "$f" -bL) in
 #         text/*|application/json) $EDITOR "$f";;

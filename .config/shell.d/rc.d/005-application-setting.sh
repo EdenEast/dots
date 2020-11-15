@@ -27,3 +27,7 @@
     export GIT_PAGER="less"
 }
 
+# if lf is insatlled then source lfcd command
+[[ -n "$(command -v lf)" ]] && {
+    source "$HOME/.config/lf/lfcd.sh"
+}
