@@ -1,3 +1,7 @@
+if !has("nvim")
+  finish
+endif
+
 " Detect terminal and set it as a filetype
 augroup TermDetect
     au!
