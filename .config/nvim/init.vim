@@ -29,5 +29,9 @@ if has("nvim")
   lua require('init')
 endif
 
+if has('nvim-0.5')
+  command! -nargs=? ResetLuaPlugin lua require"devtools".reset_package(<q-args>)
+endif
+
 " call eden#theme#init()
 
