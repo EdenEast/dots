@@ -6,4 +6,5 @@ endif
 augroup TermDetect
     au!
     au TermOpen term://*  set filetype=term
+    au TermOpen term://*#toggleterm#*  set filetype=toggleterm
 augroup END

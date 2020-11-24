@@ -74,6 +74,11 @@ use {
   end,
 }
 
+-- Toggle terminal
+use {
+  'akinsho/nvim-toggleterm.lua'
+}
+
 -- Utils
 use {
   'tweekmonster/helpful.vim',
