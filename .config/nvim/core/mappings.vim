@@ -62,6 +62,9 @@ let g:which_key_map.b.p = 'prev'
 nnoremap <leader>bo :w\|%bd\|e#\|bd#<cr>\|'"
 let g:which_key_map.b.o = 'only'
 
+nnoremap <leader>bO :w\|%bd!\|e#\|bd!#<cr>\|'"
+let g:which_key_map.b.O = 'force only'
+
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bNext<cr>
 
