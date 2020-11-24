@@ -23,6 +23,5 @@ import:
   - ~/.config/alacritty/visual/cursor.yml
   - ~/.config/alacritty/visual/font.yml
   - ~/.config/alacritty/visual/window.yml
-  - path: ~/.local/share/alacritty/config.yml
-    optional: true
+  - ~/.local/share/alacritty/config.yml
 
