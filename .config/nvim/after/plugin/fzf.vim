@@ -13,6 +13,11 @@ if executable('fd')
                 \                               'options': '--tiebreak=index'}, <bang>0)
 endif
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 " Search files in directory
 nnoremap <silent> <leader>fd :<c-u>Files!<cr>
 let g:which_key_map.f.d = 'file in dirs'
