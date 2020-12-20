@@ -31,8 +31,7 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 ## Some Resources
 
 - [How to encrypt dotfiles](https://abdullah.today/2019/10/01/encrypted-dotfiles.html) with keybase and gpg
-- [conf.d like directories](https://chr4.org/blog/2014/09/10/conf-dot-d-like-directories-for-zsh-slash-bash-dotfiles/)
-    for bash and zsh
+- [conf.d like directories](https://chr4.org/blog/2014/09/10/conf-dot-d-like-directories-for-zsh-slash-bash-dotfiles/) for bash and zsh
 
 ## Examples
 
@@ -41,6 +40,7 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 - [andschwa/dotfiles](https://github.com/andschwa/dotfiles) use git subtree and stow setup with private subtrees
 - [dguo/dotfiles](https://github.com/dguo/dotfiles) interesting remap of caps lock, has all 3 platforms, good readme
 - [xero/dotfiles](https://github.com/xero/dotfiles) well documented and extensive config
+- [noctuid/dotfiles](https://github.com/noctuid/dotfiles) through documented readme; keyboard workflow
 - [bspwm simple theme switcher](https://www.reddit.com/r/unixporn/comments/def9ez/bspwm_simple_theme_switcher/)
 - [open box fool in the rain](https://www.reddit.com/r/unixporn/comments/8apait/openbox_fool_in_the_rain/)
 - [clean and productive](https://www.reddit.com/r/unixporn/comments/aktm5d/i3gaps_clean_and_productive/)
@@ -52,6 +52,7 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 - [xmonadminimal](https://www.reddit.com/r/unixporn/comments/al4yyy/xmonadminimal/)
 
 ## Themes
+
 - [dreamlike](https://www.reddit.com/r/unixporn/comments/dkgomp/bspwm_dreamlike/)
 - [efficiency](https://www.reddit.com/r/unixporn/comments/djrtdp/bspwm_efficiency/)
 - [simplicity](https://www.reddit.com/r/unixporn/comments/djuz99/i3gaps_simplicity/)
@@ -60,20 +61,25 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 - [interesting pywal setup](https://www.reddit.com/r/unixporn/comments/djzs4o/i3gapsrounded_having_fun_again_with_pywal/)
 
 ## Rofi scripts
+
 - [rofi menu scripts](https://gitlab.com/vahnrr/rofi-menus)
 - [i3lock-color faster lockscreen](https://www.reddit.com/r/unixporn/comments/7iddwn/i3lock_faster_and_better_lockscreen/)
 
 ## Awesome
+
 - [rounded](https://www.reddit.com/r/unixporn/comments/dmvcev/awesome_rounded/)
 - [lines](https://www.reddit.com/r/unixporn/comments/dpy9wu/awesome_lines/)
 
 ## Herbsluftwm
+
 - [singularity](https://www.reddit.com/r/unixporn/comments/dp5278/herbstluftwm_creamy_singularity/)
 
 ## 2bwm
+
 - [doot](https://www.reddit.com/r/unixporn/comments/dq8xbs/2bwm_doot/)
 
 ## More reddit posts to save
+
 - [kde nordic kwin](https://www.reddit.com/r/unixporn/comments/dncmja/kde_plasma_nordic_manjaro_gridtilingkwin/)
 - [bspwm workflow](https://www.reddit.com/r/unixporn/comments/co4kan/bspwm_wallpaper_is_bloat/)
 - [xmonad with lemonbar](https://www.reddit.com/r/unixporn/comments/4b96v0/xmonadlemonbar_dual_monitor_desktop_on_freebsd/)
@@ -81,3 +87,4 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 - [nice lemonbar and 2bwm](https://www.reddit.com/r/unixporn/comments/a7f1oa/2bwmlemonbar_light_rice/)
 - [bspwm and powerline lemonbar](https://www.reddit.com/r/unixporn/comments/bni61i/bspwm_a_powerline_attempt_in_lemonbar/)
 - [bspwm clickable lemonbar](https://www.reddit.com/r/unixporn/comments/b12d3s/bspwm_add_button_clicked_lemonbar/)
+
