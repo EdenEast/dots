@@ -1,5 +1,12 @@
 # Dots
 
+⚠️ This repository is deprecated . Configuration has moved to [nyx] managed in [nix]. ⚠️
+
+[nyx]: https://github.com/edeneast/nyx
+[nix]: https://nixos.org
+
+---
+
 > The dotfiles for my personal windows and arch linux setup
 
 Dot files uses [yadm] as a manager. Note that iI havent commented / docuemnted most of the config. I will try my best to document when I can.
@@ -36,7 +43,7 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 ## Examples
 
 - [neeasade/dotfiles](https://github.com/neeasade/dotfiles) utilize a template based theming system, with the ability to
-    to switch between themes without restarting programs
+  to switch between themes without restarting programs
 - [andschwa/dotfiles](https://github.com/andschwa/dotfiles) use git subtree and stow setup with private subtrees
 - [dguo/dotfiles](https://github.com/dguo/dotfiles) interesting remap of caps lock, has all 3 platforms, good readme
 - [xero/dotfiles](https://github.com/xero/dotfiles) well documented and extensive config
@@ -87,4 +94,3 @@ YADM_DIR="$HOME/.config/yadm" ./yadm clone --bootstrap https://github.com/edenea
 - [nice lemonbar and 2bwm](https://www.reddit.com/r/unixporn/comments/a7f1oa/2bwmlemonbar_light_rice/)
 - [bspwm and powerline lemonbar](https://www.reddit.com/r/unixporn/comments/bni61i/bspwm_a_powerline_attempt_in_lemonbar/)
 - [bspwm clickable lemonbar](https://www.reddit.com/r/unixporn/comments/b12d3s/bspwm_add_button_clicked_lemonbar/)
-
